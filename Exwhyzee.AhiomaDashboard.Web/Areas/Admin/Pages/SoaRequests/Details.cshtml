@@ -1,0 +1,108 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.Admin.Pages.SoaRequests.DetailsModel
+
+@{ ViewData["Title"] = "Details"; }
+<div class="row">
+    <div class="card-columns mx-auto d-flex justify-content-center col-12">
+
+        <div class="card">
+            <div class="card-header">
+
+                <h3 class="card-title">
+                    SOA Request Details
+
+
+                </h3>
+            </div>
+            <div class="card-body">
+                <div>
+
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.SoaRequest.FullName)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.SoaRequest.FullName)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.SoaRequest.PhoneNumber)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.SoaRequest.PhoneNumber)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.SoaRequest.ShopAddress)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.SoaRequest.ShopAddress)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.SoaRequest.BusinessName)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.SoaRequest.BusinessName)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.SoaRequest.Email)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.SoaRequest.Email)
+                        </dd>
+
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.SoaRequest.Date)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.SoaRequest.Date)
+                        </dd>
+
+                        <dt>
+
+SOA                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.SoaRequest.UserProfile.Fullname)
+                        </dd>
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.SoaRequest.Email)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.SoaRequest.Email)
+                        </dd>
+
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.SoaRequest.DateSentToSoa)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.SoaRequest.DateSentToSoa)
+                        </dd>
+
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.SoaRequest.DateProcessedByUser)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.SoaRequest.DateProcessedByUser)
+                        </dd>
+
+
+                        <dt>
+                            @Html.DisplayNameFor(model => model.SoaRequest.SoaRequestStatus)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.SoaRequest.SoaRequestStatus)
+                        </dd>
+
+                      
+                    </dl>
+                </div>
+                <div>
+                    <a asp-page="./Edit" asp-route-id="@Model.SoaRequest.Id">Edit</a> |
+                    <a asp-page="./Index">Back to List</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

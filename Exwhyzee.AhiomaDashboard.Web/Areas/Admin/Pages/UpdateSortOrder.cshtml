@@ -1,0 +1,343 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.Admin.Pages.Products.UpdateSortOrderModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="row">
+
+
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+
+                <h3 class="card-title">
+                    Edit Product
+
+
+                </h3>
+            </div>
+            <div class="card-body">
+                @if (TempData["error"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissible">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>@TempData["error"]</strong>
+                    </div>
+                }
+                @if (TempData["success"] != null)
+                {
+                    <div class="alert alert-success alert-dismissible">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>@TempData["success"]</strong>
+                    </div>
+                }
+
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                            <a class="nav-link active" id="v-Dashboard-tab" data-toggle="pill" href="#v-Dashboard" role="tab" aria-controls="v-Dashboard" aria-selected="false">General</a>
+                            <a class="nav-link mb-2" id="v-Pictures-tab" data-toggle="pill" href="#v-Pictures" role="tab" aria-controls="v-Pictures" aria-selected="false">Pictures</a>
+                            <a class="nav-link mb-2" id="v-MetaTags-tab" data-toggle="pill" href="#v-MetaTags" role="tab" aria-controls="v-MetaTags" aria-selected="false">SEO</a>
+
+
+                        </div>
+                    </div>
+                    <div class="col-md-10">
+                        <form method="post" enctype="multipart/form-data">
+
+
+                            <input hidden asp-for="Product.TenantId" />
+                            <input hidden asp-for="Product.Id" value="@Model.ProductId" />
+                            <input hidden name="id" value="@Model.ProductId" />
+                            <input hidden asp-for="Product.CreatedOnUtc" />
+                            <input hidden asp-for="Product.UpdatedOnUtc" />
+                            <input hidden asp-for="Product.SubCategoryId" />
+                            <input hidden asp-for="Product.Commision" />
+                            <div class="tab-content text-muted mt-4 mt-md-0" id="v-pills-tabContent">
+
+
+                                <div class="tab-pane fade active show" id="v-Dashboard" role="tabpanel" aria-labelledby="v-Dashboard-tab">
+
+                                    <div class="">
+                                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                        <div class="form-group">
+                                            <div class="checkbox">
+                                                <label>
+                                                    Publish
+                                                </label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="Check it if you want this product to be visible in to all."></i>
+                                                <input asp-for="Product.Published" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label asp-for="Product.Name" class="control-label">Product Name</label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="The name of the product"></i>
+                                            <input asp-for="Product.Name" class="form-control" />
+                                            <span asp-validation-for="Product.Name" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="Product.ShortDescription" class="control-label">Short Description</label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="he short description of the product. This is the text that displays in product lists i.e. category / manufacturer pages"></i>
+                                            <textarea asp-for="Product.ShortDescription" class="form-control"></textarea>                                            <span asp-validation-for="Product.ShortDescription" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="Product.FullDescription" class="control-label">Full Description</label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="The flag of the product."></i>
+                                            <textarea id="mytextarea" asp-for="Product.FullDescription" class="form-control">@Model.Product.FullDescription</textarea>
+                                            @*<input asp-for="Product.FullDescription" class="form-control" />*@
+                                            <span asp-validation-for="Product.FullDescription" class="text-danger"></span>
+                                        </div>
+
+                                        @*<div class="form-group">
+            <label asp-for="Product.Price" class="control-label">Price (NG)</label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="More Infomation"></i>
+            <input asp-for="Product.Price" class="form-control" type="number" />
+            <span asp-validation-for="Product.Price" class="text-danger"></span>
+        </div>*@
+                                        <div class="form-group">
+                                            <label asp-for="Product.ProductCode" class="control-label">Product Code / Bar Code</label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="Product Code / Bar Code"></i>
+                                            <input asp-for="Product.ProductCode" class="form-control" />
+                                            <span asp-validation-for="Product.ProductCode" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="checkbox">
+                                                <label>
+                                                    Add Color
+                                                </label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="Check it if you want this product to be visible in to all."></i>
+                                                <input asp-for="Product.UseColor" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+
+                                            <label asp-for="Colors" class="control-label">Product Colors (current colors: @String.Join(", ", Model.Product.ProductColors.Select(x => x.ItemColor))</label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="Product Color"></i>
+                                            <input asp-for="Colors" class="form-control" placeholder="red,blue,yellow" />
+                                            <span asp-validation-for="Colors" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="checkbox">
+                                                <label>
+                                                    Add Size
+                                                </label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="Check it if you want this product to be visible in to all."></i>
+                                                <input asp-for="Product.UseSize" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="Sizes" class="control-label">Product Sizes (Current sizes: @String.Join(", ", Model.Product.ProductSizes.Select(x => x.ItemSize)))</label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="Product Color"></i>
+                                            <input asp-for="Sizes" class="form-control" placeholder="long,short,1kg,2kg,50litters,midium" />
+                                            <span asp-validation-for="Sizes" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="Product.Status" class="control-label"></label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="More Infomation"></i>
+                                            @Html.DropDownListFor(model => model.Product.Status, new SelectList(Enum.GetValues(typeof(Exwhyzee.Enums.EntityStatus))), new { @class = "form-control" })
+                                            <span asp-validation-for="Product.Status" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="Product.ReOrderLevel" class="control-label"></label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="More Infomation"></i>
+                                            <input asp-for="Product.ReOrderLevel" class="form-control" />
+                                            <span asp-validation-for="Product.ReOrderLevel" class="text-danger"></span>
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <label asp-for="Product.CategoryId" class="control-label">Category</label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="More Infomation"></i>
+                                            <select asp-for="Product.CategoryId" class="form-control" id="Category" required="required" asp-items="ViewBag.CategoryId">
+                                                <option value="">Choose a category</option>
+
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="Product.SubCategoryId" class="control-label">
+
+                                                Sub Category (
+                                                @if (Model.Product.SubCategory != null)
+                                                {
+                                                    @Model.Product.SubCategory.Name
+                                                }
+                                                )
+                                            </label>
+                                            @if (Model.Product.SubCategory == null)
+                                            {
+                                                <select asp-for="Product.SubCategoryId" id="SubCategoryId" required="required" class="form-control"></select>
+
+                                            }
+                                            else
+                                            {
+
+                                                <select asp-for="Product.SubCategoryId" id="SubCategoryId" class="form-control"></select>
+
+
+                                            }
+                                            <span asp-validation-for="Product.SubCategoryId" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="Product.ManufacturerId" class="control-label"></label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="More Infomation"></i>
+                                            <select asp-for="Product.ManufacturerId" class="form-control" asp-items="ViewBag.ManufacturerId"></select>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label asp-for="Product.MetaKeywords" class="control-label">Product Keywords (seperate with comma)</label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="More Infomation"></i>
+                                            <input asp-for="Product.MetaKeywords" class="form-control" />
+                                            <span asp-validation-for="Product.MetaKeywords" class="text-danger"></span>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="v-Pictures" role="tabpanel" aria-labelledby="v-Pictures-tab">
+
+
+                                    <div id="datatable_wrapper" class="dataTables_wrapper table-responsive dt-bootstrap4 no-footer">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <table id="" class="table table-bordered dt-responsive nowrap dataTable no-footer dtr-inline" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
+                                                    <thead>
+                                                        <tr role="row">
+                                                            <th>SN</th>
+                                                            <th>
+                                                                Image
+                                                            </th>
+                                                            <th>
+
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+
+                                                    @{
+                                                        int sno = 0;
+                                                    }
+
+
+                                                    <tbody>
+
+                                                        @foreach (var item in Model.Pictures)
+                                                        {
+                                                            <tr>
+                                                                <td>
+                                                                    @{ sno++; }
+                                                                    @sno
+                                                                </td>
+                                                                <td>
+                                                                    <img src="@item.PictureUrlThumbnail" class="img-responsive" alt="" style="max-height:100px;" />
+
+                                                                </td>
+                                                                <td>
+
+                                                                    <a asp-page="./DeleteProductImage" asp-route-id="@item.Id" asp-route-pid="@item.ProductId">
+                                                                        X
+                                                                    </a>
+                                                                </td>
+
+                                                            </tr>
+                                                        }
+
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    @*<div class="dropzone" data-width="200" data-height="200" data-editstart="true" data-url="/fileupload/canvas.php" data-button-zoomin="true" data-download="true" style="width: 100%;">
+                    <input type="file" name="thumb" />
+                </div>*@
+                                    <div class="item form-group">
+                                        <label class="control-label" for="file" style="color:#ff6a00;">
+                                            For better image, image should be in a square shape
+                                        </label>
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="file">
+                                            Upload Images
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input class="form-control" type="file" name="files" id="gallery-photo-add" />
+                                            <div class="gallery"></div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="tab-pane fade" id="v-MetaTags" role="tabpanel" aria-labelledby="v-MetaTags-tab">
+                                    <div class="form-group">
+                                        <label asp-for="Product.MetaKeywords" class="control-label"></label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="More Infomation"></i>
+                                        <input asp-for="Product.MetaKeywords" class="form-control" />
+                                        <span asp-validation-for="Product.MetaKeywords" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Product.MetaDescription" class="control-label"></label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="More Infomation"></i>
+                                        <textarea asp-for="Product.MetaDescription" class="form-control"></textarea>
+                                        <span asp-validation-for="Product.MetaDescription" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Product.MetaTitle" class="control-label"></label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="More Infomation"></i>
+                                        <input asp-for="Product.MetaTitle" class="form-control" />
+                                        <span asp-validation-for="Product.MetaTitle" class="text-danger"></span>
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="submit" value="Save and Continue" class="btn btn-primary" />
+                                    <a asp-page="Index" asp-route-id="@Model.Product.TenantId" class="btn btn-outline-primary waves-effect waves-light">Back</a>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end card -->
+    </div>
+
+
+
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+
+    <script type="text/javascript">
+        $(function () {
+            // multiple images prevuiew in browser
+            var imagesPreview = function (input, placeToInsertImagePreview) {
+                if (input.files) {
+                    var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.gif|.png|.bmp)$/;
+                    var filesAmount = input.files.length;
+                    if (filesAmount <= 5) {
+                        for (i = 0; i < filesAmount; i++) {
+                            var reader = new FileReader();
+                            reader.onload = function (event) {
+                                $($.parseHTML('<img>')).attr('src', event.target.result).attr('width', '100px').attr('height', '100px').attr('margin', '10px').attr('padding', '10px').appendTo(placeToInsertImagePreview);
+                            }
+                            reader.readAsDataURL(input.files[i]);
+                        }
+                    } else {
+                        window.alert("You cant upload more than 5 images");
+                    }
+                }
+            };
+            $('#gallery-photo-add').on('change', function () {
+                imagesPreview(this, 'div.gallery');
+            });
+        });
+
+        $('.dropzone').html5imageupload();
+    </script>
+    <script type="text/jscript">
+        $(function () {
+            $('#Category').change(function () {
+
+
+                $.getJSON('/Home/SubCategoryList/' + $('#Category').val(), function (data) {
+
+                    var items = '<option>Choose Sub Category</option>';
+                    $.each(jQuery.map(data, function (i, local) {
+                        items += "<option value='" + i.value + "'>" + i.text + "</option>";
+
+                    }));
+
+                    $('#SubCategoryId').html(items);
+                });
+            });
+        });
+
+
+    </script>
+}

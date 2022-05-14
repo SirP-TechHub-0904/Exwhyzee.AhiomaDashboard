@@ -1,0 +1,187 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.SOA.Pages.Orders.OrderDetailsModel
+@{
+}
+    <div class="row">
+
+
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+
+                    
+                    <div class="text-muted mt-4">
+                        <h4>Order <button class="btn btn-primary">(@Model.Order.OrderId)</button> <button class="btn btn-warning">(@Html.DisplayFor(modelItem => Model.Order.Status))</button></h4>
+                        <h4>Order Information</h4>
+                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Reference Id:</strong> @Model.Order.ReferenceId</p>
+                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Amount Paid:</strong> @Model.Order.AmountPaid</p>
+                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Order Cost:</strong> @Model.Order.OrderAmount</p>
+                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Vat:</strong> @Model.Order.Vat</p>
+                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Logistic Amount:</strong> @Model.Order.LogisticAmount</p>
+                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Track Order:</strong> @Model.Order.TrackOrderId</p>
+                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Date:</strong> @Model.Order.DateOfOrder</p>
+                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Delivery Date:</strong> @Model.Order.DeliveredDate</p>
+                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Invoice Id:</strong> @Model.Order.InvoiceNumber</p>
+                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Delivery Method:</strong> @Model.Order.DeliveryMethod</p>
+
+                        <h4>Customer Information</h4>
+                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Name:</strong> @Model.Order.UserProfile.Fullname</p>
+                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Email:</strong> @Model.Order.UserProfile.User.Email</p>
+                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Phone:</strong> @Model.Order.UserProfile.User.PhoneNumber</p>
+                        @if (Model.Order.UserProfile.UserAddresses.Count() > 0)
+                        {
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Address:</strong> @Model.Order.UserProfile.UserAddresses.FirstOrDefault().Address</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>LGA:</strong> @Model.Order.UserProfile.UserAddresses.FirstOrDefault().LocalGovernment</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>State:</strong> @Model.Order.UserProfile.UserAddresses.FirstOrDefault().State</p>
+                        }
+                        <h4>Transaction Information</h4>
+                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Id:</strong> @Model.Order.Transaction.Id</p>
+                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Date:</strong> @Model.Order.Transaction.DateOfTransaction</p>
+                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Description:</strong> @Model.Order.Transaction.Description</p>
+                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Status:</strong> @Model.Order.Transaction.Status</p>
+                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Track Code:</strong> @Model.Order.Transaction.TrackCode</p>
+                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Transaction Reference:</strong> @Model.Order.Transaction.TransactionReference</p>
+                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Type:</strong> @Model.Order.Transaction.TransactionType</p>
+                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Transaction By:</strong> @Model.UserName</p>
+
+                        <h4>Logistic Information</h4>
+                        @if (Model.Order.LogisticVehicleId != null)
+                        {
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Company Name:</strong> @Model.Order.LogisticVehicle.LogisticProfile.CompanyName</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Customer Care:</strong> @Model.Order.LogisticVehicle.LogisticProfile.CustomerCareNumber</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Vehicle Name:</strong> @Model.Order.LogisticVehicle.VehicleName</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Vehicle Type:</strong> @Model.Order.LogisticVehicle.VehicleType</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Vehicle Plate Number:</strong> @Model.Order.LogisticVehicle.VehiclePlateNumber</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Vehicle Phone Number:</strong> @Model.Order.LogisticVehicle.VehiclePhoneNumber</p>
+
+                        }
+                        else
+                        {
+                            <p>
+                                <i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Not Logistic Assigned Yet:</strong>
+
+                                <a asp-page="./AddLogisticToOrder" asp-route-id="@Model.Order.Id" class="btn btn-danger">
+                                    Assign Logistic Vehicle
+                                </a>
+                            </p>
+
+                        }
+                        <a asp-page="./UpdateOrderStatus" asp-route-id="@Model.Order.Id" class="btn btn-danger">
+                            Update Order Status ( @Html.DisplayFor(model => model.Order.Status))
+                        </a>
+                        <a asp-page="./Orders" class="btn btn-primary" style="margin-left:20px;">
+                            Back to Orders
+                        </a>
+                        <h4>Order Items Information (@Model.Order.OrderItems.Count())</h4>
+                        <table id="datatable7" class="table table-bordered dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
+
+                            <thead>
+                                <tr>
+                                    <th>
+                                        S/N
+                                    </th>
+                                    <th>Date</th>
+                                    <th>Order Items ID</th>
+
+                                    <th>Customer</th>
+                                    <th>
+                                        Items
+                                    </th>
+                                    <th>Shop</th>
+                                    <th>Image</th>
+                                    <th>
+                                        Amount
+                                    </th>
+
+                                    <th>
+                                        Quantity
+                                    </th>
+                                    <th>
+                                        Status
+                                    </th>
+                                    <th>SS</th>
+                                    <th>LS</th>
+                                    <th>CS</th>
+
+                                </tr>
+                            </thead>
+                            @{
+                                int sno = 0;
+                            }
+                            <tbody>
+                                @foreach (var item in Model.OrderItems)
+                                {
+                                    <tr>
+                                        <td>
+                                            @{ sno++; }
+                                            @sno
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.DateOfOrder)
+                                        </td>
+
+                                        <td>
+                                          
+                                                @Html.DisplayFor(modelItem => item.Id)
+                                            
+                                        </td>
+
+                                        <td>
+
+                                            @Html.DisplayFor(modelItem => item.Order.UserProfile.Fullname)<br />
+                                            @Html.DisplayFor(modelItem => item.Order.UserProfile.IdNumber)
+
+                                        </td>
+
+                                        <td>
+                                            <a asp-page="/ProductInfo" asp-area="" asp-route-id="@item.ProductId">
+                                                @Html.DisplayFor(modelItem => item.Product.Name)
+                                            </a>
+                                        </td>
+                                        <td>
+
+                                            @Html.DisplayFor(modelItem => item.Product.Tenant.BusinessName)
+
+                                        </td>
+                                        <td>
+                                            <a href="@item.Product.ProductPictures.FirstOrDefault().PictureUrl">
+                                                <img src="@item.Product.ProductPictures.FirstOrDefault().PictureUrlThumbnail" style="max-height:50px;width:auto;" />
+                                            </a>
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Product.Price)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Quantity)
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Status)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ShopStatus)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.LogisticStatus)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CustomerStatus)
+                                        </td>
+
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+
+
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>

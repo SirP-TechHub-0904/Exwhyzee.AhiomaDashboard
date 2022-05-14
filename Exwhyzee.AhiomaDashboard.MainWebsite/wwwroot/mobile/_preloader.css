@@ -1,0 +1,13 @@
+
+/*----------------------------------------
+  Preloader
+------------------------------------------*/
+#preloader:after{
+  border-top-color: #80CBC4;
+}
+#preloader:before{
+  border-top-color: rgba(var(--accent-rgb), 1);;
+}
+#preloader{
+  border-top-color: rgba(var(--primary-rgb), 1);
+}

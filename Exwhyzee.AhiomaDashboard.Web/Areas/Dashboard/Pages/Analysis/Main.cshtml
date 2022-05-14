@@ -1,0 +1,1004 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.Dashboard.Pages.Analysis.MainModel
+@{
+}
+
+<style>
+    .text-muted {
+        color: #bdcee6 !important;
+    }
+
+    .mb-4, .my-4 {
+        margin-bottom: 1.5rem !important;
+        color: #ff5c00;
+    }
+</style>
+<div class="row">
+
+    <div class="col-xl-12">
+        <div class="card" style="background-color:#222736;">
+            <div class="card-body" style="position: relative;">
+                <h4 class="card-title mb-4 float-sm-left">Dashboard Update from <strong><i><sup>@Model.StartDate.ToString("ddd dd MMM, yyyy")</sup></i></strong>  to <strong><i><sup>@Model.EndDate.ToString("ddd dd MMM, yyyy")</sup></i></strong></h4>
+
+                <div class="clearfix"></div>
+                <form asp-page="./Index" method="get">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="card mini-stats-wid">
+                                <div class="card-body">
+                                    <div class="media">
+
+                                        <input type="date" name="DateOne" placeholder="Start Date" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card mini-stats-wid">
+                                <div class="card-body">
+                                    <div class="media">
+                                        <input type="date" name="DateTwo" placeholder="End Date" class="form-control" />
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="card mini-stats-wid">
+                                <div class="card-body">
+                                    <div class="media">
+                                        <select name="Duration" class="form-control">
+                                            <option value="UseDate">Use Date Range</option>
+                                            <option value="All">All</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card mini-stats-wid">
+                                <div class="card-body">
+                                    <div class="media">
+
+                                        <input type="submit" value="Get Update" class="btn btn-primary" style="width:100%;" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end row -->
+                </form>
+
+            </div>
+        </div>
+        @*order*@
+        <div class="card" style="background-color:#222736;">
+            <div class="card-body" style="position: relative;">
+                <h4 class="card-title mb-4 float-sm-left">Order (@Model.TotalOrder)</h4>
+
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="card mini-stats-wid">
+                            <div class="card-body">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <p class="text-muted font-weight-medium">Pending Order</p>
+                                        <h4 class="mb-0">@Model.PendingOrder</h4>
+                                    </div>
+
+                                    <div class="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
+                                        <span class="avatar-title">
+                                            <i class="bx bx-cart font-size-24"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card mini-stats-wid">
+                            <div class="card-body">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <p class="text-muted font-weight-medium">Awaiting Confirmation</p>
+                                        <h4 class="mb-0">@Model.AwaitingConfirmation</h4>
+                                    </div>
+
+                                    <div class="avatar-sm rounded-circle bg-primary align-self-center mini-stat-icon">
+                                        <span class="avatar-title rounded-circle bg-primary">
+                                            <i class="bx bx-cart font-size-24"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card mini-stats-wid">
+                            <div class="card-body">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <p class="text-muted font-weight-medium">Delivered Order</p>
+                                        <h4 class="mb-0">@Model.DeliveredOrder</h4>
+                                    </div>
+
+                                    <div class="avatar-sm rounded-circle bg-primary align-self-center mini-stat-icon">
+                                        <span class="avatar-title rounded-circle bg-primary">
+                                            <i class="bx bx-cart-alt font-size-24"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card mini-stats-wid">
+                            <div class="card-body">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <p class="text-muted font-weight-medium">Canceled Order</p>
+                                        <h4 class="mb-0">@Model.CanceledOrder</h4>
+                                    </div>
+
+                                    <div class="avatar-sm rounded-circle bg-primary align-self-center mini-stat-icon">
+                                        <span class="avatar-title rounded-circle bg-primary">
+                                            <i class="bx bx-cart-alt font-size-24"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end row -->
+
+
+            </div>
+        </div>
+        @*product*@
+        <div class="card" style="background-color:#222736;">
+            <div class="card-body" style="position: relative;">
+                <h4 class="card-title mb-4 float-sm-left">Product</h4>
+
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="card mini-stats-wid">
+                            <div class="card-body">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <p class="text-muted font-weight-medium">Total Product</p>
+                                        <h4 class="mb-0">@Model.TotalProduct</h4>
+                                    </div>
+
+                                    <div class="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
+                                        <span class="avatar-title">
+                                            <i class="bx bxl-product-hunt font-size-24"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card mini-stats-wid">
+                            <div class="card-body">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <p class="text-muted font-weight-medium">Low In Stock</p>
+                                        <h4 class="mb-0">@Model.LowInStock</h4>
+                                    </div>
+
+                                    <div class="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
+                                        <span class="avatar-title">
+                                            <i class="bx bxl-product-hunt font-size-24"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card mini-stats-wid">
+                            <div class="card-body">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <p class="text-muted font-weight-medium">No Image</p>
+                                        <h4 class="mb-0">@Model.NoImage</h4>
+                                    </div>
+
+                                    <div class="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
+                                        <span class="avatar-title">
+                                            <i class="bx bxl-product-hunt font-size-24"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card mini-stats-wid">
+                            <div class="card-body">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <p class="text-muted font-weight-medium">No Price</p>
+                                        <h4 class="mb-0">@Model.NoPrice</h4>
+                                    </div>
+
+                                    <div class="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
+                                        <span class="avatar-title">
+                                            <i class="bx bxl-product-hunt font-size-24"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end row -->
+
+
+            </div>
+        </div>
+        @*soa*@
+        <div class="card" style="background-color:#222736;">
+            <div class="card-body" style="position: relative;">
+                <h4 class="card-title mb-4 float-sm-left">SOA (@Model.SOATotal)</h4>
+
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="card mini-stats-wid">
+                            <div class="card-body">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <p class="text-muted font-weight-medium">Active SOA</p>
+                                        <h4 class="mb-0">@Model.ActiveSOA</h4>
+                                    </div>
+
+                                    <div class="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
+                                        <span class="avatar-title">
+                                            <i class="bx bx-user-x font-size-24"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card mini-stats-wid">
+                            <div class="card-body">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <p class="text-muted font-weight-medium">Non Active SOA</p>
+                                        <h4 class="mb-0">@Model.NonActiveSOA</h4>
+                                    </div>
+
+                                    <div class="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
+                                        <span class="avatar-title">
+                                            <i class="bx bx-user-x font-size-24"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card mini-stats-wid">
+                            <div class="card-body">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <p class="text-muted font-weight-medium">SOA With No Shop</p>
+                                        <h4 class="mb-0">@Model.SOAWithNoShop</h4>
+                                    </div>
+
+                                    <div class="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
+                                        <span class="avatar-title">
+                                            <i class="bx bx-user-x font-size-24"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card mini-stats-wid">
+                            <div class="card-body">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <p class="text-muted font-weight-medium">SOA With No Product</p>
+                                        <h4 class="mb-0">@Model.SOAWithNoProduct</h4>
+                                    </div>
+
+                                    <div class="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
+                                        <span class="avatar-title">
+                                            <i class="bx bx-user-x font-size-24"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end row -->
+
+
+            </div>
+        </div>
+        @*so*@
+        <div class="card" style="background-color:#222736;">
+            <div class="card-body" style="position: relative;">
+                <h4 class="card-title mb-4 float-sm-left">SO (@Model.TotalSO)</h4>
+
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="card mini-stats-wid">
+                            <div class="card-body">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <p class="text-muted font-weight-medium">Active SO</p>
+                                        <h4 class="mb-0">@Model.ActiveSO</h4>
+                                    </div>
+
+                                    <div class="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
+                                        <span class="avatar-title">
+                                            <i class="bx bx-user-x font-size-24"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card mini-stats-wid">
+                            <div class="card-body">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <p class="text-muted font-weight-medium">Non Active SO</p>
+                                        <h4 class="mb-0">@Model.NonActiveSO</h4>
+                                    </div>
+
+                                    <div class="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
+                                        <span class="avatar-title">
+                                            <i class="bx bx-user-x font-size-24"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card mini-stats-wid">
+                            <div class="card-body">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <p class="text-muted font-weight-medium">SO With No Price</p>
+                                        <h4 class="mb-0">@Model.SOWithNoPrice</h4>
+                                    </div>
+
+                                    <div class="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
+                                        <span class="avatar-title">
+                                            <i class="bx bx-user-x font-size-24"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card mini-stats-wid">
+                            <div class="card-body">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <p class="text-muted font-weight-medium">SO With No Product</p>
+                                        <h4 class="mb-0">@Model.SOWithNoProduct</h4>
+                                    </div>
+
+                                    <div class="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
+                                        <span class="avatar-title">
+                                            <i class="bx bx-user-x font-size-24"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end row -->
+
+
+            </div>
+        </div>
+        @*customer*@
+        <div class="card" style="background-color:#222736;">
+            <div class="card-body" style="position: relative;">
+                <h4 class="card-title mb-4 float-sm-left">Customer</h4>
+
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card mini-stats-wid">
+                            <div class="card-body">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <p class="text-muted font-weight-medium">Active Customer</p>
+                                        <h4 class="mb-0">@Model.ActiveCustomer</h4>
+                                    </div>
+
+                                    <div class="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
+                                        <span class="avatar-title">
+                                            <i class="bx bx-user-x font-size-24"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card mini-stats-wid">
+                            <div class="card-body">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <p class="text-muted font-weight-medium">Non Active Customer</p>
+                                        <h4 class="mb-0">@Model.NonActiveCustomer</h4>
+                                    </div>
+
+                                    <div class="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
+                                        <span class="avatar-title">
+                                            <i class="bx bx-user-x font-size-24"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <!-- end row -->
+
+
+            </div>
+        </div>
+        @*transaction*@
+        <div class="card" style="background-color:#222736;">
+            <div class="card-body" style="position: relative;">
+                <h4 class="card-title mb-4 float-sm-left">Transactions </h4>
+
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="card mini-stats-wid">
+                            <div class="card-body">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <p class="text-muted font-weight-medium">AhiaPay Credit</p>
+                                        <h4 class="mb-0">@Model.AhiaPayCredit</h4>
+                                    </div>
+
+                                    <div class="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
+                                        <span class="avatar-title">
+                                            <i class="bx bx-money font-size-24"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card mini-stats-wid">
+                            <div class="card-body">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <p class="text-muted font-weight-medium">AhiaPay Debit</p>
+                                        <h4 class="mb-0">@Model.AhiaPayDebit</h4>
+                                    </div>
+
+                                    <div class="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
+                                        <span class="avatar-title">
+                                            <i class="bx bx-money font-size-24"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card mini-stats-wid">
+                            <div class="card-body">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <p class="text-muted font-weight-medium">Online Transaction Credit</p>
+                                        <h4 class="mb-0">@Model.OnlineTransactionCredit</h4>
+                                    </div>
+
+                                    <div class="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
+                                        <span class="avatar-title">
+                                            <i class="bx bx-money font-size-24"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card mini-stats-wid">
+                            <div class="card-body">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <p class="text-muted font-weight-medium">Order Transaction Debit</p>
+                                        <h4 class="mb-0">@Model.OrderTransactionDebit</h4>
+                                    </div>
+
+                                    <div class="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
+                                        <span class="avatar-title">
+                                            <i class="bx bx-user-x font-size-24"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end row -->
+
+
+            </div>
+        </div>
+
+        @*wallet*@
+        <div class="card" style="background-color:#222736;">
+            <div class="card-body" style="position: relative;">
+                <h4 class="card-title mb-4 float-sm-left">AhiaPay Wallet</h4>
+
+                <div class="clearfix"></div>
+                @*<div class="row">
+                        <div class="col-md-6">
+                            <div class="card mini-stats-wid">
+                                <div class="card-body">
+                                    <div class="media">
+                                        <div class="media-body">
+                                            <p class="text-muted font-weight-medium">Ahioma Ledger Balance</p>
+                                            <h4 class="mb-0">@Model.AhiomaLedgerBalance</h4>
+                                        </div>
+
+                                        <div class="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
+                                            <span class="avatar-title">
+                                                <i class="bx bx-money font-size-24"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card mini-stats-wid">
+                                <div class="card-body">
+                                    <div class="media">
+                                        <div class="media-body">
+                                            <p class="text-muted font-weight-medium">Ahioma Withdrawable Balance</p>
+                                            <h4 class="mb-0">@Model.AhiomaWithdrawableBalance</h4>
+                                        </div>
+
+                                        <div class="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
+                                            <span class="avatar-title">
+                                                <i class="bx bx-money font-size-24"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>*@
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="card mini-stats-wid">
+                            <div class="card-body">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <p class="text-muted font-weight-medium">F Ledger</p>
+                                        <h4 class="mb-0">@Model.FTLedgerBalance</h4>
+                                    </div>
+
+                                    <div class="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
+                                        <span class="avatar-title">
+                                            <i class="bx bx-money font-size-24"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card mini-stats-wid">
+                            <div class="card-body">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <p class="text-muted font-weight-medium">F Withdrawable</p>
+                                        <h4 class="mb-0">@Model.FTWithdrawableBalance</h4>
+                                    </div>
+
+                                    <div class="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
+                                        <span class="avatar-title">
+                                            <i class="bx bx-money font-size-24"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card mini-stats-wid">
+                            <div class="card-body">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <p class="text-muted font-weight-medium">AhiaPay Ledger</p>
+                                        <h4 class="mb-0">@Model.TLedgerBalance</h4>
+                                    </div>
+
+                                    <div class="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
+                                        <span class="avatar-title">
+                                            <i class="bx bx-money font-size-24"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card mini-stats-wid">
+                            <div class="card-body">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <p class="text-muted font-weight-medium">AhiaPay Withdrawable</p>
+                                        <h4 class="mb-0">@Model.TWithdrawableBalance</h4>
+                                    </div>
+
+                                    <div class="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
+                                        <span class="avatar-title">
+                                            <i class="bx bx-user-x font-size-24"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end row -->
+
+
+            </div>
+        </div>
+
+
+        @*top 10
+                <div class="card" style="background-color:#222736;">
+                <div class="card-body" style="position: relative;">
+                    <h4 class="card-title mb-4 float-sm-left">Top Ten (10) Activities</h4>
+
+                    <div class="clearfix"></div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title mb-4">Latest Order</h4>
+                                    <div class="table-responsive">
+                                        <table class="table table-centered table-nowrap mb-0">
+                                            <thead class="thead-light">
+                                                <tr>
+
+                                                    <th>Date</th>
+                                                    <th>Order ID</th>
+                                                    <th>
+                                                        Transaction ID
+                                                    </th>
+                                                    <th>Customer</th>
+                                                    <th>
+                                                        Product
+                                                    </th>
+                                                    <th>Shop</th>
+                                                    <th>Image</th>
+                                                    <th>
+                                                        Amount
+                                                    </th>
+
+                                                    <th>
+                                                        Quantity
+                                                    </th>
+                                                    <th>
+                                                        Status
+                                                    </th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in Model.TopTenOrderedItem)
+                                                {
+                                                    <tr>
+
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.DateOfOrder)
+                                                        </td>
+
+                                                        <td>
+                                                            <a asp-page="/Transactions/OrderDetails" asp-area="ManageTransaction" asp-route-id="@item.Id">
+                                                                @Html.DisplayFor(modelItem => item.OrderId)
+                                                            </a>
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.ReferenceId)
+                                                        </td>
+                                                        <td>
+
+                                                            @Html.DisplayFor(modelItem => item.Order.UserProfile.Fullname)<br />
+                                                            @Html.DisplayFor(modelItem => item.Order.UserProfile.IdNumber)
+
+                                                        </td>
+
+                                                        <td>
+
+                                                            @Html.DisplayFor(modelItem => item.Product.Name)
+
+                                                        </td>
+                                                        <td>
+
+                                                            @Html.DisplayFor(modelItem => item.Product.Tenant.BusinessName)
+
+                                                        </td>
+                                                        <td>
+                                                            <a href="@item.Product.ProductPictures.FirstOrDefault().PictureUrlThumbnail">
+                                                                <img src="@item.Product.ProductPictures.FirstOrDefault().PictureUrlThumbnail" style="max-height:30px;width:auto;" />
+                                                            </a>
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Product.Price)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Quantity)
+                                                        </td>
+
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Status)
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>-->
+                                    <!-- end table-responsive -->
+                                <!--</div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title mb-4">Latest Transaction</h4>
+                                    <div class="table-responsive">
+                                        <table class="table table-centered table-nowrap mb-0">
+                                            <thead class="thead-light">
+                                                <tr>
+                                                    <th>
+                                                        Date
+                                                    </th>
+
+                                                    <th>
+                                                         ID
+                                                    </th>
+                                                    <th>
+                                                        Reason
+                                                    </th>
+                                                    <th>
+                                                        Amount
+                                                    </th>
+
+                                                    <th>
+                                                         Type
+                                                    </th>
+                                                    <th>
+                                                        Status
+                                                    </th>
+                                                    <th>
+                                                        Reference
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in Model.TopTenTransaction)
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            @item.DateOfTransaction.ToString("ddd dd MM, yyyy")
+                                                        </td>
+
+                                                        <td>
+                                                            @await Component.InvokeAsync("AccountId", new { uid = item.UserId })
+
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Note)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Amount)
+                                                        </td>
+
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.TransactionType)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.Status)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.TransactionReference)
+                                                        </td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>-->
+                                    <!-- end table-responsive -->
+                                <!--</div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title mb-4">Most Used Wallet</h4>
+                                    <div class="table-responsive">
+                                        <table class="table table-centered table-nowrap mb-0">
+                                            <thead class="thead-light">
+                                                <tr>
+                                                    <th>
+                                                        ID
+                                                    </th>
+                                                    <th>
+                                                        Name
+                                                    </th>
+                                                    <th>
+                                                        Ledger
+                                                    </th>
+                                                    <th>Withdrawable</th>
+
+                                                    <th>
+                                                       Updated
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in Model.MostUsedWallet)
+                                                {
+                                                <tr>
+
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.IdNumber)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Fullname)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.LedgerBalance)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.WithdrawBalance)
+                                                    </td>
+                                                    <td>
+                                                        @item.DateUpdated.ToString("ddd dd MM, yyyy")
+                                                    </td>
+                                                </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>-->
+                                    <!-- end table-responsive -->
+                                <!--</div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title mb-4">Most Viewed Product</h4>
+                                    <div class="table-responsive">
+                                        @if (Model.MostViewedProduct != null)
+                                        {
+                                        <table class="table table-centered table-nowrap mb-0">
+                                            <thead class="thead-light">
+                                                <tr>
+
+                                                    <th>
+                                                        Name
+                                                    </th>
+                                                    <th>
+                                                        Publish
+                                                    </th>
+                                                    <th>Image</th>
+
+                                                    <th>
+                                                        Store Name
+                                                    </th>
+
+                                                    <th>
+                                                        Qty
+                                                    </th>
+
+                                                    <th>
+                                                        Price (NG)
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in Model.MostViewedProduct)
+                                                {
+                                                <tr>
+                                                    <td>
+                                                        <a asp-page="./Edit" asp-route-id="@item.Id">
+                                                            @Html.DisplayFor(modelItem => item.Name)
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        @if (item.Published == true)
+                                                        {
+                                                            <a asp-page="./UpdateProductStatus" asp-route-id="@item.Id">
+                                                                true
+                                                                <i class="fa fa-refresh" style="margin-right:5px;"></i>
+                                                            </a>
+                                                        }
+                                                        else
+                                                        {
+                                                            <a asp-page="./UpdateProductStatus" asp-route-id="@item.Id">
+                                                                <span style="color:#ff0000;">false</span>
+                                                                <i class="fa fa-refresh" style="margin-right:5px;"></i>
+                                                            </a>
+                                                        }
+                                                    </td>
+                                                    <td>
+                                                        @if (item.ProductPictures.FirstOrDefault() != null)
+                                                        {
+                                                            <img src="@item.ProductPictures.FirstOrDefault().PictureUrlThumbnail" class="img-responsive" alt="" style="max-height:30px;" />
+
+                                                        }
+                                                    </td>
+
+                                                    <td>
+                                                        @item.Tenant.BusinessName
+                                                    </td>
+
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Quantity)
+                                                    </td>
+
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Price)
+                                                    </td>
+                                                </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+
+                                        }
+                                        else
+                                        {
+                                            <div class=""></div>
+                                        }
+                                    </div>-->
+                                    <!-- end table-responsive -->
+                                <!--</div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>*@
+
+    </div>
+</div>

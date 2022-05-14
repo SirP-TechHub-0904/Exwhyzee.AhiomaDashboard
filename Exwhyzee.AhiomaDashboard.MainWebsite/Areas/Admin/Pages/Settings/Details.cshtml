@@ -1,0 +1,44 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Areas.Admin.Pages.Settings.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+<div class="row">
+    <div class="card-columns mx-auto d-flex justify-content-center col-12">
+
+        <div class="card">
+            <div class="card-header">
+
+                <h3 class="card-title">
+                    Details Setting
+                </h3>
+            </div>
+            <div class="card-body">
+                <h2>Details</h2>
+
+                <div>
+                    <h4>Setting</h4>
+                    <hr />
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Setting.PageSize)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Setting.PageSize)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Setting.ActivateFreeDelivery)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Setting.ActivateFreeDelivery)
+                        </dd>
+                    </dl>
+                </div>
+                <div>
+                    <a asp-page="./Edit" asp-route-id="@Model.Setting.Id">Edit</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

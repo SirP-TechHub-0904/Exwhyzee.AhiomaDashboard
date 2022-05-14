@@ -1,0 +1,114 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.SOA.Pages.Dashboard.ListProductsModel
+@{
+}
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+
+                <h3 class="card-title">
+                    Product List for @Model.Tenant.BusinessName Uploaded by @Model.Profile.Fullname (@Model.Profile.IdNumber)
+                   
+                </h3>
+               
+            </div>
+            <div class="card-body table-responsive">
+
+
+                <div id="datatable_wrapper" class="dataTables_wrapper table-responsive dt-bootstrap4 no-footer">
+                    <div class="row">
+                        <div class="col-md-12 table-responsive">
+                            <table id="datatable7" class="table table-bordered dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
+
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Date
+                                        </th>
+                                        <th>
+                                            Name
+                                        </th>
+                                        <th>
+                                            Publish
+                                        </th>
+                                        <th>Image</th>
+
+                                        <th>
+                                            Store Name
+                                        </th>
+
+                                        <th>
+                                            Qty
+                                        </th>
+
+                                        <th>
+                                            Price (NG)
+                                        </th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.Product)
+                                    {
+                                        <tr>
+
+                                           
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.CreatedOnUtc)
+                                            </td>
+                                            <td>
+                                                <a asp-page="./Edit" asp-route-id="@item.Id">
+                                                    @Html.DisplayFor(modelItem => item.Name)
+                                                </a>
+                                            </td>
+                                            <td>
+                                                @if (item.Published == true)
+                                                {
+                                                    <a asp-page="./UpdateProductStatus" asp-route-id="@item.Id">
+                                                        true
+                                                        <i class="fa fa-refresh" style="margin-right:5px;"></i>
+                                                    </a>
+                                                }
+                                                else
+                                                {
+                                                    <a asp-page="./UpdateProductStatus" asp-route-id="@item.Id">
+                                                        <span style="color:#ff0000;">false</span>
+                                                        <i class="fa fa-refresh" style="margin-right:5px;"></i>
+                                                    </a>
+                                                }
+                                            </td>
+                                            <td>
+                                                @if (item.ProductPictures.FirstOrDefault() != null)
+                                                {
+                                                    <img src="@item.ProductPictures.FirstOrDefault().PictureUrlThumbnail" class="img-responsive" alt="" style="max-height:50px;" />
+
+                                                }
+                                            </td>
+
+                                            <td>
+                                                @item.Tenant.BusinessName
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Quantity)
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Price)
+                                            </td>
+                                           
+                                        </tr>
+                                    }
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div> <!-- end col -->
+</div>

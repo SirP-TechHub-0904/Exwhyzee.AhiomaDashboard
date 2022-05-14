@@ -1,0 +1,247 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.User.Pages.Account.DeliveryAddressModel
+@{ Layout = "/Pages/Shared/_CartLayout.cshtml";
+    ViewData["Title"] = "Delivery Address"; }
+
+<style>
+        @@media (min-width: 1261px) {
+            .layout-cart {
+                width: 33.33333%;
+            }
+        }
+
+        @@media (min-width: 968px) {
+            .layout-cart {
+                width: 41.66667%;
+            }
+        }
+
+        .modal-window {
+            position: fixed;
+             top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 999;
+            visibility: hidden;
+            opacity: 0;
+            pointer-events: none;
+            -webkit-transition: all 0.3s;
+            transition: all 0.3s;
+        }
+
+            .modal-window:target {
+                visibility: visible;
+                opacity: 1;
+                pointer-events: auto;
+            }
+
+            .modal-window > div {
+                width: 50%;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                -webkit-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
+                padding: 2em;
+                /*background: #ffffff;*/
+            }
+
+            .modal-window header {
+                font-weight: bold;
+            }
+
+            .modal-window h1 {
+                font-size: 150%;
+                margin: 0 0 15px;
+            }
+
+        .modal-close {
+            color: #000000;
+            line-height: 50px;
+            font-size: 80%;
+            position: absolute;
+            right: 30px;
+            text-align: center;
+            top: 50px;
+            width: 70px;
+            text-decoration: none;
+        }
+
+            .modal-close:hover {
+                color: black;
+            }
+
+        /* Demo Styles */
+        html,
+        body {
+            height: 100%;
+        }
+
+
+        .modal-window div:not(:last-of-type) {
+            margin-bottom: 15px;
+        }
+
+        small {
+            color: #aaa;
+        }
+</style>
+
+
+<div class="layout-main" style="width: 65.66667% !important;">
+    <ol class="checkout-steps">
+        <li class="checkout-step optimizedCheckout-checkoutStep checkout-step--customer">
+            <div class="checkout-view-header">
+                <a class="stepHeader is-readonly">
+                    <div class="stepHeader-figure stepHeader-column">
+                        <div class="icon stepHeader-counter optimizedCheckout-step">
+                            <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path>
+                            </svg>
+                        </div>
+                        <h2 class="stepHeader-title optimizedCheckout-headingPrimary">Delivery Address</h2>
+                    </div>
+                    <div class="stepHeader-body stepHeader-column optimizedCheckout-contentPrimary" data-test="step-info"></div>
+                </a>
+            </div>
+            <div class="checkout-view-content checkout-view-content-enter-done">
+
+                @if (TempData["error"] != null)
+                {
+    <div class="alert alert-danger alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>@TempData["error"]</strong>
+    </div>}
+                @if (TempData["success"] != null)
+                {
+    <div class="alert alert-success alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>@TempData["success"]</strong>
+    </div>}
+                <div>
+                    @if (Model.NoAddress == true)
+                    {@*<a asp-page="./Profile" asp-route-status="add">Add Delivery Address</a>*@
+                                    <a class="btn" href="#open-modal"><i class="fa fa-envelope"></i> Add Delivery Address</a> }
+                                                else
+                                                {
+
+                                    <form method="post" onsubmit='disableButton()'>
+
+                                        <input asp-for="CustomerRef" type="hidden" />
+
+                                        <div class="">
+                                            <div class="">
+                                                <div class="form-group">
+                                                    <label class="control-label">Choose Delivery Address</label>
+                                                    <select name="AddressId" asp-items="Model.AddressListing" class="form-control">
+                                                    </select>                        <span asp-validation-for="UserAddress.State" class="text-danger"></span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <button type="submit" id='btn' class="btn btn-primary">Save and Continue</button>
+                                        @* <a asp-page="./Profile" class="btn btn-warning" asp-route-status="add">Add Delivery Address</a>*@
+                                        <a class="btn" href="#open-modal"><i class="fa fa-envelope"></i> Add Delivery Address</a>
+
+
+                                    </form>}
+                </div>
+            </div>
+        </li>
+        <li class="checkout-step optimizedCheckout-checkoutStep checkout-step--shipping"><div class="checkout-view-header"><a class="stepHeader is-readonly"><div class="stepHeader-figure stepHeader-column"><div class="icon stepHeader-counter optimizedCheckout-step"><svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg></div><h2 class="stepHeader-title optimizedCheckout-headingPrimary">Delivery Method</h2></div><div class="stepHeader-body stepHeader-column optimizedCheckout-contentPrimary" data-test="step-info"></div></a></div></li>
+        <li class="checkout-step optimizedCheckout-checkoutStep checkout-step--payment"><div class="checkout-view-header"><a class="stepHeader is-readonly"><div class="stepHeader-figure stepHeader-column"><div class="icon stepHeader-counter optimizedCheckout-step"><svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg></div><h2 class="stepHeader-title optimizedCheckout-headingPrimary">Payment</h2></div><div class="stepHeader-body stepHeader-column optimizedCheckout-contentPrimary" data-test="step-info"></div></a></div></li>
+    </ol>
+</div>
+
+
+<div id="open-modal" class="modal-window">
+    <div class="" style="">
+        <a href="#" title="Close" class="modal-close">Close</a>
+
+        <!-- Modal content-->
+        <div class="panel" style="box-shadow: 1px 1px 1px 1px #808080;">
+            <form method="post" asp-page-handler="AddAddress">
+                <br />
+                <div class="panel-body">
+
+
+                    <h3 style="color:#000000;text-align:center;">Add New Address</h3>
+
+                    <div class="form-group">
+                        <label asp-for="UserAddress.Address" class="control-label"></label>
+                        <input asp-for="UserAddress.Address" class="form-control" required="required" />
+                        <span asp-validation-for="UserAddress.Address" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="UserAddress.State" class="control-label"></label>
+                        <select asp-for="UserAddress.State" asp-items="Model.StateListing" id="StateI" class="form-control">
+                            <option>Select State</option>
+
+                        </select>                        <span asp-validation-for="UserAddress.State" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="UserAddress.LocalGovernment" class="control-label">Local Government</label>
+                        <select asp-for="UserAddress.LocalGovernment" id="LGA" class="form-control" required="required"></select>
+                        <span asp-validation-for="UserAddress.LocalGovernment" class="text-danger"></span>
+                    </div>
+
+                    @*<div class="form-group">
+                        <label asp-for="UserAddress.Longitude" class="control-label">Longitude (Optional)</label>
+                        <input asp-for="UserAddress.Longitude" class="form-control" />
+                        <span asp-validation-for="UserAddress.Longitude" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="UserAddress.Latitiude" class="control-label">Latitiude (Optional)</label>
+                        <input asp-for="UserAddress.Latitiude" class="form-control" />
+                        <span asp-validation-for="UserAddress.Latitiude" class="text-danger"></span>
+                    </div>
+
+                    <input asp-for="UserAddress.Zipcode" value="234" type="hidden" />*@
+
+
+
+                </div>
+                <div class="panel-footer">
+                    <input type="submit" value="Update" class="btn btn-primary" />
+                    <a href="#" title="Close" class="btn btn-danger" data-dismiss="modal">Close</a>
+
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    <script type="text/jscript">
+        $(function () {
+            $('#StateI').change(function () {
+
+                console.log("check");
+
+                $.getJSON('/Home/GetLgaList/' + $('#StateI').val(), function (data) {
+
+                    var items = '<option>Choose LGA</option>';
+                    $.each(jQuery.map(data, function (i, local) {
+                        items += "<option value='" + i.value + "'>" + i.text + "</option>";
+
+                    }));
+
+                    $('#LGA').html(items);
+                });
+            });
+        });
+    </script>
+
+}

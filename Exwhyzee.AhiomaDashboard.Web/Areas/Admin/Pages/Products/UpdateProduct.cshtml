@@ -1,0 +1,294 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.Admin.Pages.Products.UpdateProductModel
+@{
+}
+<div class="row">
+
+
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+
+                <h3 class="card-title">
+                    Edit Product
+
+
+                </h3>
+            </div>
+            <div class="card-body">
+
+
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                            <a class="nav-link active" id="v-Dashboard-tab" data-toggle="pill" href="#v-Dashboard" role="tab" aria-controls="v-Dashboard" aria-selected="false">General</a>
+                            <a class="nav-link mb-2" id="v-Inventory-tab" data-toggle="pill" href="#v-Inventory" role="tab" aria-controls="v-Inventory" aria-selected="false">Inventory</a>
+                            <a class="nav-link mb-2" id="v-Pricing-tab" data-toggle="pill" href="#v-Pricing" role="tab" aria-controls="v-Pricing" aria-selected="false">Pricing</a>
+                            <a class="nav-link mb-2" id="v-Pictures-tab" data-toggle="pill" href="#v-Pictures" role="tab" aria-controls="v-Pictures" aria-selected="false">Pictures</a>
+                            <a class="nav-link mb-2" id="v-MetaTags-tab" data-toggle="pill" href="#v-MetaTags" role="tab" aria-controls="v-MetaTags" aria-selected="false">SEO</a>
+
+
+                        </div>
+                    </div>
+                    <div class="col-md-10">
+                        <form method="post" enctype="multipart/form-data">
+                            @*@Html.AntiForgeryToken()*@
+
+                            @*<input hidden asp-for="Product.Id" value="@Model.ProductId" />*@
+                            <input type="hidden" asp-for="Product.Id" />
+                            @*<input hidden name="id" value="@Model.ProductId" />*@
+                            <input hidden asp-for="Product.CreatedOnUtc" />
+                            <input hidden asp-for="Product.UpdatedOnUtc" />
+                         
+                                    <div class="">
+                                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                                        <div class="form-group">
+                                            <div class="checkbox">
+                                                <label>
+                                                    Visible Individually
+                                                </label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="Check it if you want this product to be visible in catalog or search results. You can use this field (just uncheck) to hide associated products from catalog and make them accessible only from a product details page."></i>
+                                                <input asp-for="Product.VisibleIndividually" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="Product.Name" class="control-label">Product Name</label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="The name of the product"></i>
+                                            <input asp-for="Product.Name" class="form-control" />
+                                            <span asp-validation-for="Product.Name" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="Product.ShortDescription" class="control-label">Short Description</label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="he short description of the product. This is the text that displays in product lists i.e. category / manufacturer pages"></i>
+                                            <textarea asp-for="Product.ShortDescription" class="form-control"></textarea>                                            <span asp-validation-for="Product.ShortDescription" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="Product.FullDescription" class="control-label">Full Description</label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="The flag of the product."></i>
+                                            <textarea id="mytextarea" asp-for="Product.FullDescription" class="form-control"></textarea>
+                                            @*<input asp-for="Product.FullDescription" class="form-control" />*@
+                                            <span asp-validation-for="Product.FullDescription" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="Product.Flag" class="control-label"></label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="More Infomation"></i>
+                                            <input asp-for="Product.Flag" class="form-control" />
+                                            <span asp-validation-for="Product.Flag" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="Product.AdminComment" class="control-label">Admin Comment</label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="Admin comment. For internal use."></i>
+                                            <input asp-for="Product.AdminComment" class="form-control" />
+                                            <span asp-validation-for="Product.AdminComment" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="checkbox">
+                                                <label>
+                                                    Show On Home Page
+                                                </label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="Check to display this product on your store's home page. Recommended for your most popular products."></i>
+                                                <input asp-for="Product.ShowOnHomePage" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="checkbox">
+                                                <label>
+                                                    Allow Customer Reviews
+                                                </label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="Check to allow customers to review this product."></i>
+                                                <input asp-for="Product.AllowCustomerReviews" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="Product.ManufacturerPartNumber" class="control-label">Manufacturer Part Number/Serial Number</label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="The manufacturer's part number for this product."></i>
+                                            <input asp-for="Product.ManufacturerPartNumber" class="form-control" />
+                                            <span asp-validation-for="Product.ManufacturerPartNumber" class="text-danger"></span>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label asp-for="Product.ProductCode" class="control-label">Product Code / Bar Code</label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="Product Code / Bar Code"></i>
+                                            <input asp-for="Product.ProductCode" class="form-control" />
+                                            <span asp-validation-for="Product.ProductCode" class="text-danger"></span>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label asp-for="Product.Status" class="control-label"></label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="More Infomation"></i>
+                                            @Html.DropDownListFor(model => model.Product.Status, new SelectList(Enum.GetValues(typeof(Exwhyzee.Enums.EntityStatus))), new { @class = "form-control" })
+                                            <span asp-validation-for="Product.Status" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="Product.ReOrderLevel" class="control-label"></label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="More Infomation"></i>
+                                            <input asp-for="Product.ReOrderLevel" class="form-control" />
+                                            <span asp-validation-for="Product.ReOrderLevel" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="Product.SendNotification" class="control-label"></label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="More Infomation"></i>
+                                            @Html.DropDownListFor(model => model.Product.SendNotification, new SelectList(Enum.GetValues(typeof(Exwhyzee.Enums.SendNotification))), new { @class = "form-control" })
+                                            <span asp-validation-for="Product.SendNotification" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="Product.CategoryId" class="control-label"></label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="More Infomation"></i>
+                                            <select asp-for="Product.CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="Product.ManufacturerId" class="control-label"></label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="More Infomation"></i>
+                                            <select asp-for="Product.ManufacturerId" class="form-control" asp-items="ViewBag.ManufacturerId"></select>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label asp-for="Product.DisplayOrder" class="control-label"></label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="More Infomation"></i>
+                                            <input asp-for="Product.DisplayOrder" class="form-control" />
+                                            <span asp-validation-for="Product.DisplayOrder" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="Product.DisplayOrderCategory" class="control-label"></label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="More Infomation"></i>
+                                            <input asp-for="Product.DisplayOrderCategory" class="form-control" />
+                                            <span asp-validation-for="Product.DisplayOrderCategory" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="Product.DisplayOrderManufacturer" class="control-label"></label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="More Infomation"></i>
+                                            <input asp-for="Product.DisplayOrderManufacturer" class="form-control" />
+                                            <span asp-validation-for="Product.DisplayOrderManufacturer" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="checkbox">
+                                                <label>
+                                                    Mark As New
+                                                </label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="More Infomation"></i>
+                                                <input asp-for="Product.MarkAsNew" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="Product.MarkAsNewStartDateTimeUtc" class="control-label"></label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="More Infomation"></i>
+                                            <input asp-for="Product.MarkAsNewStartDateTimeUtc" class="form-control" />
+                                            <span asp-validation-for="Product.MarkAsNewStartDateTimeUtc" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="Product.MarkAsNewEndDateTimeUtc" class="control-label"></label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="More Infomation"></i>
+                                            <input asp-for="Product.MarkAsNewEndDateTimeUtc" class="form-control" />
+                                            <span asp-validation-for="Product.MarkAsNewEndDateTimeUtc" class="text-danger"></span>
+                                        </div>
+
+
+                                    </div>
+                                       <div class="form-group">
+                                        <label asp-for="Product.Height" class="control-label">Height [INCHE(S)]</label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="More Infomation"></i>
+                                        <input asp-for="Product.Height" class="form-control" />
+                                        <span asp-validation-for="Product.Height" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Product.Width" class="control-label">Width [INCHE(S)]</label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="More Infomation"></i>
+                                        <input asp-for="Product.Width" class="form-control" />
+                                        <span asp-validation-for="Product.Width" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Product.Length" class="control-label">Length [INCHE(S)]</label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="More Infomation"></i>
+                                        <input asp-for="Product.Length" class="form-control" />
+                                        <span asp-validation-for="Product.Length" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Product.Weight" class="control-label">Weight [KG(S)]</label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="More Infomation"></i>
+                                        <input asp-for="Product.Weight" class="form-control" />
+                                        <span asp-validation-for="Product.Weight" class="text-danger"></span>
+                                    </div>
+
+
+                                 <div class="form-group">
+                                        <label asp-for="Product.Price" class="control-label">Price (NG)</label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="More Infomation"></i>
+                                        <input asp-for="Product.Price" class="form-control" />
+                                        <span asp-validation-for="Product.Price" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Product.OldPrice" class="control-label">Old Price (NG)</label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="More Infomation"></i>
+                                        <input asp-for="Product.OldPrice" class="form-control" />
+                                        <span asp-validation-for="Product.OldPrice" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Product.ProductCost" class="control-label">Product Cost (NG)</label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="More Infomation"></i>
+                                        <input asp-for="Product.ProductCost" class="form-control" />
+                                        <span asp-validation-for="Product.ProductCost" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="checkbox">
+                                            <label>
+                                                Disable Buy Button
+                                            </label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="More Infomation"></i>
+                                            <input asp-for="Product.DisableBuyButton" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="checkbox">
+                                            <label>
+                                                Call For Price
+                                            </label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="More Infomation"></i>
+                                            <input asp-for="Product.CallForPrice" />
+                                        </div>
+                                    </div>
+
+                                 
+                                    <div class="item form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="file">
+                                            Upload one or more images, Note! Not more than 5 images <span class="required"></span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input class="form-control" type="file" name="files" id="gallery-photo-add" multiple />
+                                            <div class="gallery"></div>
+                                        </div>
+                                    </div>
+
+                                <div class="form-group">
+                                        <label asp-for="Product.MetaKeywords" class="control-label"></label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="More Infomation"></i>
+                                        <input asp-for="Product.MetaKeywords" class="form-control" />
+                                        <span asp-validation-for="Product.MetaKeywords" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Product.MetaDescription" class="control-label"></label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="More Infomation"></i>
+                                        <textarea asp-for="Product.MetaDescription" class="form-control"></textarea>
+                                        <span asp-validation-for="Product.MetaDescription" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Product.MetaTitle" class="control-label"></label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="More Infomation"></i>
+                                        <input asp-for="Product.MetaTitle" class="form-control" />
+                                        <span asp-validation-for="Product.MetaTitle" class="text-danger"></span>
+                                    </div>
+
+                            <div class="form-group">
+                                <input type="submit" value="Save and Continue" class="btn btn-primary" />
+                                <a asp-page="Index" class="btn btn-outline-primary waves-effect waves-light">Back</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end card -->
+    </div>
+
+
+
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+
+    <script type="text/javascript">
+    $(function () {
+        // multiple images prevuiew in browser
+        var imagesPreview = function (input, placeToInsertImagePreview) {
+            if (input.files) {
+                var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.gif|.png|.bmp)$/;
+                var filesAmount = input.files.length;
+                if (filesAmount <= 5) {
+                    for (i = 0; i < filesAmount; i++) {
+                        var reader = new FileReader();
+                        reader.onload = function (event) {
+                            $($.parseHTML('<img>')).attr('src', event.target.result).attr('width', '100px').attr('height', '100px').attr('margin', '10px').attr('padding', '10px').appendTo(placeToInsertImagePreview);
+                        }
+                        reader.readAsDataURL(input.files[i]);
+                    }
+                } else {
+                    window.alert("You cant upload more than 5 images");
+                }
+            }
+        };
+        $('#gallery-photo-add').on('change', function () {
+            imagesPreview(this, 'div.gallery');
+        });
+    });
+
+    </script>
+}

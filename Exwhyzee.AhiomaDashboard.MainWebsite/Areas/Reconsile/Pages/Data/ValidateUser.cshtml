@@ -1,0 +1,40 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Areas.Reconsile.Pages.Data.ValidateUserModel
+@{
+}
+@{
+    ViewData["Title"] = "Transfer";
+}
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+
+                <h3 class="card-title">
+                    Reset Password
+
+                </h3>
+
+            </div>
+            <div class="card-body table-responsive">
+               @TempData["success"]
+                @TempData["error"]
+                <form asp-page="./ResetPassword" method="get">
+                    <div class="form-actions no-color">
+                        <p>
+                            <input type="text" name="IDnumber" placeholder="User ID number" class="form-control" /><br />
+                            <input type="text" name="Password" placeholder="Password" class="form-control" />
+                           <br />
+                            <input type="submit" value="Fetch" class="btn btn-primary" /> <br />
+
+                        </p>
+                    </div>
+                </form>
+
+                
+            </div>
+        </div>
+    </div>
+</div>

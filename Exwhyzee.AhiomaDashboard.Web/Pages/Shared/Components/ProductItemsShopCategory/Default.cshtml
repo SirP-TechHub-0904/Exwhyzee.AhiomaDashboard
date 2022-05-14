@@ -1,0 +1,187 @@
+﻿@*@model ICollection<Exwhyzee.AhiomaDashboard.Data.Repository.Products.ProductDto>*@
+
+
+
+
+@if (ViewBag.count > 0)
+{
+    <div class="hidden-sm hidden-xs">
+
+        <div class="clearfix"></div>
+
+        <div class="ltabs-heading d-flex">
+            <h3 class="block-title"><a asp-page="/CategoryByShop" asp-route-customerRef="" asp-route-id="@ViewBag.cat.Id" asp-route-tid="@ViewBag.TID" title="" style="text-transform:uppercase !important;">@ViewBag.cat.Name <span style="font-size:11px;font-weight:800;">more</span> <i class="fa fa-caret-right" style="font-weight:500;font-size:12px;"></i><i class="fa fa-caret-right" style="font-weight:500;font-size:12px;"></i></a></h3>
+
+        </div>
+        <div class="clearfix"></div>
+
+
+
+
+        @foreach (var data in ViewBag.product)
+        {
+
+            <div class="productCarousel-slide product-layout col-md-2 col-sm-6 col-xs-6">
+                <article class="product-item-container ">
+                    <div class="left-block d-flex align-items-center justify-content-center">
+
+
+                        <a asp-page="/ProductDetails" asp-route-customerRef="" asp-route-id="@data.Id" asp-route-name="@data.Name.Replace(" ", "-")" asp-route-shop="@data.Tenant.BusinessName.Replace(" ", "-")" asp-route-mktstate="@data.Market.State.Replace(" ", "-")" asp-route-mktaddress="@data.Market.Address.Replace(" ", "-")" class="product-item-photo" tabindex="0">
+                            @if (data.ImageThumbnail != null)
+                            {
+                                <img class="img-responsive lazyautosizes lazyloaded" data-sizes="auto" src="@data.ImageThumbnail" alt="" title="" sizes="50px">
+
+                            }
+
+                        </a>
+
+                        <a asp-page="/ProductDetails" asp-route-customerRef="" asp-route-id="@data.Id" asp-route-name="@data.Name.Replace(" ", "-")" class="quickview btn-button d-none d-md-block" data-animation="false" data-product-id="126" title="Quick view" tabindex="0"> <i class="fa fa-search"></i></a>
+
+                    </div>
+
+                    <div class="right-block hidden-xs hidden-sm">
+
+                        <h4 class="card-title" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                            <a asp-page="/ProductDetails" asp-route-customerRef="" asp-route-id="@data.Id" asp-route-name="@data.Name.Replace(" ", "-")" asp-route-shop="@data.Tenant.BusinessName.Replace(" ", "-")" asp-route-mktstate="@data.Market.State.Replace(" ", "-")" asp-route-mktaddress="@data.Market.Address.Replace(" ", "-")" tabindex="0" title="@data.Name" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">@data.Name</a>
+                        </h4>
+                        <div class="price-section price-section--withoutTax ">
+
+                            <span data-product-price-without-tax="" class="pull-left" style="font-weight:900;color:#f56615;font-family:'Times New Roman', Times, serif;">&#8358;@data.Price.ToString("0")</span>
+                            <span data-product-price-without-tax="" class="pull-right mkt-name" title="@data.Tenant.BusinessName @@ @data.Market.Name" style="font-weight:800;color:#3a3535;">@data.Market.ShortName</span>
+
+                        </div>
+
+                    </div>
+                    <div class="right-block hidden-md hidden-lg">
+
+                        <h4 class="card-title" style="padding-bottom:0px;margin-bottom:3px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
+                            <a asp-page="/ProductDetails" asp-route-customerRef="" asp-route-id="@data.Id" asp-route-name="@data.Name.Replace(" ", "-")" asp-route-shop="@data.Tenant.BusinessName.Replace(" ", "-")" asp-route-mktstate="@data.Market.State.Replace(" ", "-")" asp-route-mktaddress="@data.Market.Address.Replace(" ", "-")" tabindex="0" title="@data.Name" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">@data.Name</a>
+                        </h4>
+                        <h4 class="card-title" style="padding-bottom:0px;margin-bottom:3px;">
+                            <a style="font-weight:900;color:#f56615;font-family:'Times New Roman', Times, serif;">&#8358;@data.Price.ToString("0")</a>
+                        </h4>
+                        <h4 class="card-title" style="padding-bottom:0px;margin-bottom:3px;">
+                            <a title="@data.Tenant.BusinessName @@ @data.Market.Name" style="font-weight:800;color:#3a3535;">@data.Market.ShortName</a>
+                        </h4>
+
+                    </div>
+                </article>
+
+            </div>
+
+
+
+        }
+        <div class="clearfix"></div>
+
+    </div>
+    <div class="hidden-lg hidden-md">
+
+        <div class="row ">
+            <div class="col s12 pad-0">
+                <h5 class="bot-20 sec-tit ">
+
+
+
+                    <a asp-page="/CategoryByShop" asp-route-customerRef="" asp-route-id="@ViewBag.cat.Id" asp-route-tid="@ViewBag.TID" style="text-transform:uppercase !important;">
+                        @ViewBag.cat.Name
+                        <span style="font-size:11px;font-weight:800;">more</span> <i class="fa fa-caret-right" style="font-weight:500;font-size:12px;"></i><i class="fa fa-caret-right" style="font-weight:500;font-size:12px;"></i>
+
+                    </a>
+                </h5>
+
+                <div class="row ui-mediabox  prods prods-boxed">
+                    <style>
+                        .text-truncateaa {
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                            height: 25px;
+                            line-height: 14px;
+                            font-size: 10px;
+                            color: #666;
+                            margin: 4px 0;
+                        }
+
+                        .text-truncate-shop {
+                            display: -webkit-box;
+                            -webkit-line-clamp: 1;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                            height: 22px;
+                            line-height: 14px;
+                        }
+
+                        .prod-info.boxed {
+                            background: #ffffff;
+                            padding: 0px 5px 5px 5px;
+                            border-radius: 10px;
+                        }
+
+                        .sec-tit::after {
+                            display: block;
+                            position: relative;
+                            content: " ";
+                            height: 1px;
+                            width: 40px;
+                            margin: 6px 0 0px 0;
+                            background: var(--primary-color);
+                        }
+
+                        .bot-20 {
+                            margin-bottom: 10px;
+                        }
+
+                        .row {
+                            margin-left: auto;
+                            margin-right: auto;
+                            margin-bottom: 10px;
+                        }
+
+                        .prod-img-wrap {
+                            border-top-left-radius: 10px;
+                            border-top-right-radius: 10px;
+                        }
+                    </style>
+
+                    @foreach (var data in ViewBag.product)
+                    {
+
+
+                        <div class="col s6">
+                            <div class="prod-img-wrap">
+                                @if (data.ImageThumbnail != null)
+                                {
+
+
+
+                                    <a asp-page="/ProductDetails" asp-route-customerRef="" asp-route-id="@data.Id" asp-route-name="@data.Name.Replace(" ", "-")" asp-route-shop="@data.Tenant.BusinessName.Replace(" ", "-")" asp-route-mktstate="@data.Tenant.Market.State.Replace(" ", "-")" asp-route-mktaddress="@data.Tenant.Market.Address.Replace(" ", "-")" class="product-item-photo" tabindex="0">
+                                        <img class="z-depth-1" style="width: 100%;vertical-align:middle;text-align:center;margin:0 auto;" src="@data.ImageThumbnail">
+                                    </a>
+                                }
+                            </div>
+                            <div class="prod-info  boxed z-depth-1">
+                                <a asp-page="/ProductDetails" asp-route-customerRef="" asp-route-id="@data.Id" asp-route-name="@data.Name.Replace(" ", "-")" asp-route-shop="@data.Tenant.BusinessName.Replace(" ", "-")" asp-route-mktstate="@data.Tenant.Market.State.Replace(" ", "-")" asp-route-mktaddress="@data.Tenant.Market.Address.Replace(" ", "-")" class="product-item-photo" tabindex="0">
+                                    <h5 class="title text-truncateaa" style="-webkit-transition: 3.3s; -moz-transition: 3.3s; transition: 3.3s; -webkit-transition-timing-function: linear; -moz-transition-timing-function: linear; transition-timing-function: linear;">@data.Name</h5>
+                                </a>     <span class="small date">
+                                    <a>
+
+                                        <span style="font-size:10px;">  @data.Market.ShortName</span>
+                                    </a>
+
+                                    <span class="bot-0 price float-right" style="font-weight:900;font-size:10px;">&#8358;@data.Price.ToString("0")</span>
+                                </span>
+                                <div class="spacer-line"></div>
+
+                            </div>
+                        </div>
+                    }
+
+                </div>
+
+            </div>
+        </div>
+
+        </div>
+        }

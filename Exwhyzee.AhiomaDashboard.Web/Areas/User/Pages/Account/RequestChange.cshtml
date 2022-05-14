@@ -1,0 +1,111 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.User.Pages.Account.RequestChangeModel
+@{
+}
+<div class="row">
+    <div class="col-xl-5">
+        <div class="card overflow-hidden">
+            <div class="bg-soft-primary">
+                <div class="row">
+                    <div class="col-7">
+                        <div class="text-primary p-3">
+                            <h5 class="text-primary">Request Change in Email or Phone Number</h5>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+</div>
+
+<div class="clearfix"></div>
+<div class="card" style="padding:10px 0;">
+    <div class="container">
+        <div class="row">
+            @if (TempData["error"] != null)
+            {
+                <div class="alert alert-danger alert-dismissible">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>@TempData["error"]</strong>
+                </div>
+            }
+            @if (TempData["success"] != null)
+            {
+                <div class="alert alert-success alert-dismissible">
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <strong>@TempData["success"]</strong>
+                </div>
+            }
+            <div class="col-xl-12">
+                <form method="post">
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Data.OldMail" class="control-label">Old Email Address</label>
+                                <input asp-for="Data.OldMail" class="form-control" type="email" />
+                                <span asp-validation-for="Data.OldMail" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Data.NewMail" class="control-label">New Email Address</label>
+                                <input asp-for="Data.NewMail" class="form-control" type="email" />
+                                <span asp-validation-for="Data.NewMail" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Data.OldPhone" class="control-label">Old Phone Number</label>
+                                <input asp-for="Data.OldPhone" class="form-control"/>
+                                <span asp-validation-for="Data.OldPhone" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Data.NewPhone" class="control-label">New Phone Number</label>
+                                <input asp-for="Data.NewPhone" class="form-control" />
+                                <span asp-validation-for="Data.NewPhone" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label asp-for="Data.SecurityAnswer" class="control-label">Security Answer (if u dont have go to your profile and update your account</label>
+                        <input asp-for="Data.SecurityAnswer" class="form-control" />
+                        <span asp-validation-for="Data.SecurityAnswer" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Data.Reason" class="control-label"></label>
+                        <input asp-for="Data.Reason" class="form-control" />
+                        <span asp-validation-for="Data.Reason" class="text-danger"></span>
+                    </div>
+
+
+                    <div class="form-group">
+                        <input type="submit" value="Submit" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+}

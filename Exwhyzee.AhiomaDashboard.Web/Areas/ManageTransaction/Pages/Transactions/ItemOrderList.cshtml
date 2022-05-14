@@ -1,0 +1,248 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.ManageTransaction.Pages.Transactions.ItemOrderListModel
+@{
+}
+<div class="row">
+
+
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                @TempData["success"]
+                @TempData["AccountSuccess"]
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="text-muted mt-4">
+                            <h4>
+                                Order Infomation
+                            </h4>
+
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Reference Id:</strong> @Model.OrderItem.Order.ReferenceId</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Amount Paid:</strong> @Model.OrderItem.Order.AmountPaid</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Order Cost:</strong> @Model.OrderItem.Order.OrderAmount</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Vat:</strong> @Model.OrderItem.Order.Vat</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Logistic Amount:</strong> @Model.OrderItem.Order.LogisticAmount</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Track Order:</strong> @Model.OrderItem.Order.TrackOrderId</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Date:</strong> @Model.OrderItem.Order.DateOfOrder</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Delivery Date:</strong> @Model.OrderItem.Order.DeliveredDate</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Invoice Id:</strong> @Model.OrderItem.Order.InvoiceNumber</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Delivery Method:</strong> @Model.OrderItem.Order.DeliveryMethod</p>
+
+                            <h4>Shop Information</h4>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Name:</strong> @Model.OrderItem.Product.Tenant.BusinessName</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Email:</strong> @Model.OrderItem.Product.Tenant.User.Email</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Phone:</strong> @Model.OrderItem.Product.Tenant.User.PhoneNumber</p>
+                            @if (Model.OrderItem.Product.Tenant.TenantAddresses.Count() > 0)
+                            {
+                                <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Address:</strong> @Model.OrderItem.Product.Tenant.TenantAddresses.FirstOrDefault().Address</p>
+                                <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>LGA:</strong> @Model.OrderItem.Product.Tenant.TenantAddresses.FirstOrDefault().LocalGovernment</p>
+                                <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>State:</strong> @Model.OrderItem.Product.Tenant.TenantAddresses.FirstOrDefault().State</p>
+                            }
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>
+                            Item Infomation
+                        </h4>
+
+                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong> Id:</strong> @Model.OrderItem.Id</p>
+                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Product:</strong> @Model.OrderItem.Product.Name</p>
+                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Shop:</strong> @Model.OrderItem.Product.Tenant.BusinessName</p>
+                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Quantity:</strong> @Model.OrderItem.Quantity</p>
+                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Size:</strong> @Model.OrderItem.ItemSize</p>
+                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Color:</strong> @Model.OrderItem.Itemcolor</p>
+                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Date:</strong> @Model.OrderItem.DateOfOrder</p>
+                        <p>
+                            <i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Status:</strong>
+                            @Html.DisplayFor(model => model.OrderItem.Status)
+                        </p>
+                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Shop Status:</strong>  @Html.DisplayFor(model => model.OrderItem.ShopStatus)</p>
+                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Logistic Status:</strong>  @Html.DisplayFor(model => model.OrderItem.LogisticStatus)</p>
+                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Customer Status:</strong>  @Html.DisplayFor(model => model.OrderItem.CustomerStatus)</p>
+
+                    </div>
+                </div>
+
+                <div class="text-muted mt-4">
+
+                    @foreach (var i in Model.OrderItem.Product.ProductPictures)
+                    {
+                        <div class="" style="padding:10px;">
+                            <a href="@i.PictureUrl">
+                                <img src="@i.PictureUrlThumbnail" style="max-height:150px;width:auto;" />
+                            </a>
+                        </div>
+                    }
+                </div>
+                <div class="card-header">
+                    <div class="btn-group pull-right" style="">
+                        <a asp-page="./UpdateItemStatus" asp-route-id="@Model.OrderItem.Id" class="btn" style="background-color:#16627d !important;color:#FFF !important;float:right;border-radius:0px;vertical-align:middle !important;border:1px solid #FFF;">Update Item Status</a>
+                       
+                        <a asp-page="./ShopStatus" asp-route-id="@Model.OrderItem.Id" class="btn" style="background-color:#16627d !important;color:#FFF !important;float:right;border-radius:0px;vertical-align:middle !important;border:1px solid #FFF;">
+                            Shop Status
+                            @if (Model.OrderItem.ShopStatus == Exwhyzee.Enums.ShopStatus.Successful)
+                            {
+                                <input type="checkbox" checked />
+                            }
+                            else
+                            {
+                                <input type="checkbox" />
+
+                            }
+
+                        </a>
+                        <a asp-page="./LogisticStatus" asp-route-id="@Model.OrderItem.Id" class="btn" style="background-color:#16627d !important;color:#FFF !important;float:right;border-radius:0px;vertical-align:middle !important;border:1px solid #FFF;">
+                            Logistic Status   @if (Model.OrderItem.LogisticStatus == Exwhyzee.Enums.LogisticStatus.Successful)
+                            {
+                                <input type="checkbox" checked />
+                            }
+                            else
+                            {
+                                <input type="checkbox" />
+
+                            }
+                        </a>
+                        <a asp-page="./CustomerStatus" asp-route-id="@Model.OrderItem.Id" class="btn" style="background-color:#16627d !important;color:#FFF !important;float:right;border-radius:0px;vertical-align:middle !important;border:1px solid #FFF;">
+                            Customer Status   @if (Model.OrderItem.CustomerStatus == Exwhyzee.Enums.CustomerStatus.Successful)
+                            {
+                                <input type="checkbox" checked />
+                            }
+                            else
+                            {
+                                <input type="checkbox" />
+
+                            }
+                        </a>
+                    </div>
+                    <div class="btn-group pull-right" style="">
+                        @if (Model.OrderItem.Status == Exwhyzee.Enums.OrderStatus.Reversed)
+                        {
+                            <a class="btn" disabled style="background-color:#791313 !important;color:#FFF !important;float:right;border-radius:0px;vertical-align:middle !important;border:1px solid #FFF;"> Reverse Order</a>
+                            <a class="btn" disabled style="background-color:#35741c !important;color:#FFF !important;float:right;border-radius:0px;vertical-align:middle !important;border:1px solid #FFF;">Complete Order</a>
+
+                        }
+                        else
+                        {
+
+                            <a asp-page="./ReverseOrder" asp-route-id="@Model.OrderItem.Id" class="btn" style="background-color:#791313 !important;color:#FFF !important;float:right;border-radius:0px;vertical-align:middle !important;border:1px solid #FFF;"> Reverse Order</a>
+                            <a asp-page="./CompleteOrder" asp-route-id="@Model.OrderItem.Id" class="btn" style="background-color:#35741c !important;color:#FFF !important;float:right;border-radius:0px;vertical-align:middle !important;border:1px solid #FFF;">Complete Order</a>
+                        }
+                    </div>
+                    <a asp-page="./OrderDetails" asp-route-id="@Model.OrderItem.OrderId" class="btn btn-primary" style="margin-left:20px;">
+                        Back to Orders
+                    </a>
+                </div>
+
+                <br /><br />
+                <h4>Transaction Information</h4>
+                <table id="datatable7" class="table table-bordered dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
+
+                    <thead>
+                        <tr>
+                            <th>
+                                S/N
+                            </th>
+                            <th>Date</th>
+                            <th>Id</th>
+                            <th>Customer</th>
+                            <th>
+                                Description
+                            </th>
+
+                            <th>
+                                Amount
+                            </th>
+
+                            <th>
+                                Type
+                            </th>
+                            <th>
+                                Status
+                            </th>
+                            <th>Track Code</th>
+                            <th>Payout Status</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    @{
+                        int sno = 0;
+                    }
+                    <tbody>
+                        @foreach (var item in Model.Transaction)
+                        {
+                            <tr>
+                                <td>
+                                    @{ sno++; }
+                                    @sno
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DateOfTransaction)
+                                </td>
+
+                                <td>
+                                    <a asp-page="/TransactionInfo" asp-area="" asp-route-id="@item.Id">
+                                        @Html.DisplayFor(modelItem => item.Id)
+                                    </a>
+
+                                </td>
+
+                                <td>
+                                    @await Component.InvokeAsync("AccountName", new { uid = item.UserId })<br />
+                                    (@await Component.InvokeAsync("AccountId", new { uid = item.UserId }))
+
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Description)
+                                </td>
+                                <td>
+
+                                    @Html.DisplayFor(modelItem => item.Amount)
+
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TransactionType)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Status)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TrackCode)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PayoutStatus)
+                                </td>
+
+
+                                <td>
+                                    @if (item.PayoutStatus == Exwhyzee.Enums.PayoutStatus.Ledger)
+                                    {
+                                        <a asp-page="SingleTransactionUpdate" asp-route-id="@Model.OrderItem.Id" asp-route-tId="@item.Id" class="btn btn-warning" style="color:#FFF !important;" asp-route-id="@item.Id">
+                                            Update
+                                        </a>
+                                        <a asp-page="TransferTransactionUpdate" asp-route-id="@Model.OrderItem.Id" asp-route-tId="@item.Id" class="btn btn-warning" style="color:#FFF !important;" asp-route-id="@item.Id">
+                                            Transfer
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a class="btn btn-primary text-muted" style="color:#FFF !important;">
+                                            ----
+                                        </a>
+                                    }
+                                </td>
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+
+
+</div>

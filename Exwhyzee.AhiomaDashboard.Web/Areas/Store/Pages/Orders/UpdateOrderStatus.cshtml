@@ -1,0 +1,78 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.Store.Pages.Orders.UpdateOrderStatusModel
+@{
+}
+
+<div class="row">
+    <div class="card-columns mx-auto d-flex justify-content-center col-12">
+
+        <div class="card">
+            <div class="card-header">
+
+                <h3 class="card-title">
+                    Update Order Status 
+
+                </h3>
+                @if (TempData["success"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissible">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>@TempData["success"]</strong>
+                    </div>
+                }
+                
+               
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="text-muted mt-4">
+                          
+                            <h4>Order Information</h4>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Reference Id:</strong> @Model.Order.ReferenceId</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Amount Paid:</strong> @Model.Order.AmountPaid</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Order Cost:</strong> @Model.Order.OrderAmount</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Vat:</strong> @Model.Order.Vat</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Logistic Amount:</strong> @Model.Order.LogisticAmount</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Track Order:</strong> @Model.Order.TrackOrderId</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Date:</strong> @Model.Order.DateOfOrder</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Delivery Date:</strong> @Model.Order.DeliveredDate</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Invoice Id:</strong> @Model.Order.InvoiceNumber</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Delivery Method:</strong> @Model.Order.DeliveryMethod</p>
+
+                         
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>Customer Information</h4>
+                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Name:</strong> @Model.Order.UserProfile.Fullname</p>
+                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Email:</strong> @Model.Order.UserProfile.User.Email</p>
+                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Phone:</strong> @Model.Order.UserProfile.User.PhoneNumber</p>
+
+                    </div>
+                </div>
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Order.Id" value="@Model.Order.Id" />
+                    <div class="form-group">
+                        <label class="control-label">Order Status</label>
+                        @Html.DropDownListFor(model => model.Order.Status, new SelectList(Enum.GetValues(typeof(Exwhyzee.Enums.OrderStatus))), new { @class = "form-control" })
+
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="Update" class="btn btn-primary" />
+                        <a asp-page="Index" class="btn btn-outline-primary waves-effect waves-light">Back</a>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

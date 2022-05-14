@@ -1,0 +1,329 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Pages.SubCategoryModel
+@{ ViewData["Title"] = "Sub Category";
+    Layout = "/Pages/Shared/_WebLayout.cshtml"; }
+@section StyleMain {
+    <style>
+        @@media (min-width: 1261px) {
+            .productCarousel-slide {
+                width: 16%;
+            }
+        }
+    </style>
+
+}
+@{ bool isMobile = false;
+    string u = HttpContext.Request.Headers["User-Agent"];
+    System.Text.RegularExpressions.Regex b = new System.Text.RegularExpressions.Regex(@"(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino", System.Text.RegularExpressions.RegexOptions.IgnoreCase | System.Text.RegularExpressions.RegexOptions.Multiline);
+    System.Text.RegularExpressions.Regex v = new System.Text.RegularExpressions.Regex(@"1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-", System.Text.RegularExpressions.RegexOptions.IgnoreCase | System.Text.RegularExpressions.RegexOptions.Multiline);
+    if ((b.IsMatch(u) || v.IsMatch(u.Substring(0, 4))))
+    {
+        isMobile = true;
+    } }
+
+@{ int? p = 0;}
+
+                @*page @p of @Model.TotalPages pages (@Model.Count items)*@
+
+                @if (isMobile == false)
+                {
+    <partial name="_header_One" />
+                    <div class="main-body clearfix sidebar--left">
+                        <div class="hidden-sm hidden-xs">
+                            <h3 class="" style="padding:5px 0 2px;color:#ff6a00;margin:6px auto 0px;text-align:center;">
+                                <a href="">
+                                    Sub Category Products
+                                    <i class="fa fa-caret-right"></i>
+                                </a>  @Model.SubCategory.Name (@Model.Count items available)
+                            </h3>
+
+                        </div>
+                        <div class="container-fluid">
+
+                            <div class="row page">
+
+
+                                <main class="col-lg-12 col-md-12 page-content" id="product-listing-container">
+                                    <div class="module clearfix ">
+
+
+                                        <div id="" class="sb-listing-tabs container">
+
+                                            <div class="ltabs-container d-flex">
+
+                                                <div class="ltabs-items-container ltabs-items-container--image">
+                                                    <section>
+                                                        <div class="productsByCategoryTabs-products--carousel ">
+                                                            <section class="productCarousel products-list">
+
+                                                                <div class="">
+                                                                    <div class="">
+                                                                        @foreach (var data in Model.iNewProductList)
+                                                                        {
+                                                            <div class="productCarousel-slide product-layout col-md-2 col-sm-6 col-xs-6">
+                                                                <article class="product-item-container ">
+                                                                    <div class="left-block d-flex align-items-center justify-content-center">
+                                                                        @{ string PDesc = data.ShortDescription ?? "";
+                                                                            string pdesc = PDesc.Replace(' ', '-'); }
+
+                                                                        <a asp-page="/ProductDetails" asp-route-id="@data.Id" asp-route-name="@pdesc" asp-route-shop="@data.Tenant.BusinessName.Replace(" ", "-")" asp-route-mktstate="@data.Tenant.Market.State.Replace(" ", "-")" asp-route-mktaddress="@data.Tenant.Market.Address.Replace(" ", "-")" class="product-item-photo" tabindex="0">
+                                                                            @if (data.ProductPictures.FirstOrDefault() != null)
+                                                                            {
+                                                            <img class="img-responsive lazyautosizes lazyloaded" data-sizes="auto" src="https://manager.ahioma.com/@data.ProductPictures.FirstOrDefault().PictureUrlThumbnail" alt="" title="" sizes="50px"> }
+                                                        else
+                                                        {
+                                                            <img class="img-responsive lazyautosizes lazyloaded" data-sizes="auto" src="~/Products/Thumbnail/2020622-jhb.jpg" alt="" title="" sizes="50px">}
+                                                                        </a>
+
+                                                                        <a asp-page="/ProductDetails" asp-route-id="@data.Id" asp-route-name="@pdesc" class="quickview btn-button d-none d-md-block" data-animation="false" data-product-id="126" title="Quick view" tabindex="0"> <i class="fa fa-search"></i></a>
+
+                                                                    </div>
+
+                                                                    <div class="right-block">
+
+                                                                        <h4 class="card-title">
+                                                                            <a asp-page="/ProductDetails" asp-route-id="@data.Id" asp-route-name="@pdesc" tabindex="0" title="@data.Name">@data.Name</a>
+                                                                        </h4>
+                                                                        <div class="price-section price-section--withoutTax ">
+
+                                                                            <span data-product-price-without-tax="" class="pull-left" style="font-weight:900;color:#f56615;font-family:'Times New Roman', Times, serif;font-size:12px;">&#8358;@data.Price.ToString("0")</span>
+
+
+                                                                        </div>
+                                                                        <div data-product-price-without-tax="" class="" title="@data.Tenant.Market.Name" style="font-weight:600;color:#3a3535;font-size:12px;">@data.Tenant.Market.ShortName</div>
+                                                                        <div data-product-price-without-tax="" class="" title="@data.Tenant.BusinessName" style="font-weight:600;color:#3a3535;font-size:12px;">
+                                                                            <a asp-page="/Info/ShopPage" asp-route-name="@data.Tenant.TenentHandle">
+                                                                                @if (data.Tenant.BusinessName.Length > 11)
+                                                                                {
+                                                            @data.Tenant.BusinessName.Substring(0, 11) <text>...</text> }
+                                                        else
+                                                        {
+                                                            @data.Tenant.BusinessName}
+
+                                                                            </a>
+                                                                        </div>
+
+
+                                                                    </div>
+                                                                </article>
+
+                                                            </div>}
+                                                                    </div>
+                                                                </div>
+                                                                <div class="clearfix"></div>
+
+                                                                <br />
+
+                                                                page @p of @Model.TotalPages pages (@Model.Count items)
+
+
+
+                                                                @{ var prevDisabled = !Model.iNewProductList.HasPreviousPage ? "disabled" : "";
+                                                                    var nextDisabled = !Model.iNewProductList.HasNextPage ? "disabled" : ""; }
+
+                                                                <div>
+                                                                    <ul class="pagination">
+                                                                        <li class="page-item @(!Model.ShowFirst ? "disabled" : "")">
+                                                                            <a asp-page="./SubCategory" asp-route-CurrentPage="1" class="page-link"><i class="fas fa-fast-backward"></i></a>
+                                                                        </li>
+
+                                                                        <li class="page-item @(!Model.ShowPrevious ? "disabled" : "")">
+                                                                            <a asp-page="./AllUsers" asp-route-sortOrder="@Model.CurrentSort"
+                                                                               asp-route-customerRef="" asp-route-id="@Model.SubId"
+                                                                               asp-route-pageIndex="@(Model.iNewProductList.PageIndex - 1)"
+                                                                               asp-route-currentFilter="@Model.CurrentFilter" asp-route-CurrentPage="@(Model.CurrentPage - 1)" class="page-link"><i class="fas fa-step-backward"></i></a>
+                                                                        </li>
+                                                                        @{ int? fnumber = Model.CurrentPage - 5;
+                                                                            int? lnumber = Model.CurrentPage + 5; }
+
+
+
+                                                                        @for (var i = fnumber; i <= lnumber; i++)
+                                                                        {
+
+                                                                            if (!i.ToString().Contains("-"))
+                                                                            {
+                                                                                if (i != 0)
+                                                                                {
+
+
+                                                            <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                                                                <a asp-page="./SubCategory"
+                                                                   asp-route-customerRef="" asp-route-id="@Model.SubId"
+                                                                   asp-route-sortOrder="@Model.CurrentSort"
+                                                                   asp-route-pageIndex="@i"
+                                                                   asp-route-currentFilter="@Model.CurrentFilter" asp-route-currentpage="@i" class="page-link">@i</a>
+                                                            </li>
+}
+                                                    }
+                                                    if (i == Model.TotalPages)
+                                                    {
+                                                        break;
+                                                    }
+
+                                                }
+
+                                                                        <li class="page-item  @(!Model.ShowNext ? "disabled" : "")">
+                                                                            <a asp-page="./SubCategory" asp-route-sortOrder="@Model.CurrentSort"
+                                                                               asp-route-customerRef="" asp-route-id="@Model.SubId"
+                                                                               asp-route-pageIndex="@(Model.CurrentPage + 1)"
+                                                                               asp-route-currentFilter="@Model.CurrentFilter" asp-route-CurrentPage="@(Model.CurrentPage + 1)" class="page-link"><i class="fas fa-step-forward"></i></a>
+                                                                        </li>
+
+                                                                        <li class="page-item  @(!Model.ShowLast ? "disabled" : "")">
+                                                                            <a asp-page="./SubCategory" asp-route-sortOrder="@Model.CurrentSort"
+                                                                               asp-route-customerRef="" asp-route-id="@Model.SubId"
+                                                                               asp-route-pageIndex="@(Model.TotalPages)"
+                                                                               asp-route-currentFilter="@Model.CurrentFilter"
+                                                                               asp-route-CurrentPage="@Model.TotalPages" class="page-link"><i class="fas fa-fast-forward"></i></a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+
+                                                            </section>
+                                                        </div>
+
+                                                    </section>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+
+
+
+
+                                    </div>
+                                </main>
+
+
+                            </div>
+                        </div>
+                    </div> }
+                else
+                {
+    <div style="margin-top:40px;">.</div>
+                    <h3 class="" style="padding:5px 0 2px;color:#ff6a00;margin:6px auto 0px;text-align:center;">
+                        <a href="">
+                            Sub Category Products
+                            <i class="fa fa-caret-right"></i>
+                        </a>  @Model.SubCategory.Name (@Model.Count items available)
+                    </h3>
+
+                    <div class="row g-3">
+                        <style>
+                            .top-product-card .product-title {
+                                font-size: 10px;
+                                font-weight: 700;
+                                margin-bottom: 0 !important;
+                                color: #020310;
+                                line-height: 1;
+                                min-height: 30px;
+                                max-height: 30px;
+                                overflow: hidden;
+                            }
+
+                            .top-product-card .sale-price {
+                                margin-bottom: 0.25rem;
+                                color: #f56615;
+                                font-weight: 700;
+                                font-size: 0.725rem;
+                                margin: 0;
+                                line-height: 1.3;
+                            }
+                        </style>
+
+                        <!-- Single Top Product Card-->
+                        @foreach (var data in Model.iNewProductList)
+                        {
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <div class="card top-product-card" style="border: 1px solid #ff5c002b;">
+                            <div class="card-body">
+
+                                @if (data.ImageThumbnail != null)
+                                {
+                    <a class="product-thumbnail d-block" style="margin:8px auto;" asp-page="/ProductDetails" asp-route-customerRef="" asp-route-id="@data.Id" asp-route-name="@data.Name.Replace(" ", "-")" asp-route-shop="@data.Tenant.BusinessName.Replace(" ", "-")" asp-route-mktstate="@data.Tenant.Market.State.Replace(" ", "-")" asp-route-mktaddress="@data.Tenant.Market.Address.Replace(" ", "-")">
+                        <img class="mb-2" src="https://manager.ahioma.com/@data.ImageThumbnail" alt="" style="margin: 10px auto 0 !important;">
+                    </a>}
+                                <a class="product-title d-block" asp-page="/ProductDetails" asp-route-customerRef="" asp-route-id="@data.Id" asp-route-name="@data.Name.Replace(" ", "-")" asp-route-shop="@data.Tenant.BusinessName.Replace(" ", "-")" asp-route-mktstate="@data.Tenant.Market.State.Replace(" ", "-")" asp-route-mktaddress="@data.Tenant.Market.Address.Replace(" ", "-")">
+                                    @data.Name
+
+                                </a>
+                                <p class="sale-price">&#8358;@string.Format("{0:C}", data.Price).Replace(".00", "").Replace("$", "")</p>
+                                <p class="sale-price">&#64;@data.Market.ShortName</p>
+
+                            </div>
+                        </div>
+                    </div> <!-- Single Top Product Card-->}
+                        <div class="clearfix"></div>
+                        <br />
+                        <div class="container">
+
+                            page @p of @Model.TotalPages pages (@Model.Count items)
+
+
+
+                            @{ var prevDisabled = !Model.iNewProductList.HasPreviousPage ? "disabled" : "";
+                                var nextDisabled = !Model.iNewProductList.HasNextPage ? "disabled" : ""; }
+
+                            <div>
+                                <ul class="pagination">
+                                    <li class="page-item @(!Model.ShowFirst ? "disabled" : "")">
+                                        <a asp-page="./SubCategory" asp-route-CurrentPage="1" class="page-link"><i class="fas fa-fast-backward"></i></a>
+                                    </li>
+
+                                    <li class="page-item @(!Model.ShowPrevious ? "disabled" : "")">
+                                        <a asp-page="./AllUsers" asp-route-sortOrder="@Model.CurrentSort"
+                                           asp-route-customerRef="" asp-route-id="@Model.SubId"
+                                           asp-route-pageIndex="@(Model.iNewProductList.PageIndex - 1)"
+                                           asp-route-currentFilter="@Model.CurrentFilter" asp-route-CurrentPage="@(Model.CurrentPage - 1)" class="page-link"><i class="fas fa-step-backward"></i></a>
+                                    </li>
+                                    @{ int? fnumber = Model.CurrentPage - 5;
+                                        int? lnumber = Model.CurrentPage + 5; }
+
+
+
+                                    @for (var i = fnumber; i <= lnumber; i++)
+                                    {
+
+                                        if (!i.ToString().Contains("-"))
+                                        {
+                                            if (i != 0)
+                                            {
+
+
+                    <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                        <a asp-page="./SubCategory"
+                           asp-route-customerRef="" asp-route-id="@Model.SubId"
+                           asp-route-sortOrder="@Model.CurrentSort"
+                           asp-route-pageIndex="@i"
+                           asp-route-currentFilter="@Model.CurrentFilter" asp-route-currentpage="@i" class="page-link">@i</a>
+                    </li>}
+                                        }
+                                        if (i == Model.TotalPages)
+                                        {
+                                            break;
+                                        }
+
+                                    }
+
+                                    <li class="page-item  @(!Model.ShowNext ? "disabled" : "")">
+                                        <a asp-page="./SubCategory" asp-route-sortOrder="@Model.CurrentSort"
+                                           asp-route-customerRef="" asp-route-id="@Model.SubId"
+                                           asp-route-pageIndex="@(Model.CurrentPage + 1)"
+                                           asp-route-currentFilter="@Model.CurrentFilter" asp-route-CurrentPage="@(Model.CurrentPage + 1)" class="page-link"><i class="fas fa-step-forward"></i></a>
+                                    </li>
+
+                                    <li class="page-item  @(!Model.ShowLast ? "disabled" : "")">
+                                        <a asp-page="./SubCategory" asp-route-sortOrder="@Model.CurrentSort"
+                                           asp-route-customerRef="" asp-route-id="@Model.SubId"
+                                           asp-route-pageIndex="@(Model.TotalPages)"
+                                           asp-route-currentFilter="@Model.CurrentFilter"
+                                           asp-route-CurrentPage="@Model.TotalPages" class="page-link"><i class="fas fa-fast-forward"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                    }

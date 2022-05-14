@@ -1,0 +1,74 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.Admin.Pages.WebBanner.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+    <div class="row">
+        <div class="card-columns mx-auto d-flex justify-content-center col-12">
+
+            <div class="card">
+                <div class="card-header">
+
+                    <h3 class="card-title">
+                        Add Banners
+                    </h3>
+
+                </div>
+                @TempData["error"]
+                <div class="card-body">
+                    <form method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="Banner.Id" />
+                        <input type="hidden" asp-for="Banner.UrlPath" />
+                        <input type="hidden" asp-for="Banner.UrlLink" />
+                        <input type="hidden" asp-for="Banner.DateUtc" />
+                        <div class="form-group">
+                            <img src="@Model.Banner.UrlPath" style="max-height:100px;" />
+                        </div>
+
+
+                        <div class="form-group">
+                            <label asp-for="Banner.AltText" class="control-label"></label>
+                            <input asp-for="Banner.AltText" class="form-control" />
+                            <span asp-validation-for="Banner.AltText" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Banner.BarnerLink" class="control-label">Barner Link (e.g: https://ahioma.com/FAQs)</label>
+                            <input asp-for="Banner.BarnerLink" class="form-control" />
+                            <span asp-validation-for="Banner.BarnerLink" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Banner.SortOrder" class="control-label"></label>
+                            <input asp-for="Banner.SortOrder" class="form-control" />
+                            <span asp-validation-for="Banner.SortOrder" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label>
+                                    <input asp-for="Banner.Disable" /> @Html.DisplayNameFor(model => model.Banner.Disable)
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Banner.BannerType" class="control-label">Banner Position</label>
+                            @Html.DropDownListFor(model => model.Banner.BannerType, new SelectList(Enum.GetValues(typeof(Exwhyzee.Enums.BannerType))), new { @class = "form-control" })
+
+                            <span asp-validation-for="Banner.BannerType" class="text-danger"></span>
+                        </div>
+
+
+                        <div class="form-group">
+                            <input type="submit" value="Create" class="btn btn-default" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

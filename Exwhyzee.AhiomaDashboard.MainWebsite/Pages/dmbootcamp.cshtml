@@ -1,0 +1,245 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Pages.dmbootcampModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<!-- saved from url=(0062)http://demo.auburnforest.com/html/bootcamp/bootcamp/index.html -->
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>Ahioma | 1-Day Free Digital Marketing Bootcamp</title>
+    <!-- Stylesheets -->
+    <link href="~/bootcamp/bootstrap.css" rel="stylesheet">
+    <link href="~/bootcamp//main.css" rel="stylesheet">
+    <link href="~/bootcamp/responsive.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="https://ahioma.com/images/NEW-VF.png" type="image/x-icon">
+    <link rel="icon" href="https://ahioma.com/images/NEW-VF.png" type="image/x-icon">
+
+    <!-- Responsive -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <style>
+        .form-control {
+            display: block;
+            width: 100%;
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: .25rem;
+            transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        }
+        .banner-section {
+            position: relative;
+            padding-top: 220px;
+            padding-bottom: 100px;
+            background-color: #5539a3;
+        }
+        .banner-section {
+            position: relative;
+            padding-top: 120px;
+            padding-bottom: 50px;
+            background-color: #274c79;
+        }
+    </style>
+</head>
+
+<body data-new-gr-c-s-check-loaded="14.1023.0" data-gr-ext-installed="">
+
+    <div class="page-wrapper">
+
+        <!-- Preloader -->
+        <div class="preloader" style="display: none;"></div>
+
+        <!-- Main Header-->
+        <header class="main-header header-style-one fixed-header">
+
+            <!-- Header Top -->
+            <!-- Header Upper -->
+            <div class="header-upper">
+                <div class="auto-container">
+                    <div class="clearfix">
+
+                        <div class="pull-left logo-box">
+                            <div class="logo"><a href="https://ahioma.com"><img src="https://ahioma.com/images/ahioma_logo.png" alt="" title="Ahioma Bootcamp"></a></div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+
+        </header>
+        <!-- End Main Header -->
+        <!-- Banner Section -->
+        <section class="banner-section">
+            <div class="pattern-layer" style="background-image: url()"></div>
+            <div class="auto-container">
+
+                <!-- Content Boxed -->
+                <div class="content-boxed">
+                    <div class="inner-column">
+                        <h1 style="color:#fff;">1-Day Free Digital Marketing Bootcamp</h1>
+                        
+                        <h3 style="color:#fff;">Learn how to make 6 figures selling on Ahioma.com</h3>
+                        <div class="row">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4">
+                                <div style="color:#fff;text-align:left;">
+                                    <p><i class="fa fa-arrow-right"></i>>> Certificates would be issued to attendees</p>
+                                    <p><i class="fa fa-arrow-right"></i>>> Free T-shirts for early birds</p>
+                                    <p><i class="fa fa-arrow-right"></i>>> Refreshments available</p>
+                                </div>
+                            </div>
+                        </div>
+                       
+                        <h2 style="color:#fff;">
+                            Date : Saturday 21st August, 2021<br />
+                            Time: 9am
+                        </h2>
+                        
+                        @if (TempData["msg"] != null)
+                        {
+                            <h2 style="color:#fff;font-weight:800;">@TempData["msg"]</h2>
+                        }
+                        else
+                        {
+
+                            <div class="buttons-box">
+                                <a href="#reg" class="theme-btn btn-style-one"><span class="txt">Get Stared <i class="fa fa-angle-right"></i></span></a>
+                                <a href="https://ahioma.com/" class="theme-btn btn-style-two"><span class="txt">Home <i class="fa fa-angle-right"></i></span></a>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+                <!-- Image Boxed -->
+                <div class="image titlt" data-tilt="" data-tilt-max="4" style="will-change: transform; transform: perspective(300px) rotateX(0deg) rotateY(0deg);">
+                    <a href="https://ahioma.com/images/ahioma_logo.png" data-fancybox="banner" data-caption="" class="">
+                        <img src="~/bootcamp/banner.png" alt="">
+                    </a>
+                </div>
+                @if (TempData["msg"] == null)
+                {
+                    <!-- Search Boxed -->
+                    <div class="search-boxed" id="reg">
+                        <div class="search-box">
+
+                            <div class="">
+                                <div class="" >
+
+                                    <div class="card">
+                                        <div class="card-header">
+
+                                            <h3 class="card-title">
+                                                Register Now
+
+                                            </h3>
+                                        </div>
+                                        <div class="card-body">
+                                            <form method="post" enctype="multipart/form-data">
+                                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                                <div class="form-group">
+                                                    <label asp-for="Input.Fullname" class="control-label"></label>
+                                                    <input asp-for="Input.Fullname" class="form-control" style="display: block; width: 100%; padding: .375rem .75rem; font-size: 1rem; line-height: 1.5; color: #495057; background-color: #fff; background-clip: padding-box; border: 1px solid #ced4da; border-radius: .25rem; transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;" />
+                                                    <span asp-validation-for="Input.Fullname" class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label asp-for="Input.Email" class="control-label"></label>
+                                                    <input asp-for="Input.Email" class="form-control" />
+                                                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label asp-for="Input.PhoneNumber" class="control-label"></label>
+                                                    <input asp-for="Input.PhoneNumber" class="form-control" style="display: block; width: 100%; padding: .375rem .75rem; font-size: 1rem; line-height: 1.5; color: #495057; background-color: #fff; background-clip: padding-box; border: 1px solid #ced4da; border-radius: .25rem; transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;"/>
+                                                    <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label asp-for="Input.Location" class="control-label"></label>
+                                                    <textarea asp-for="Input.Location" class="form-control"></textarea>
+                                                    <span asp-validation-for="Input.Location" class="text-danger"></span>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label asp-for="Input.HowDidYouHearAboutUs" class="control-label"></label>
+                                                    <textarea asp-for="Input.HowDidYouHearAboutUs" class="form-control"></textarea>
+                                                    <span asp-validation-for="Input.HowDidYouHearAboutUs" class="text-danger"></span>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label asp-for="Input.WillYouBeAvailableOnTheTraining" class="control-label">Will You Be Available On 21st August, 2021 For The Training</label>
+                                                    <textarea asp-for="Input.WillYouBeAvailableOnTheTraining" class="form-control"></textarea>
+                                                    <span asp-validation-for="Input.WillYouBeAvailableOnTheTraining" class="text-danger"></span>
+                                                </div>
+                                                <div class="form-group" style="margin-top:10px;">
+                                                    <input type="submit" value="Create" class="btn btn-primary" />
+                                                    <a asp-page="Index" class="btn btn-outline-primary waves-effect waves-light">Back</a>
+                                                </div>
+                                            </form>
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                </div>
+        </section>
+
+        <!--Main Footer-->
+        <footer class="main-footer">
+            <!-- Pattern Layer -->
+            <div class="pattern-layer paroller" data-paroller-factor="0.60" data-paroller-factor-lg="0.20" data-paroller-type="foreground" data-paroller-direction="vertical" style="background-image: url(&quot;images/icons/icon-1.png&quot;); transform: unset; transition: transform 0s linear 0s; will-change: transform;"></div>
+            <div class="pattern-layer-two data-paroller-factor=" 0.60" ="" data-paroller-factor-lg="0.20" data-paroller-type="foreground" data-paroller-direction="vertical" style="background-image:url(images/icons/icon-3.png)"></div>
+            <div class="auto-container">
+
+                <!-- Widgets Section -->
+                <div class="widgets-section">
+                    <div class="row clearfix">
+
+                        <!-- Big Column -->
+                        <div class="big-column col-lg-12 col-md-12 col-sm-12">
+                            <div class="row clearfix">
+
+                                <!--Footer Column-->
+                                <div class="footer-column col-lg-12 col-md-12 col-sm-12">
+                                    <div class="footer-widget logo-widget">
+
+                                        <div class="text">We Help You Sell More...</div>
+
+                                        <div class="copyright">Copyright © 2021 Ahioma.com</div>
+                                    </div>
+                                </div>
+
+                                <!--Footer Column-->
+
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </footer>
+
+    </div>
+   
+
+
+</body>
+
+</html>
+

@@ -1,0 +1,82 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Areas.ManageTransaction.Pages.Transactions.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Transaction</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Transaction.WalletId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Transaction.WalletId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Transaction.UserId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Transaction.UserId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Transaction.Sender)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Transaction.Sender)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Transaction.Amount)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Transaction.Amount)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Transaction.DateOfTransaction)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Transaction.DateOfTransaction)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Transaction.TransactionType)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Transaction.TransactionType)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Transaction.Status)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Transaction.Status)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Transaction.TransactionReference)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Transaction.TransactionReference)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Transaction.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Transaction.Description)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Transaction.TrackCode)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Transaction.TrackCode)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Transaction.Id" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

@@ -1,0 +1,1116 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Pages.ProductDetailsModel
+@using System.Text.Encodings.Web;
+@{ ViewData["Title"] = "Product Details";
+    ViewData["mTitle"] = Model.Product.Name;
+    ViewData["mKey"] = Model.Product.MetaKeywords;
+    ViewData["mDes"] = Model.Product.ShortDescription;
+    Layout = "/Pages/Shared/_WebLayout.cshtml"; }
+
+
+@{ bool isMobile = false;
+    string u = HttpContext.Request.Headers["User-Agent"];
+    System.Text.RegularExpressions.Regex b = new System.Text.RegularExpressions.Regex(@"(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino", System.Text.RegularExpressions.RegexOptions.IgnoreCase | System.Text.RegularExpressions.RegexOptions.Multiline);
+    System.Text.RegularExpressions.Regex v = new System.Text.RegularExpressions.Regex(@"1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-", System.Text.RegularExpressions.RegexOptions.IgnoreCase | System.Text.RegularExpressions.RegexOptions.Multiline);
+    if ((b.IsMatch(u) || v.IsMatch(u.Substring(0, 4))))
+    {
+        isMobile = true;
+    } }
+
+
+
+
+@section StyleMain {
+
+
+    <link data-stencil-stylesheet="" href="~/w1/theme-390fd390-44b2-0138-9bab-0242ac11000c.css" rel="stylesheet" media="">
+
+    <style>
+        .productView-details .button--addtocart {
+            background: #ff5c00;
+            border-color: #ff5c00;
+            margin-bottom: 0;
+            width: 100%;
+        }
+    </style>
+}
+                <style>
+                    /*@@font-face {
+                      font-family: 'Yanone Kaffeesatz';
+                      font-style: normal;
+                      font-weight: 400;
+                      src: url(https://fonts.gstatic.com/s/yanonekaffeesatz/v15/3y9I6aknfjLm_3lMKjiMgmUUYBs04aUXNxt9gW2LIfto9tWZd2GP.ttf) format('truetype');
+                    }*/
+
+
+                    .button:hover {
+                        color: #333;
+                        background: #eeffff;
+                        -moz-transition: all 0.5s ease-out;
+                        -webkit-transition: all 0.5s ease-out;
+                        -o-transition: all 0.5s ease-out;
+                        transition: all 0.5s ease-out;
+                    }
+
+                    .modalbg {
+                        position: fixed;
+                        font-family: Arial, Helvetica, sans-serif;
+                        top: 15%;
+                        right: 9%;
+                        bottom: auto;
+                        left: 9%;
+                        background: rgba(0, 0, 0, 0);
+                        z-index: 99999;
+                        -moz-transition: all 2s ease-out;
+                        -webkit-transition: all 2s ease-out;
+                        -o-transition: all 2s ease-out;
+                        transition: all 2s ease-out;
+                        -webkit-transition-delay: 0.2s;
+                        -moz-transition-delay: 0.2s;
+                        -o-transition-delay: 0.2s;
+                        -transition-delay: 0.2s;
+                        display: block;
+                        pointer-events: none;
+                    }
+
+                        .modalbg .dialog {
+                            width: 50%;
+                            position: relative;
+                            top: -1000px;
+                            margin: 10% auto;
+                            padding: 5px 20px 13px 20px;
+                            -moz-border-radius: 10px;
+                            -webkit-border-radius: 10px;
+                            border-radius: 10px;
+                            background: #fff;
+                            background: -moz-linear-gradient(#fff, #ccc);
+                            background: -webkit-linear-gradient(#f1eeed, #e5d1c6);
+                            background: -o-linear-gradient(#fff, #ccc);
+                            box-shadow: 0 0 10px #000;
+                            -moz-box-shadow: 0 0 10px #000;
+                            -webkit-box-shadow: 0 0 10px #f86513;
+                        }
+
+                            .modalbg .dialog .ie7 {
+                                filter: progid:DXImageTransform.Microsoft.Shadow(color='#000', Direction=135, Strength=3);
+                            }
+
+                        .modalbg:target {
+                            display: block;
+                            pointer-events: auto;
+                            /*background: rgba(4, 10, 30, 0.8);*/
+                            -moz-transition: all 0.5s ease-out;
+                            -webkit-transition: all 0.5s ease-out;
+                            -o-transition: all 0.5s ease-out;
+                            transition: all 0.5s ease-out;
+                        }
+
+                            .modalbg:target .dialog {
+                                top: -90px;
+                                -moz-transition: all 0.8s ease-out;
+                                -webkit-transition: all 0.8s ease-out;
+                                -o-transition: all 0.8s ease-out;
+                                transition: all 0.8s ease-out;
+                                -webkit-transition-delay: 0.4s;
+                                -moz-transition-delay: 0.4s;
+                                -o-transition-delay: 0.4s;
+                                -transition-delay: 0.4s;
+                            }
+
+                    .close {
+                        background: #606061;
+                        color: #f75902;
+                        line-height: 25px;
+                        position: absolute;
+                        right: -12px;
+                        text-align: center;
+                        top: -10px;
+                        width: 24px;
+                        text-decoration: none;
+                        font-weight: bold;
+                        -webkit-border-radius: 12px;
+                        -moz-border-radius: 12px;
+                        border-radius: 12px;
+                        box-shadow: 0 0 10px #000;
+                        -moz-box-shadow: 0 0 10px #000;
+                        -webkit-box-shadow: 0 0 10px #000;
+                        -moz-transition: all 0.5s ease-out;
+                        -webkit-transition: all 0.5s ease-out;
+                        -o-transition: all 0.5s ease-out;
+                        transition: all 0.5s ease-out;
+                        -webkit-transition-delay: 0.2s;
+                        -moz-transition-delay: 0.2s;
+                        -o-transition-delay: 0.2s;
+                        -transition-delay: 0.2s;
+                    }
+
+                        .close .ie7 {
+                            filter: progid:DXImageTransform.Microsoft.Shadow(color='#000', Direction=135, Strength=3);
+                        }
+
+                        .close:hover {
+                            background: #00d9ff;
+                            -moz-transition: all 0.5s ease-out;
+                            -webkit-transition: all 0.5s ease-out;
+                            -o-transition: all 0.5s ease-out;
+                            transition: all 0.5s ease-out;
+                        }
+
+                    .fineprint {
+                        font-style: italic;
+                        font-size: 10px;
+                        color: #646;
+                    }
+
+                    a {
+                        color: #333;
+                        text-decoration: none;
+                    }
+                </style>
+                                <style>
+                                    /*Tabs*/
+                                    .tabs {
+                                        /*max-width: auto;*/
+                                        margin-top: 20px;
+                                        padding: 0 20px;
+                                    }
+
+                                        .tabs input {
+                                            display: none;
+                                        }
+
+                                        .tabs label {
+                                            display: inline-block;
+                                            padding: 6px 0 6px 0;
+                                            margin: 0 -2px;
+                                            width: 25%; /* =100/tabs number */
+                                            border-bottom: 1px solid #000;
+                                            text-align: center;
+                                        }
+
+                                            .tabs label:hover {
+                                                cursor: pointer;
+                                            }
+
+                                        .tabs input:checked + label {
+                                            border: 1px solid #000;
+                                            border-width: 1px 1px 0 1px;
+                                        }
+
+                                        .tabs #tab1:checked ~ .content #content1,
+                                        .tabs #tab2:checked ~ .content #content2,
+                                        .tabs #tab3:checked ~ .content #content3,
+                                        .tabs #tab4:checked ~ .content #content4 {
+                                            display: block;
+                                        }
+
+                                        .tabs .content > div {
+                                            display: none;
+                                            padding-top: 20px;
+                                            text-align: left;
+                                            /*height: 192px;*/
+                                            overflow: auto;
+                                        }
+                                </style>
+                                                <style>
+                                                    span {
+                                                        cursor: pointer;
+                                                    }
+
+                                                    .number {
+                                                        /*margin: 100px;*/
+                                                    }
+
+                                                    .minus, .plus {
+                                                        width: 30px;
+                                                        height: 34px;
+                                                        background: #f2f2f2;
+                                                        /*padding: 8px 5px 8px 5px;*/
+                                                        margin: 0 5px;
+                                                        border: 1px solid #ddd;
+                                                        display: inline-block;
+                                                        vertical-align: middle;
+                                                        text-align: center;
+                                                    }
+
+                                                    .counting input {
+                                                        height: 34px;
+                                                        width: 50px;
+                                                        text-align: center;
+                                                        font-size: 26px;
+                                                        border: 1px solid #ddd;
+                                                        display: inline-block;
+                                                        vertical-align: middle;
+                                                    }
+
+                                                    .productView-options .form-field {
+                                                        font-size: 18px;
+                                                        font-weight: 800;
+                                                    }
+
+                                                    ul {
+                                                        list-style-type: none;
+                                                    }
+
+                                                        ul > li {
+                                                            display: inline;
+                                                        }
+                                                    /*.button-group-pills label:focus,:active{
+                                                        border:2px solid black;
+                                                        box-shadow:1px 1px 1px 1px black;
+                                                    }*/
+                                                </style>
+                                                                <style>
+                                                                    @@media (max-width: 998px) {
+                                                                        .pagetitle {
+                                                                            margin-top: 20px;
+                                                                        }
+
+                                                                        .row {
+                                                                            margin-bottom: 20px;
+                                                                        }
+
+                                                                        .productView-images .productView-thumbnails img {
+                                                                            height: 40px;
+                                                                        }
+
+                                                                        .productView-title {
+                                                                            margin: 0 0 0px;
+                                                                        }
+
+                                                                        .price-section .price--withoutTax {
+                                                                            font-size: 25px;
+                                                                            font-weight: 900;
+                                                                        }
+
+                                                                        .modalbg .dialog {
+                                                                            width: 100%;
+                                                                        }
+
+                                                                        .dialog h4 {
+                                                                            font-size: 15px;
+                                                                        }
+
+                                                                        .dialog a {
+                                                                            text-align: center;
+                                                                            margin-bottom: 3px;
+                                                                            font-size:
+                                                                        }
+                                                                    }
+                                                                </style>
+@if (isMobile == false)
+{
+
+                                                                                <partial name="_header_One" />
+                                                                                                <partial name="_MobileHeadPage" />
+            }
+            else
+            {
+                <div style="margin-top:50px;">.</div>
+                <style>
+                    .productView-title {
+                        font-size: 16px;
+                        margin: 0 0 15px;
+                        color: #222;
+                    }
+                    h4 {
+                        font-size: 14px;
+                    }
+                    .card {
+                        background-color: transparent;
+                        margin-bottom: 0rem;
+                        padding: 0;
+                    }
+                </style>
+            }
+                                                                                                                <div class="main-body clearfix sidebar--left">
+                                                                                                                    <div class="hidden-sm hidden-xs">
+                                                                                                                        <h3 class="" style="padding:5px 0 2px;color:#ff6a00;margin:6px auto 0px;text-align:center;">
+                                                                                                                            <a asp-page="/Info/ShopPage" asp-route-name="@Model.Product.Tenant.TenentHandle"> @Model.Product.Tenant.BusinessName Shop</a> (<a asp-page="./Market" asp-route-name="@Model.Product.Tenant.TenentHandle">@Model.Product.Tenant.Market.Name</a>)
+                                                                                                                        </h3>
+                                                                                                                        <h6 class="" style="padding:3px;color:#ff6a00;margin:1px auto;text-align:center;">@@ @Model.Product.Tenant.TenantAddresses.FirstOrDefault().Address</h6>
+
+                                                                                                                        <div class="col-lg-12 col-sm-12 text-right container" style="background-color:#000000;color:#ffffff;">
+
+                                                                                                                            <nav class="navUser" style="">
+
+                                                                                                                                <ul class="navUser-section">
+
+                                                                                                                                    <li class="navUser-item d-none d-sm-block">
+                                                                                                                                        <a class="navUser-action" style="color:#ffffff;" asp-page="/Info/ShopPage" asp-route-customerRef="" asp-route-name="@Model.Product.Tenant.TenentHandle"><i class="fa fa-shopping-bag"></i> Visit Shop</a>
+                                                                                                                                    </li>
+
+                                                                                                                                    <li class="navUser-item d-none d-sm-block">
+                                                                                                                                        <a class="navUser-action" style="color:#ffffff;" href="#"><i class="fa fa-salesforce"></i> Top Sales</a>
+                                                                                                                                    </li>
+                                                                                                                                    <li class="navUser-item d-none d-sm-block">
+                                                                                                                                        <a class="navUser-action" style="color:#ffffff;" href="#"><i class="fa fa-money-check"></i> Discount</a>
+                                                                                                                                    </li>
+                                                                                                                                    <li class="navUser-item d-none d-sm-block">
+                                                                                                                                        <a class="navUser-action" style="color:#ffffff;" href="#"><i class="fa fa-search-plus"></i>  Reviews</a>
+                                                                                                                                    </li>
+
+                                                                                                                                </ul>
+
+                                                                                                                            </nav>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                    <div class="container">
+                                                                                                                        @if (isMobile == false)
+                                                                                                                        { 
+                                                                                                                    <div class="hidden-xs hidden-md">
+
+                                                                                                                        <div class="sb-breadcrumbs breadcrumb-bg hidden-sm hidden-xs">
+                                                                                                                            <ul class="breadcrumb ">
+                                                                                                                                <li class="breadcrumb-item ">
+                                                                                                                                    <i class="fa fa-home"></i>
+                                                                                                                                    <a href="/" class="breadcrumb-label">Home</a>
+                                                                                                                                </li>
+
+                                                                                                                                <li class="breadcrumb-item ">
+                                                                                                                                    <a href="#" class="breadcrumb-label">@Model.Product.Category.Name</a>
+                                                                                                                                </li>
+                                                                                                                                @if (Model.Product.SubCategory != null)
+                                                                                                                                {
+                                                                                                                    <li class="breadcrumb-item ">
+                                                                                                                        <a href="#" class="breadcrumb-label">@Model.Product.SubCategory.Name</a>
+                                                                                                                    </li>}
+
+                                                                                                                                <li class="breadcrumb-item is-active">
+                                                                                                                                    <a href="#" class="breadcrumb-label">@Model.Product.Name</a>
+                                                                                                                                </li>
+
+                                                                                                                            </ul>
+
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                    }
+                                                                                                                        <div class="row page">
+
+
+
+                                                                                                                            <main class="col-lg-9 col-md-12 page-content" id="product-listing-container">
+                                                                                                                                <div itemscope="" itemtype="">
+                                                                                                                                    <div class="sidebar-overlay"></div>
+                                                                                                                                    @*<a href="javascript:void(0)" class="open-sidebar d-md-block d-lg-none"><i class="fa fa-bars"></i> Sidebar </a>*@
+
+
+                                                                                                                                    <div class="productView" style="background-color:#ffffff;border-radius:7px;">
+
+                                                                                                                                        <section class="productView-images" data-image-gallery="" style="margin-top:10px;">
+                                                                                                                                            @if (Model.Product.ProductPictures.Count() > 0)
+                                                                                                                                            {
+                                                                                                                                <figure class="productView-image" data-image-gallery-main="" data-zoom-image="@Model.Product.ProductPictures.FirstOrDefault().PictureUrl&amp;imbypass=on&amp;imbypass=on">
+                                                                                                                                    <a class="productView-image-main " href="@Model.Product.ProductPictures.FirstOrDefault().PictureUrl?c=2&amp;imbypass=on">
+                                                                                                                                        <img class="productView-image--default lazyautosizes lazyloaded" data-sizes="auto" src="https://manager.ahioma.com/@Model.Product.ProductPictures.FirstOrDefault().PictureUrl" data-src="https://manager.ahioma.com/@Model.Product.ProductPictures.FirstOrDefault().PictureUrl&amp;imbypass=on" alt="@Model.Product.Name" title="@Model.Product.Name" data-main-image="" sizes="422px">
+                                                                                                                                    </a>
+
+                                                                                                                                </figure> }
+                                                                                                                            else
+                                                                                                                            {
+                                                                                                                            <figure class="productView-image" data-image-gallery-main="" data-zoom-image="/images/no-image.png&amp;imbypass=on&amp;imbypass=on">
+                                                                                                                                <a class="productView-image-main " href="~/images/no-image.png?c=2&amp;imbypass=on">
+                                                                                                                                    <img class="productView-image--default lazyautosizes lazyloaded" data-sizes="auto" src="~/images/no-image.png" data-src="/images/no-image.png&amp;imbypass=on" alt="@Model.Product.Name" title="@Model.Product.Name" data-main-image="" sizes="422px">
+                                                                                                                                </a>
+
+                                                                                                                            </figure>}
+                                                                                                                                            @*<div class="btn-productViewzoom text-center">
+                        <button class="btn btn-outline-secondary" id="btn-productViewzoom" type="submit"><i class="fa fa-search"></i>  Click to zoom in</button>
+                    </div>*@
+                                                                                                                                            <ul class="productView-thumbnails">
+                                                                                                                                                @foreach (var i in Model.Product.ProductPictures)
+                                                                                                                                                {
+                                                                                                                                    <li class="productView-thumbnail">
+                                                                                                                                        <a class="productView-thumbnail-link" href="@i.PictureUrl" data-image-gallery-item="0" data-image-gallery-new-image-url="@i.PictureUrl?c=2" data-image-gallery-zoom-image-url="@i.PictureUrl?c=2&amp;imbypass=on&amp;imbypass=on">
+                                                                                                                                            <img class="lazyautosizes lazyloaded" data-sizes="auto" src="https://manager.ahioma.com/@i.PictureUrlThumbnail" data-src="https://manager.ahioma.com/@i.PictureUrlThumbnail?c=2" alt="@Model.Product.Name" title="@Model.Product.Name" sizes="92px">
+                                                                                                                                        </a>
+                                                                                                                                    </li>}
+
+                                                                                                                                            </ul>
+                                                                                                                                            <h6>Share Item</h6>
+                                                                                                                                            <ul class="productView-thumbnails">
+
+                                                                                                                                                <li class="productView-thumbnail">
+
+                                                                                                                                                    @{ string decass = Url.Page(
+                                                                                                                                                                                                        "/ProductDetails",
+                                                                                                                                                                                                        pageHandler: null,
+                                                                                                                                                                                                        values: new { area = "", id = Model.Product.Id, name = Model.Product.Name.Replace(" ", "-"), shop = Model.Product.Tenant.BusinessName.Replace(" ", "-"), mktstate = Model.Product.Tenant.Market.State.Replace(" ", "-"), customerRef = Model.CustomerRef },
+                                                                                                                                                                                                        protocol: Request.Scheme);
+
+
+                                                                                                                                                        string logdata = Url.Page(
+                                                                                                                                                                                    "/Login",
+                                                                                                                                                                                    pageHandler: null,
+                                                                                                                                                                                    values: new { area = "", returnUrl = decass },
+                                                                                                                                                                                    protocol: Request.Scheme);
+
+                                                                                                                                                        var asss = Uri.EscapeUriString(decass);
+                                                                                                                                                        var ass = HtmlEncoder.Default.Encode(asss);
+                                                                                                                                                        var encodelog = HtmlEncoder.Default.Encode(logdata); }
+
+
+                                                                                                                                                    <a href="https://twitter.com/intent/tweet?text=@ass" style="border:1px solid #ff6a00;padding:2px 5px;"><i class="fa fa-twitter" style="color:#529ddc;"></i></a>
+
+                                                                                                                                                    <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=@ass" class="fb-xfbml-parse-ignore" style="border:1px solid #ff6a00;padding:2px 5px;"><i style="color:#529ddc;" class="fa fa-facebook"></i></a>
+
+                                                                                                                                                    <a href="whatsapp://send?text=@ass" data-action="share/whatsapp/share" style="border:1px solid #ff6a00;padding:2px 5px;"><i style="color:#75d380;" class="fa fa-whatsapp"></i></a>
+
+                                                                                                                                                </li>
+
+
+                                                                                                                                            </ul>
+                                                                                                                                            <script type="text/javascript">
+<!--
+                                                                                                                                                $(document).ready(function () {
+                                                                                                                                                    $('.image-popup-sizechart').magnificPopup({
+                                                                                                                                                        type: 'image',
+                                                                                                                                                        closeOnContentClick: true,
+                                                                                                                                                        mainClass: 'mfp-img-mobile',
+                                                                                                                                                        image: {
+                                                                                                                                                            verticalFit: true
+                                                                                                                                                        }
+                                                                                                                                                    });
+
+                                                                                                                                                    $('#btn-productViewzoom').magnificPopup({
+                                                                                                                                                        items: [
+                                                                                                                                                            //    { src: "https://cdn11.bigcommerce.com/s-3zqjz60dg3/images/stencil/1280x1280/products/86/516/27__38750.1520036621.jpg?c=2" },
+                                                                                                                                                            //    { src: "https://cdn11.bigcommerce.com/s-3zqjz60dg3/images/stencil/1280x1280/products/86/517/28__78448.1520036621.jpg?c=2" },
+                                                                                                                                                            //    { src: "https://cdn11.bigcommerce.com/s-3zqjz60dg3/images/stencil/1280x1280/products/86/518/29__39919.1520036621.jpg?c=2" },
+                                                                                                                                                        ],
+                                                                                                                                                        gallery: { enabled: true, preload: [0, 2] },
+                                                                                                                                                        type: 'image',
+                                                                                                                                                        mainClass: 'mfp-fade',
+                                                                                                                                                        callbacks: {
+                                                                                                                                                            open: function () {
+                                                                                                                                                                var activeIndex = parseInt($('ul.productView-thumbnails .is-active').data('image-gallery-item'));
+                                                                                                                                                                var magnificPopup = $.magnificPopup.instance;
+                                                                                                                                                                magnificPopup.goTo(activeIndex);
+                                                                                                                                                            }
+                                                                                                                                                        }
+                                                                                                                                                    });
+                                                                                                                                                });
+                                                                                                                                                //--></script>
+
+
+                                                                                                                                        </section>
+                                                                                                                                        <div id="logidata" style="display:none;">@encodelog</div>
+                                                                                                                                        <section class="productView-details" style="padding-top:10px;">
+                                                                                                                                            <div class="productView-product">
+                                                                                                                                                <p class="productView-brand" itemprop="brand" itemscope="" itemtype="http://schema.org/Brand">
+                                                                                                                                                    <a href="#" itemprop="url"><span itemprop="name"></span></a>
+                                                                                                                                                </p>
+                                                                                                                                                <h1 class="productView-title" itemprop="name">@Model.Product.Name</h1>
+                                                                                                                                                <h4 class="hidden-lg" style="padding:5px;color:#ff6a00;margin:6px auto;"><a asp-page="/Info/ShopPage" asp-route-customerRef="" asp-route-name="@Model.Product.Tenant.TenentHandle"> @Model.Product.Tenant.BusinessName </a><a asp-page="./Market" asp-route-name="@Model.Product.Tenant.TenentHandle"> (@Model.Product.Tenant.Market.Name)</a></h4>
+
+
+                                                                                                                                                <div class="productView-price">
+
+                                                                                                                                                    <div class="price-section price-section--withoutTax " itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
+
+                                                                                                                                                        <span data-product-price-without-tax="" class="price price--withoutTax" style="font-family:'Times New Roman';">&#8358;@Model.Product.Price.ToString("0")</span>
+
+                                                                                                                                                    </div>
+                                                                                                                                                </div>
+
+                                                                                                                                            </div>
+                                                                                                                                        </section>
+
+                                                                                                                                        <section class="productView-details ">
+                                                                                                                                            <div class="productView-options">
+                                                                                                                                                <form class="form" id="cart-form" data-cart-item-add="" asp-route-customerRef="">
+                                                                                                                                                    <input asp-for="CustomerRef" type="hidden" />
+                                                                                                                                                    <input type="hidden" name="product_id" id="productid" value="@Model.Product.Id">
+
+                                                                                                                                                    <div class="form-field form-field--stock u-hiddenVisually">
+                                                                                                                                                        <label class="form-label form-label--alternate">
+                                                                                                                                                            Current Stock:
+                                                                                                                                                            <span data-product-stock=""></span>
+                                                                                                                                                        </label>
+                                                                                                                                                    </div>
+
+                                                                                                                                                    <div class="form-field form-field--increments">
+                                                                                                                                                        @if (TempData["color"] != null)
+                                                                                                                                                        {
+                                                                                                                                            <div class="alert alert-danger alert-dismissible">
+                                                                                                                                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                                                                                                                                <strong>@TempData["color"]</strong>.
+                                                                                                                                            </div>}
+                                                                                                                                                        @if (Model.Product.UseColor == true)
+                                                                                                                                                        {
+                                                                                                                                            <label class="form-label form-label--alternate">Color:</label>
+
+                                                                                                                                                            <div style="margin-left:0px;" class="button-group-pills" data-toggle="buttons">
+
+                                                                                                                                                                @*<input id="color-input-id" type="text" value="" />*@
+                                                                                                                                                                @foreach (var i in Model.Product.ProductColors)
+                                                                                                                                                                {
+
+                                                                                                                                                <label class="btn btn-default" style="padding:10px 20px;background-color:@i.ItemColor;border:2px solid #f86513;display:inline;margin:5px;">
+                                                                                                                                                    <input type="radio" name="itemcolor" id="iColor" required="required" value="@i.ItemColor">
+                                                                                                                                                    @if (i.ItemColor.Contains("white"))
+                                                                                                                                                    {
+                                                                                                                                <span style="font-size:9px;color:#000;font-weight:900;">@i.ItemColor</span> }
+                                                                                                                            else
+                                                                                                                            {
+                                                                                                                            <span style="font-size:9px;color:#fff;font-weight:900;">@i.ItemColor</span>}
+
+
+                                                                                                                                                </label>}
+
+                                                                                                                                                            </div>}
+                                                                                                                                                        <br />
+                                                                                                                                                        @if (TempData["size"] != null)
+                                                                                                                                                        {
+                                                                                                                                            <div class="alert alert-danger alert-dismissible">
+                                                                                                                                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                                                                                                                                <strong>@TempData["size"]</strong>.
+                                                                                                                                            </div>}                                        @if (Model.Product.UseSize == true)
+                                                                                                                                                        {
+                                                                                                                                            <label class="form-label form-label--alternate">Sizes:</label>
+
+                                                                                                                                                            <div style="margin-left:0px;" class="button-group-pills" data-toggle="buttons">
+
+                                                                                                                                                                @foreach (var i in Model.Product.ProductSizes)
+                                                                                                                                                                {
+                                                                                                                                                <label class="btn btn-default" style="padding:6px;border:1px solid #333;display:inline;margin:5px;">
+                                                                                                                                                    <input type="radio" name="itemsize" id="iSize" required="required" value="@i.ItemSize">
+                                                                                                                                                    <span>@i.ItemSize</span>
+                                                                                                                                                </label> @*<li><button class="btn btn-default" type="button" style="padding:10px;border:1px solid #ff6a00;">@i.ItemSize</button></li>*@}
+
+                                                                                                                                                            </div>}
+                                                                                                                                            <label class="form-label form-label--alternate">Quantity:</label>
+                                                                                                                                            @if (Model.Product.Quantity < 1)
+                                                                                                                                            {
+                                                                                                                                <div class="number counting">
+                                                                                                                                    <h6 style="color:#f0414a;">Not in Stock</h6>
+                                                                                                                                </div> }
+                                                                                                                            else
+                                                                                                                            {
+                                                                                                                            <div class="number counting">
+                                                                                                                                <span class="minus">-</span>
+                                                                                                                                <input type="text" id="quantity" name="quantity" value="1" style="height: 34px; width: 50px; text-align: center; font-size: 26px; border: 1px solid #ddd; display: inline-block; vertical-align: middle;" />
+                                                                                                                                <span class="plus">+</span>
+                                                                                                                            </div>}
+
+                                                                                                                                        </div>
+
+                                                                                                                                        @{ var routeUrl = Url.RouteUrl(ViewContext.RouteData.Values);
+                                                                                                                                            var qsPath = ViewContext.HttpContext.Request.QueryString.Value;
+                                                                                                                                            var returnUrl = $"{routeUrl}{qsPath}"; }
+                                                                                                                                        @if (User.Identity.IsAuthenticated)
+                                                                                                                                        {
+                                                                                                                            <input data-wait-message="Adding to cart…" type="submit" class="button button--primary button--addtocart" value="Add to Cart"> }
+                                                                                                                        else
+                                                                                                                        {
+                                                                                                                            <a asp-page="/Login" asp-route-returnurl="@returnUrl" class="button button--primary button--addtocart">
+                                                                                                                                Add to Cart
+                                                                                                                            </a> @*<input data-wait-message="Adding to cart…" type="submit" class="button button--primary button--addtocart" value="Add to Cart">*@}
+                                                                                                                                    </form>
+                                                                                                                                    <div class="form-action">
+
+                                                                                                                                        <div class="hidden">
+                                                                                                                                            <a class="button" id="pressbutton" href="#cartopenModal">Open it up!</a>
+
+                                                                                                                                        </div>
+                                                                                                                                        <div id="cartopenModal" class="modalbg">
+                                                                                                                                            <div class="dialog">
+                                                                                                                                                <a href="#close" title="Close" class="close">X</a>
+                                                                                                                                                <h4>@Model.Product.Name has been added to cart.</h4>
+
+                                                                                                                                                <a href="/#products" class="btn" style="background-color:#ff6a00;color:#000;padding:5px 15px;text-transform:uppercase;">Continue shopping</a>
+                                                                                                                                                <a asp-page="/Info/ShopPage" asp-route-customerRef="" asp-route-name="@Model.Product.Tenant.TenentHandle" class="btn" style="background-color:#ff6a00;color:#000;padding:5px 15px;text-transform:uppercase;">Continue From Shop</a>
+                                                                                                                                                <a asp-page="./Account/MyCart" asp-route-customerRef="" asp-area="User" class="btn" style="background-color:#ff6a00;color:#000;padding:5px 15px;text-transform:uppercase;">View Cart and Checkout</a>
+                                                                                                                                            </div>
+                                                                                                                                        </div>
+                                                                                                                                    </div>
+                                                                                                                                    <!-- snippet location product_addtocart -->
+                                                                                                                                    @*<a asp-page="/Account/BuyNow" asp-area="User" asp-route-id="@Model.Product.Id" asp-route-quantity="" asp-route-itemcolor="" asp-route-itemsize="" class="button button--primary button--addtocart" style="margin-top: 1rem;margin-bottom: 1rem;">Buy Now</a>*@
+
+
+                                                                                                                                    <form id="formbuynow" asp-page="/Account/BuyNow" asp-area="User" method="get" onsubmit="required()">
+                                                                                                                                        <input asp-for="CustomerRef" type="hidden" />
+                                                                                                                                        <input type="hidden" name="ProductId" value="@Model.Product.Id" />
+                                                                                                                                        @if (Model.Product.UseSize == true)
+                                                                                                                                        {
+                                                                                                                            <input type="hidden" name="ItemSize" id="BuyItemSize" required="required" />
+                                                                                                                                            <span id="output1"></span>}
+                                                                                                                                        @if (Model.Product.UseColor == true)
+                                                                                                                                        {
+                                                                                                                            <input type="hidden" name="ItemColor" id="BuyItemColor" required="required" />
+                                                                                                                                            <span id="output2"></span>}
+                                                                                                                                        <input type="hidden" name="Quantity" id="quantityBuynow" required="required" />
+                                                                                                                                        <span id="output3"></span>
+                                                                                                                                        <div class="form-action">
+                                                                                                                                            <input data-wait-message="Adding to cart…" type="submit" class="button button--primary button--addtocart" value="Buy Now.  ..">
+                                                                                                                                        </div>
+                                                                                                                                    </form>
+
+
+                                                                                                                                    @*<form action="#" class="form form-wishlist form-action">
+                <a aria-controls="wishlist-dropdown" aria-expanded="false" class="button dropdown-menu-button" data-dropdown="wishlist-dropdown">
+                    <span>Add to Wish List</span>
+                    <i aria-hidden="true" class="icon">
+                        <svg>
+                            <use xlink:href="#icon-chevron-down"></use>
+                        </svg>
+                    </i>
+                </a>
+                <ul aria-hidden="true" class="dropdown-menu" data-dropdown-content="" id="wishlist-dropdown" tabindex="-1">
+
+                    <li>
+                        <input class="button" value="Add to My Wish List">
+                    </li>
+                    <li>
+                        <a data-wishlist="" class="button" href="">Create New Wish List</a>
+                    </li>
+                </ul>
+            </form>*@
+                                                                                                                                </div>
+
+                                                                                                                                <!-- snippet location product_details -->
+                                                                                                                            </section>
+
+                                                                                                                            <section class="productView-details productView-details--bottom">
+                                                                                                                                <div class="wrap-content"><div class="addthis_inline_share_toolbox"></div></div>
+                                                                                                                                <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                                                                                                                                <script type="text/javascript" src="~/w1/addthis_widget.js"></script>
+
+
+                                                                                                                            </section>
+
+                                                                                                                            <article class="productView-description horizontal-tabs" itemprop="description">
+
+                                                                                                                                <ul class="tabs " data-tab="">
+                                                                                                                                    <li class="tab is-active">
+                                                                                                                                        <a class="tab-title" href="#tab-description">Description</a>
+                                                                                                                                    </li>
+
+
+                                                                                                                                </ul>
+
+                                                                                                                                <div class="tabs-contents ">
+                                                                                                                                    <div class="tab-content is-active" id="tab-description" style="max-height:500px;overflow:scroll;">
+
+                                                                                                                                        @Html.Raw(Model.Product.FullDescription)
+                                                                                                                                    </div>
+
+
+                                                                                                                                </div>
+                                                                                                                            </article>
+                                                                                                                            </div>
+
+
+
+
+                                                                                                                            </div>
+                                                                                                                            <h4 class="btn btn-warning" style="background-color:#ff5c00;color:#ffffff;">You Might Also Like These Products</h4>
+
+                                                                                                                            <div class="ltabs-container d-flex">
+                                                                                                                                <div class="clearfix"></div>
+                                                                                                                                <div class="ltabs-items-container ltabs-items-container--image">
+
+                                                                                                                                    <section>
+                                                                                                                                        <div class="productsByCategoryTabs-products--carousel ">
+                                                                                                                                            <section class="productCarousel products-list">
+
+                                                                                                                                                <div class="">
+                                                                                                                                                    <div class="" id="products">
+                                                                                                                                                        @if (isMobile == false)
+                                                                                                                                                        {
+                                                                                                                                            @foreach (var data in Model.SimilarProduct)
+                                                                                                                                            {
+
+                                                                                                                            <div class="productCarousel-slide product-layout col-md-2 col-sm-6 col-xs-6" style="border: 1px solid #ff5c002b; background-color: white;">
+                                                                                                                                <article class="product-item-container " style="margin:0 !important;">
+                                                                                                                                    <div class="left-block d-flex align-items-center justify-content-center">
+
+                                                                                                                                        @{ var df = "ddddddf"; }
+                                                                                                                                        <a asp-page="/ProductDetails" asp-route-customerRef="" asp-route-id="@data.Id" asp-route-name="@data.Name.Replace(" ", "-")" asp-route-shop="@data.Tenant.BusinessName.Replace(" ", "-")" asp-route-mktstate="@data.Tenant.Market.State.Replace(" ", "-")" asp-route-mktaddress="@data.Tenant.Market.Address.Replace(" ", "-")" class="product-item-photo" tabindex="0">
+                                                                                                                                            @if (data.ImageThumbnail != null)
+                                                                                                                                            {
+                                                                                                                            <img class="img-responsive lazyautosizes lazyloaded" data-sizes="auto" src="https://manager.ahioma.com/@data.ImageThumbnail" alt="" title="" sizes="50px">}
+
+                                                                                                                                        </a>
+
+                                                                                                                                        <a asp-page="/ProductDetails" asp-route-customerRef="" asp-route-id="@data.Id" asp-route-name="@data.Name.Replace(" ", "-")" asp-route-shop="@data.Tenant.BusinessName.Replace(" ", "-")" asp-route-mktstate="@data.Tenant.Market.State.Replace(" ", "-")" asp-route-mktaddress="@data.Tenant.Market.Address.Replace(" ", "-")" class="quickview btn-button d-none d-md-block" data-animation="false" data-product-id="126" title="Quick view" tabindex="0"> <i class="fa fa-search"></i></a>
+
+                                                                                                                                    </div>
+
+                                                                                                                                    <div class="right-block hidden-xs hidden-sm">
+
+                                                                                                                                        <h4 class="card-title">
+                                                                                                                                            <a asp-page="/ProductDetails" asp-route-customerRef="" asp-route-id="@data.Id" asp-route-name="@data.Name.Replace(" ", "-")" asp-route-shop="@data.Tenant.BusinessName.Replace(" ", "-")" asp-route-mktstate="@data.Tenant.Market.State.Replace(" ", "-")" asp-route-mktaddress="@data.Tenant.Market.Address.Replace(" ", "-")" tabindex="0" title="@data.Name">@data.Name</a>
+                                                                                                                                        </h4>
+                                                                                                                                        <div class="price-section price-section--withoutTax ">
+
+                                                                                                                                            <span data-product-price-without-tax="" class="pull-left" style="font-weight:900;color:#f56615;font-family:'Times New Roman', Times, serif;font-size:13px;">
+                                                                                                                                                &#8358;@string.Format("{0:C}", data.Price).Replace(".00", "").Replace("$", "")@if (data.Quantity < 1)
+                                                                                                                                                {<span>XXX</span>}
+                                                                                                                                            </span>
+                                                                                                                                            <span data-product-price-without-tax="" class="pull-right mkt-name" title="@data.Tenant.BusinessName @@ @data.Market.Name" style="font-weight:800;font-size:13px;color:#3a3535;">@data.Market.ShortName</span>
+
+                                                                                                                                        </div>
+
+                                                                                                                                    </div>
+                                                                                                                                    <div class="right-block hidden-md hidden-lg">
+
+                                                                                                                                        <h4 class="card-title" style="padding-bottom:0px;margin-bottom:3px;">
+                                                                                                                                            <a asp-page="/ProductDetails" asp-route-customerRef="" asp-route-id="@data.Id" asp-route-name="@data.Name.Replace(" ", "-")" asp-route-shop="@data.Tenant.BusinessName.Replace(" ", "-")" asp-route-mktstate="@data.Tenant.Market.State.Replace(" ", "-")" asp-route-mktaddress="@data.Tenant.Market.Address.Replace(" ", "-")" tabindex="0" title="@data.Name">@data.Name</a>
+                                                                                                                                        </h4>
+                                                                                                                                        <h4 class="card-title" style="padding-bottom:0px;margin-bottom:3px;">
+                                                                                                                                            <a style="font-weight:900;color:#f56615;font-family:'Times New Roman', Times, serif;">
+                                                                                                                                                &#8358;@string.Format("{0:C}", data.Price).Replace(".00", "").Replace("$", "")@if (data.Quantity < 1)
+                                                                                                                                                {<span>XXX</span>}
+                                                                                                                                            </a>
+                                                                                                                                        </h4>
+                                                                                                                                        <h4 class="card-title" style="padding-bottom:0px;margin-bottom:3px;">
+                                                                                                                                            <a title="@data.Tenant.BusinessName @@ @data.Market.Name" style="font-weight:800;color:#3a3535;">@data.Market.ShortName</a>
+                                                                                                                                        </h4>
+
+                                                                                                                                    </div>
+                                                                                                                                </article>
+
+                                                                                                                            </div>} }
+                                                                                                                                        else if (isMobile == true)
+                                                                                                                                        {
+
+
+
+                                                                                                                            <div class="container-fluid">
+
+                                                                                                                                <div class="row g-3">
+                                                                                                                                    <style>
+                                                                                                                                        .top-product-card .product-title {
+                                                                                                                                            font-size: 10px;
+                                                                                                                                            font-weight: 700;
+                                                                                                                                            margin-bottom: 0 !important;
+                                                                                                                                            color: #020310;
+                                                                                                                                            line-height: 1;
+                                                                                                                                            min-height: 30px;
+                                                                                                                                            max-height: 30px;
+                                                                                                                                            overflow: hidden;
+                                                                                                                                        }
+
+                                                                                                                                        .top-product-card .sale-price {
+                                                                                                                                            margin-bottom: 0.25rem;
+                                                                                                                                            color: #f56615;
+                                                                                                                                            font-weight: 700;
+                                                                                                                                            font-size: 0.725rem;
+                                                                                                                                            margin: 0;
+                                                                                                                                            line-height: 1.3;
+                                                                                                                                        }
+                                                                                                                                    </style>
+                                                                                                                                    <!-- Single Top Product Card-->
+                                                                                                                                    @foreach (var data in Model.SimilarProduct)
+                                                                                                                                    {
+                                                                                                                            <div class="col-6 col-md-4 col-lg-3">
+                                                                                                                                <div class="card top-product-card" style="border: 1px solid #ff5c002b !important;">
+                                                                                                                                    <div class="card-body">
+
+                                                                                                                                        @if (data.ImageThumbnail != null)
+                                                                                                                                        {
+                                                                                                                            <a class="product-thumbnail d-block" style="margin:8px auto;" asp-page="/ProductDetails" asp-route-customerRef="" asp-route-id="@data.Id" asp-route-name="@data.Name.Replace(" ", "-")" asp-route-shop="@data.Tenant.BusinessName.Replace(" ", "-")" asp-route-mktstate="@data.Tenant.Market.State.Replace(" ", "-")" asp-route-mktaddress="@data.Tenant.Market.Address.Replace(" ", "-")">
+                                                                                                                                <img class="mb-2" src="https://manager.ahioma.com/@data.ImageThumbnail" alt="" style="margin: 10px auto 0 !important;">
+                                                                                                                            </a>}
+                                                                                                                                        <a class="product-title d-block" asp-page="/ProductDetails" asp-route-customerRef="" asp-route-id="@data.Id" asp-route-name="@data.Name.Replace(" ", "-")" asp-route-shop="@data.Tenant.BusinessName.Replace(" ", "-")" asp-route-mktstate="@data.Tenant.Market.State.Replace(" ", "-")" asp-route-mktaddress="@data.Tenant.Market.Address.Replace(" ", "-")">
+                                                                                                                                            @data.Name
+
+                                                                                                                                        </a>
+                                                                                                                                        <p class="sale-price">&#8358;@string.Format("{0:C}", data.Price).Replace(".00", "").Replace("$", "")</p>
+                                                                                                                                        <p class="sale-price">&#64;@data.Market.ShortName</p>
+
+                                                                                                                                    </div>
+                                                                                                                                </div>
+                                                                                                                            </div> <!-- Single Top Product Card-->}
+
+                                                                                                                                </div>
+                                                                                                                            </div>}
+
+                                                                                                                                                    </div>
+                                                                                                                                                </div>
+                                                                                                                                            </section>
+                                                                                                                                        </div>
+                                                                                                                                    </section>
+                                                                                                                                </div>
+                                                                                                                            </div>
+                                                                                                                            <div class="rating-and-review-wrapper bg-white py-3 mb-3">
+                                                                                                                                <div class="container">
+                                                                                                                                    <h6>Ratings &amp; Reviews</h6>
+                                                                                                                                    <div class="rating-review-content">
+                                                                                                                                        <ul class="ps-0">
+
+                                                                                                                                            @if (Model.Reviews.Count() > 0)
+                                                                                                                                            {
+                                                                                                                                @foreach (var i in Model.Reviews)
+                                                                                                                                {
+
+
+                                                                                                                            <li class="single-user-review d-flex" style="border:1px solid #ff6a00;">
+                                                                                                                                <div class="user-thumbnail">
+                                                                                                                                    @if (!String.IsNullOrEmpty(i.UserProfile.ProfileUrl))
+                                                                                                                                    {
+                                                                                                                            <img src="https://manager.ahioma.com/@i.UserProfile.ProfileUrl" alt="">}
+                                                                                                                        else
+                                                                                                                        {
+
+                                                                                                                        }
+
+
+                                                                                                                                </div>
+                                                                                                                                <div class="rating-comment">
+                                                                                                                                    <div class="rating">
+                                                                                                                                        @if (i.Rating == 1)
+                                                                                                                                        {
+                                                                                                                            <i class="lni lni-star-filled"></i>}
+                                                                                                                        else if (i.Rating == 2)
+                                                                                                                        {
+
+                                                                                                                            <i class="lni lni-star-filled"></i>
+                                                                                                                                                    <i class="lni lni-star-filled"></i> }
+                                                                                                                                                else if (i.Rating == 3)
+                                                                                                                                                {
+
+                                                                                                                            <i class="lni lni-star-filled"></i>
+                                                                                                                                                    <i class="lni lni-star-filled"></i>
+                                                                                                                                                                            <i class="lni lni-star-filled"></i> }
+                                                                                                                                                                        else if (i.Rating == 4)
+                                                                                                                                                                        {
+                                                                                                                                                    <i class="lni lni-star-filled"></i>
+                                                                                                                                                                            <i class="lni lni-star-filled"></i>
+                                                                                                                                                                                                    <i class="lni lni-star-filled"></i>
+                                                                                                                                                                                                                            <i class="lni lni-star-filled"></i> }
+                                                                                                                                                                                                                        else if (i.Rating == 5)
+                                                                                                                                                                                                                        {
+                                                                                                                                                                                                    <i class="lni lni-star-filled"></i>
+                                                                                                                                                                                                                            <i class="lni lni-star-filled"></i>
+                                                                                                                                                                                                                                                    <i class="lni lni-star-filled"></i>
+                                                                                                                                                                                                                                                                            <i class="lni lni-star-filled"></i>
+                                                                                                                                                                                                                                                                                                    <i class="lni lni-star-filled"></i>}
+                                                                                                                                    </div>
+                                                                                                                                    <p class="comment mb-0">@i.Content</p><span class="name-date">@i.Date.ToString("dd MMM, yyyy")</span>
+                                                                                                                                </div>
+                                                                                                                            </li>
+} }
+                                                                                                                                            else
+                                                                                                                                            {
+
+                                                                                                                                <li>No Reviews Yet</li>
+}
+
+                                                                                                                                        </ul>
+                                                                                                                                    </div>
+                                                                                                                                </div>
+                                                                                                                            </div> <!-- Ratings Submit Form-->
+                                                                                                                            <div class="ratings-submit-form bg-white py-3">
+                                                                                                                                <div class="container">
+                                                                                                                                    <h6>Submit A Review</h6>
+                                                                                                                                    <form asp-page-handler="AddReview" method="post">
+                                                                                                                                        @if (User.Identity.IsAuthenticated)
+                                                                                                                                        {
+                                                                                                                            <input type="hidden" asp-for="UserId" value="@User.Identity.Name" />
+                                                                                                                                            <input type="hidden" asp-for="iProductId" value="@Model.Product.Id" />}
+                                                                                                                                        <div class="stars mb-3">
+                                                                                                                                            <input class="star-1" type="radio" name="star" id="star1" value="1">
+                                                                                                                                            <label class="star-1" for="star1"></label>
+                                                                                                                                            <input class="star-2" type="radio" name="star" id="star2" value="2">
+                                                                                                                                            <label class="star-2" for="star2"></label>
+                                                                                                                                            <input class="star-3" type="radio" name="star" id="star3" value="3">
+                                                                                                                                            <label class="star-3" for="star3"></label>
+                                                                                                                                            <input class="star-4" type="radio" name="star" id="star4" value="4">
+                                                                                                                                            <label class="star-4" for="star4"></label>
+                                                                                                                                            <input class="star-5" type="radio" name="star" id="star5" value="5">
+                                                                                                                                            <label class="star-5" for="star5"></label><span></span>
+                                                                                                                                        </div>
+                                                                                                                                        <textarea class="form-control mb-3" id="comments" name="Comment" cols="30" rows="10" data-max-length="200" placeholder="Write your review..."></textarea>
+
+                                                                                                                                        <button class="btn btn-sm btn-primary" type="submit">Save Review</button>
+                                                                                                                                    </form>
+                                                                                                                                </div>
+                                                                                                                            </div>
+                                                                                                                            </main>
+                                                                                                                   
+                                                                                                                    <div class="col-lg-3 col-md-12">
+                                                                                                                        <a href="https://wa.link/fa3mxe" target="_blank">
+                                                                                                                            <img src="~/widget/ahioma-widget.jpg" class="img-fluid" style="border-radius:7px;" /><br /><br />
+                                                                                                                            <img src="~/widget/ahioma-widget-3.jpeg" class="img-fluid" style="border-radius:7px;" />
+                                                                                                                        </a><br /><br />
+                                                                                                                        <img src="~/widget/ahioma-widget-2.jpg" class="img-fluid" style="border-radius:7px;" />
+                                                                                                                    </div>
+                                                                                                                    </div>
+
+                                                                                                                    </div>
+
+                                                                                                </div> 
+@section Scripts {
+    <script>
+        $(function () {
+            var $select = $(".1-100");
+            for (i = 1; i <= 100; i++) {
+                $select.append($('<option></option>').val(i).html(i))
+            }
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('.minus').click(function () {
+                var $input = $(this).parent().find('input');
+                var count = parseInt($input.val()) - 1;
+                count = count < 1 ? 1 : count;
+                $input.val(count);
+                $input.change();
+                return false;
+            });
+            $('.plus').click(function () {
+                var $input = $(this).parent().find('input');
+                $input.val(parseInt($input.val()) + 1);
+                $input.change();
+                return false;
+            });
+        });
+    </script>
+    <script>
+
+        function myFunction() {
+            console.log("yes anm in");
+
+            document.getElementById("color-input-id").value = document.getElementById("addcolor").value;
+            console.log(document.getElementById("color-input-id").value);
+
+        };
+
+        $(function () {
+
+            $('#cart-form').on('submit', function (e) {
+
+                console.log("log 1");
+                e.preventDefault();
+                var itemcolor,
+                    element = document.querySelector('input[name="itemcolor"]:checked');
+                if (element != null) {
+                    itemcolor = element.value;
+                }
+                else {
+                    itemcolor = "";
+                }
+                //\
+                console.log("log 12");
+                var itemsize,
+                    element = document.querySelector('input[name="itemsize"]:checked');
+                if (element != null) {
+                    itemsize = element.value;
+                }
+                else {
+                    itemsize = "";
+                }
+                //var itemcolor = document.querySelector('input[name="itemcolor"]:checked').value || "";
+                //var itemsize = document.querySelector('input[name="itemsize"]:checked').value || "";
+                var quantity = document.getElementById("quantity").value || "";
+                var product_id = document.getElementById("productid").value || "";
+                //var ilink = document.getElementById("ilinkdata").value || "data";
+                var ilink = "data";
+                console.log("before")
+                $.getJSON('/Home/Addtocart/',
+                    { id: product_id, itemcolor: itemcolor, itemsize: itemsize, quantity: quantity, ilink: ilink },
+                    function (data) {
+                        if (data.value == "Login") {
+                            var ios = document.getElementById(logidata).innerHTML;
+                            console.log(ios)
+                            console.log("after")
+                            return window.location.href = "/";
+                        }
+
+
+                    }).done(function () {
+                        //$('#openModal').modal('show');
+                        document.getElementById("pressbutton").click();
+                        document.getElementsByClassName("countPill").value = "20";
+                        console.log("trueee")
+                    })//END JSON;
+
+            });
+
+        });
+    </script>
+
+    <script>
+        function dosomething() {
+            var qxy = document.getElementById("quantity").value;
+
+            var isize = document.getElementsByName('itemsize');
+            console.log(isize)
+            for (var i = 0, length = isize.length; i < length; i++) {
+                if (isize[i].checked) {
+
+                    console.log(isize[i].value)
+                    document.getElementById("BuyItemSize").value = isize[i].value;
+                    break;
+                }
+            }
+            var icolor = document.getElementsByName('itemcolor');
+            console.log(icolor)
+            for (var i = 0, length = icolor.length; i < length; i++) {
+                if (icolor[i].checked) {
+                    console.log(icolor[i].value)
+                    document.getElementById("BuyItemColor").value = icolor[i].value;
+                    break;
+                }
+            }
+            document.getElementById("quantityBuynow").value = qxy
+
+        }
+
+
+        $('#formbuynow').submit(function () {
+            dosomething();
+        });
+
+        //<input type="hidden" name="ItemSize" id="BuyItemSize" required="required" />
+        //    <input type="hidden" name="ItemColor" id="BuyItemColor" required="required" />
+        //    <input type="hidden" name="Quantity" id="quantityBuynow" required="required" />
+
+        function required() {
+            var empt = document.forms["formbuynow"]["BuyItemSize"].value;
+            console.log(empt);
+
+            if (empt == "") {
+                $('#output1').val("Please select size");
+
+                return false;
+            }
+            var empt2 = document.forms["formbuynow"]["BuyItemColor"].value;
+            console.log(empt2);
+
+            if (empt2 == "") {
+                $('#output2').val("Please select color");
+
+                return false;
+            }
+            var empt3 = document.forms["formbuynow"]["quantityBuynow"].value;
+            console.log(empt3);
+            if (empt3 == "") {
+                $('#output3').val("Please select quantity");
+
+                return false;
+            }
+
+        }
+    </script>
+
+    <script>
+        $(function () {
+            // Initiate carousel
+            $('.owl-carousel').owlCarousel({
+                items: 1,
+                afterMove: function () {
+                    setTimeout(function () {
+                        // Update Magnify when slide changes
+                        $zoom.destroy().magnify();
+                    }, 800); // This number should match paginationSpeed option
+                }
+            });
+            // Initiate zoom
+            var $zoom = $('.zoom').magnify();
+        });
+    </script>
+}

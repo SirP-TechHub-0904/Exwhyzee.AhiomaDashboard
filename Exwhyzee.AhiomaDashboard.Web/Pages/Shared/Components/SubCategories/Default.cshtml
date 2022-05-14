@@ -1,0 +1,57 @@
+﻿@model ICollection<Exwhyzee.AhiomaDashboard.EntityFramework.Tables.SubCategory>
+
+
+@if (TempData["null"] == null)
+{
+    @if (Model.Count() > 1)
+    {
+        <div class="module  sidebar--categories">
+            <h5 class="block-title"><i class="fa fa-diamond"></i> @Model.FirstOrDefault().Category.Name Category</h5>
+            <div class="block-content clearfix">
+                <ul class="navList">
+                    @foreach (var data in Model)
+                    {
+                        <li class="navList-item">
+                            <a class="navList-action" asp-page="./SubCategory" asp-route-id="@data.Id" asp-route-name="" alt="@data.Name" title="@data.Name">@data.Name</a>
+                        </li>
+                    }
+
+                </ul>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="module  sidebar--categories">
+            <h5 class="block-title"><i class="fa fa-diamond"></i> Non Category</h5>
+            <div class="block-content clearfix">
+                <ul class="navList">
+
+                    <li class="navList-item">
+                        <a class="navList-action" href="#" alt="" title="">Loading...</a>
+                    </li>
+
+
+                </ul>
+            </div>
+        </div>
+
+    }
+}
+else
+{
+    <div class="module  sidebar--categories">
+        <h5 class="block-title"><i class="fa fa-diamond"></i> Non Category</h5>
+        <div class="block-content clearfix">
+            <ul class="navList">
+
+                <li class="navList-item">
+                    <a class="navList-action" href="#" alt="" title="">Loading...</a>
+                </li>
+
+
+            </ul>
+        </div>
+    </div>
+
+}

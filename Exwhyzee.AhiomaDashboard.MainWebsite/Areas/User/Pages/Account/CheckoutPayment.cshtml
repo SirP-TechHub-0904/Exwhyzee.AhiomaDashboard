@@ -1,0 +1,138 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Areas.User.Pages.Account.CheckoutPaymentModel
+@{
+    Layout = "/Pages/Shared/_CartLayout.cshtml";
+    ViewData["Title"] = "Delivery Payment";
+
+}
+
+<style>
+    @@media (min-width: 1261px) {
+        .layout-cart {
+            width: 33.33333%;
+        }
+    }
+
+    @@media (min-width: 968px) {
+        .layout-cart {
+            width: 41.66667%;
+        }
+    }
+</style>
+
+
+<div class="layout-main" style="width: 65.66667% !important;">
+    <ol class="checkout-steps">
+        <li class="checkout-step optimizedCheckout-checkoutStep checkout-step--customer">
+            <div class="checkout-view-header">
+                <a class="stepHeader is-readonly">
+                    <div class="stepHeader-figure stepHeader-column">
+                        <div class="icon stepHeader-counter optimizedCheckout-step">
+                            <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path>
+                            </svg>
+                        </div>
+                        <h2 class="stepHeader-title optimizedCheckout-headingPrimary">Delivery Address </h2>
+                    </div>
+                    @*<div class="stepHeader-body stepHeader-column optimizedCheckout-contentPrimary" data-test="step-info"></div>*@
+                </a>
+            </div>
+            <div class="checkout-view-content checkout-view-content-enter-done">
+                <div>
+
+                    <div class="form-fieldset">
+                        <p><strong>@Model.UserProfile.Fullname</strong></p>
+                        <p>@Model.UserAddress.Address (@Model.UserAddress.LocalGovernment in @Model.UserAddress.State)</p>
+                        <p>@Model.UserProfile.User.PhoneNumber</p>
+
+                    </div>
+                </div>
+                <a asp-page="./DeliveryAddress" asp-route-customerRef="" >Edit</a>
+            </div>
+        </li>
+        <li class="checkout-step optimizedCheckout-checkoutStep checkout-step--customer">
+            <div class="checkout-view-header">
+                <a class="stepHeader is-readonly">
+                    <div class="stepHeader-figure stepHeader-column">
+                        <div class="icon stepHeader-counter optimizedCheckout-step">
+                            <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path>
+                            </svg>
+                        </div>
+                        <h2 class="stepHeader-title optimizedCheckout-headingPrimary">Delivery Method</h2>
+                    </div>
+                    @* <div class="stepHeader-body stepHeader-column optimizedCheckout-contentPrimary" data-test="step-info"></div>*@
+                </a>
+            </div>
+            <div class="checkout-view-content checkout-view-content-enter-done">
+                <div>
+                    <div class="form-fieldset">
+                        <p><strong>@Model.Deliverymethod</strong></p>
+                       
+                    </div>
+                    
+                </div>
+            </div>
+        </li>
+        <li class="checkout-step optimizedCheckout-checkoutStep checkout-step--customer">
+            <div class="checkout-view-header">
+                <a class="stepHeader is-readonly">
+                    <div class="stepHeader-figure stepHeader-column">
+                        <div class="icon stepHeader-counter optimizedCheckout-step">
+                            <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path>
+                            </svg>
+                        </div>
+                        <h2 class="stepHeader-title optimizedCheckout-headingPrimary">Payment</h2>
+                    </div>
+                    @* <div class="stepHeader-body stepHeader-column optimizedCheckout-contentPrimary" data-test="step-info"></div>*@
+                </a>
+            </div>
+            <div class="checkout-view-content checkout-view-content-enter-done">
+                <div>
+                    @if (TempData["errorcart"] != null)
+                    {
+                    <div class="alert alert-danger">
+                        <strong>Note!</strong> @TempData["errorcart"]
+                    </div>
+                    }
+                    <form method="post" onsubmit='disableButton()'>
+                        <input asp-for="CustomerRef" type="hidden" />
+                        <input asp-for="UserAddId" value="@Model.UserAddress.Id" type="hidden" />
+                        @if (Model.Wallet.WithdrawBalance == 0)
+                        {
+                            <div class="radio">
+                                <h4>AhiaPay (Balance: @Model.Wallet.WithdrawBalance)</h4>
+                                <label><input type="radio" value="Pay with AhiaPay" disabled>Pay with AhiaPay</label>
+                            </div>
+                            <div class="radio">
+                                <label><input type="radio" name="PaymentMethod" checked value="Pay with Card">Pay with Card</label>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="radio">
+                                <h4>AhiaPay (Balance: @Model.Wallet.WithdrawBalance)</h4>
+                                <label><input type="radio" name="PaymentMethod" value="Pay with AhiaPay" checked>Pay with AhiaPay</label>
+                            </div>
+                            <div class="radio">
+                                <label><input type="radio" name="PaymentMethod" value="Pay with Card">Pay with Card</label>
+                            </div>
+                        }
+
+
+
+                        <button id='btn' type="submit" class="btn btn-primary">Process and Complete</button>
+
+
+
+
+
+                    </form>
+                </div>
+            </div>
+        </li>
+    </ol>
+</div>
+
+

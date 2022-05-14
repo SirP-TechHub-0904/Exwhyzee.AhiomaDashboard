@@ -1,0 +1,127 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.Dashboard.Pages.Commission.CommissionUpdateModel
+@{
+}
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+
+                <h3 class="card-title">
+                    @Model.Profile.BusinessName (@Model.Product.Count() Products)
+
+                </h3>
+                <h4>
+                    <a asp-page="./UpdateShopCommission" class="btn btn-warning" asp-route-id="@Model.Profile.Id">
+                        Update all product Commission
+                    </a>
+                </h4>
+
+            </div>
+
+            <div class="card-body">
+
+
+                <div id="datatable_wrapper" class="dataTables_wrapper table-responsive dt-bootstrap4 no-footer">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table id="datatable7" class="table table-bordered dt-responsive nowrap dataTable no-footer dtr-inline" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
+                                <thead>
+                                    <tr role="row">
+                                        <th>S/N</th>
+
+                                        <th>Date</th>
+                                        <th>Name</th>
+
+                                        <th>
+                                            Price
+                                        </th>
+
+                                        <th>
+                                            Commission
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+
+                                @{
+                                    int sno = 0;
+                                }
+                                <tbody>
+
+                                    @foreach (var item in Model.Product)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @{ sno++; }
+                                                @sno
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.CreatedOnUtc)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Name)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Price)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Commision)
+                                            </td>
+
+                                            <td>
+                                                <a asp-page="./UpdateProductCommission" asp-route-id="@item.Id">
+                                                    Update Product Com.
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    }
+
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="clearfix"></div>
+                        @{
+                            int? p = 0;
+                            if (Model.CurrentPage == null)
+                            {
+                                p = 1;
+                            }
+                            else
+                            {
+                                p = Model.CurrentPage;
+                            }
+                        }
+                        page @p of @Model.TotalPages pages (@Model.Count items)
+
+
+
+                        @{
+                            var prevDisabled = !Model.Product.HasPreviousPage ? "disabled" : "";
+                            var nextDisabled = !Model.Product.HasNextPage ? "disabled" : "";
+                        }
+
+                        <a asp-page="./CommissionUpdate"
+                           asp-route-pageIndex="@(Model.Product.PageIndex - 1)"
+                           asp-route-id="@Model.TenantId"
+                           class="btn btn-primary @prevDisabled">
+                            Previous
+                        </a>
+                        <a asp-page="./CommissionUpdate"
+                           asp-route-pageIndex="@(Model.Product.PageIndex + 1)"
+                           asp-route-id="@Model.TenantId"
+                           class="btn btn-primary @nextDisabled">
+                            Next
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div> <!-- end col -->
+</div>

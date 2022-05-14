@@ -1,0 +1,119 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.ManageTransaction.Pages.Transactions.AllTransferModel
+@{
+}
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+
+                    <h3 class="card-title">
+                        Ahia Pay Transfer
+                    </h3>
+                    @if (TempData["error"] != null)
+                    {
+                        <div class="alert alert-danger alert-dismissible">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>@TempData["error"]</strong>
+                        </div>
+                    }
+                    @if (TempData["success"] != null)
+                    {
+                        <div class="alert alert-success alert-dismissible">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>@TempData["success"]</strong>
+                        </div>
+                    }
+                </div>
+                <div class="card-body table-responsive">
+
+
+                    <div id="datatable_wrapper" class="dataTables_wrapper table-responsive dt-bootstrap4 no-footer">
+                        <div class="row">
+                            <div class="col-md-12 table-responsive">
+                                <table id="datatable7" class="table table-bordered dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
+
+                                    <thead>
+                                        <tr>
+                                            <th>S/N</th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.Transfer[0].DateOfTransfer)
+                                            </th>
+
+                                            <th>
+                                                Account ID
+                                            </th>
+                                            <th>
+                                                Sender
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.Transfer[0].Amount)
+                                            </th>
+
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.Transfer[0].Status)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.Transfer[0].TransferReference)
+                                            </th>
+
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.Transfer[0].Description)
+                                            </th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    @{
+                                        int sno = 0;
+                                    }
+                                    <tbody>
+                                        @foreach (var item in Model.Transfer)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @{ sno++; }
+                                                    @sno
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.DateOfTransfer)
+                                                </td>
+
+                                                <td>
+                                                    @await Component.InvokeAsync("FullNameAndID", new { uid = item.UserId })
+
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Sender)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Amount)
+                                                </td>
+
+
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Status)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.TransferReference)
+                                                </td>
+
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Description)
+                                                </td>
+                                                <td>
+                                                    <a asp-page="./ReverseTransfer" asp-route-uid="@item.UserId" asp-route-tid="@item.Id">
+                                                        Reverse
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

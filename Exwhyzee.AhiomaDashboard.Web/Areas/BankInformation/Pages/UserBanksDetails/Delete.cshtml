@@ -1,0 +1,64 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.BankInformation.Pages.UserBanksDetails.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>UserAddress</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserAddress.Address)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserAddress.Address)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UserAddress.State)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserAddress.State)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UserAddress.LocalGovernment)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserAddress.LocalGovernment)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UserAddress.Longitude)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserAddress.Longitude)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UserAddress.Latitiude)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserAddress.Latitiude)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UserAddress.Zipcode)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserAddress.Zipcode)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UserAddress.UserId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserAddress.UserId)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="UserAddress.Id" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

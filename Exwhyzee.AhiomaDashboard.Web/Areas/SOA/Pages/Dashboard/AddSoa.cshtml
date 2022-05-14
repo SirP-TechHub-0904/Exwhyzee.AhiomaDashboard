@@ -1,0 +1,150 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.SOA.Pages.Dashboard.AddSoaModel
+@{
+}
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+
+
+                    <div class="col-md-12">
+                        <div>
+                            @await Html.PartialAsync("_StatusMessage", Model.StatusMessage)
+                        </div>
+                        <h3>Add SOA to upload product to @Model.Tenant.BusinessName Shop</h3>
+                        <form class="" method="post">
+
+                            <input asp-for="ShopUpload.TenantId" value="@Model.TenantIdGet" type="hidden">
+                            <div class="">
+                                <!--Raffle Properties-->
+                                <div class="">
+                                    <div id="outputmain"></div>
+                                    <div class="item form-group">
+                                        <label class="control-label" for="name">
+                                            User Id Number <span class="required">*</span>
+                                        </label>
+                                        <div class="">
+                                            <input class="form-control" id="input3" asp-for="UserIdNumber" name="UserIdNumber" placeholder="Enter User Id" autofocus required="required" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="">
+                                            <button id="submit" type="submit" class="btn btn-success">Add</button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-12">
+                        <div id="datatable_wrapper" class="dataTables_wrapper table-responsive dt-bootstrap4 no-footer">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <table id="datatable7" class="table table-bordered dt-responsive nowrap dataTable no-footer dtr-inline" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
+                                        <thead>
+                                            <tr role="row">
+                                                <th>S/N</th>
+
+                                                <th>
+                                                    SOA
+                                                </th>
+                                                <th>ID</th>
+                                                <th>
+                                                    Shop
+                                                </th>
+                                                <th>Count</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+
+
+                                        <tbody>
+                                            @{
+                                                int sno = 0;
+                                            }
+                                            @foreach (var item in Model.ProductUploadShop)
+                                            {
+                                                <tr>
+                                                    <td>
+                                                        @{ sno++; }
+                                                        @sno
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.UserProfile.Fullname)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.UserProfile.IdNumber)
+                                                    </td>
+                                                    <td>
+                                                        @Html.DisplayFor(modelItem => item.Tenant.BusinessName)
+                                                    </td>
+
+                                                    <td>
+                                                        <a asp-page="./ListProducts" asp-route-id="@item.UserId" asp-route-tenantid="@item.TenantId">
+                                                            @await Component.InvokeAsync("ThirdPartyCount", new { id = item.UserId, tid = item.TenantId })
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <a asp-page="./RemoveSoa" asp-route-id="@item.Id" asp-route-tid="@item.TenantId">
+                                                            Remove
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            }
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+
+        $("#input3").keyup(function () {
+            console.log($('#input3').val());
+            console.log("inside");
+            $.ajax({
+                type: 'GET',
+                url: 'AddSoa?handler=Fullname',
+                dataType: "json",
+                data: { phone: $('#input3').val() },
+                contentType: "application/json; charset=utf-8",
+                error: function () {
+                    console.log("error");
+                },
+                success: function (data) {
+                    console.log("yes");
+
+                    console.log(data);
+
+                    console.log("ddss");
+
+                    $('#outputmain').html("<div class=\"item form-group\"><div class=\"\"><input class=\"form-control\" style=\"background-color:transparent !important;color:#ff0000 !important;border:none !important;\" value=\"" + data + "\" type=\"text\" readonly=\"readonly\"></div></div>");
+
+                    console.log("<div class=\"item form-group\"><div class=\"\"><input class=\"form-control\" style=\"background-color:transparent !important;color:#ff0000 !important;border:none !important;\" value=\"" + data + "\" type=\"text\" readonly=\"readonly\"></div></div>");
+
+                }
+            });
+        });
+        console.log("=d");
+
+        console.log("=dsadf");
+
+    </script>
+}

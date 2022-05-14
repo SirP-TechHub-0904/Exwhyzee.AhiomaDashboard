@@ -1,0 +1,81 @@
+﻿@model ICollection<Exwhyzee.AhiomaDashboard.EntityFramework.Tables.StoreCategory>
+
+
+@if (TempData["null"] == null)
+{
+    @if (Model.Count() > 1)
+    {
+        <div class="hidden-sm hidden-xs">
+
+            <div class="module  sidebar--categories">
+                <h5 class="block-title"><i class="fa fa-diamond"></i> Shop Category</h5>
+                <div class="block-content clearfix">
+                    <ul class="navList">
+                        @foreach (var data in Model)
+                        {
+                            <li class="navList-item">
+                                <a class="navList-action" asp-page="./Category" asp-route-customerRef="@ViewBag.CustomerRef" asp-route-id="@data.Id" asp-route-name="@data.Category.Name.Replace(" ", "-")" asp-route-desc="@data.Category.Description.Replace(" ", "-")" alt="@data.Category.Name" title="@data.Category.Name">@data.Category.Name</a>
+                            </li>
+                        }
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="hidden-md hidden-lg">
+            @foreach (var data in Model)
+            {
+            <li class="" style="display:inline; float:left;padding-left:3px;margin-bottom:3px;">
+                <a class="btn btn-bg-primary" style="padding:5px !important;height:auto !important;">
+                    @data.Category.Name
+                </a>
+            </li>
+            }
+
+        </div>
+    }
+    else
+    {
+        <div class="hidden-sm hidden-xs">
+
+            <div class="module  sidebar--categories">
+                <h5 class="block-title"><i class="fa fa-diamond"></i> Non Category</h5>
+                <div class="block-content clearfix">
+                    <ul class="navList">
+
+                        <li class="navList-item">
+                            <a class="navList-action" href="#" alt="" title="">Loading...</a>
+                        </li>
+
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="hidden-md hidden-lg">
+
+
+            <li class="">
+                <a class="" href="#" alt="" title="">Loading...</a>
+            </li>
+
+        </div>
+    }
+}
+else
+{
+    <div class="module  sidebar--categories">
+        <h5 class="block-title"><i class="fa fa-diamond"></i> Non Category</h5>
+        <div class="block-content clearfix">
+            <ul class="navList">
+
+                <li class="navList-item">
+                    <a class="navList-action" href="#" alt="" title="">Loading...</a>
+                </li>
+
+
+            </ul>
+        </div>
+    </div>
+
+}

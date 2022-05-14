@@ -1,0 +1,136 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Areas.Admin.Pages.VehicleLogistic.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+<div class="row">
+    <div class="card-columns mx-auto d-flex justify-content-center col-12">
+
+        <div class="card">
+            <div class="card-header">
+
+                <h3 class="card-title">
+                    New Logistic Vehicle
+
+
+                </h3>
+            </div>
+            <div class="card-body">
+
+                <div class="row">
+                    <div class="col-md-8">
+                        <form method="post" enctype="multipart/form-data">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <div class="form-group">
+                                <label asp-for="LogisticVehicle.VehicleType" class="control-label"></label>
+
+                                <select name="LogisticVehicle.VehicleType" class="form-control">
+                                    <option value="Bike">Bike</option>
+                                    <option value="Keke">Keke</option>
+                                    <option value="Car">Car</option>
+                                    <option value="Truck">Truck</option>
+                                    <option value="Lorry">Lorry</option>
+                                </select>
+                                <span asp-validation-for="LogisticVehicle.VehicleType" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="LogisticVehicle.VehicleName" class="control-label"></label>
+                                <input asp-for="LogisticVehicle.VehicleName" class="form-control" />
+                                <span asp-validation-for="LogisticVehicle.VehicleName" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="LogisticVehicle.VehiclePlateNumber" class="control-label"></label>
+                                <input asp-for="LogisticVehicle.VehiclePlateNumber" class="form-control" />
+                                <span asp-validation-for="LogisticVehicle.VehiclePlateNumber" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="LogisticVehicle.VehiclePhoneNumber" class="control-label"></label>
+                                <input asp-for="LogisticVehicle.VehiclePhoneNumber" class="form-control" />
+                                <span asp-validation-for="LogisticVehicle.VehiclePhoneNumber" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="LogisticVehicle.VehicleSize" class="control-label"></label>
+                                <select name="LogisticVehicle.VehicleSize" class="form-control">
+                                    <option value="Small">Small</option>
+                                    <option value="Medium">Medium</option>
+                                    <option value="Large">Large</option>
+
+                                </select>                                <span asp-validation-for="LogisticVehicle.VehicleSize" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="LogisticVehicle.VehicleWeight" class="control-label"></label>
+                                <select name="LogisticVehicle.VehicleWeight" class="form-control">
+                                    <option value="Small">Small</option>
+                                    <option value="Medium">Medium</option>
+                                    <option value="Large">Large</option>
+
+                                </select>                                <span asp-validation-for="LogisticVehicle.VehicleWeight" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="LogisticVehicle.State" class="control-label"></label>
+                                <select asp-for="LogisticVehicle.State" asp-items="Model.StateListing" id="State" class="form-control">
+                                    <option>Select State</option>
+
+                                </select>                        <span asp-validation-for="LogisticVehicle.State" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="LogisticVehicle.LGA" class="control-label">Local Government</label>
+                                <select asp-for="LogisticVehicle.LGA" id="LGA" class="form-control" required="required"></select>
+                                <span asp-validation-for="LogisticVehicle.LGA" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label asp-for="LogisticVehicle.LeastAmount" class="control-label"></label>
+                                <input asp-for="LogisticVehicle.LeastAmount" class="form-control" />
+                                <span asp-validation-for="LogisticVehicle.LeastAmount" class="text-danger"></span>
+                            </div>
+                            <input type="hidden" asp-for="LogisticVehicle.LogisticProfileId" value="@Model.LogisticId" />
+
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="file">
+                                    vehicle Image
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input class="form-control" type="file" name="files" id="gallery-photo-add" />
+                                    <div class="gallery"></div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Add" class="btn btn-danger" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+                @section Scripts {
+                    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+<script type="text/jscript">$(function () {
+            $('#State').change(function () {
+
+                //var fruits = ["apple", "orange", "cherry"];
+                //fruits.forEach(myFunction);
+                //var res = "";
+                //function myFunction(item, index) {
+                //    res += index + ":" + item + "<br>";
+                //}
+                //console.log(res);
+                $.getJSON('/Home/GetLgaList/' + $('#State').val(), function (data) {
+
+                    var items = '<option>Choose Market LGA</option>';
+                    $.each(jQuery.map(data, function (i, local) {
+                        items += "<option value='" + i.value + "'>" + i.text + "</option>";
+
+                    }));
+
+                    $('#LGA').html(items);
+                });
+            });
+        });</script>
+                }

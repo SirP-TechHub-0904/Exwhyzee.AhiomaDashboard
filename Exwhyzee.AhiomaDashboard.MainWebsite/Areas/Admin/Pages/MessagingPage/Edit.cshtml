@@ -1,0 +1,55 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Areas.Admin.Pages.MessagingPage.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>Messaging</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Messaging.Id" />
+            <div class="form-group">
+                <label asp-for="Messaging.MassageType" class="control-label"></label>
+                <select asp-for="Messaging.MassageType" class="form-control"></select>
+                <span asp-validation-for="Messaging.MassageType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Messaging.Date" class="control-label"></label>
+                <input asp-for="Messaging.Date" class="form-control" />
+                <span asp-validation-for="Messaging.Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Messaging.Contacts" class="control-label"></label>
+                <input asp-for="Messaging.Contacts" class="form-control" />
+                <span asp-validation-for="Messaging.Contacts" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Messaging.Message" class="control-label"></label>
+                <input asp-for="Messaging.Message" class="form-control" />
+                <span asp-validation-for="Messaging.Message" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Messaging.Status" class="control-label"></label>
+                <input asp-for="Messaging.Status" class="form-control" />
+                <span asp-validation-for="Messaging.Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

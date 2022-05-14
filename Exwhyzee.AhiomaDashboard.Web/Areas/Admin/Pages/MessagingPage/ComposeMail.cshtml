@@ -1,0 +1,219 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.Admin.Pages.MessagingPage.ComposeMailModel
+@{
+}
+@{
+    ViewData["Title"] = "Create";
+}
+<div class="row">
+    <div class="card-columns mx-auto d-flex justify-content-center col-12">
+
+        <div class="card">
+            <div class="card-header">
+
+                <h3 class="card-title">
+                    Compose Mail
+                </h3>
+            </div>
+            <div class="card-body">
+
+                @if (TempData["error"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissible">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>@TempData["error"]</strong>
+                    </div>
+                }
+                @if (TempData["success"] != null)
+                {
+                    <div class="alert alert-success alert-dismissible">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>@TempData["success"]</strong>
+                    </div>
+                }
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="row">
+
+                            <h3 style="margin-left:10px;">Update Mail Content</h3>
+
+                            <div class="col-xl-12">
+                                @if (Model.MailContents.Count() > 0)
+                                {
+                                    foreach (var i in Model.MailContents)
+                                    {
+                                        <div class="alert alert-primary alert-dismissible" style="padding:3px;margin:3px;">
+                                            <p style="color:#121b63;font-weight:400;margin-bottom:1px;">Old string: @i.OldString</p>
+                                            <p style="color:#121b63;font-weight:400;margin-bottom:1px;">New string: @i.NewString</p>
+
+                                            <form method="post" asp-page-handler="RemoveMailContent">
+
+                                                <input type="hidden" value="@i.Id" name="DeleteId" />
+
+                                                <input type="submit" value="Remove" class="btn btn-danger btn-xs" style="padding:2px;margin:1px;" />
+
+                                            </form>
+
+
+                                        </div>
+                                    }
+                                }
+                                else
+                                {
+                                    <h5>No data Found</h5>
+                                }
+                                <form method="post" asp-page-handler="MailContent">
+
+                                    <h3 style="color:#ffffff;">Add New Content</h3>
+                                    <input type="hidden" asp-for="MailContent.MessagingId" value="@Model.MessageId" class="form-control" required="required" />
+
+                                    <div class="form-group">
+                                        <label asp-for="MailContent.OldString" class="control-label"></label>
+                                        <input asp-for="MailContent.OldString" class="form-control" required="required" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="MailContent.NewString" class="control-label"></label>
+                                        <select asp-for="MailContent.NewString" class="form-control" required="required">
+                                            <option value="Firstname">Firstname</option>
+                                            <option value="Surname">Surname</option>
+                                            <option value="Othername">Othername</option>
+                                            <option value="Fullname">Fullname</option>
+                                            <option value="DOB">DOB</option>
+                                            <option value="BusinessName">BusinessName</option>
+                                            <option value="SOAName">SOAName</option>
+                                            <option value="SOAPhone">SOAPhone</option>
+                                        </select>
+                                    </div>
+
+
+
+                                    <div class="form-group">
+                                        <input type="submit" value="Add" class="btn btn-primary" />
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <h3 style="margin-left:10px;">Update Mail Products</h3>
+
+                            <div class="col-xl-12">
+                                @if (Model.MailProducts.Count() > 0)
+                                {
+                                    foreach (var i in Model.MailProducts)
+                                    {
+                                        <div class="alert alert-primary alert-dismissible" style="padding:3px;margin:3px;">
+                                            <p style="color:#121b63;font-weight:400;margin-bottom:1px;">Product Id: @i.ProductId</p>
+                                            <p style="color:#121b63;font-weight:400;margin-bottom:1px;">Name: @i.Product.Name</p>
+
+                                            <form method="post" asp-page-handler="RemoveMailProduct">
+
+                                                <input type="hidden" value="@i.Id" name="DeleteId" />
+
+                                                <input type="submit" value="Remove" class="btn btn-danger btn-xs" style="padding:2px;margin:1px;" />
+
+                                            </form>
+
+
+                                        </div>
+                                    }
+                                }
+                                else
+                                {
+                                    <h5>No data Found</h5>
+                                }
+                                <form method="post" asp-page-handler="MailProduct">
+
+                                    <h3 style="color:#ffffff;">Add New Content</h3>
+                                    <input type="hidden" asp-for="MailProduct.MessagingId" value="@Model.MessageId" class="form-control" required="required" />
+
+                                    <div class="form-group">
+                                        <label asp-for="MailProduct.ProductId" class="control-label"></label>
+                                        <input asp-for="MailProduct.ProductId" class="form-control" required="required" />
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <input type="submit" value="Add" class="btn btn-primary" />
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <form method="post">
+                    <input type="hidden" asp-for="Messaging.Id" />
+                    <input type="hidden" asp-for="Messaging.Date" />
+                    <input type="hidden" asp-for="Messaging.Count" />
+                    <input type="hidden" asp-for="Messaging.Title" />
+                    <input type="hidden" asp-for="Messaging.Status" />
+                    <input type="hidden" asp-for="Messaging.MassageType" />
+                    <input type="hidden" asp-for="Messaging.Contacts" />
+
+                    <div class="form-group">
+                        <label class="control-label">@Model.Messaging.Title (@Model.Messaging.Count Emails)</label>
+                        <textarea class="form-control" asp-for="Messaging.Contacts" rows="10">
+
+</textarea>
+
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Add More Emails (seperate with comma)</label>
+                        <textarea name="NewEmails" class="form-control">
+
+</textarea>
+
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Where you want product card to be. type</label>
+                        <label class="control-label">{Products}</label>
+
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Messaging.Subject" class="control-label"></label>
+                        <input asp-for="Messaging.Subject" class="form-control" required="required" />
+                    </div>
+                    <div class="form-group" style="padding:2px;margin:1px;text-align:center;">
+                        <label class="control-label">Message</label>
+                        <textarea asp-for="Messaging.Message" id="" class="form-control mytextareafaq" rows="20"></textarea>
+
+
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                Send Test Mail with typed mail
+                            </label>
+                            <input asp-for="SendTest" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <input type="submit" value="Send" class="btn btn-danger" />
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+@section StyleMain {
+    <link href="~/summernote/summernote-bs4.css" rel="stylesheet" />
+}
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script src="~/summernote/summernote-bs4.min.js"></script>
+    <script>
+        $(function () {
+            // Summernote
+            $('.mytextareafaq').summernote()
+        })
+    </script>
+}
+

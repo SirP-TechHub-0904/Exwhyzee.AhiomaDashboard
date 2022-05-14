@@ -1,0 +1,120 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Areas.ManageTransaction.Pages.Transactions.Index3Model
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+
+                    <h3 class="card-title">
+                        All Transactions
+
+                    </h3>
+                    @if (TempData["error"] != null)
+                    {
+                        <div class="alert alert-danger alert-dismissible">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>@TempData["error"]</strong>
+                        </div>
+                    }
+                    @if (TempData["success"] != null)
+                    {
+                        <div class="alert alert-success alert-dismissible">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>@TempData["success"]</strong>
+                        </div>
+                    }
+                </div>
+                <div class="card-body table-responsive">
+
+
+                    <div id="datatable_wrapper" class="dataTables_wrapper table-responsive dt-bootstrap4 no-footer">
+                        <div class="row">
+                            <div class="col-md-12 table-responsive">
+                                <table id="datatable7" class="table table-bordered dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
+
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.Transaction[0].DateOfTransaction)
+                                            </th>
+
+                                            <th>
+                                                Account ID
+                                            </th>
+                                            <th>
+                                                Reason
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.Transaction[0].Amount)
+                                            </th>
+
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.Transaction[0].TransactionType)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.Transaction[0].Status)
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.Transaction[0].TransactionReference)
+                                            </th>
+
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.Transaction[0].TrackCode)
+                                            </th>
+                                            @*<th></th>*@
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model.Transaction)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.DateOfTransaction)
+                                                </td>
+
+                                                <td>
+                                                    @await Component.InvokeAsync("AccountId", new{uid = item.UserId})
+
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Note)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Amount)
+                                                </td>
+
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.TransactionType)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Status)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.TransactionReference)
+                                                </td>
+
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.TrackCode)
+                                                </td>
+                                                @*<td>
+                                                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                                                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                                                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                                                </td>*@
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

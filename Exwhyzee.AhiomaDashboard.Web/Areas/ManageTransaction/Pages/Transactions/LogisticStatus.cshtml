@@ -1,0 +1,93 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.ManageTransaction.Pages.Transactions.LogisticStatusModel
+@{
+}
+
+<div class="row">
+    <div class="card-columns mx-auto d-flex justify-content-center col-12">
+
+        <div class="card">
+            <div class="card-header">
+
+                <h3 class="card-title">
+                    Update Logistic Status
+
+                </h3>
+                @if (TempData["success"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissible">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>@TempData["success"]</strong>
+                    </div>
+                }
+                
+               
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="text-muted mt-4">
+                            <h4>
+                                Order Infomation
+                            </h4>
+
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Reference Id:</strong> @Model.OrderItem.Order.ReferenceId</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Amount Paid:</strong> @Model.OrderItem.Order.AmountPaid</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Order Cost:</strong> @Model.OrderItem.Order.OrderAmount</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Vat:</strong> @Model.OrderItem.Order.Vat</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Logistic Amount:</strong> @Model.OrderItem.Order.LogisticAmount</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Track Order:</strong> @Model.OrderItem.Order.TrackOrderId</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Date:</strong> @Model.OrderItem.Order.DateOfOrder</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Delivery Date:</strong> @Model.OrderItem.Order.DeliveredDate</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Invoice Id:</strong> @Model.OrderItem.Order.InvoiceNumber</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Delivery Method:</strong> @Model.OrderItem.Order.DeliveryMethod</p>
+
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h4>
+                            Item Infomation
+                        </h4>
+
+                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong> Id:</strong> @Model.OrderItem.Id</p>
+                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Product:</strong> @Model.OrderItem.Product.Name</p>
+                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Shop:</strong> @Model.OrderItem.Product.Tenant.BusinessName</p>
+                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Quantity:</strong> @Model.OrderItem.Quantity</p>
+                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Size:</strong> @Model.OrderItem.ItemSize</p>
+                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Color:</strong> @Model.OrderItem.Itemcolor</p>
+                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Date:</strong> @Model.OrderItem.DateOfOrder</p>
+                        <p>
+                            <i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Status:</strong>
+                            @Html.DisplayFor(model => model.OrderItem.Status)
+                        </p>
+                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Shop Status:</strong>  @Html.DisplayFor(model => model.OrderItem.ShopStatus)</p>
+                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Logistic Status:</strong>  @Html.DisplayFor(model => model.OrderItem.LogisticStatus)</p>
+                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Customer Status:</strong>  @Html.DisplayFor(model => model.OrderItem.CustomerStatus)</p>
+
+                    </div>
+                </div>
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="OrderItem.Id" value="@Model.OrderItem.Id" />
+                    <div class="form-group">
+                        <label class="control-label">Logistic Status</label>
+                        @Html.DropDownListFor(model => model.OrderItem.LogisticStatus, new SelectList(Enum.GetValues(typeof(Exwhyzee.Enums.LogisticStatus))), new { @class = "form-control" })
+
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="Update" class="btn btn-primary" />
+                        <a asp-page="Index" class="btn btn-outline-primary waves-effect waves-light">Back</a>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,117 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Areas.User.Pages.Account.TransactionHistoryModel
+@{
+}
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+
+
+                    <div class="row">
+
+                        <div class="col-md-6 col-sm-12">
+
+                            <h3 class="card-title">
+                                 Transaction History
+                            </h3>
+                        </div>
+                       
+
+                    </div>
+                    @if (TempData["error"] != null)
+                    {
+                        <div class="alert alert-danger alert-dismissible">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>@TempData["error"]</strong>
+                        </div>
+                    }
+                    @if (TempData["success"] != null)
+                    {
+                        <div class="alert alert-success alert-dismissible">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>@TempData["success"]</strong>
+                        </div>
+                    }
+                </div>
+                <div class="card-body">
+
+
+                    <div id="datatable_wrapper" class="dataTables_wrapper table-responsive dt-bootstrap4 no-footer">
+                        <div class="row">
+                            <div class="col-sm-12 table-responsive">
+                                <table id="datatable7" class="table table-bordered dt-responsive nowrap dataTable no-footer dtr-inline" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
+
+
+                                    <thead>
+                                        <tr class="">
+                                            <th>S/N</th>
+
+                                            <th>Transaction ID </th>
+                                            <th>Transaction Type </th>
+                                            <th>Amount </th>
+                                            <th>Date of Transaction </th>
+                                            <th>Description </th>
+                                            <th>Status </th>
+                                            <th>From </th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @{
+                                            int sno = 0;
+                                        }
+                                        @foreach (var item in Model.Transactions)
+                                        {
+                                        <tr class="">
+                                            <td>
+                                                @{ sno++; }
+                                                @sno
+                                            </td>
+
+                                            <td>@item.TrackCode</td>
+
+                                            <td>
+                                                @if (item.TransactionType == Exwhyzee.Enums.TransactionTypeEnum.Credit)
+                                                {
+                                        <button class="badge badge-pill badge-soft-success font-size-12" style="padding:3px;border-radius:4px;">@Html.DisplayFor(modelItem => item.TransactionType)</button> }
+                                                        else if (item.TransactionType == Exwhyzee.Enums.TransactionTypeEnum.Debit)
+                                                        {
+                                        <button class="badge badge-pill badge-soft-danger font-size-12" style="padding:3px;border-radius:4px;">@Html.DisplayFor(modelItem => item.TransactionType)</button> }
+                                                        else if (item.TransactionType == Exwhyzee.Enums.TransactionTypeEnum.TransferCredit)
+                                                        {
+                                        <button class="badge badge-pill badge-soft-success font-size-12" style="padding:3px;border-radius:4px;">Transfer (Credit)</button> }
+                                                        else if (item.TransactionType == Exwhyzee.Enums.TransactionTypeEnum.TransferDebit)
+                                                        {
+                                        <button class="badge badge-pill badge-soft-danger font-size-12" style="padding:3px;border-radius:4px;">Transfer (Debit)</button> }
+                                                        else
+                                                        {
+                                        <span class="" style="padding:3px;border-radius:4px;">@Html.DisplayFor(modelItem => item.TransactionType)</span>}
+                                            </td>
+                                            <td>@item.Amount </td>
+                                            <td>@item.DateOfTransaction</td>
+                                            <td>@item.Description</td>
+                                            <td>
+
+                                                @Html.DisplayFor(modelItem => item.Status)
+                                            </td>
+                                            <td>
+
+                                                @Html.DisplayFor(modelItem => item.From)
+                                            </td>
+
+
+                                        </tr>
+                                        }
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div> <!-- end col -->
+    </div>

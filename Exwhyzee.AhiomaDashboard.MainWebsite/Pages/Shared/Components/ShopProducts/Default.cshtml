@@ -1,0 +1,54 @@
+﻿@model Exwhyzee.AhiomaDashboard.EntityFramework.Tables.OrderItem
+
+
+
+<tr>
+
+    <td>
+        @Html.DisplayFor(modelItem => Model.DateOfOrder)
+    </td>
+
+    <td>
+
+        @Html.DisplayFor(modelItem => Model.Id)
+
+    </td>
+
+    <td>
+
+        @Html.DisplayFor(modelItem => Model.Order.UserProfile.Fullname)<br />
+        @Html.DisplayFor(modelItem => Model.Order.UserProfile.IdNumber)
+
+    </td>
+
+    <td>
+        <a asp-page="/ProductInfo" asp-area="" asp-route-id="@Model.ProductId">
+            @Html.DisplayFor(modelItem => Model.Product.Name)
+        </a>
+    </td>
+    <td>
+
+        @Html.DisplayFor(modelItem => Model.Product.Tenant.BusinessName)
+
+    </td>
+    <td>
+        <a href="@Model.Product.ProductPictures.FirstOrDefault().PictureUrl">
+            <img src="https://manager.ahioma.com/@Model.Product.ProductPictures.FirstOrDefault().PictureUrlThumbnail" style="max-height:50px;width:auto;" />
+        </a>
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => Model.Product.Price)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => Model.Quantity)
+    </td>
+
+    <td>
+        @Html.DisplayFor(modelItem => Model.Status)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => Model.ShopStatus)
+    </td>
+
+
+</tr>

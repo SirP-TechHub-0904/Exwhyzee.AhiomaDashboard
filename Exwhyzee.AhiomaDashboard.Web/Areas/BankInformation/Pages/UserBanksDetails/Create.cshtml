@@ -1,0 +1,64 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.BankInformation.Pages.UserBanksDetails.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>UserAddress</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="UserAddress.Address" class="control-label"></label>
+                <input asp-for="UserAddress.Address" class="form-control" />
+                <span asp-validation-for="UserAddress.Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserAddress.State" class="control-label"></label>
+                <input asp-for="UserAddress.State" class="form-control" />
+                <span asp-validation-for="UserAddress.State" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserAddress.LocalGovernment" class="control-label"></label>
+                <input asp-for="UserAddress.LocalGovernment" class="form-control" />
+                <span asp-validation-for="UserAddress.LocalGovernment" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserAddress.Longitude" class="control-label"></label>
+                <input asp-for="UserAddress.Longitude" class="form-control" />
+                <span asp-validation-for="UserAddress.Longitude" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserAddress.Latitiude" class="control-label"></label>
+                <input asp-for="UserAddress.Latitiude" class="form-control" />
+                <span asp-validation-for="UserAddress.Latitiude" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserAddress.Zipcode" class="control-label"></label>
+                <input asp-for="UserAddress.Zipcode" class="form-control" />
+                <span asp-validation-for="UserAddress.Zipcode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserAddress.UserId" class="control-label"></label>
+                <input asp-for="UserAddress.UserId" class="form-control" />
+                <span asp-validation-for="UserAddress.UserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

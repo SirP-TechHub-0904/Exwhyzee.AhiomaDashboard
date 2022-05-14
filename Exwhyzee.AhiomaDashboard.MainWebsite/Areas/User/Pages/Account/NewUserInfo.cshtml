@@ -1,0 +1,392 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Areas.User.Pages.Account.NewUserInfoModel
+@{ Layout = "/Pages/Shared/_CartLayout.cshtml";
+    ViewData["Title"] = "Delivery Address"; }
+
+<style>
+    @@media (min-width: 1261px) {
+        .layout-cart {
+            width: 33.33333%;
+        }
+    }
+
+    @@media (min-width: 968px) {
+        .layout-cart {
+            width: 41.66667%;
+        }
+    }
+
+    .modal-window {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 999;
+        visibility: hidden;
+        opacity: 0;
+        pointer-events: none;
+        -webkit-transition: all 0.3s;
+        transition: all 0.3s;
+    }
+
+        .modal-window:target {
+            visibility: visible;
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-window > div {
+            width: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            padding: 2em;
+            /*background: #ffffff;*/
+        }
+
+        .modal-window header {
+            font-weight: bold;
+        }
+
+        .modal-window h1 {
+            font-size: 150%;
+            margin: 0 0 15px;
+        }
+
+    .modal-close {
+        color: #000000;
+        line-height: 50px;
+        font-size: 80%;
+        position: absolute;
+        right: 30px;
+        text-align: center;
+        top: 50px;
+        width: 70px;
+        text-decoration: none;
+    }
+
+        .modal-close:hover {
+            color: black;
+        }
+
+    /* Demo Styles */
+    html,
+    body {
+        height: 100%;
+    }
+
+
+    .modal-window div:not(:last-of-type) {
+        margin-bottom: 15px;
+    }
+
+    small {
+        color: #aaa;
+    }
+
+
+    .btn {
+        background: #428bca;
+        border: #357ebd solid 1px;
+        border-radius: 3px;
+        color: #fff;
+        display: inline-block;
+        font-size: 14px;
+        padding: 8px 15px;
+        text-decoration: none;
+        text-align: center;
+        min-width: 60px;
+        position: relative;
+        transition: color .1s ease;
+    }
+
+        .btn:hover {
+            background: #357ebd;
+        }
+
+        .btn.btn-big {
+            font-size: 18px;
+            padding: 15px 20px;
+            min-width: 100px;
+        }
+
+    .btn-close {
+        color: #aaaaaa;
+        font-size: 30px;
+        text-decoration: none;
+        position: absolute;
+        right: 5px;
+        top: 0;
+    }
+
+        .btn-close:hover {
+            color: #919191;
+        }
+
+    .modal:target:before {
+        display: none;
+    }
+
+    .modal:before {
+        content: "";
+        display: block;
+        background: rgba(0, 0, 0, 0.6);
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 10;
+    }
+
+    .modal .modal-dialog {
+        background: #fefefe;
+        border: #333333 solid 1px;
+        border-radius: 5px;
+        margin-left: -200px;
+        position: fixed;
+        left: 50%;
+        z-index: 11;
+        width: 360px;
+        -webkit-transform: translate(0, 0);
+        -ms-transform: translate(0, 0);
+        transform: translate(0, 0);
+        -webkit-transition: -webkit-transform 0.3s ease-out;
+        -moz-transition: -moz-transform 0.3s ease-out;
+        -o-transition: -o-transform 0.3s ease-out;
+        transition: transform 0.3s ease-out;
+        top: 20%;
+    }
+
+    .modal:target .modal-dialog {
+        top: -100%;
+        -webkit-transform: translate(0, -500%);
+        -ms-transform: translate(0, -500%);
+        transform: translate(0, -500%);
+    }
+
+    .modal-body {
+        padding: 20px;
+    }
+
+    .modal-header, .modal-footer {
+        padding: 10px 20px;
+    }
+
+    .modal-header {
+        border-bottom: #eeeeee solid 1px;
+    }
+
+        .modal-header h2 {
+            font-size: 20px;
+        }
+
+    .modal-footer {
+        border-top: #eeeeee solid 1px;
+        text-align: right;
+    }
+</style>
+
+
+<div class="layout-main" style="width: 65.66667% !important;">
+    <ol class="checkout-steps">
+        <li class="checkout-step optimizedCheckout-checkoutStep checkout-step--customer">
+            <div class="checkout-view-header">
+                <a class="stepHeader is-readonly">
+                    <div class="stepHeader-figure stepHeader-column">
+                        <div class="icon stepHeader-counter optimizedCheckout-step">
+                            <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path>
+                            </svg>
+                        </div>
+                        <h2 class="stepHeader-title optimizedCheckout-headingPrimary">Delivery Address</h2>
+                    </div>
+                    <div class="stepHeader-body stepHeader-column optimizedCheckout-contentPrimary" data-test="step-info"></div>
+                </a>
+            </div>
+            <div class="checkout-view-content checkout-view-content-enter-done">
+
+                @if (TempData["error"] != null)
+                {
+    <div class="alert alert-danger alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>@TempData["error"]</strong>
+    </div>}
+                @if (TempData["success"] != null)
+                {
+    <div class="alert alert-success alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>@TempData["success"]</strong>
+    </div>}
+            <div>
+
+                <form method="post">
+                    <br />
+                    <div class="panel-body">
+
+
+                        <h3 style="color:#000000;text-align:center;">Update User Data</h3>
+                        <input type="hidden" name="AddressUpdateId" value="@Model.AddressUId" />
+                        <input type="hidden" name="UserIdx" value="@Model.UserId" />
+                        <div class="form-group">
+                            <label asp-for="Surname" class="control-label"></label>
+                            <input asp-for="Surname" class="form-control" required="required" />
+                            <span asp-validation-for="Surname" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="FirstName" class="control-label"></label>
+                            <input asp-for="FirstName" class="form-control" required="required" />
+                            <span asp-validation-for="FirstName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="OtherName" class="control-label"></label>
+                            <input asp-for="OtherName" class="form-control" required="required" />
+                            <span asp-validation-for="OtherName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="UserAddress.Address" class="control-label"></label>
+                            <input asp-for="UserAddress.Address" class="form-control" required="required" />
+                            <span asp-validation-for="UserAddress.Address" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="UserAddress.State" class="control-label"></label>
+                            <select asp-for="UserAddress.State" asp-items="Model.StateListing" id="StateI" class="form-control">
+                                <option>Select State</option>
+
+                            </select>                        <span asp-validation-for="UserAddress.State" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="UserAddress.LocalGovernment" class="control-label">Local Government</label>
+                            <select asp-for="UserAddress.LocalGovernment" id="LGA" class="form-control" required="required"></select>
+                            <span asp-validation-for="UserAddress.LocalGovernment" class="text-danger"></span>
+                        </div>
+
+
+                    </div>
+                    <div class="panel-footer">
+                        <input type="submit" value="Update and Continue" class="btn btn-primary" />
+
+                    </div>
+                </form>
+            </div>
+            </div>
+        </li>
+        <li class="checkout-step optimizedCheckout-checkoutStep checkout-step--shipping"><div class="checkout-view-header"><a class="stepHeader is-readonly"><div class="stepHeader-figure stepHeader-column"><div class="icon stepHeader-counter optimizedCheckout-step"><svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg></div><h2 class="stepHeader-title optimizedCheckout-headingPrimary">Delivery Method</h2></div><div class="stepHeader-body stepHeader-column optimizedCheckout-contentPrimary" data-test="step-info"></div></a></div></li>
+        <li class="checkout-step optimizedCheckout-checkoutStep checkout-step--payment"><div class="checkout-view-header"><a class="stepHeader is-readonly"><div class="stepHeader-figure stepHeader-column"><div class="icon stepHeader-counter optimizedCheckout-step"><svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg></div><h2 class="stepHeader-title optimizedCheckout-headingPrimary">Payment</h2></div><div class="stepHeader-body stepHeader-column optimizedCheckout-contentPrimary" data-test="step-info"></div></a></div></li>
+    </ol>
+</div>
+
+
+
+@if (TempData["update"] != null)
+{
+<div class="modal" id="modal-one" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-header">
+            <h2>Modal in CSS?</h2>
+            <a href="#modal-one" class="btn-close" aria-hidden="true">×</a>
+
+        </div>
+        <div class="modal-body">
+            <div class="panel" style="box-shadow: 1px 1px 1px 1px #808080;">
+                <form method="post" asp-page-handler="UpdateAddress">
+                    <br />
+                    <div class="panel-body">
+
+
+                        <h3 style="color:#000000;text-align:center;">Add Address</h3>
+                        <input type="hidden" asp-for="AddressUpdateId" value="@Model.AddressUId" />
+                        <div class="form-group">
+                            <label asp-for="UserAddress.Address" class="control-label"></label>
+                            <input asp-for="UserAddress.Address" class="form-control" required="required" />
+                            <span asp-validation-for="UserAddress.Address" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="UserAddress.State" class="control-label"></label>
+                            <select asp-for="UserAddress.State" asp-items="Model.StateListing" id="StateI" class="form-control">
+                                <option>Select State</option>
+
+                            </select>                        <span asp-validation-for="UserAddress.State" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="UserAddress.LocalGovernment" class="control-label">Local Government</label>
+                            <select asp-for="UserAddress.LocalGovernment" id="LGA" class="form-control" required="required"></select>
+                            <span asp-validation-for="UserAddress.LocalGovernment" class="text-danger"></span>
+                        </div>
+
+                        @*<div class="form-group">
+                        <label asp-for="UserAddress.Longitude" class="control-label">Longitude (Optional)</label>
+                        <input asp-for="UserAddress.Longitude" class="form-control" />
+                        <span asp-validation-for="UserAddress.Longitude" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="UserAddress.Latitiude" class="control-label">Latitiude (Optional)</label>
+                        <input asp-for="UserAddress.Latitiude" class="form-control" />
+                        <span asp-validation-for="UserAddress.Latitiude" class="text-danger"></span>
+                    </div>
+
+                    <input asp-for="UserAddress.Zipcode" value="234" type="hidden" />*@
+
+
+
+                    </div>
+                    <div class="panel-footer">
+                        <input type="submit" value="Update" class="btn btn-primary" />
+                        <a href="#" title="Close" class="btn btn-danger" data-dismiss="modal">Close</a>
+
+                    </div>
+                </form>
+
+            </div>
+        </div>
+       
+    </div>
+</div>
+<div class="wrap">
+    <a href="#" class="btn btn-big">Modal!</a>
+
+</div>}
+<div id="open-modal2" class="modal-window">
+    <div class="" style="">
+        <a href="#" title="Close" class="modal-close">Close</a>
+
+        <!-- Modal content-->
+       
+
+    </div>
+</div>
+
+
+
+
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    <script type="text/jscript">
+        $(function () {
+            $('#StateI').change(function () {
+
+                console.log("check");
+
+                $.getJSON('/Home/GetLgaList/' + $('#StateI').val(), function (data) {
+
+                    var items = '<option>Choose LGA</option>';
+                    $.each(jQuery.map(data, function (i, local) {
+                        items += "<option value='" + i.value + "'>" + i.text + "</option>";
+
+                    }));
+
+                    $('#LGA').html(items);
+                });
+            });
+        });
+    </script>
+
+
+}

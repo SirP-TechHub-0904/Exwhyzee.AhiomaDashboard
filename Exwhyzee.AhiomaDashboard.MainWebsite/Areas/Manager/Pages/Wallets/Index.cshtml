@@ -1,0 +1,193 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Areas.Manager.Pages.Wallets.IndexModel
+@{
+}
+
+<style>
+    .nav-tabs-custom .nav-item .nav-link.active {
+        color: #556ee6;
+        background-color: #e3e6e9;
+    }
+
+    .nav-tabs-custom .nav-item .nav-link {
+        border: none;
+        background-color: #55586f;
+    }
+</style>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+
+
+                <div class="row">
+
+                    <div class="col-md-6 col-sm-12">
+
+                        <h3 class="card-title">
+                            AhiaPay Dashboard
+                        </h3>
+                    </div>
+                    
+                    
+
+                </div>
+              
+
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+
+                                <!-- Nav tabs -->
+                                <ul class="nav nav-tabs nav-tabs-custom nav-justified" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" data-toggle="tab" href="#home1" role="tab" aria-selected="true">
+                                            <span class="d-block d-sm-none"> Account Statement</span>
+                                            <span class="d-none d-sm-block"> Account Statement</span>
+                                        </a>
+                                    </li>
+
+                                </ul>
+
+                                <!-- Tab panes -->
+                                <div class="tab-content p-3 text-muted">
+                                    <div class="tab-pane active" id="home1" role="tabpanel">
+                                        <div class="row">
+                                            <div class="col-md-12" style="border-bottom:1px solid #808080;">
+                                                <h2>
+                                                    NGN Wallet
+                                                </h2>
+                                            </div>
+                                            <div class="col-md-3" style="padding:15px;border:1px solid #f6f6f6;">
+
+                                                <h5>Flutter</h5>
+                                                <h6>LEDGER BALANCE</h6>
+                                                <h3>
+                                                    @Model.FTLedgerBalance
+                                                </h3>
+
+                                            </div>
+                                            <div class="col-md-3" style="padding:15px;border:1px solid #f6f6f6;">
+
+                                                <h5>Flutter</h5>
+                                                <h6>WITHDRAWABLE BALANCE</h6>
+                                                <h3>
+                                                    @Model.FTWithdrawableBalance
+                                                </h3>
+
+                                            </div>
+                                            <div class="col-md-3" style="padding:15px;border:1px solid #f6f6f6;">
+
+                                                <h5>Ahia Pay</h5>
+                                                <h6>LEDGER BALANCE</h6>
+                                                <h3>
+                                                    @Model.TLedgerBalance
+                                                </h3>
+
+                                            </div>
+                                            <div class="col-md-3" style="padding:15px;border:1px solid #f6f6f6;">
+
+                                                <h5>Ahia Pay</h5>
+                                                <h6>WITHDRAWABLE BALANCE</h6>
+                                                <h3>
+                                                    @Model.TWithdrawableBalance
+                                                </h3>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+
+
+
+
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+
+
+                                    <div id="datatable_wrapper" class="dataTables_wrapper table-responsive dt-bootstrap4 no-footer">
+                                        <div class="row">
+                                            <div class="col-md-12 table-responsive">
+                                                <table id="datatable7" class="table table-bordered dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
+
+                                                    <thead>
+                                                        <tr>
+                                                            <th>S/N</th>
+                                                            <th>
+                                                                ID
+                                                            </th>
+                                                            <th>
+                                                                Name
+                                                            </th>
+                                                            <th>
+                                                                Ledger Balance
+                                                            </th>
+                                                            <th>Withdrawable Balance</th>
+
+                                                            <th>
+                                                                Last Date Updated
+                                                            </th>
+                                                            <th></th>
+
+                                                        </tr>
+                                                    </thead>
+                                                    @{
+                                                        int sno = 0;
+                                                    }
+                                                    <tbody>
+                                                        @foreach (var item in Model.Wallet)
+                                                        {
+                                                            <tr>
+
+                                                                <td>
+                                                                    @{ sno++; }
+                                                                    @sno
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.IdNumber)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.Fullname)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.LedgerBalance)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.WithdrawBalance)
+                                                                </td>
+                                                                <td>
+                                                                    @Html.DisplayFor(modelItem => item.DateUpdated)
+                                                                </td>
+                                                                <td>
+                                                                  
+                                                                    <a asp-page="./WalletHistory" asp-route-id="@item.UserId">
+                                                                        History
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                        }
+                                                    </tbody>
+
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div> <!-- end col -->
+</div>

@@ -1,0 +1,69 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Areas.Admin.Pages.MessagingPage.MessageHistoryModel
+@{
+    ViewData["Title"] = "Message History";
+
+}
+
+<div class="row">
+    <div class="card-columns mx-auto d-flex justify-content-center col-12">
+
+        <div class="card">
+            <div class="card-header">
+
+                <h3 class="card-title">
+                    Message History
+
+                </h3>
+            </div>
+            <div class="card-body">
+                <div id="datatable_wrapper" class="dataTables_wrapper table-responsive dt-bootstrap4 no-footer">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table id="datatable7" class="table table-bordered dt-responsive nowrap dataTable no-footer dtr-inline" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Messaging[0].MassageType)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Messaging[0].Date)
+                                        </th>
+                                       
+                                        
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Messaging[0].Status)
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.Messaging)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.MassageType)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Date)
+                                            </td>
+                                           
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Status)
+                                            </td>
+                                            <td>
+                                                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                                                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                                                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

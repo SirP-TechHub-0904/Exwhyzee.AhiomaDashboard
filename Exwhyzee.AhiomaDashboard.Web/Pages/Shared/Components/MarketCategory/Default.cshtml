@@ -1,0 +1,45 @@
+﻿@model ICollection<Exwhyzee.AhiomaDashboard.EntityFramework.Tables.Market>
+
+
+<div class="module sb-banner sb-banner--feature_category ">
+    <h5 class="block-title">
+        Virtual Markets
+
+        <a asp-page="./Markets" asp-route-customerRef="@ViewBag.CustomerRef" class="pull-right" style="text-transform:lowercase;">more markets</a>
+    </h5>
+
+    <div class="block-content clearfix d-flex flex-row">
+        @foreach (var data in Model)
+        {
+
+                <div class="banners">
+                    @*<div class="banner-figure">
+
+                    <a href=""><img class="img-fluid" src="@data.ImageUrl" alt="@data.Name"></a>
+                </div>*@
+
+                    <div class="banner-figcaption">
+                        <div class="banner-figcaption__body">
+                            <a asp-page="./MarketDetails" asp-route-customerRef="@ViewBag.CustomerRef" asp-route-id="@data.Id" asp-route-name="@data.Name.Replace(" ", "-")" asp-route-mktstate="@data.State.Replace(" ", "-")" asp-route-mktaddress="@data.Address.Replace(" ", "-")" tabindex="0" title="@data.Name">
+                                <h5 class="banner-figcaption__title">
+                                    @if (data.Name.ToLower().Contains(" and "))
+                                    {
+                                        string[] categ = data.Name.Split(' ');
+                                        @categ.FirstOrDefault()
+                                    }
+                                    else
+                                    {
+                                        @data.Name
+                                    }
+                                </h5>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+           
+            }
+
+
+
+</div>
+</div>

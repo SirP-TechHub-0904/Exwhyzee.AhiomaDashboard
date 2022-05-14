@@ -1,0 +1,115 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Areas.User.Pages.Account.UpdateAddressModel
+
+@{
+    Layout = "/Pages/Shared/_CartLayout.cshtml";
+    ViewData["Title"] = "Delivery Address";
+
+
+}
+
+<style>
+    @@media (min-width: 1261px) {
+        .layout-cart {
+            width: 33.33333%;
+        }
+    }
+
+    @@media (min-width: 968px) {
+        .layout-cart {
+            width: 41.66667%;
+        }
+    }
+</style>
+
+
+<div class="layout-main" style="width: 65.66667% !important;">
+    <ol class="checkout-steps">
+        <li class="checkout-step optimizedCheckout-checkoutStep checkout-step--customer">
+            <div class="checkout-view-header">
+                <a class="stepHeader is-readonly">
+                    <div class="stepHeader-figure stepHeader-column">
+                        <div class="icon stepHeader-counter optimizedCheckout-step">
+                            <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path>
+                            </svg>
+                        </div>
+                        <h2 class="stepHeader-title optimizedCheckout-headingPrimary">Delivery Address</h2>
+                    </div>
+                    <div class="stepHeader-body stepHeader-column optimizedCheckout-contentPrimary" data-test="step-info"></div>
+                </a>
+            </div>
+            <div class="checkout-view-content checkout-view-content-enter-done">
+                <div>
+                    <form method="post">
+
+
+                        <div class="">
+                           
+                            <div class="">
+                                <div class="form-group">
+                                    <div class="form-group">
+                                        <label asp-for="UserAddress.Address" class="control-label">Address</label>
+                                        <textarea asp-for="UserAddress.Address" class="form-control"></textarea>
+                                        <span asp-validation-for="UserAddress.Address" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="">
+                            <div class="">
+                                <div class="form-group">
+                                    <label asp-for="UserAddress.State" class="control-label"></label>
+                                    <select asp-for="UserAddress.State" asp-items="Model.StateListing" id="State" class="form-control">
+                                        <option>Select State</option>
+
+                                    </select>                        <span asp-validation-for="UserAddress.State" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="">
+                                <div class="form-group">
+                                    <label asp-for="UserAddress.LocalGovernment" class="control-label">Local Government</label>
+                                    <select asp-for="UserAddress.LocalGovernment" id="LGA" class="form-control" required="required"></select>
+                                    <span asp-validation-for="UserAddress.LocalGovernment" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Save and Continue</button>
+
+
+
+
+
+                    </form>
+                </div>
+            </div>
+        </li>
+        <li class="checkout-step optimizedCheckout-checkoutStep checkout-step--shipping"><div class="checkout-view-header"><a class="stepHeader is-readonly"><div class="stepHeader-figure stepHeader-column"><div class="icon stepHeader-counter optimizedCheckout-step"><svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg></div><h2 class="stepHeader-title optimizedCheckout-headingPrimary">Delivery Method</h2></div><div class="stepHeader-body stepHeader-column optimizedCheckout-contentPrimary" data-test="step-info"></div></a></div></li>
+        <li class="checkout-step optimizedCheckout-checkoutStep checkout-step--payment"><div class="checkout-view-header"><a class="stepHeader is-readonly"><div class="stepHeader-figure stepHeader-column"><div class="icon stepHeader-counter optimizedCheckout-step"><svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg></div><h2 class="stepHeader-title optimizedCheckout-headingPrimary">Payment</h2></div><div class="stepHeader-body stepHeader-column optimizedCheckout-contentPrimary" data-test="step-info"></div></a></div></li>
+    </ol>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+
+    <script type="text/jscript">
+        $(function () {
+            $('#State').change(function () {
+
+
+                $.getJSON('/Home/GetLgaList/' + $('#State').val(), function (data) {
+
+                    var items = '<option>Choose LGA</option>';
+                    $.each(jQuery.map(data, function (i, local) {
+                        items += "<option value='" + i.value + "'>" + i.text + "</option>";
+
+                    }));
+
+                    $('#LGA').html(items);
+                });
+            });
+        });
+    </script>
+}

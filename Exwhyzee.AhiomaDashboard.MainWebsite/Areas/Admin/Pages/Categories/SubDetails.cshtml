@@ -1,0 +1,154 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Areas.Admin.Pages.SubCategories.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="row">
+    <div class="card-columns mx-auto d-flex justify-content-center col-12">
+
+        <div class="card">
+            <div class="card-header">
+
+                <h3 class="card-title">
+                    Details Sub Category
+
+
+                </h3>
+            </div>
+            <div class="card-body">
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.SubCategory.Name)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.SubCategory.Name)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.SubCategory.Description)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.SubCategory.Description)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.SubCategory.Category)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.SubCategory.Category.Id)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.SubCategory.Status)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.SubCategory.Status)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.SubCategory.MetaKeywords)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.SubCategory.MetaKeywords)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.SubCategory.MetaDescription)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.SubCategory.MetaDescription)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.SubCategory.MetaTitle)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.SubCategory.MetaTitle)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.SubCategory.ShowOnHomePage)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.SubCategory.ShowOnHomePage)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.SubCategory.FeaturedProductsOnHomaPage)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.SubCategory.FeaturedProductsOnHomaPage)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.SubCategory.ShowOnSearchBox)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.SubCategory.ShowOnSearchBox)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.SubCategory.SearchBoxDisplayOrder)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.SubCategory.SearchBoxDisplayOrder)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.SubCategory.IncludeInTopMenu)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.SubCategory.IncludeInTopMenu)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.SubCategory.LimitedToStores)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.SubCategory.LimitedToStores)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.SubCategory.Stores)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.SubCategory.Stores)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.SubCategory.Published)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.SubCategory.Published)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.SubCategory.DisplayOrder)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.SubCategory.DisplayOrder)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.SubCategory.Flag)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.SubCategory.Flag)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.SubCategory.Icon)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.SubCategory.Icon)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.SubCategory.CreatedOnUtc)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.SubCategory.CreatedOnUtc)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.SubCategory.UpdatedOnUtc)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.SubCategory.UpdatedOnUtc)
+                    </dd>
+                </dl>
+            </div>
+            <div>
+                <a asp-page="./SubEdit" asp-route-id="@Model.SubCategory.Id">Edit</a> |
+                <a asp-page="./SubDelete" asp-route-id="@Model.SubCategory.Id">Delete</a> |
+                <a asp-page="./Details" asp-route-id="@Model.SubCategory.CategoryId">List</a>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>

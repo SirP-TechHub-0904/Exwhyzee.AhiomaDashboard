@@ -1,0 +1,24 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Pages.SearchQuerryModel
+@{ ViewData["Title"] = "SearchQuerry";
+    Layout = "/Pages/Shared/_WebLayout.cshtml"; }
+
+@section StyleMain {
+
+
+}
+<partial name="_header_One" />
+
+<form class="sb-searchpro" method="get" asp-page="/SearchQuerry" asp-area="" asp-route-hdsearcw="asd23A-jnbsbdd-Nhauy" asp-route-catidlogger="hjdjfgbjhfbyewueureuweryweiuywurjhsdjbsjcfdshjsjchbcjbsdkvjbk">
+    <fieldset class="form-fieldset">
+        <div class="input-group">
+            <input hidden name="catidlogger" value="MHHkkqndfmvnHGJHhgj2020-00-20MASTECH-ahioma-query-securjhh" />
+            <input hidden name="hdsearcw" value="12387875ghxGFX762HXJ768E6WE" />
+            <input class="form-control form-input" value="@TempData["search"]" name="searchString" placeholder="Kindly search for your product, shops and markets" autocomplete="off">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit"><i class="fa fa-search"></i></button>
+            </div>
+        </div>
+
+    </fieldset>
+</form>

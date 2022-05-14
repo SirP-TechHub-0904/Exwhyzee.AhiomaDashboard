@@ -1,0 +1,179 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.User.Pages.Account.EditAddressModel
+@{
+}
+<div class="row">
+    <div class="col-xl-5">
+        <div class="card overflow-hidden">
+            <div class="bg-soft-primary">
+                <div class="row">
+                    <div class="col-7">
+                        <div class="text-primary p-3">
+                            <h5 class="text-primary">Edit Address</h5>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            
+
+        </div>
+    </div>
+    
+
+</div>
+
+<div class="clearfix"></div>
+<div class="card" style="padding:10px 0;">
+    <form method="post">
+
+
+        <div class="">
+
+            <div class="">
+                <div class="form-group">
+                    <div class="form-group">
+                        <label asp-for="UserAddress.Address" class="control-label">Address</label>
+                        <textarea asp-for="UserAddress.Address" class="form-control"></textarea>
+                        <span asp-validation-for="UserAddress.Address" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="">
+            <div class="">
+                <div class="form-group">
+                    <label asp-for="UserAddress.State" class="control-label"></label>
+                    <select asp-for="UserAddress.State" asp-items="Model.StateListing" id="State" class="form-control">
+                        <option>Select State</option>
+
+                    </select>                        <span asp-validation-for="UserAddress.State" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="">
+                <div class="form-group">
+                    <label asp-for="UserAddress.LocalGovernment" class="control-label">Local Government</label>
+                    <select asp-for="UserAddress.LocalGovernment" id="LGA" class="form-control" required="required"></select>
+                    <span asp-validation-for="UserAddress.LocalGovernment" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save and Continue</button>
+
+
+
+
+
+    </form>
+</div>
+
+
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+
+    <script type="text/javascript">
+        $(function () {
+            // multiple images prevuiew in browser
+            var imagesPreview = function (input, placeToInsertImagePreview) {
+                if (input.files) {
+                    var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.gif|.png|.bmp)$/;
+                    var filesAmount = input.files.length;
+                    if (filesAmount <= 5) {
+                        for (i = 0; i < filesAmount; i++) {
+                            var reader = new FileReader();
+                            reader.onload = function (event) {
+                                $($.parseHTML('<img>')).attr('src', event.target.result).attr('width', '100px').attr('height', 'auto').attr('margin', '10px').attr('padding', '10px').appendTo(placeToInsertImagePreview);
+                            }
+                            reader.readAsDataURL(input.files[i]);
+                        }
+                    } else {
+                        window.alert("You cant upload more than 5 images");
+                    }
+                }
+            };
+            $('#gallery-photo-add').on('change', function () {
+                imagesPreview(this, 'div.gallery');
+            });
+        });
+
+        $('.dropzone').html5imageupload();
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            // multiple images prevuiew in browser
+            var imagesPreview = function (input, placeToInsertImagePreview) {
+                if (input.files) {
+                    var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.gif|.png|.bmp)$/;
+                    var filesAmount = input.files.length;
+                    if (filesAmount <= 5) {
+                        for (i = 0; i < filesAmount; i++) {
+                            var reader = new FileReader();
+                            reader.onload = function (event) {
+                                $($.parseHTML('<img>')).attr('src', event.target.result).attr('width', '100px').attr('height', 'auto').attr('margin', '10px').attr('padding', '10px').appendTo(placeToInsertImagePreview);
+                            }
+                            reader.readAsDataURL(input.files[i]);
+                        }
+                    } else {
+                        window.alert("You cant upload more than 5 images");
+                    }
+                }
+            };
+            $('#gallery-photo-add1').on('change', function () {
+                imagesPreview(this, 'div.gallery1');
+            });
+        });
+
+        $('.dropzone').html5imageupload();
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            // multiple images prevuiew in browser
+            var imagesPreview = function (input, placeToInsertImagePreview) {
+                if (input.files) {
+                    var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.gif|.png|.bmp)$/;
+                    var filesAmount = input.files.length;
+                    if (filesAmount <= 5) {
+                        for (i = 0; i < filesAmount; i++) {
+                            var reader = new FileReader();
+                            reader.onload = function (event) {
+                                $($.parseHTML('<img>')).attr('src', event.target.result).attr('width', '100px').attr('height', 'auto').attr('margin', '10px').attr('padding', '10px').appendTo(placeToInsertImagePreview);
+                            }
+                            reader.readAsDataURL(input.files[i]);
+                        }
+                    } else {
+                        window.alert("You cant upload more than 5 images");
+                    }
+                }
+            };
+            $('#gallery-photo-add2').on('change', function () {
+                imagesPreview(this, 'div.gallery2');
+            });
+        });
+
+        $('.dropzone').html5imageupload();
+    </script>
+<script>
+    $(function () {
+        $('#State').change(function () {
+
+
+            $.getJSON('/Home/GetLgaList/' + $('#State').val(), function (data) {
+
+                var items = '<option>Choose LGA</option>';
+                $.each(jQuery.map(data, function (i, local) {
+                    items += "<option value='" + i.value + "'>" + i.text + "</option>";
+
+                }));
+
+                $('#LGA').html(items);
+            });
+        });
+    });
+   
+</script>
+}

@@ -1,0 +1,128 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.Store.Pages.Dashboard.ShopOrdersModel
+@{
+}
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+
+                <h3 class="card-title">
+                    Shop Orders
+
+                </h3>
+
+            </div>
+            <div class="card-header">
+                <div class="btn-group pull-right" style="width:100%;">
+                    <a asp-page="./" class="btn" style="background-color:#278526 !important;color:#FFF !important;float:right;border-radius:0px;vertical-align:middle !important;border:1px solid #FFF;">Awaiting Confirmation (0)</a>
+                    <a asp-page="./" class="btn" style="background-color:#278526 !important;color:#FFF !important;float:right;border-radius:0px;vertical-align:middle !important;border:1px solid #FFF;">Pending Order (0)</a>
+                    <a asp-page="./" class="btn" style="background-color:#278526 !important;color:#FFF !important;float:right;border-radius:0px;vertical-align:middle !important;border:1px solid #FFF;">Completed Order (0)</a>
+                    <a asp-page="./" class="btn" style="background-color:#278526 !important;color:#FFF !important;float:right;border-radius:0px;vertical-align:middle !important;border:1px solid #FFF;">All Order (0)</a>
+                </div>
+
+            </div>
+            <div class="card-body table-responsive">
+
+
+                <div id="datatable_wrapper" class="dataTables_wrapper table-responsive dt-bootstrap4 no-footer">
+                    <div class="row">
+                        <div class="col-md-12 table-responsive">
+                            <table id="datatable7" class="table table-bordered dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
+
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            S/N
+                                        </th>
+                                        <th>Date</th>
+                                        <th>Order ID</th>
+                                        <th>
+                                            Transaction ID
+                                        </th>
+                                        <th>Customer</th>
+                                        <th>
+                                            Product
+                                        </th>
+                                        <th>Image</th>
+                                        <th>
+                                            Amount
+                                        </th>
+
+                                        <th>
+                                            Quantity
+                                        </th>
+                                        <th>
+                                            Status
+                                        </th>
+                                       
+                                            <th></th>
+                                        
+                                    </tr>
+                                </thead>
+                                @{
+                                    int sno = 0;
+                                }
+                                <tbody>
+                                    @foreach (var item in Model.OrderItem)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @{ sno++; }
+                                                @sno
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.DateOfOrder)
+                                            </td>
+
+                                            <td>
+                                                <a asp-page="/Transactions/OrderDetails" asp-area="ManageTransaction" asp-route-id="@item.Id">
+                                                    @Html.DisplayFor(modelItem => item.OrderId)
+                                                </a>
+                                            </td>
+                                            <td>
+                                                    @Html.DisplayFor(modelItem => item.ReferenceId)
+                                            </td>
+                                            <td>
+
+                                                @Html.DisplayFor(modelItem => item.Order.UserProfile.Fullname)<br />
+                                                @Html.DisplayFor(modelItem => item.Order.UserProfile.IdNumber)
+
+                                            </td>
+
+                                            <td>
+
+                                                @Html.DisplayFor(modelItem => item.Product.Name)
+
+                                            </td>
+                                            <td>
+                                                <a href="@item.Product.ProductPictures.FirstOrDefault().PictureUrlThumbnail">
+                                                        <img src="@item.Product.ProductPictures.FirstOrDefault().PictureUrlThumbnail" style="max-height:50px;width:auto;" />
+                                                    </a>
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Product.Price)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Quantity)
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Status)
+                                            </td>
+                                           
+                                                <td>
+                                                    <a asp-page="/" asp-route-id="@item.Id">Update Order</a>
+                                                </td>
+                                            
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

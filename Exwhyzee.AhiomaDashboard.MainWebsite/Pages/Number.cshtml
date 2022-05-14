@@ -1,0 +1,24 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Pages.NumberModel
+@{
+}
+
+<table>
+    <thead>
+        <tr>
+            <td>Phone</td>
+            <td>Email</td>
+            <td>Fullname</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var i in Model.iUsers)
+            {
+                <tr>
+                    <td>@i.User.PhoneNumber</td>
+                    <td>@i.User.Email</td>
+                    <td>@i.Fullname</td>
+                </tr>
+            }
+    </tbody>
+</table>

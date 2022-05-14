@@ -1,0 +1,13 @@
+﻿@*//long id, long tid*@
+
+@await Component.InvokeAsync("CustomerPrint", new { id = ViewBag.oId })
+
+@foreach (var p in ViewBag.ids)
+{
+
+
+
+    //   @await Component.InvokeAsync("PosPrint", new { id = ViewBag.oId, tid = p })
+    @await Component.InvokeAsync("ShopPrint", new { id = ViewBag.oId, tid = p })
+
+}

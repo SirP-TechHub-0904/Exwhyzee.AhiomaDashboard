@@ -1,0 +1,59 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.Admin.Pages.UtilityParameters.EditModel
+@{
+}
+<div class="row">
+    <div class="card-columns mx-auto d-flex justify-content-center col-12">
+
+        <div class="card">
+            <div class="card-header">
+
+                <h3 class="card-title">
+                    Edit Utility Parameter
+
+
+                </h3>
+            </div>
+            <div class="card-body">
+
+                <form method="post" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="iModel.Id" />
+                    <input type="hidden" asp-for="iModel.ParamType" />
+                    <div class="form-group">
+                        <label asp-for="iModel.Bundle" class="control-label"></label>
+                        <input asp-for="iModel.Bundle" class="form-control" />
+                        <span asp-validation-for="iModel.Bundle" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="iModel.Code" class="control-label"></label>
+                        <input asp-for="iModel.Code" class="form-control" />
+                        <span asp-validation-for="iModel.Code" class="text-danger"></span>
+                    </div>
+                   
+                    <div class="form-group">
+                        <label asp-for="iModel.Price" class="control-label"></label>
+                        <input asp-for="iModel.Price" class="form-control" />
+                        <span asp-validation-for="iModel.Price" class="text-danger"></span>
+                    </div>
+                   
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input asp-for="iModel.Show" /> @Html.DisplayNameFor(model => model.iModel.Show)
+                            </label>
+                        </div>
+                    </div>
+                   
+                    <div class="form-group">
+                        <input type="submit" value="Update" class="btn btn-primary" />
+                        <a asp-page="Index" class="btn btn-outline-primary waves-effect waves-light">Back</a>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>

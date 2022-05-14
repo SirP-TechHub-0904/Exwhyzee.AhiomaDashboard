@@ -1,0 +1,119 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.Identity.Pages.Account.RecoverAccountModel
+@{
+}
+
+@{ ViewData["Title"] = "Recover Account";
+    Layout = "/Pages/Shared/_LoginLayout.cshtml"; }
+
+
+<div class="">
+
+
+    @if (TempData["error"] != null)
+    {
+<div class="alert alert-danger">
+    <strong>@TempData["error"]</strong>
+</div>}
+    <form id="account" class="form" method="post">
+        <input asp-for="CustomerRef" type="hidden" />
+        <div class="panel">
+            <div class="panel-header">
+                <h4 class="panel-title text-center text-uppercase" style="color:#ff5c00;font-weight:700;">Recover Account</h4>
+            </div>
+            <div class="panel-body" style="margin-bottom:0;">
+
+
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Input.Email"></label>
+                    <input asp-for="Input.Email" class="form-control" id="input2" />
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+                <div id="outputmain"></div>
+                <div class="form-group">
+                    <label style="float:left;">
+                        Security Answer
+                    </label>
+                   
+                    <input asp-for="Input.SecurityAnswer" class="form-control"  />
+                    <span asp-validation-for="Input.SecurityAnswer" class="text-danger"></span>
+                </div>
+              
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary" style="width:100%;background-color:#ff5c00;color:#ffffff;font-weight:800;">Log in</button>
+                </div>
+
+
+            </div>
+
+
+        </div>
+    </form>
+
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+
+    @*<script type="text/javascript">
+        $(function () {
+            // Document.ready -> link up remove event handler
+            $("#CustomerID").change(function () {
+                alert("Hej");
+                var option = $('option:selected', this).val();
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("OnChange", "Home")',
+                    contentType: "application/json; charset=utf-8",
+                    data: { name: 1 },
+                    dataType: "html",
+                    success: function (success) {
+                        alert('Success');
+                        console.log(success);
+                        for (var i = 0; i < success.length; i++) {
+                            $(".form-horizontal").append("<li>" + success[i] + "      </li>");
+                            console.log(success);
+                        }
+                    },
+                    error: function (e, text, string) {
+                        alert(e.message + text + string);
+                        console.log(e);
+                    }
+                });
+            });
+        });
+            </script>*@
+
+    <script>
+    $("#input2").keyup(function () {
+            console.log($('#input2').val());
+            console.log("inside");
+            $.ajax({
+                type: 'GET',
+                url: 'RecoverAccount?handler=SecurityQuestion',
+                dataType: "json",
+                data: { phone: $('#input2').val() },
+                contentType: "application/json; charset=utf-8",
+                error: function () {
+                    console.log("error");
+                },
+                success: function (data) {
+                    console.log("yes");
+
+                    console.log(data);
+
+                    console.log("ddss");
+
+                    $('#outputmain').html("<div class=\"item form-group\"><div class=\"\"><input class=\"form-control\" style=\"background-color:transparent !important;color:#ff0000 !important;border:none !important;\" value=\"" + data + "\" type=\"text\" readonly=\"readonly\"></div></div>");
+
+                    console.log("<div class=\"item form-group\"><div class=\"\"><input class=\"form-control\" style=\"background-color:transparent !important;color:#ff0000 !important;border:none !important;\" value=\"" + data + "\" type=\"text\" readonly=\"readonly\"></div></div>");
+
+                }
+            });
+        });
+        console.log("=d");
+
+        console.log("=dsadf");</script>
+}

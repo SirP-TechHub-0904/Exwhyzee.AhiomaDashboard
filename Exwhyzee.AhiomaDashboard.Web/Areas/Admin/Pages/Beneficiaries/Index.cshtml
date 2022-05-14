@@ -1,0 +1,94 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.Admin.Pages.Beneficiaries.IndexModel
+@{
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+
+                <h3 class="card-title">
+                    Utility Parameter
+
+                    <a asp-page="Create" class="btn btn-light waves-effect pull-right">
+                        <i class="bx bx-hourglass bx-spin font-size-16 align-middle mr-2"></i>
+                        Create New
+                    </a>
+                </h3>
+                @if (TempData["error"] != null)
+                {
+                    <div class="alert alert-success alert-dismissible">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>@TempData["error"]</strong>
+                    </div>}
+
+                @if (TempData["success"] != null)
+                {
+                    <div class="alert alert-success alert-dismissible">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>@TempData["success"]</strong>
+                    </div>}
+            </div>
+
+            <div class="card-body">
+
+
+                <div id="datatable_wrapper" class="dataTables_wrapper table-responsive dt-bootstrap4 no-footer">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table id="datatable7" class="table table-bordered dt-responsive nowrap dataTable no-footer dtr-inline" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
+                                <thead>
+                                    <tr role="row">
+                                        <th>SN</th>
+                                        <th>
+                                            User
+                                        </th>
+                                        <th>
+                                            ParamType
+                                        </th>
+                                        <th>
+                                            Title
+                                        </th>
+                                        <th>
+                                            Code/Phone
+                                        </th>
+
+                                    </tr>
+                                </thead>
+                                @{ int sno = 0; }
+                                <tbody>
+                                    @foreach (var item in Model.model)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @{ sno++; }
+                                                @sno
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.UserId)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.ParamType)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Title)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.BeneficiaryValue)
+                                            </td>
+                                        </tr>
+                                    }
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div> <!-- end col -->
+</div>

@@ -1,0 +1,280 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Pages.CheckModel
+@{
+}
+
+@{
+    ViewData["Title"] = "ProductDetails";
+    Layout = "/Pages/Shared/_WebLayout.cshtml";
+}
+
+
+
+
+@if (User.Identity.IsAuthenticated && User.IsInRole("mSuperAdmin") || User.IsInRole("Admin"))
+{
+
+    <li>
+        <a asp-area="Dashboard" asp-page="/Analysis/SoaList" class="waves-effect">
+            <i class="fa fa-file"></i>
+            <span>SOA List</span>
+        </a>
+    </li>
+    <li>
+        <a asp-area="Dashboard" asp-page="/Analysis/SoaStatistic" class="waves-effect">
+            <i class="fa fa-file"></i>
+            <span>SOA Statistic</span>
+        </a>
+    </li>
+}
+<li>
+    <a href="/" class="waves-effect">
+        <i class="bx bx-home-circle"></i>
+        <span>Home</span>
+    </a>
+</li>
+@if (User.Identity.IsAuthenticated && User.IsInRole("mSuperAdmin") || User.IsInRole("Admin") || User.IsInRole("SOA") || User.IsInRole("Customer Care"))
+{
+    <li class="menu-title">Item Orders</li>
+    <li>
+        <a asp-area="ManageTransaction" asp-page="/Transactions/Orders">
+            <i class="bx bx-store"></i>
+            <span>All Orders</span>
+        </a>
+    </li>
+    @if (User.Identity.IsAuthenticated && User.IsInRole("mSuperAdmin") || User.IsInRole("Admin") || User.IsInRole("Customer Care"))
+    {
+        <li class="menu-title">All Transfers</li>
+        <li>
+            <a asp-area="ManageTransaction" asp-page="/Transactions/AllTransfer">
+                <i class="bx bx-store"></i>
+                <span>Transfers</span>
+            </a>
+        </li>
+    }
+}
+@if (User.Identity.IsAuthenticated && User.IsInRole("mSuperAdmin") || User.IsInRole("User Admin"))
+{
+    <li class="menu-title">All Transactions</li>
+
+
+    <li>
+        <a asp-area="ManageTransaction" asp-page="/Transactions/Index">
+            <i class="bx bx-store"></i>
+            <span>Transactions</span>
+        </a>
+    </li>
+}
+@if (User.Identity.IsAuthenticated && User.IsInRole("SOA") || User.IsInRole("mSuperAdmin"))
+{
+    <li class="menu-title">Virtual Shops</li>
+    <li>
+        <a asp-area="UserManager" asp-page="/ManageAccounts/Stores">
+            <i class="bx bx-store"></i>
+            <span>Shops</span>
+        </a>
+    </li>
+}
+<li class="menu-title">Account</li>
+<li>
+    <a asp-area="User" asp-page="/Account/Profile" class="waves-effect">
+        <i class="bx bx-user-check"></i>
+        <span>Profile</span>
+    </a>
+</li>
+<li>
+    <a asp-area="User" asp-page="/Account/Index" class=" waves-effect">
+        <i class="bx bx-money"></i>
+        <span>Ahia Pay</span>
+    </a>
+</li>
+<li>
+    <a asp-area="User" asp-page="/Account/TransactionHistory" class=" waves-effect">
+        <i class="bx bx-money"></i>
+        <span>Transaction History</span>
+    </a>
+</li>
+<li>
+    <a asp-area="User" asp-page="/Account/MyOrders" class=" waves-effect">
+        <i class="bx bx-store"></i>
+        <span>Orders</span>
+    </a>
+</li>
+<li>
+    <a class=" waves-effect">
+        <i class="bx bx-revision"></i>
+        <span>Pending Reviews</span>
+    </a>
+</li>
+<li>
+    <a class=" waves-effect">
+        <i class="bx bx-file"></i>
+        <span>Saved Items</span>
+    </a>
+</li>
+<li>
+    <a class=" waves-effect">
+        <i class="bx bxs-eyedropper"></i>
+        <span>Recently Viewed</span>
+    </a>
+</li>
+<li>
+    <a class=" waves-effect">
+        <i class="fa fa-envelope-o"></i>
+        <span>Address Book</span>
+    </a>
+</li>
+@if (User.Identity.IsAuthenticated && User.IsInRole("SOA"))
+{
+    <li>
+        <a class=" waves-effect">
+            <i class="fa fa-user-circle"></i>
+            <span>Referee</span>
+        </a>
+    </li>
+}
+<li>
+    <a class=" waves-effect">
+        <i class="bx bx-envelope"></i>
+        <span>Newsletter Preferences</span>
+    </a>
+</li>
+
+
+@if (User.Identity.IsAuthenticated && User.IsInRole("mSuperAdmin") || User.IsInRole("Admin"))
+{
+    <li class="menu-title">Product Managment</li>
+
+    <li>
+        <a asp-area="Admin" asp-page="/Categories/Index" class=" waves-effect">
+            <i class="fa fa-bars"></i>
+            <span>Categories</span>
+        </a>
+    </li>
+
+    <li>
+        <a asp-area="Admin" asp-page="/Manufacturers/Index" class=" waves-effect">
+            <i class="bx bx-store"></i>
+            <span>Manufacturers</span>
+        </a>
+    </li>
+    <li>
+        <a asp-area="Admin" asp-page="/Markets/Index" class=" waves-effect">
+            <i class="bx bxs-landmark"></i>
+            <span>Market</span>
+        </a>
+    </li>
+    <li>
+        <a asp-area="Admin" asp-page="/Products/Index" class=" waves-effect">
+            <i class="bx bx-store"></i>
+            <span>Products</span>
+        </a>
+    </li>
+
+}
+@if (User.Identity.IsAuthenticated && User.IsInRole("mSuperAdmin") || User.IsInRole("Admin") || User.IsInRole("SO Admin") || User.IsInRole("SOA Admin") || User.IsInRole("Customer Admin"))
+{
+    <li class="menu-title">User Management</li>
+    <li>
+        <a href="javascript: void(0);" class="has-arrow waves-effect">
+            <i class="bx bx-user"></i>
+            <span>Manage Account</span>
+        </a>
+        <ul class="sub-menu mm-collapse" aria-expanded="false">
+            @if (User.Identity.IsAuthenticated && User.IsInRole("mSuperAdmin") || User.IsInRole("User Admin"))
+            {
+                <li><a asp-area="UserManager" asp-page="/ManageAccounts/AllUsers">Users</a></li>
+
+            }
+            @if (User.Identity.IsAuthenticated && User.IsInRole("mSuperAdmin") || User.IsInRole("SOA Admin"))
+            {
+                <li><a asp-area="UserManager" asp-page="/ManageAccounts/AllSOA">SOAs</a></li>
+
+            }
+            @if (User.Identity.IsAuthenticated && User.IsInRole("mSuperAdmin") || User.IsInRole("SO Admin"))
+            {
+                <li><a asp-area="UserManager" asp-page="/ManageAccounts/AllSO">SOs</a></li>
+
+            }
+            @if (User.Identity.IsAuthenticated && User.IsInRole("mSuperAdmin") || User.IsInRole("Customer Admin"))
+            {
+                <li><a asp-area="UserManager" asp-page="/ManageAccounts/AllCustomers">Customers</a></li>
+
+            }
+            @if (User.Identity.IsAuthenticated && User.IsInRole("mSuperAdmin") || User.IsInRole("Admin"))
+            {
+                <li><a asp-area="UserManager" asp-page="/ManageAccounts/Administration">Administration</a></li>
+            }
+            @*@if (User.Identity.IsAuthenticated && User.IsInRole("mSuperAdmin") || User.IsInRole("SO Admin"))
+                {
+                    <li><a asp-area="UserManager" asp-page="/ManageAccounts/ShopsUsers">Shops</a></li>
+
+                }*@
+
+        </ul>
+    </li>
+    @if (User.Identity.IsAuthenticated && User.IsInRole("mSuperAdmin"))
+    {
+        <li>
+            <a href="javascript: void(0);" class="has-arrow waves-effect">
+                <i class="bx bx-store"></i>
+                <span>Manage Permissions</span>
+            </a>
+            <ul class="sub-menu mm-collapse" aria-expanded="false">
+                <li><a asp-area="Identity" asp-page="/Roles/Roles">Roles</a></li>
+                <li><a asp-area="Identity" asp-page="/ROles/CreateRole">Create Roles</a></li>
+
+            </ul>
+        </li>
+
+    }
+}
+@if (User.Identity.IsAuthenticated && User.IsInRole("Store"))
+{
+    <li class="menu-title">Store Management</li>
+    <li>
+        <a asp-area="UserManager" asp-page="/ManageAccounts/StoreInfo" class="waves-effect">
+            <i class="bx bx-store"></i>
+            <span>My Store</span>
+        </a>
+    </li>
+    <li>
+        <a asp-area="UserManager" asp-page="/ManageAccounts/StoreOrders" class="waves-effect">
+            <i class="bx bx-store"></i>
+            <span>Store Orders</span>
+        </a>
+    </li>
+    <li>
+        <a asp-area="Admin" asp-page="/Products/Index" class=" waves-effect">
+            <i class="bx bx-store"></i>
+            <span>Products</span>
+        </a>
+    </li>
+    <li>
+        <a class=" waves-effect">
+            <i class="bx bx-money"></i>
+            <span>Bulk Edit Product</span>
+        </a>
+    </li>
+    <li class="menu-title">Sales Management</li>
+    <li>
+        <a class=" waves-effect">
+            <i class="bx bx-money"></i>
+            <span>Sales</span>
+        </a>
+    </li>
+    <li>
+        <a class=" waves-effect">
+            <i class="bx bx-store"></i>
+            <span>Current shopping carts and wishlists</span>
+        </a>
+    </li>
+    <li>
+        <a class=" waves-effect">
+            <i class="bx bx-cart"></i>
+            <span>Delivered Items</span>
+        </a>
+    </li>
+}
+
+

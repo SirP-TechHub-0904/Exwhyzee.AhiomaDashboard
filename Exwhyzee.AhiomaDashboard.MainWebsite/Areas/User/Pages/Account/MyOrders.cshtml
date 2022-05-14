@@ -1,0 +1,210 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Areas.User.Pages.Account.MyOrdersModel
+@{
+}
+<style>
+    .btn {
+        display: inline-block;
+        font-weight: 400;
+        color: #a6b0cf;
+        text-align: center;
+        vertical-align: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        background-color: transparent;
+        border: 1px solid transparent;
+        border-top-color: transparent;
+        border-right-color: transparent;
+        border-bottom-color: transparent;
+        border-left-color: transparent;
+        padding: .26rem .49rem;
+        font-size: .6125rem;
+        line-height: 1.5;
+        border-radius: .25rem;
+        -webkit-transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+        transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+        transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+        transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out,-webkit-box-shadow .15s ease-in-out;
+    }
+
+    
+</style>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+
+
+                    <div class="row">
+
+                        <div class="col-md-6 col-sm-12">
+
+                            <h3 class="card-title">
+                                My Orders (@Model.OrderItems.Count() Orders)
+                            </h3>
+                        </div>
+
+
+                    </div>
+                    @if (TempData["error"] != null)
+                    {
+                        <div class="alert alert-danger alert-dismissible">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>@TempData["error"]</strong>
+                        </div>
+                    }
+                    @if (TempData["success"] != null)
+                    {
+                        <div class="alert alert-success alert-dismissible">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>@TempData["success"]</strong>
+                        </div>
+                    }
+                    @if (TempData["StatusMessage"] != null)
+                    {
+                        <div class="alert alert-primary alert-dismissible">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>@TempData["StatusMessage"]</strong>
+                        </div>
+                    }
+
+
+                </div>
+                <div class="card-body">
+
+
+                    <div id="datatable_wrapper" class="dataTables_wrapper table-responsive dt-bootstrap4 no-footer">
+                        <div class="row">
+                            <div class="col-sm-12 table-responsive">
+                                <h4><a asp-page="./MyOrders" style="border-bottom:2px solid #ff0000;color:#ff0000;padding:0 5px 5px 5px;">Open Orders</a><a asp-page="./CloseOrders" style="color:#e4e7eb;padding:0 5px 5px 5px;">Closed Orders</a></h4>
+
+                                <div class="row">
+                                  
+                                        @foreach (var item in Model.OrderItems)
+                                        {
+                                            <div class="col-lg-8">
+                                                <div class="card" style="background-color: #e4e7eb !important;">
+                                                    <div class="row no-gutters align-items-center">
+                                                        <div class="col-md-3 col-sm-3 col-xs-3">
+                                                            @if (item.Product.ProductPictures.FirstOrDefault() != null)
+                                                            {
+                                                            <a href="https://manager.ahioma.com/@item.Product.ProductPictures.FirstOrDefault().PictureUrl">
+                                                                <img src="https://manager.ahioma.com/@item.Product.ProductPictures.FirstOrDefault().PictureUrlThumbnail" style="margin:auto auto !important;text-align:center !important;padding:0;max-height:100px;max-width:100px;" class="img-fluid" />
+                                                            </a>
+                                                            }
+                                                        </div>
+                                                        <div class="col-md-9 col-sm-9 col-xs-9">
+                                                            <div class="card-body" style="padding:10px;">
+                                                                <h5 class="card-title" style="overflow:hidden;color:#182038;margin-bottom:4px;"> @Html.DisplayFor(modelItem => item.Product.Name)</h5>
+                                                                <h6 style="overflow:hidden;color:#182038;margin-bottom:4px;">@item.DateOfOrder.ToString("ddd dd MMM, yyyy hh:mm tt")</h6>
+                                                                <h6 style="overflow:hidden;color:#182038;margin-bottom:4px;">
+                                                                    <span style="padding-right:7px;">QTY: @item.Quantity</span>
+
+                                                                    @if (item.ItemSize != null)
+                                                                    {
+                                                                        <span style="margin-right:7px;">Size: @item.ItemSize</span>
+                                                                    }
+                                                                    @if (item.Itemcolor != null)
+                                                                    {
+                                                                        <span style="margin-right:7px;">Colour: @item.Itemcolor</span>
+                                                                    }
+
+
+                                                                </h6>
+                                                                <h6 class="card-text">
+                                                                    <div class="row">
+                                                                        <div class="col-sm-12" style="padding-right:0px !important;margin-right:0 !important;">
+                                                                            <span class="bg-gray-200" style="margin-right:5px;">
+                                                                                <a href="#">
+                                                                                    @{
+                                                                                        decimal amt = item.Product.Price * item.Quantity;
+                                                                                    }
+                                                                                    <span style="color:#ff0000">&#8358;@amt </span>
+
+                                                                                </a>
+                                                                            </span>
+                                                                            <span class="bg-gray-200" style="margin-right:5px;">
+                                                                                <a href="#">
+                                                                                    <span style="color:#ff0000">Order ID: </span>@Html.DisplayFor(modelItem => item.OrderId)
+
+
+                                                                                </a>
+                                                                            </span>
+
+                                                                            <span class="bg-gray-200">
+                                                                                <a href="#">
+                                                                                    <span style="color:#ff0000">Track ID: </span> @Html.DisplayFor(modelItem => item.ReferenceId)
+                                                                                </a>
+                                                                            </span>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </h6>
+                                                                @if (item.Status == Exwhyzee.Enums.OrderStatus.Pending)
+                                                                {
+                                                                    <button type="button" class="btn btn-info waves-effect waves-light btn-xs" style="background-color: #ff6a00; color: #e4e7eb;">Pending</button>
+
+                                                                }
+                                                                else if (item.Status == Exwhyzee.Enums.OrderStatus.Processing)
+                                                                {
+                                                                    <button type="button" class="btn btn-info waves-effect waves-light btn-xs" style="background-color: #ff6a00; color: #e4e7eb;">Awaiting Confirmation</button>
+
+                                                                }
+
+                                                                else if (item.Status == Exwhyzee.Enums.OrderStatus.Cancel)
+                                                                {
+                                                                    <button type="button" class="btn btn-danger waves-effect waves-light" style="background-color: #4c72cb; color: #e4e7eb;">Cancel</button>
+
+                                                                }
+                                                                else if (item.Status == Exwhyzee.Enums.OrderStatus.Completed)
+                                                                {
+                                                                    <button type="button" class="btn btn-success waves-effect waves-light" style="background-color: #459039; color: #e4e7eb;">Supplied 
+                                                                @if (item.Order.DeliveredDate != null) {
+                                                                        @item.Order.DeliveredDate.Value.ToString("ddd dd MMM, yyyy")
+   
+
+
+                                                                        }</button>
+
+                                                                }
+                                                                else if (item.Status == Exwhyzee.Enums.OrderStatus.Reversed)
+                                                                {
+                                                                    <button type="button" class="btn btn-warning waves-effect waves-light" style="background-color: #c53737; color: #e4e7eb;">Reversed</button>
+
+                                                                }
+
+                                                                else
+                                                                {
+                                                                    <button type="button" class="btn btn-warning waves-effect waves-light" style="background-color:#182038;color:#e4e7eb;">..........</button>
+
+                                                                }
+
+                                                                <a asp-page="./OrderDetails" asp-route-id="@item.Id">
+                                                                    <button type="button" class="btn btn-warning waves-effect waves-light" style="background-color:#182038;color:#e4e7eb;">See Details</button>
+                                                                </a>
+                                                                <h6 style="color:#182038;margin-bottom:4px;">
+                                                                    @item.Note
+                                                                </h6>
+
+                                                                @* <p class="card-text" style="color:#182038;"><small class="">Delivered between Friday 09 October and Wednesday 21 October</small></p>*@
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                   
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div> <!-- end col -->
+    </div>

@@ -1,0 +1,107 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.Admin.Pages.SoaRequests.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+    <div class="card-columns mx-auto d-flex justify-content-center col-12">
+
+        <div class="card">
+            <div class="card-header">
+
+                <h3 class="card-title">
+                   SOA Request
+
+
+                </h3>
+            </div>
+            <div class="card-body">
+                <div id="datatable_wrapper" class="dataTables_wrapper table-responsive dt-bootstrap4 no-footer">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table id="datatable7" class="table table-bordered dt-responsive nowrap dataTable no-footer dtr-inline" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
+                                <thead>
+                                    <tr>
+                                        <th>S/N</th>
+                                        <th>Date</th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.SoaRequest[0].FullName)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.SoaRequest[0].PhoneNumber)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.SoaRequest[0].ShopAddress)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.SoaRequest[0].BusinessName)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.SoaRequest[0].Email)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.SoaRequest[0].SoaRequestStatus)
+                                        </th>
+                                        <th>Assigned To</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                @{
+                                    int sno = 0;
+                                }
+
+
+                                <tbody>
+
+                                    @foreach (var item in Model.SoaRequest)
+                                    {
+                                    <tr>
+
+                                        <td>
+                                            @{ sno++; }
+                                            @sno
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Date)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.FullName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.PhoneNumber)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ShopAddress)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.BusinessName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Email)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.SoaRequestStatus)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.UserProfile.Fullname) (@item.IdNumber)
+                                        </td>
+                                        <td>
+                                            <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                                            <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                                            @*<a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>*@
+                                        </td>
+                                    </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div> <!-- end col -->
+</div>

@@ -1,0 +1,93 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.User.Pages.Account.DeliveryMethodModel
+@{
+    Layout = "/Pages/Shared/_CartLayout.cshtml";
+    ViewData["Title"] = "Delivery Method";
+
+}
+
+<style>
+    @@media (min-width: 1261px) {
+        .layout-cart {
+            width: 33.33333%;
+        }
+    }
+
+    @@media (min-width: 968px) {
+        .layout-cart {
+            width: 41.66667%;
+        }
+    }
+</style>
+
+
+<div class="layout-main" style="width: 65.66667% !important;">
+    <ol class="checkout-steps">
+        <li class="checkout-step optimizedCheckout-checkoutStep checkout-step--customer">
+            <div class="checkout-view-header">
+                <a class="stepHeader is-readonly">
+                    <div class="stepHeader-figure stepHeader-column">
+                        <div class="icon stepHeader-counter optimizedCheckout-step">
+                            <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path>
+                            </svg>
+                        </div>
+                        <h2 class="stepHeader-title optimizedCheckout-headingPrimary">Delivery Address</h2>
+                    </div>
+                    @*<div class="stepHeader-body stepHeader-column optimizedCheckout-contentPrimary" data-test="step-info"></div>*@
+                </a>
+            </div>
+            <div class="checkout-view-content checkout-view-content-enter-done">
+                <div>
+
+                    <div class="form-fieldset">
+                        <p><strong>@Model.UserProfile.Fullname</strong></p>
+                        <p>@Model.UserAddress.Address (@Model.UserAddress.LocalGovernment in @Model.UserAddress.State)</p>
+                        <p>@Model.UserProfile.User.PhoneNumber</p>
+
+                    </div>
+                    
+                </div><a asp-page="./DeliveryAddress" asp-route-customerRef="">Edit</a>
+            </div>
+        </li>
+        <li class="checkout-step optimizedCheckout-checkoutStep checkout-step--customer">
+            <div class="checkout-view-header">
+                <a class="stepHeader is-readonly">
+                    <div class="stepHeader-figure stepHeader-column">
+                        <div class="icon stepHeader-counter optimizedCheckout-step">
+                            <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path>
+                            </svg>
+                        </div>
+                        <h2 class="stepHeader-title optimizedCheckout-headingPrimary">Delivery Method</h2>
+                    </div>
+                   @* <div class="stepHeader-body stepHeader-column optimizedCheckout-contentPrimary" data-test="step-info"></div>*@
+                </a>
+            </div>
+            <div class="checkout-view-content checkout-view-content-enter-done">
+                <div>
+                    <form method="post" onsubmit='disableButton()'>
+                        <input asp-for="CustomerRef" type="hidden" />
+                        @*<div class="radio">
+                            <label><input type="radio" name="DeliveryMethod" value="Shop Delivery" checked>Shop Delivery</label>
+                        </div>*@
+                        <div class="radio">
+                            <label><input type="radio" name="DeliveryMethod" value="AhiaXpress Delivery" checked>AhiaXpress Delivery</label>
+                        </div>
+
+
+                        <button type="submit" id='btn' class="btn btn-primary">Save and Continue</button>
+
+
+
+
+
+                    </form>
+                </div>
+            </div>
+        </li>
+        <li class="checkout-step optimizedCheckout-checkoutStep checkout-step--payment"><div class="checkout-view-header"><a class="stepHeader is-readonly"><div class="stepHeader-figure stepHeader-column"><div class="icon stepHeader-counter optimizedCheckout-step"><svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"></path></svg></div><h2 class="stepHeader-title optimizedCheckout-headingPrimary">Payment</h2></div><div class="stepHeader-body stepHeader-column optimizedCheckout-contentPrimary" data-test="step-info"></div></a></div></li>
+    </ol>
+</div>
+
+

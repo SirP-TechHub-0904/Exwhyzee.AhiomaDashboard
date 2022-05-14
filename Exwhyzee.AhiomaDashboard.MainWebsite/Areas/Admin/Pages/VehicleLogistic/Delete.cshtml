@@ -1,0 +1,76 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Areas.Admin.Pages.VehicleLogistic.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>LogisticVehicle</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LogisticVehicle.VehicleName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LogisticVehicle.VehicleName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LogisticVehicle.VehiclePlateNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LogisticVehicle.VehiclePlateNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LogisticVehicle.VehiclePhoneNumber)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LogisticVehicle.VehiclePhoneNumber)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LogisticVehicle.VehicleSize)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LogisticVehicle.VehicleSize)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LogisticVehicle.VehicleType)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LogisticVehicle.VehicleType)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LogisticVehicle.State)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LogisticVehicle.State)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LogisticVehicle.LGA)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LogisticVehicle.LGA)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LogisticVehicle.LeastAmount)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LogisticVehicle.LeastAmount)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LogisticVehicle.LogisticProfile)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LogisticVehicle.LogisticProfile.Id)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="LogisticVehicle.Id" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

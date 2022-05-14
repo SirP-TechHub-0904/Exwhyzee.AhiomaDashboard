@@ -1,0 +1,88 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.ManageTransaction.Pages.Transactions.AddLogisticToOrderModel
+
+@{ ViewData["Title"] = "Create"; }
+
+<div class="row">
+    <div class="card-columns mx-auto d-flex justify-content-center col-12">
+
+        <div class="card">
+            <div class="card-header">
+
+                <h3 class="card-title">
+                    Add Logistic To Order
+
+
+                </h3>
+                <h4>Order Information</h4>
+                <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Reference Id:</strong> @Model.Order.ReferenceId</p>
+                <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Amount Paid:</strong> @Model.Order.AmountPaid</p>
+                <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Order Cost:</strong> @Model.Order.OrderAmount</p>
+                <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Vat:</strong> @Model.Order.Vat</p>
+                <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Logistic Amount:</strong> @Model.Order.LogisticAmount</p>
+                <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Track Order:</strong> @Model.Order.TrackOrderId</p>
+                <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Date:</strong> @Model.Order.DateOfOrder</p>
+                <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Delivery Date:</strong> @Model.Order.DeliveredDate</p>
+                <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Invoice Id:</strong> @Model.Order.InvoiceNumber</p>
+                <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Delivery Method:</strong> @Model.Order.DeliveryMethod</p>
+
+                <h4>Customer Information</h4>
+                <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Name:</strong> @Model.Order.UserProfile.Fullname</p>
+                <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Email:</strong> @Model.Order.UserProfile.User.Email</p>
+                <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Phone:</strong> @Model.Order.UserProfile.User.PhoneNumber</p>
+                @if (Model.Order.UserProfile.UserAddresses.Count() > 0)
+                {
+                    <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Address:</strong> @Model.Order.UserProfile.UserAddresses.FirstOrDefault().Address</p>
+                    <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>LGA:</strong> @Model.Order.UserProfile.UserAddresses.FirstOrDefault().LocalGovernment</p>
+                    <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>State:</strong> @Model.Order.UserProfile.UserAddresses.FirstOrDefault().State</p>
+                }
+            </div>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="OrderId" value="@Model.Order.Id" />
+
+                    <div class="form-group">
+                        <label class="control-label">Logistic Company</label>
+                        <select asp-items="Model.LogisticListing" id="Company" class="form-control" required="required">
+                            <option>Select Logistic</option>
+
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Vehicle</label>
+                        <select asp-for="VehicleId" id="Vehicle" class="form-control" required="required"></select>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="Assign" class="btn btn-primary" />
+                        <a asp-page="Index" class="btn btn-outline-primary waves-effect waves-light">Back</a>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script type="text/jscript">$(function () {
+    $('#Company').change(function () {
+
+        $.getJSON('/Home/GetCompanyList/' + $('#Company').val(), function (data) {
+
+                    var items = '<option>Choose Vehicle</option>';
+                    $.each(jQuery.map(data, function (i, local) {
+                        items += "<option value='" + i.value + "'>" + i.text + "</option>";
+
+                    }));
+
+                    $('#Vehicle').html(items);
+                });
+            });
+        });</script>
+}

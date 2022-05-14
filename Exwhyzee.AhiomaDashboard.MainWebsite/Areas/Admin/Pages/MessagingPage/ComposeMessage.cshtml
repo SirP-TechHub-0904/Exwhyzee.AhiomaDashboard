@@ -1,0 +1,108 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Areas.Admin.Pages.MessagingPage.ComposeMessageModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+<div class="row">
+    <div class="card-columns mx-auto d-flex justify-content-center col-12">
+
+        <div class="card">
+            <div class="card-header">
+
+                <h3 class="card-title">
+                    Compose Message
+                </h3>
+            </div>
+            <div class="card-body">
+
+                @if (TempData["error"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissible">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>@TempData["error"]</strong>
+                    </div>
+                }
+                @if (TempData["success"] != null)
+                {
+                    <div class="alert alert-success alert-dismissible">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>@TempData["success"]</strong>
+                    </div>
+                }
+            <form method="post">
+                <input type="hidden" asp-for="Messaging.Id" />
+                <div class="form-group">
+                    <label class="control-label">@Model.Messaging.Title (@Model.Messaging.Count Numbers)</label>
+                    <textarea class="form-control" asp-for="Messaging.Contacts" rows="10">
+
+</textarea>
+
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Add More Numbers</label>
+                    <textarea name="NewNumbers" class="form-control">
+
+</textarea>
+
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Message</label>
+                    <textarea asp-for="Messaging.Message" class="form-control" id="Content">
+
+</textarea>
+
+                </div>
+                <p id="count"></p>
+                <p id="page"></p>
+
+                <div class="form-group">
+                    <input type="submit" value="Continue" class="btn btn-default" />
+                </div>
+            </form>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        $("#Content").keyup(function () {
+            // $("#count").text("Characters Type:" +$(this).val().length +"; Characters left: " + (320 - $(this).val().length));
+            //$("#count").text("Characters left: " + (500 - $(this).val().length));
+            if (($(this).val().length) <= 160) {
+                $("#page").text("Page(s): 1")
+                $("#count").text("Characters Type:" + $(this).val().length + "; Characters left: " + (160 - $(this).val().length));
+            }
+            else if (($(this).val().length) > 160 && ($(this).val().length) < 319) {
+                $("#page").text("Page(s): 2")
+                $("#count").text("Characters Type:" + $(this).val().length + "; Characters left: " + (320 - $(this).val().length));
+            }
+            else if (($(this).val().length) > 320 && ($(this).val().length) < 479) {
+                $("#page").text("Page(s): 3")
+                $("#count").text("Characters Type:" + $(this).val().length + "; Characters left: " + (480 - $(this).val().length));
+            }
+            else if (($(this).val().length) > 480 && ($(this).val().length) < 639) {
+                $("#page").text("Page(s): 4")
+                $("#count").text("Characters Type:" + $(this).val().length + "; Characters left: " + (640 - $(this).val().length));
+            }
+            else if (($(this).val().length) > 640 && ($(this).val().length) < 799) {
+                $("#page").text("Page(s): 5")
+                $("#count").text("Characters Type:" + $(this).val().length + "; Characters left: " + (800 - $(this).val().length));
+            }
+            else if (($(this).val().length) > 800 && ($(this).val().length) < 959) {
+                $("#page").text("Page(s): 6")
+                $("#count").text("Characters Type:" + $(this).val().length + "; Characters left: " + (960 - $(this).val().length));
+            }
+            else {
+                $("#page").text("Page(s): More than 6")
+                $("#count").text("Characters Type:" + $(this).val().length + "; Characters left: Text too long. Consider sending in batches.");
+
+            }
+        });
+</script>
+}

@@ -1,0 +1,50 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Areas.Admin.Pages.Products.AddToPromoModel
+
+@{ ViewData["Title"] = "Delete"; }
+<div class="row">
+    <div class="card-columns mx-auto d-flex justify-content-center col-12">
+
+        <div class="card">
+            <div class="card-header">
+
+                <h3 class="card-title">
+                    New Promo Category
+
+
+                </h3>
+
+            </div>
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label class="control-label">@Model.Product.Name</label>
+                        <input hidden="hidden" asp-for="Product.Id" />
+                        <input hidden="hidden" asp-for="Tid" />
+                        <input hidden="hidden" asp-for="SortOrder" />
+                        <input hidden="hidden" asp-for="PageIndex" />
+                        <input hidden="hidden" asp-for="CurrentFilter" />
+                        <input hidden="hidden" asp-for="Uid" />
+                        <input hidden="hidden" asp-for="CurrentPage" />
+                    </div>
+                    <div class=" form-group">
+                        <label class="control-label">Product Category</label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="More Infomation"></i>
+                        <select asp-for="CatId" class="form-control" asp-items="ViewBag.PromoCategoryId"></select>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Add" class="btn btn-primary" />
+                        <a asp-page="Index" class="btn btn-outline-primary waves-effect waves-light">Back</a>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

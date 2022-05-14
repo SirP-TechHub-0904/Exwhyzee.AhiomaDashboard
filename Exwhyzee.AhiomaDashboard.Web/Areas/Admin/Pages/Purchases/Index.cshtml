@@ -1,0 +1,100 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.Admin.Pages.Purchases.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+
+
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+
+                <h3 class="card-title">
+                    Price History of <span class="btn btn-sm bg-danger"><i>@Model.Product.Name</i></span> 
+
+
+                </h3>
+                <a asp-page="Create" asp-route-id="@Model.Product.Id" class="btn btn-primary btn-sm">Update Price</a>
+
+            </div>
+            <div class="card-body">
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                Date
+                            </th>
+                            @*<th>
+                               Unit Cost (NGN)
+                            </th>*@
+                           
+                            <th>
+                               Unit Selling (NGN)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Purchase[0].Quantity)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Purchase[0].Product)
+                            </th>
+
+                            <th>
+                                Manufactured Date
+                            </th>
+                            <th>
+                                Expiry Date
+                            </th>
+                            @if (User.Identity.IsAuthenticated && User.IsInRole("mSuperAdmin"))
+                            {
+                                <th></th>
+                            }
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Purchase)
+                        {
+                        <tr>
+                            <td>
+                                @item.DateEntered.ToString("dd MMM, yyyy")
+                            </td>
+                           
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UnitSellingPrice)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Quantity)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Product.Name)
+                            </td>
+
+                            <td>
+                                @item.ManufacturedDate.ToString("dd MMM, yyyy")
+                            </td>
+                            <td>
+                                @item.ExpiryDate.ToString("dd MMM, yyyy") (@item.ExpiryDayCount) Days Remaining
+                            </td>
+                            @if (User.Identity.IsAuthenticated && User.IsInRole("mSuperAdmin"))
+                            {
+
+                                <td>
+                                    <span>only seen by admin</span>
+                                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                                </td>
+                            }
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+

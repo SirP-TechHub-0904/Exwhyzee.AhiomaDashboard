@@ -1,0 +1,458 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.User.Pages.Account.ProfileModel
+@{
+}
+
+@if (TempData["error"] != null)
+            {
+<div class="alert alert-danger alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>@TempData["error"]</strong>
+</div>
+            }
+@if (TempData["success"] != null)
+            {
+<div class="alert alert-success alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>@TempData["success"]</strong>
+</div>
+            }
+<div class="row">
+    <div class="col-xl-5">
+        <div class="card overflow-hidden">
+            <div class="bg-soft-primary">
+                <div class="row">
+                    <div class="col-7">
+                        <div class="text-primary p-3">
+                            <h5 class="text-primary">Profile</h5>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="card-body pt-0">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="avatar-md profile-user-wid mb-4">
+                            @if (!String.IsNullOrEmpty(Model.Profile.ProfileUrl))
+                            {
+                            <img src="@Model.Profile.ProfileUrl" alt="ahioma @Model.Profile.Fullname" class="img-thumbnail rounded-circle">
+                            }
+                            else
+                            {
+                            <img src="~/images/ahioma-icon.png" alt="ahioma" class="img-thumbnail rounded-circle">
+                            }
+
+                        </div>
+                        <h5 class="font-size-12 text-truncate">@Model.Profile.Fullname</h5>
+                        <h5 class="font-size-12">@Model.Profile.User.Email</h5>
+                        <h5 class="font-size-12">@Model.Profile.User.PhoneNumber</h5>
+                        <p class="text-muted mb-0 text-truncate">@TempData["roles"]</p>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-7 hidden-sm hidden-xs">
+        <div class="card">
+            <div>
+                <div class="row">
+                    <div class="col-lg-9 col-sm-8">
+                        <div class="p-4">
+                            <h5 class="text-primary">Welcome Back !</h5>
+                            <p>Ahioma Dashboard</p>
+
+                            <div class="text-muted" style="margin-bottom:5px;">
+                                <p class="mb-1"><i class="fa fa-circle-notch align-middle text-primary mr-1"></i> Your Virual Market</p>
+                                <p class="mb-1"><i class="fa fa-circle-notch align-middle text-primary mr-1"></i> Your Expenses Manager</p>
+                                <p class="mb-0"><i class="fa fa-circle-notch align-middle text-primary mr-1"></i> Your Budget Analyser</p>
+                                <p class="mb-0"><i class="fa fa-circle-notch align-middle text-primary mr-1"></i> Buy from your usual store</p>
+                                <p class="mb-0"><i class="fa fa-circle-notch align-middle text-primary mr-1"></i> Buy from Home. Stay safe </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-4 align-self-center">
+                        <div>
+                            <img src="~/v1/img-1.png" alt="" class="img-fluid d-block">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<div class="clearfix"></div>
+<div class="card" style="padding:10px 0;">
+    <div class="container">
+        <p class="text-muted mb-0 text-truncate">
+            <a asp-page="/Account/RequestChange" asp-area="User" class="btn btn-warning">Change Email or Phone Number</a>
+        </p>
+        <br />
+        <p class="text-muted mb-0 text-truncate">
+            <a asp-page="/Account/MyCart" asp-area="User" class="btn btn-warning">Back to My Cart</a>
+        </p>
+        <br />
+        <div class="row">
+
+            <div class="col-xl-12">
+                <form method="post" asp-page-handler="UpdateProfile" enctype="multipart/form-data">
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label asp-for="Profile.Surname" class="control-label">Surname</label>
+                                <input asp-for="Profile.Surname" name="Input.PSurname" class="form-control" required="required" />
+                                <span asp-validation-for="Profile.Surname" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label asp-for="Profile.FirstName" class="control-label">First Name</label>
+                                <input asp-for="Profile.FirstName" name="Input.PFirstName" class="form-control" required="required" />
+                                <span asp-validation-for="Profile.FirstName" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label asp-for="Profile.OtherNames" class="control-label">Other Names</label>
+                                <input asp-for="Profile.OtherNames" name="Input.POtherNames" class="form-control" required="required" />
+                                <span asp-validation-for="Profile.OtherNames" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Profile.DOB" class="control-label">Date Of Birth</label>
+                        <input asp-for="Profile.DOB" name="Input.PDOB" type="date" class="form-control" required="required" />
+                        <span asp-validation-for="Profile.DOB" class="text-danger"></span>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Profile.SecurityQuestion" class="control-label">Security Question</label>
+                                <select class="form-control" asp-for="Profile.SecurityQuestion" name="Input.PSecurityQuestion" required="required">
+
+                                    <option value="What is your mother's maiden name?">What is your mother's maiden name?</option>
+                                    <option value="What is the name of your first pet?">What is the name of your first pet?</option>
+                                    <option value="What was your first car?">What was your first car?</option>
+                                    <option value="What elementary school did you attend?">What elementary school did you attend?</option>
+                                    <option value="What is the name of the town where you were born?">What is the name of the town where you were born?</option>
+                                    <option value="When you were young, what did you want to be when you grew up?">When you were young, what did you want to be when you grew up?</option>
+                                    <option value="Who was your childhood hero?">Who was your childhood hero?</option>
+                                    <option value="Where was your best family vacation as a kid?">Where was your best family vacation as a kid?</option>
+                                </select>
+
+                                <span asp-validation-for="Profile.SecurityQuestion" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Profile.SecurityAnswer" class="control-label">Security Answer</label>
+                                <input asp-for="Profile.SecurityAnswer" name="Input.PSecurityAnswer" class="form-control" required="required" />
+                                <span asp-validation-for="Profile.SecurityAnswer" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group">
+                        <label asp-for="Profile.NextOfKin" class="control-label"></label>
+                        <input asp-for="Profile.NextOfKin" name="Input.PNextOfKin" class="form-control" required="required" />
+                        <span asp-validation-for="Profile.NextOfKin" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Profile.NextOfKinPhoneNumber" class="control-label"></label>
+                        <input asp-for="Profile.NextOfKinPhoneNumber" name="Input.PNextOfKinPhoneNumber" class="form-control" required="required" />
+                        <span asp-validation-for="Profile.NextOfKinPhoneNumber" class="text-danger"></span>
+                    </div>
+                    <div class="item form-group">
+                        <label class="control-label" for="file">
+                           Acceptable ID Cards are *Drivers License/Internation Passport/NIN (National Identity Number)*
+                        </label>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <a href="@Model.Profile.ProfileUrl" target="_blank">
+                                    <img src="@Model.Profile.ProfileUrl" alt="@Model.Profile.Fullname Passport" style="max-height:100px;margin:0 auto;text-align:center;vertical-align:middle;" />
+                                </a>
+                                <br />
+                                <div class="item form-group">
+                                    <label class="control-label" for="file">
+                                        Passport
+                                    </label>
+                                    <div class="">
+                                        <input class="form-control" type="file" accept="image/*" name="filesPhoto" id="gallery-photo-add" />
+                                        <div class="gallery"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <a href="@Model.Profile.IDCardFront" target="_blank">
+                                    <img src="@Model.Profile.IDCardFront" alt="@Model.Profile.Fullname id card front view" style="max-height:100px;margin:0 auto;text-align:center;vertical-align:middle;" />
+                                </a>
+                                <br />
+                                <div class="item form-group">
+                                    <label class="control-label" for="file">
+                                        ID card (Front) *Drivers License/Internation Passport/NIN (National Identity Number)*
+                                    </label>
+                                    <div class="">
+                                        <input class="form-control" type="file" name="filesIDFront" id="gallery-photo-add1" />
+                                        <div class="gallery1"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <a href="@Model.Profile.IDCardBack" target="_blank">
+                                    <img src="@Model.Profile.IDCardBack" alt="@Model.Profile.Fullname id card back view" style="max-height:100px;margin:0 auto;text-align:center;vertical-align:middle;" />
+                                </a>
+                                <br />
+                                <div class="item form-group">
+                                    <label class="control-label" for="file">
+                                        ID card (Back) *Drivers License/Internation Passport/NIN (National Identity Number)*
+                                    </label>
+                                    <div class="">
+                                        <input class="form-control" type="file" name="filesIDBack" id="gallery-photo-add2" />
+                                        <div class="gallery2"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <input type="submit" value="Update" class="btn btn-primary" />
+                        </div>
+                </form>
+            </div>
+        </div>
+        <br />
+        <br />
+        <div class="row">
+            <h3 style="margin-left:10px;">Address Information</h3>
+            <p class="text-muted mb-0 text-truncate">
+                <a asp-page="/Account/MyCart" asp-area="User" class="btn btn-warning">Back to My Cart</a>
+            </p>
+            <div class="col-xl-12">
+                @if (Model.Profile.UserAddresses.Count() > 0)
+                {
+                    foreach (var i in Model.Profile.UserAddresses)
+                    {
+                        <div class="alert alert-primary alert-dismissible">
+                            <h3 style="color:#121b63;font-weight:900;margin-bottom:1px;">Address: @i.Address</h3>
+                            <p style="margin-bottom: 1px;padding-bottom:2px;">Local Government Area: @i.LocalGovernment</p>
+                            <p style="margin-bottom: 1px;padding-bottom:2px;">State: @i.State</p>
+                            <p style="margin-bottom: 1px;padding-bottom:2px;">Longitude: @i.Longitude</p>
+                            <p style="margin-bottom: 1px;padding-bottom:2px;">Latitiude: @i.Latitiude</p>
+                            <p style="margin-bottom: 1px;padding-bottom:2px;">Zipcode: @i.Zipcode</p>
+                            <p style="margin-bottom: 1px;padding-bottom:2px;">
+                                Default:
+                                @if (i.Default == true)
+                                {
+                                    <a class="btn btn-success btn-small" style="padding:2px;margin:1px;">Yes</a>
+                                }
+                                else
+                                {
+                                    <a class="btn btn-warning btn-small" style="padding:2px;margin:1px;">No</a>
+                                }
+                            </p>
+                            <p style="margin-bottom: 1px;padding-bottom:2px;">Address: @i.Address</p>
+
+                            <form method="post" id="RemoveAddress" asp-page-handler="RemoveAddress">
+
+                                <input type="hidden" value="@i.Id" name="DeleteId" />
+
+                                <input type="submit" value="Remove" class="btn btn-danger btn-xs" style="padding:2px;margin:1px;" />
+
+                            </form>
+                            <form method="post" id="ChangeDefault" asp-page-handler="ChangeDefault">
+
+                                <input type="hidden" value="@i.Id" name="AddressId" />
+
+                                <input type="submit" value="Make Default" class="btn btn-danger btn-xs" style="padding:2px;margin:1px;" />
+
+                                <a asp-page="/Account/EditAddress" asp-area="User" asp-route-id="@i.Id">Edit</a>
+
+                            </form>
+
+                        </div>
+                    }
+                }
+                else
+                {
+                    <h5>No Address Found</h5>
+                }
+                <form method="post" asp-page-handler="AddAddress" enctype="multipart/form-data">
+
+                    <h3 style="color:#ffffff;">Add New Address</h3>
+
+                    <div class="form-group">
+                        <label asp-for="Address.Address" class="control-label"></label>
+                        <input asp-for="Address.Address" class="form-control" required="required" />
+                        <span asp-validation-for="Address.Address" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Address.State" class="control-label"></label>
+                        <select asp-for="Address.State" asp-items="Model.StateListing" id="State" class="form-control">
+                            <option>Select State</option>
+
+                        </select>                        <span asp-validation-for="Address.State" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Address.LocalGovernment" class="control-label">Local Government</label>
+                        <select asp-for="Address.LocalGovernment" id="LGA" class="form-control" required="required"></select>
+                        <span asp-validation-for="Address.LocalGovernment" class="text-danger"></span>
+                    </div>
+                    @*<div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label asp-for="Address.Longitude" class="control-label">Longitude (Optional)</label>
+                                <input asp-for="Address.Longitude" class="form-control" />
+                                <span asp-validation-for="Address.Longitude" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label asp-for="Address.Latitiude" class="control-label">Latitiude (Optional)</label>
+                                <input asp-for="Address.Latitiude" class="form-control" />
+                                <span asp-validation-for="Address.Latitiude" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+
+                            <div class="form-group">
+                                <label asp-for="Address.Zipcode" class="control-label">Zipcode (Optional)</label>
+                                <input asp-for="Address.Zipcode" class="form-control" />
+                                <span asp-validation-for="Address.Zipcode" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>*@
+
+                    <div class="form-group">
+                        <input type="submit" value="Update" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+
+    <script type="text/javascript">
+        $(function () {
+            // multiple images prevuiew in browser
+            var imagesPreview = function (input, placeToInsertImagePreview) {
+                if (input.files) {
+                    var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.gif|.png|.bmp)$/;
+                    var filesAmount = input.files.length;
+                    if (filesAmount <= 5) {
+                        for (i = 0; i < filesAmount; i++) {
+                            var reader = new FileReader();
+                            reader.onload = function (event) {
+                                $($.parseHTML('<img>')).attr('src', event.target.result).attr('width', '100px').attr('height', 'auto').attr('margin', '10px').attr('padding', '10px').appendTo(placeToInsertImagePreview);
+                            }
+                            reader.readAsDataURL(input.files[i]);
+                        }
+                    } else {
+                        window.alert("You cant upload more than 5 images");
+                    }
+                }
+            };
+            $('#gallery-photo-add').on('change', function () {
+                imagesPreview(this, 'div.gallery');
+            });
+        });
+
+        $('.dropzone').html5imageupload();
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            // multiple images prevuiew in browser
+            var imagesPreview = function (input, placeToInsertImagePreview) {
+                if (input.files) {
+                    var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.gif|.png|.bmp)$/;
+                    var filesAmount = input.files.length;
+                    if (filesAmount <= 5) {
+                        for (i = 0; i < filesAmount; i++) {
+                            var reader = new FileReader();
+                            reader.onload = function (event) {
+                                $($.parseHTML('<img>')).attr('src', event.target.result).attr('width', '100px').attr('height', 'auto').attr('margin', '10px').attr('padding', '10px').appendTo(placeToInsertImagePreview);
+                            }
+                            reader.readAsDataURL(input.files[i]);
+                        }
+                    } else {
+                        window.alert("You cant upload more than 5 images");
+                    }
+                }
+            };
+            $('#gallery-photo-add1').on('change', function () {
+                imagesPreview(this, 'div.gallery1');
+            });
+        });
+
+        $('.dropzone').html5imageupload();
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            // multiple images prevuiew in browser
+            var imagesPreview = function (input, placeToInsertImagePreview) {
+                if (input.files) {
+                    var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.gif|.png|.bmp)$/;
+                    var filesAmount = input.files.length;
+                    if (filesAmount <= 5) {
+                        for (i = 0; i < filesAmount; i++) {
+                            var reader = new FileReader();
+                            reader.onload = function (event) {
+                                $($.parseHTML('<img>')).attr('src', event.target.result).attr('width', '100px').attr('height', 'auto').attr('margin', '10px').attr('padding', '10px').appendTo(placeToInsertImagePreview);
+                            }
+                            reader.readAsDataURL(input.files[i]);
+                        }
+                    } else {
+                        window.alert("You cant upload more than 5 images");
+                    }
+                }
+            };
+            $('#gallery-photo-add2').on('change', function () {
+                imagesPreview(this, 'div.gallery2');
+            });
+        });
+
+        $('.dropzone').html5imageupload();
+    </script>
+    <script>
+        $(function () {
+            $('#State').change(function () {
+
+
+                $.getJSON('/Home/GetLgaList/' + $('#State').val(), function (data) {
+
+                    var items = '<option>Choose LGA</option>';
+                    $.each(jQuery.map(data, function (i, local) {
+                        items += "<option value='" + i.value + "'>" + i.text + "</option>";
+
+                    }));
+
+                    $('#LGA').html(items);
+                });
+            });
+        });
+
+    </script>
+}

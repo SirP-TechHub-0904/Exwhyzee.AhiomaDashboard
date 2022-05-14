@@ -1,0 +1,84 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Areas.Admin.Pages.VehicleLogistic.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LogisticVehicle[0].VehicleName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LogisticVehicle[0].VehiclePlateNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LogisticVehicle[0].VehiclePhoneNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LogisticVehicle[0].VehicleSize)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LogisticVehicle[0].VehicleType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LogisticVehicle[0].State)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LogisticVehicle[0].LGA)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LogisticVehicle[0].LeastAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LogisticVehicle[0].LogisticProfile)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.LogisticVehicle) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.VehicleName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VehiclePlateNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VehiclePhoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VehicleSize)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VehicleType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.State)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LGA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LeastAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LogisticProfile.Id)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

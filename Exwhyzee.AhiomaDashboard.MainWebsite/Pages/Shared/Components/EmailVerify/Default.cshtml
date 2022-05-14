@@ -1,0 +1,29 @@
+﻿@if (TempData["UserVerify"] != null)
+{
+    <div class="alert alert-warning">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        Kindly Comfirm your account in the email sent to you so you can enjoy all the features
+
+        <a asp-page="/Account/Manage/Email" asp-area="Identity">Click to Resend Confirmation Mail</a>
+    </div>
+}
+
+@if (User.Identity.IsAuthenticated && User.IsInRole("SOA"))
+{
+    if (ViewBag.User == true && ViewBag.UserActivated == Exwhyzee.Enums.AccountStatus.Pending)
+    {
+@*<div class="alert alert-warning">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    Your Account is being Processed.
+
+</div>*@
+    }
+    else if (ViewBag.UserActivated != Exwhyzee.Enums.AccountStatus.Active)
+    {
+<div class="alert alert-warning">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    Your Account is @ViewBag.UserActivated
+
+</div>
+    }
+}

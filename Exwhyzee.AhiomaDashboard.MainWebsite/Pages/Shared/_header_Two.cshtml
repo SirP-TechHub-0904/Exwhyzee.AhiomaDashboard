@@ -1,0 +1,223 @@
+﻿
+<div class="hidden-sm hidden-xs">
+    <header class="header logo-content--left is-open">
+
+        <div class="header-m-container hidden-sm hidden-xs">
+
+            <div class="mheader-top hidden-sm hidden-xs" data-sticky-mheader="">
+                <div class="container">
+                    <div class="row align-items-center">
+
+                        <div class="col-3 logo-container hidden-sm hidden-xs">
+                            <a asp-page="/Index" class="header-logo">
+                                <div class="header-logo-image-container" id="logomain">
+                                    <img class="header-logo-image" src="~/images/ahioma_logo.png" alt="ahioma" title="ahioma">
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-12 search-info-content hidden-sm hidden-xs" aria-hidden="true" tabindex="-1" data-prevent-quick-search-close="">
+
+                            <form class="sb-searchpro" method="get" asp-page="/Search" asp-route-hdsearcw="asd23A-jnbsbdd-Nhauy" asp-route-catidlogger="hjdjfgbjhfbyewueureuweryweiuywurjhsdjbsjcfdshjsjchbcjbsdkvjbk">
+                                <fieldset class="form-fieldset">
+                                    <div class="input-group">
+
+                                        <input class="form-control form-input" id="search_text" value="@TempData["search"]" name="searchString" placeholder="Kindly search for your product, shops and markets" autocomplete="off">
+                                        <input hidden name="catidlogger" value="MHHkkqndfmvnHGJHhgj2020-00-20MASTECH-ahioma-query-securjhh" />
+                                        <input hidden name="hdsearcw" value="12387875ghxGFX762HXJ768E6WE" />
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-secondary" type="submit"><i class="fa fa-search"></i></button>
+                                        </div>
+                                    </div>
+
+                                </fieldset>
+                            </form>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <style>
+
+                .icon-main .badge:before {
+                    position: absolute;
+                    width: 20px;
+                    height: 20px;
+                    margin-left: -20px;
+                }
+            </style>
+            @*<div class="mheader-bottom ">
+                    <div class="container">
+                        <div class="row">
+
+                            @{
+                                string user = User.Identity.Name;
+                                string wuser = User.Identity.Name;
+                            }
+                            @await Component.InvokeAsync("CartCountMobile", new { name = user })
+
+                            <nav class="bar bar-tab">
+                                <div class="bar-tab__item">
+                                    <a class="cart-button cart-button--primary" asp-page="/" asp-route-customerRef="">
+
+                                        <img src="~/images/new-icon/homex.png" />
+                                    </a>
+                                </div>
+                                <div class="bar-tab__item">
+                                    <a class="cart-button cart-button--primary" asp-page="/Soa" asp-route-customerRef="">
+
+                                        <img src="~/images/new-icon/soa.png" />
+                                    </a>
+                                </div>
+                                <div class="bar-tab__item">
+                                    <a class="cart-button cart-button--primary" asp-page="/shop" asp-route-customerRef="">
+
+                                        <img src="~/images/new-icon/icon-1.png" />
+                                    </a>
+                                </div>
+                                <div class="bar-tab__item item-cart" data-transition="slide-in">
+
+                                    <a class="cart-button cart-button--primary" data-cart-preview="" data-dropdown="cart-preview-dropdown" data-options="align:left" asp-page="/Account/MyCart" asp-area="User" aria-expanded="false">
+
+                                        <img src="~/images/new-icon/cartn.png" />
+                                    </a>
+
+
+                                </div>
+
+                                <partial name="_LoginMobile" />
+
+                            </nav>
+                        </div>
+                    </div>
+                </div>*@
+        </div>
+        <div class="header-top hidden-sm hidden-xs">
+            <div class="container">
+                <div class="header-top-inner">
+                    <div class="row">
+                        <div class="col-lg-6 col-sm-12 d-none d-lg-block">
+                            <div class="module sb-promotion sb-promotion--promotion ">
+                                <div class="block-content clearfix">
+                                    <div class="sb-promotion--carousel slick-initialized slick-slider slick-vertical" data-slick="{
+				&quot;dots&quot;: false,
+				&quot;arrows&quot;: false,
+				&quot;mobileFirst&quot;: true,
+				&quot;slidesToShow&quot;: 1,
+				&quot;slidesToScroll&quot;: 1,
+				&quot;vertical&quot;: true,
+				&quot;verticalSwiping&quot;: true,
+				&quot;autoplay&quot;: true,
+				&quot;autoplaySpeed&quot;: 5000
+			}">
+
+                                        <div class="slick-list draggable hidden-sm hidden-xs" style="height: 25px;">
+                                            <div class="slick-track" style="opacity: 1; height: 175px; transform: translate3d(0px, -75px, 0px);">
+                                                <div class="sb-brand--item slick-slide slick-cloned" data-slick-index="-1" aria-hidden="true" tabindex="-1" style="width: 570px;">
+                                                    <a href="#" tabindex="0"><strong>Your </strong> Virtual Market</a>
+                                                </div>
+                                                <div class="sb-brand--item slick-slide" data-slick-index="0" aria-hidden="true" tabindex="-1" style="width: 570px;">
+                                                    <a href="#" tabindex="0"><strong>Your </strong> Virtual Market</a>
+                                                </div>
+                                                <div class="sb-brand--item slick-slide" data-slick-index="1" aria-hidden="true" tabindex="-1" style="width: 570px;">
+                                                    <a href="#" tabindex="0"><strong>Your </strong> Virtual Market</a>
+                                                </div>
+                                                <div class="sb-brand--item slick-slide slick-current slick-active" data-slick-index="2" aria-hidden="false" tabindex="0" style="width: 570px;">
+                                                    <a href="#" tabindex="0"><strong>Your </strong> Virtual Market</a>
+                                                </div>
+
+                                                <div class="sb-brand--item slick-slide slick-cloned" data-slick-index="3" aria-hidden="true" tabindex="-1" style="width: 570px;">
+                                                    <a href="#" tabindex="0"><strong>Your </strong> Virtual Market</a>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-12 text-right hidden-sm hidden-xs">
+
+                            <nav class="navUser">
+
+                                <ul class="navUser-section">
+
+                                    <li class="navUser-item d-none d-sm-block">
+                                        <a class="navUser-action" asp-page="/Soa" asp-route-customerRef=""><i class="fa fa-user"></i> Become an SOA</a>
+                                    </li>
+                                    <li class="navUser-item d-none d-sm-block">
+                                        <a class="navUser-action" asp-page="/Newshop" asp-route-customerRef=""><i class="fa fa-app-store"></i> Create Shop</a>
+                                    </li>
+                                    <li class="navUser-item d-none d-sm-block">
+                                        <a class="navUser-action" asp-page="/FAQs" asp-route-customerRef=""><i class="fa fa-question"></i> FAQs</a>
+                                    </li>
+
+                                    @*<li class="navUser-item">
+                                            <a class="navUser-action has-dropdown" asp-page="/Info/Webpage" asp-route-customerRef="" asp-route-opexyz="customerservice" data-dropdown="accountSelection1" aria-controls="accountSelection1" aria-expanded="false">
+                                                <i class="fa fa-info"></i> Help
+                                                <i class="icon" aria-hidden="true"><svg><use xlink:href="#icon-chevron-down"></use></svg></i>
+                                            </a>
+                                            <ul class="dropdown-menu" id="accountSelection1" data-dropdown-content="" aria-hidden="true" tabindex="-1">
+                                                <li class="dropdown-menu-item"><a asp-page="/Info/Webpage" asp-route-customerRef="" asp-route-opexyz="customerservice">Customer Service</a></li>
+                                                <li class="dropdown-menu-item"> <a asp-page="/Info/Webpage" asp-route-customerRef="" asp-route-opexyz="reportabuse">Report Abuse or scam</a></li>
+                                                <li class="dropdown-menu-item">  <a asp-page="/Contact" asp-route-customerRef="">Contact Us</a></li>
+
+
+                                            </ul>
+                                        </li>*@
+
+
+                                    <partial name="_AccountDropdownHome" />
+                                </ul>
+
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="header-center hidden-sm hidden-xs" data-sticky-header="" style="padding:0 0 !important;">
+            <div class="container ">
+                <div class="row justify-content-between">
+                    <div class="col-lg-3 col-md-3 col-8 logo-container">
+                        <a asp-page="/Index" class="header-logo">
+                            <div class="header-logo-image-container">
+                                <img class="header-logo-image" src="~/images/ahioma_logo.png" alt="Ahioma" title="Ahioma">
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="col-lg-3 col-md-7 navbar-container hidden-sm hidden-xs">
+                        <div class="navbar-phone d-none d-sm-block">
+                            <img class="icon-headset_mic" width="40" height="40" src="~/phone.png">
+                            <div class="navbar-phone__inner" style="font-weight:900;">
+                                <strong>Call us now : </strong> <span class="phone">07060530000</span>
+                                <br>  <span> Email :  </span>
+                                <a href="mailto:contact@ahioma.com"> contact@ahioma.com</a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <!--category dropdown-->
+        <partial name="_Cat_withdropdown" />
+
+    </header>
+
+
+
+</div>

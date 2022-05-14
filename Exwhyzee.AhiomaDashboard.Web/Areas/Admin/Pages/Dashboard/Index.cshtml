@@ -1,0 +1,139 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.Admin.Pages.Dashboard.IndexModel
+@{ }
+
+
+@await Component.InvokeAsync("EmailVerify", new { uid = "" })
+@await Component.InvokeAsync("PhoneVerify", new { uid = "" })
+
+
+<style>
+    .text-muted {
+        color: #bdcee6 !important;
+    }
+
+    .mb-4, .my-4 {
+        margin-bottom: 1.5rem !important;
+        color: #ff5c00;
+    }
+
+    .bb {
+        font-size: 1rem;
+    }
+
+    @@media (min-width: 576px) {
+        .bb {
+            font-size: 1.25rem;
+        }
+    }
+
+    @@media (min-width: 768px) {
+        .bb {
+            font-size: 1.5rem;
+        }
+    }
+
+    @@media (min-width: 992px) {
+        .bb {
+            font-size: 1.75rem;
+        }
+    }
+
+    @@media (min-width: 1200px) {
+        .bb {
+            font-size: 2rem;
+        }
+    }
+
+    .bb {
+        font-size: 1.4rem;
+    }
+
+    @@media (min-width: 576px) {
+        .bb {
+            font-size: 1.25rem;
+        }
+    }
+
+    @@media (min-width: 768px) {
+        .tt {
+            font-size: 1.7rem;
+        }
+    }
+
+    @@media (min-width: 992px) {
+        .tt {
+            font-size: 1.79rem;
+        }
+    }
+
+    @@media (min-width: 1200px) {
+        .tt {
+            font-size: 2.4rem;
+        }
+    }
+</style>
+<div class="row">
+
+    <div class="col-xl-12">
+        <div class="card" style="background-color:#222736;">
+            <div class="card-body" style="position: relative;">
+                <h4 class="card-title mb-4 float-sm-left">My Dashboard</h4>
+
+                <div class="clearfix"></div>
+                <label id="lblGreetings" class="tt"></label><br />
+                <label class="bb">Together we can make Ahioma Better.</label><br />
+                <a asp-page="./Main" class="btn btn-success">Go to Dashboard</a>
+            </div>
+        </div>
+        <input type="hidden" value="@TempData["name"]" id="nmm" />
+        <script>
+            var myDate = new Date();
+            var hrs = myDate.getHours();
+
+            var ioi = document.getElementById('nmm').value;
+            console.log(ioi)
+            var greet;
+
+            if (hrs < 12)
+                greet = 'Good Morning!';
+            else if (hrs >= 12 && hrs <= 17)
+                greet = 'Good Afternoon!';
+            else if (hrs >= 17 && hrs <= 24)
+                greet = 'Good Evening!';
+
+            document.getElementById('lblGreetings').innerHTML =
+                '<b>' + greet + " " + ioi + '</b> ';</script>
+    </div>
+</div><div class="row">
+
+    <div class="col-xl-12">
+        <div class="card" style="background-color:#222736;">
+            <div class="card-body" style="position: relative;">
+                <h4 class="card-title mb-4 float-sm-left">My Dashboard</h4>
+
+                <div class="clearfix"></div>
+                <label id="lblGreetings" class="tt"></label><br />
+                <label class="bb">Together we can make Ahioma Better.</label><br />
+                <a asp-page="./Main" class="btn btn-success">Go to Dashboard</a>
+            </div>
+        </div>
+
+        <input value="@TempData["name"]" id="nm" hidden="hidden" />
+        <script>var myDate = new Date();
+            var hrs = myDate.getHours();
+
+            var ioi = document.getElementById('nm').Value;
+            var greet;
+
+            if (hrs < 12)
+                greet = 'Good Morning';
+            else if (hrs >= 12 && hrs <= 17)
+                greet = 'Good Afternoon';
+            else if (hrs >= 17 && hrs <= 24)
+                greet = 'Good Evening';
+
+            document.getElementById('lblGreetings').innerHTML =
+                '<b>' + greet + ioi+'</b> ';</script>
+    </div>
+</div>

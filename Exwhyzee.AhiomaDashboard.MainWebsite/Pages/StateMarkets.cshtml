@@ -1,0 +1,128 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Pages.StateMarketsModel
+@{
+}
+@{
+    ViewData["Title"] = "Markets";
+    Layout = "/Pages/Shared/_WebLayout.cshtml";
+}
+<style>
+    @@media (min-width: 1200px) {
+        .products-list .col-md-2 .product-item-container .left-block {
+            height: auto;
+        }
+    }
+
+    .products-list .col-md-2 .product-item-container {
+        height: 130px;
+    }
+</style>
+<partial name="_header_One" />
+<div class="main-body clearfix sidebar--left">
+    <div class="">
+        <h3 class="" style="padding:5px 0 2px;color:#ff6a00;margin:6px auto 0px;text-align:center;"><a>@TempData["mkt"]</a> </h3>
+
+
+    </div>
+    <div class="container">
+
+
+        <div class="sb-breadcrumbs breadcrumb-bg hidden-sm hidden-xs">
+            <ul class="breadcrumb ">
+                <li class="breadcrumb-item ">
+                    <i class="fa fa-home"></i>
+                    <a href="/" class="breadcrumb-label">Home</a>
+                </li>
+
+                <li class="breadcrumb-item ">
+                    <a href="#" class="breadcrumb-label">Market</a>
+                </li>
+                <li class="breadcrumb-item ">
+                    <a href="#" class="breadcrumb-label">@TempData["mkt"]</a>
+                </li>
+
+            </ul>
+
+        </div>
+
+        <div class="row page">
+
+            <main class="col-lg-12 col-md-12 page-content" id="product-listing-container">
+
+                <div class="">
+                    <img src="~/Main_CB.jpg" style="width:100%;height:auto;" />
+                </div>
+
+            </main>
+        </div>
+
+    </div>
+    <div class="module clearfix ">
+
+
+        <div id="" class="sb-listing-tabs container">
+
+            <div class="ltabs-container d-flex">
+
+                <div class="ltabs-items-container ltabs-items-container--image">
+
+                    <section>
+                        <div class="productsByCategoryTabs-products--carousel ">
+                            <section class="productCarousel products-list">
+
+                                <div class="">
+                                    <div class="" id="products">
+
+                                        @foreach (var data in Model.Markets)
+                                        {
+
+                                            <div class="productCarousel-slide product-layout col-md-2 col-sm-6 col-xs-6">
+                                                <article class="product-item-container ">
+                                                    <div class="left-block d-flex align-items-center justify-content-center">
+
+                                                        @{
+                                                            var df = "ddddddf";
+                                                        }
+                                                        <a asp-page="./Market" class="product-item-photo" tabindex="0">
+
+                                                            <img class="img-responsive lazyautosizes lazyloaded" data-sizes="auto" src="~/B.png" alt="" title="" sizes="50px">
+
+
+
+                                                        </a>
+
+                                                    </div>
+
+
+                                                    <div class="right-block">
+
+                                                        <h4 class="card-title" style="padding-bottom:0px;margin-bottom:3px;">
+                                                            <a asp-page="./MarketDetails" asp-route-id="@data.Id" asp-route-name="@data.Name.Replace(" ", "-")" asp-route-mktstate="@data.State.Replace(" ", "-")" asp-route-mktaddress="@data.Address.Replace(" ", "-")" tabindex="0" title="@data.Name">
+                                                                @data.Name
+                                                            </a>
+                                                        </h4>
+
+                                                    </div>
+                                                </article>
+
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+
+                    </section>
+                </div>
+
+
+            </div>
+        </div>
+
+
+
+
+    </div>
+</div>
+
+

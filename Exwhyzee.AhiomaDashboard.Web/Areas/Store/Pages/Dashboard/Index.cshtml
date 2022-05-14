@@ -1,0 +1,489 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.Store.Pages.Dashboard.IndexModel
+@{
+}
+
+
+@await Component.InvokeAsync("EmailVerify", new { uid = Model.UserId })
+@await Component.InvokeAsync("PhoneVerify", new { uid = Model.UserId })
+
+<style>
+    .text-muted {
+        color: #bfc8e2 !important;
+        font-size: 10px;
+    }
+</style>
+<div class="row">
+    <div class="col-xl-4">
+        <div class="card overflow-hidden">
+            <div class="bg-soft-primary">
+                <div class="row">
+                    <div class="col-7">
+                        <div class="text-primary p-3">
+                            <h5 class="text-primary">Products</h5>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="card-body pt-0">
+                <div class="row">
+
+
+                    <div class="col-sm-12">
+                        <div class="pt-4">
+
+                            <div class="row">
+                                <div class="col-4">
+                                    <h5 class="font-size-15">@Model.AllProducts</h5>
+                                    <p class="text-muted mb-0">All Product</p>
+                                </div>
+                                <div class="col-4">
+                                    <h5 class="font-size-15">@Model.ProductWithOutPrice</h5>
+                                    <p class="text-muted mb-0">No Price</p>
+                                </div>
+                                <div class="col-4">
+                                    <h5 class="font-size-15">@Model.ProductWithSmallQuantity</h5>
+                                    <p class="text-muted mb-0">Qty Below 5</p>
+                                </div>
+                               
+                            </div>
+                            <div class="mt-4">
+                                <a class="btn btn-primary waves-effect waves-light btn-sm">View More <i class="fa fa-arrow-right ml-1"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-xl-4">
+        <div class="card overflow-hidden">
+            <div class="bg-soft-primary">
+                <div class="row">
+                    <div class="col-7">
+                        <div class="text-primary p-3">
+                            <h5 class="text-primary">Shop Order</h5>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="card-body pt-0">
+                <div class="row">
+
+
+                    <div class="col-sm-12">
+                        <div class="pt-4">
+
+                            <div class="row">
+                                <div class="col-3">
+                                    <h5 class="font-size-15">@Model.TotalProductsProcessing</h5>
+                                    <p class="text-muted mb-0">Processing</p>
+                                </div>
+                                <div class="col-3">
+                                    <h5 class="font-size-15">@Model.TotalProductsReversed</h5>
+                                    <p class="text-muted mb-0">Reversed</p>
+                                </div>
+                                <div class="col-3">
+                                    <h5 class="font-size-15">@Model.TotalProductsSold</h5>
+                                    <p class="text-muted mb-0">Completed</p>
+                                </div>
+                                <div class="col-3">
+                                    <h5 class="font-size-15">@Model.TotalProductsCanceled</h5>
+                                    <p class="text-muted mb-0">Canceled</p>
+                                </div>
+
+                            </div>
+                            <div class="mt-4">
+                                <a class="btn btn-primary waves-effect waves-light btn-sm">View More <i class="fa fa-arrow-right ml-1"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="col-xl-4">
+        <div class="card overflow-hidden">
+            <div class="bg-soft-primary">
+                <div class="row">
+                    <div class="col-7">
+                        <div class="text-primary p-3">
+                            <h5 class="text-primary">Sales</h5>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="card-body pt-0">
+                <div class="row">
+
+
+                    <div class="col-sm-12">
+                        <div class="pt-4">
+
+                            <div class="row">
+                                <div class="col-6">
+                                    <h5 class="font-size-15">&#8358;@Model.MyEarnings</h5>
+                                    <p class="text-muted mb-0">Total Sales</p>
+                                </div>
+                                <div class="col-6">
+                                    <h5 class="font-size-15">XX</h5>
+                                    <p class="text-muted mb-0">Highest Sold Product</p>
+                                </div>
+
+                            </div>
+                            <div class="mt-4">
+                                <a class="btn btn-primary waves-effect waves-light btn-sm">View More <i class="fa fa-arrow-right ml-1"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-4">
+        <div class="card overflow-hidden">
+            <div class="bg-soft-primary">
+                <div class="row">
+                    <div class="col-7">
+                        <div class="text-primary p-3">
+                            <h5 class="text-primary">Wallet</h5>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="card-body pt-0">
+                <div class="row">
+
+
+                    <div class="col-sm-12">
+                        <div class="pt-4">
+
+                            <div class="row">
+                                <div class="col-6">
+                                    <h5 class="font-size-15">&#8358;@Model.Ledger</h5>
+                                    <p class="text-muted mb-0">Ledger Balance</p>
+                                </div>
+                                <div class="col-6">
+                                    <h5 class="font-size-15">&#8358;@Model.Available</h5>
+                                    <p class="text-muted mb-0">Available Balance</p>
+                                </div>
+
+                            </div>
+                            <div class="mt-4">
+                                <a class="btn btn-primary waves-effect waves-light btn-sm">View More <i class="fa fa-arrow-right ml-1"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-xl-4">
+        <div class="card overflow-hidden">
+            <div class="bg-soft-primary">
+                <div class="row">
+                    <div class="col-7">
+                        <div class="text-primary p-3">
+                            <h5 class="text-primary">My Order</h5>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="card-body pt-0">
+                <div class="row">
+
+
+                    <div class="col-sm-12">
+                        <div class="pt-4">
+
+                            <div class="row">
+                                <div class="col-3">
+                                    <h5 class="font-size-15">@Model.MyProcessing</h5>
+                                    <p class="text-muted mb-0">Processing</p>
+                                </div>
+                                <div class="col-3">
+                                    <h5 class="font-size-15">@Model.MyReversed</h5>
+                                    <p class="text-muted mb-0">Reversed</p>
+                                </div>
+                                <div class="col-3">
+                                    <h5 class="font-size-15">@Model.TotalOrderCompleted</h5>
+                                    <p class="text-muted mb-0">Completed</p>
+                                </div>
+                                <div class="col-3">
+                                    <h5 class="font-size-15">@Model.MyCanceled</h5>
+                                    <p class="text-muted mb-0">Canceled</p>
+                                </div>
+
+                            </div>
+                            <div class="mt-4">
+                                <a class="btn btn-primary waves-effect waves-light btn-sm">View More <i class="fa fa-arrow-right ml-1"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-xl-4">
+        <div class="card overflow-hidden">
+            <div class="bg-soft-primary">
+                <div class="row">
+                    <div class="col-7">
+                        <div class="text-primary p-3">
+                            <h5 class="text-primary">My SOA (Shop Onwer Assistant</h5>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="card-body pt-0">
+                <div class="row">
+
+
+                    <div class="col-sm-12">
+                        <div class="pt-4">
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <h5 class="font-size-15">Name: @Model.MySOA.Fullname</h5>
+                                    <h5 class="font-size-15">ID Number: @Model.MySOA.IdNumber</h5>
+                                    <h5 class="font-size-15">Phone: @Model.MySOA.User.PhoneNumber</h5>
+                                </div>
+                              
+
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<!-- end row -->
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title mb-4">Latest 10 Transaction</h4>
+                <div class="table-responsive">
+                    <table class="table table-centered table-nowrap mb-0">
+                        <thead class="thead-light">
+                            <tr>
+
+                                <th>Id</th>
+                                <th>Payment Status</th>
+                                <th>Date</th>
+                                <th>Description</th>
+                                <th>Amount(Naira)</th>
+
+                                <th>Payment Method</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var i in Model.Transactions)
+                            {
+                                <tr>
+                                    <td>@i.Id</td>
+                                    <td> @Html.DisplayFor(modelItem => i.TransactionSection)</td>
+                                    <td>@i.DateOfTransaction</td>
+                                    <td> @Html.DisplayFor(modelItem => i.Description)</td>
+                                    <td> @Html.DisplayFor(modelItem => i.Amount)</td>
+                                    <td> @Html.DisplayFor(modelItem => i.Status)</td>
+
+
+                                </tr>
+
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <!-- end table-responsive -->
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title mb-4">Latest Shop 10 Order</h4>
+                <div class="table-responsive">
+                    <table class="table table-centered table-nowrap mb-0">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Date</th>
+                                <th>Order ID</th>
+
+                                <th>Customer</th>
+                                <th>
+                                    Items
+                                </th>
+                                <th>
+                                    Amount
+                                </th>
+                                <th>
+                                    Paid
+                                </th>
+
+
+                                <th>
+                                    Status
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.OrderItems)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DateOfOrder)
+                                    </td>
+
+                                    <td>
+                                        <a asp-page="/Transactions/OrderDetails" asp-area="ManageTransaction" asp-route-id="@item.Id">
+                                            @Html.DisplayFor(modelItem => item.OrderId)
+                                        </a>
+                                    </td>
+
+                                    <td>
+
+                                        @Html.DisplayFor(modelItem => item.UserProfile.Fullname)<br />
+                                        @Html.DisplayFor(modelItem => item.UserProfile.IdNumber)
+
+                                    </td>
+
+                                    <td>
+
+                                        @item.OrderItems.Count()
+
+                                    </td>
+                                    <td>
+
+                                        @Html.DisplayFor(modelItem => item.OrderAmount)
+
+                                    </td>
+                                    <td>
+
+                                        @Html.DisplayFor(modelItem => item.AmountPaid)
+
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Status)
+                                    </td>
+                                </tr>
+
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <!-- end table-responsive -->
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title mb-4">My Top 10 Orders</h4>
+                <div class="table-responsive">
+                    <table class="table table-centered table-nowrap mb-0">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Date</th>
+                                <th>Order ID</th>
+
+                                <th>Customer</th>
+                                <th>
+                                    Items
+                                </th>
+                                <th>
+                                    Amount
+                                </th>
+                                <th>
+                                    Paid
+                                </th>
+
+                                <th>
+                                    Status
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.OrderItemsUser)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.DateOfOrder)
+                                    </td>
+
+                                    <td>
+                                        <a asp-page="/Transactions/OrderDetails" asp-area="ManageTransaction" asp-route-id="@item.Id">
+                                            @Html.DisplayFor(modelItem => item.OrderId)
+                                        </a>
+                                    </td>
+
+                                    <td>
+
+                                        @Html.DisplayFor(modelItem => item.UserProfile.Fullname)<br />
+                                        @Html.DisplayFor(modelItem => item.UserProfile.IdNumber)
+
+                                    </td>
+
+                                    <td>
+
+                                        @item.OrderItems.Count()
+
+                                    </td>
+                                    <td>
+
+                                        @Html.DisplayFor(modelItem => item.OrderAmount)
+
+                                    </td>
+                                    <td>
+
+                                        @Html.DisplayFor(modelItem => item.AmountPaid)
+
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Status)
+                                    </td>
+                                </tr>
+
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <!-- end table-responsive -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end row -->

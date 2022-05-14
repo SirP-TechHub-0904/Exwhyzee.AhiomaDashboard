@@ -1,0 +1,174 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.SOA.Pages.Orders.AllOrdersModel
+@{
+}
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+
+                <h3 class="card-title">
+                    All Orders
+
+                </h3>
+
+            </div>
+            <div class="card-header">
+                <div class="btn-group pull-right" style="width:100%;">
+                    <a asp-page="./Orders" class="btn" style="background-color:#278526 !important;color:#FFF !important;float:right;border-radius:0px;vertical-align:middle !important;border:1px solid #FFF;">Awaiting Confirmation (@Model.AwaitingOrders)</a>
+                    <a asp-page="./ReversedOrders" class="btn" style="background-color:#278526 !important;color:#FFF !important;float:right;border-radius:0px;vertical-align:middle !important;border:1px solid #FFF;">Reversed Order (@Model.Reversed)</a>
+                    <a asp-page="./CompletedOrders" class="btn" style="background-color:#278526 !important;color:#FFF !important;float:right;border-radius:0px;vertical-align:middle !important;border:1px solid #FFF;">Completed Order (@Model.CompletedOrders)</a>
+                    <a asp-page="./CancleOrders" class="btn" style="background-color:#278526 !important;color:#FFF !important;float:right;border-radius:0px;vertical-align:middle !important;border:1px solid #FFF;">Cancle Order (@Model.CancelOrders)</a>
+                    <a asp-page="./AllOrders" class="btn" style="background-color:#278526 !important;color:#FFF !important;float:right;border-radius:0px;vertical-align:middle !important;border:1px solid #FFF;">All Order (@Model.AllOrders)</a>
+                </div>
+
+            </div>
+            <div class="card-body table-responsive">
+
+                <form asp-page="./Orders" method="get">
+                    <div class="form-actions no-color">
+                        <div class="row">
+                            <div class="col-md-12">Find by name, date, price:</div>
+                            <div class="col-md-3"><input type="text" name="SearchString" class="form-control" value="@Model.CurrentFilter" /></div>
+                            <div class="col-md-3"><input type="submit" value="Search" class="btn btn-primary" /></div>
+
+                            <div class="col-md-5">
+
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+                @{
+                    int? p = 0;
+                    if (Model.CurrentPage == null)
+                    {
+                        p = 1;
+                    }
+                    else
+                    {
+                        p = Model.CurrentPage;
+                    }
+                }
+                page @p of @Model.TotalPages pages (@Model.Count items)
+
+                <div id="datatable_wrapper" class="dataTables_wrapper table-responsive dt-bootstrap4 no-footer">
+                    <div class="row">
+                        <div class="col-md-12 table-responsive">
+                            <table id="datatable7" class="table table-bordered dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
+
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            S/N
+                                        </th>
+                                        <th>Date</th>
+                                        <th>Order ID</th>
+
+                                        <th>Customer</th>
+                                        <th>
+                                            Items
+                                        </th>
+                                        <th>
+                                            Amount
+                                        </th>
+                                        <th>
+                                            Paid
+                                        </th>
+                                        <th>
+                                            Logistic Amount
+                                        </th>
+
+                                        <th>
+                                            Status
+                                        </th>
+
+                                    </tr>
+                                </thead>
+                                @{
+                                    int sno = 0;
+                                }
+                                <tbody>
+                                    @foreach (var item in Model.OrderItem)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @{ sno++; }
+                                                @sno
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.DateOfOrder)
+                                            </td>
+
+                                            <td>
+                                                <a asp-page="./OrderDetails" asp-route-id="@item.Id">
+                                                    @Html.DisplayFor(modelItem => item.OrderId)
+                                                </a>
+                                            </td>
+
+                                            <td>
+
+                                                @Html.DisplayFor(modelItem => item.UserProfile.Fullname)<br />
+                                                @Html.DisplayFor(modelItem => item.UserProfile.IdNumber)
+
+                                            </td>
+
+                                            <td>
+
+                                                @item.OrderItems.Count()
+
+                                            </td>
+                                            <td>
+
+                                                @Html.DisplayFor(modelItem => item.OrderAmount)
+
+                                            </td>
+                                            <td>
+
+                                                @Html.DisplayFor(modelItem => item.AmountPaid)
+
+                                            </td>
+                                            <td>
+                                                @item.LogisticAmount
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Status)
+                                            </td>
+
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+
+                page @p of @Model.TotalPages pages (@Model.Count items)
+                @{
+                    var prevDisabled = !Model.OrderItem.HasPreviousPage ? "disabled" : "";
+                    var nextDisabled = !Model.OrderItem.HasNextPage ? "disabled" : "";
+                }
+
+                <a asp-page="./Orders"
+                   asp-route-sortOrder="@Model.CurrentSort"
+                   asp-route-pageIndex="@(Model.OrderItem.PageIndex - 1)"
+                   asp-route-id="@Model.OId"
+                   asp-route-currentFilter="@Model.CurrentFilter"
+                   class="btn btn-primary @prevDisabled">
+                    Previous
+                </a>
+                <a asp-page="./Index"
+                   asp-route-sortOrder="@Model.CurrentSort"
+                   asp-route-pageIndex="@(Model.OrderItem.PageIndex + 1)"
+                   asp-route-id="@Model.OId"
+                   asp-route-currentFilter="@Model.CurrentFilter"
+                   class="btn btn-primary @nextDisabled">
+                    Next
+                </a>
+
+            </div>
+        </div>
+    </div>
+</div>

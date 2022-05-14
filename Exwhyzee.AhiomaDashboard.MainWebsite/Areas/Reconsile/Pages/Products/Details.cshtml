@@ -1,0 +1,392 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Areas.Reconsile.Pages.Products.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+
+                <h3 class="card-title">
+                    Product Details
+                </h3>
+
+            </div>
+            <div class="card-body table-responsive">
+
+                <div>
+
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.Name)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.Name)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.ProductCode)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.ProductCode)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.Status)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.Status)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.ReOrderLevel)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.ReOrderLevel)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.SendNotification)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.SendNotification)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.Category)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.Category.Id)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.Manufacturer)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.Manufacturer.Id)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.SubCategory)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.SubCategory.Id)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.VisibleIndividually)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.VisibleIndividually)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.Tenant)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.Tenant.Id)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.ShortDescription)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.ShortDescription)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.FullDescription)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.FullDescription)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.AdminComment)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.AdminComment)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.ShowOnHomePage)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.ShowOnHomePage)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.MetaKeywords)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.MetaKeywords)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.MetaDescription)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.MetaDescription)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.MetaTitle)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.MetaTitle)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.AllowCustomerReviews)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.AllowCustomerReviews)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.ApprovedRatingSum)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.ApprovedRatingSum)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.NotApprovedRatingSum)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.NotApprovedRatingSum)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.ApprovedTotalReviews)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.ApprovedTotalReviews)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.NotApprovedTotalReviews)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.NotApprovedTotalReviews)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.ManufacturerPartNumber)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.ManufacturerPartNumber)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.RequireOtherProducts)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.RequireOtherProducts)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.RequiredProductIds)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.RequiredProductIds)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.AutomaticallyAddRequiredProducts)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.AutomaticallyAddRequiredProducts)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.HasUserAgreement)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.HasUserAgreement)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.UserAgreementText)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.UserAgreementText)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.NotifyAdminForQuantityBelow)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.NotifyAdminForQuantityBelow)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.DisableBuyButton)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.DisableBuyButton)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.CallForPrice)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.CallForPrice)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.Price)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.Price)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.OldPrice)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.OldPrice)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.ProductCost)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.ProductCost)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.MarkAsNew)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.MarkAsNew)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.MarkAsNewStartDateTimeUtc)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.MarkAsNewStartDateTimeUtc)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.MarkAsNewEndDateTimeUtc)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.MarkAsNewEndDateTimeUtc)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.Weight)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.Weight)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.Length)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.Length)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.Width)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.Width)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.Height)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.Height)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.AvailableStartDateTimeUtc)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.AvailableStartDateTimeUtc)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.AvailableEndDateTimeUtc)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.AvailableEndDateTimeUtc)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.DisplayOrder)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.DisplayOrder)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.DisplayOrderCategory)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.DisplayOrderCategory)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.DisplayOrderManufacturer)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.DisplayOrderManufacturer)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.Published)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.Published)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.CreatedOnUtc)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.CreatedOnUtc)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.UpdatedOnUtc)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.UpdatedOnUtc)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.Sold)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.Sold)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.Viewed)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.Viewed)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.OnSale)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.OnSale)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.Flag)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.Flag)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.Quantity)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.Quantity)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.UseColor)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.UseColor)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.ProductColorId)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.ProductColorId)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.UseSize)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.UseSize)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.ProductSizeId)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.ProductSizeId)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.Commision)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.Commision)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Product.Logproduct)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Product.Logproduct)
+                        </dd>
+                    </dl>
+                </div>
+                <div>
+                    <a asp-page="./Edit" asp-route-id="@Model.Product.Id">Edit</a> |
+                    <a asp-page="./Index">Back to List</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,220 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Pages.ProductInfoModel
+@{
+}
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "/Pages/Shared/_AdminLayout.cshtml";
+
+}
+
+<div class="row">
+
+
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+
+                <h3 class="card-title">
+                     Product Information
+
+
+                </h3>
+            </div>
+            <div class="card-body">
+                @if (TempData["error"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissible">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>@TempData["error"]</strong>
+                    </div>
+                }
+                @if (TempData["success"] != null)
+                {
+                    <div class="alert alert-success alert-dismissible">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>@TempData["success"]</strong>
+                    </div>
+                }
+
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                            <a class="nav-link active" id="v-Dashboard-tab" data-toggle="pill" href="#v-Dashboard" role="tab" aria-controls="v-Dashboard" aria-selected="false">General</a>
+                            <a class="nav-link mb-2" id="v-Pictures-tab" data-toggle="pill" href="#v-Pictures" role="tab" aria-controls="v-Pictures" aria-selected="false">Pictures</a>
+                            <a class="nav-link mb-2" id="v-MetaTags-tab" data-toggle="pill" href="#v-MetaTags" role="tab" aria-controls="v-MetaTags" aria-selected="false">SEO</a>
+
+
+                        </div>
+                    </div>
+                    <div class="col-md-10">
+                        <form method="post" enctype="multipart/form-data">
+
+
+                            <input disabled="disabled" hidden asp-for="Product.TenantId" />
+                            <input disabled="disabled" hidden asp-for="Product.Id" value="@Model.ProductId" />
+                            <input disabled="disabled" hidden name="id" value="@Model.ProductId" />
+                            <input disabled="disabled" hidden asp-for="Product.CreatedOnUtc" />
+                            <input disabled="disabled" hidden asp-for="Product.UpdatedOnUtc" />
+                            <input disabled="disabled" hidden asp-for="Product.SubCategoryId" />
+                            <input disabled="disabled" hidden asp-for="Product.Commision" />
+                            <input disabled="disabled" hidden asp-for="Product.ShowOnHomePage" />
+                            <input disabled="disabled" hidden asp-for="Product.ThirdPartyUserId" />
+                            <div class="tab-content text-muted mt-4 mt-md-0" id="v-pills-tabContent">
+
+
+                                <div class="tab-pane fade active show" id="v-Dashboard" role="tabpanel" aria-labelledby="v-Dashboard-tab">
+
+                                    <div class="">
+                                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                        <div class="form-group">
+                                            <div class="checkbox">
+                                                <label>
+                                                    Publish
+                                                </label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="Check it if you want this product to be visible in to all."></i>
+                                                <input disabled="disabled" asp-for="Product.Published" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label asp-for="Product.Name" class="control-label">Product Name</label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="The name of the product"></i>
+                                            <input disabled="disabled" asp-for="Product.Name" class="form-control" />
+                                            <span asp-validation-for="Product.Name" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="Product.ShortDescription" class="control-label">Short Description</label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="he short description of the product. This is the text that displays in product lists i.e. category / manufacturer pages"></i>
+                                            <textarea disabled="disabled" asp-for="Product.ShortDescription" class="form-control"></textarea>                                            <span asp-validation-for="Product.ShortDescription" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="Product.FullDescription" class="control-label">Full Description</label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="The flag of the product."></i>
+                                           @Html.Raw(Model.Product.FullDescription)
+                                        </div>
+
+                                     
+                                        <div class="form-group">
+                                            <label asp-for="Product.Status" class="control-label"></label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="More Infomation"></i>
+                                            @Html.DropDownListFor(model => model.Product.Status, new SelectList(Enum.GetValues(typeof(Exwhyzee.Enums.EntityStatus))), new { @class = "form-control" })
+                                            <span asp-validation-for="Product.Status" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="Product.ReOrderLevel" class="control-label"></label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="More Infomation"></i>
+                                            <input disabled="disabled" asp-for="Product.ReOrderLevel" class="form-control" />
+                                            <span asp-validation-for="Product.ReOrderLevel" class="text-danger"></span>
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <label asp-for="Product.CategoryId" class="control-label">Category</label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="More Infomation"></i>
+                                            <select asp-for="Product.CategoryId" class="form-control" id="Category" required="required" asp-items="ViewBag.CategoryId">
+                                                <option value="">Choose a category</option>
+
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="Product.SubCategoryId" class="control-label">
+
+                                                Sub Category (
+                                                @if (Model.Product.SubCategory != null)
+                                                {
+                                                    @Model.Product.SubCategory.Name
+                                                }
+                                                )
+                                            </label>
+                                           
+                                        </div>
+                                        <div class="form-group">
+                                            <label asp-for="Product.ManufacturerId" class="control-label"></label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="More Infomation"></i>
+                                            <select asp-for="Product.ManufacturerId" class="form-control" asp-items="ViewBag.ManufacturerId"></select>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label asp-for="Product.MetaKeywords" class="control-label">Product Keywords (seperate with comma)</label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="More Infomation"></i>
+                                            <input disabled="disabled" asp-for="Product.MetaKeywords" class="form-control" />
+                                            <span asp-validation-for="Product.MetaKeywords" class="text-danger"></span>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="v-Pictures" role="tabpanel" aria-labelledby="v-Pictures-tab">
+
+
+                                    <div id="datatable_wrapper" class="dataTables_wrapper table-responsive dt-bootstrap4 no-footer">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <table id="" class="table table-bordered dt-responsive nowrap dataTable no-footer dtr-inline" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
+                                                    <thead>
+                                                        <tr role="row">
+                                                            <th>SN</th>
+                                                            <th>
+                                                                Image
+                                                            </th>
+                                                           
+                                                        </tr>
+                                                    </thead>
+
+                                                    @{
+                                                        int sno = 0;
+                                                    }
+
+
+                                                    <tbody>
+
+                                                        @foreach (var item in Model.Pictures)
+                                                        {
+                                                            <tr>
+                                                                <td>
+                                                                    @{ sno++; }
+                                                                    @sno
+                                                                </td>
+                                                                <td>
+                                                                    <img src="https://manager.ahioma.com/@item.PictureUrlThumbnail" class="img-responsive" alt="" style="max-height:100px;" />
+
+                                                                </td>
+                                                               
+
+                                                            </tr>
+                                                        }
+
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                   
+
+                                </div>
+                                <div class="tab-pane fade" id="v-MetaTags" role="tabpanel" aria-labelledby="v-MetaTags-tab">
+                                    <div class="form-group">
+                                        <label asp-for="Product.MetaKeywords" class="control-label"></label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="More Infomation"></i>
+                                        <input disabled="disabled" asp-for="Product.MetaKeywords" class="form-control" />
+                                        <span asp-validation-for="Product.MetaKeywords" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Product.MetaDescription" class="control-label"></label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="More Infomation"></i>
+                                        <textarea disabled="disabled" asp-for="Product.MetaDescription" class="form-control"></textarea>
+                                        <span asp-validation-for="Product.MetaDescription" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label asp-for="Product.MetaTitle" class="control-label"></label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="More Infomation"></i>
+                                        <input disabled="disabled" asp-for="Product.MetaTitle" class="form-control" />
+                                        <span asp-validation-for="Product.MetaTitle" class="text-danger"></span>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end card -->
+    </div>
+
+
+
+</div>

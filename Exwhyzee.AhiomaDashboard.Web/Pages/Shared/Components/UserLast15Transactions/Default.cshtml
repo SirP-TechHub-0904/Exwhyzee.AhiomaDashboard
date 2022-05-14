@@ -1,0 +1,61 @@
+﻿
+<div class="table-responsive">
+    <table id="" class="table table-bordered dt-responsive nowrap dataTable no-footer dtr-inline" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
+        <thead>
+            <tr>
+                <th>S/N</th>
+                <th>Date</th>
+                <th>Source</th>
+                <th>Note</th>
+                <th>Type</th>
+                <th>Amount</th>
+                <th>
+                    Ledger
+                </th>
+                <th>
+                    Withdrawal
+                </th>
+                <th>From</th>
+
+            </tr>
+        </thead>
+        @{ int sno = 0; }
+        <tbody>
+            @foreach (var item in ViewBag.list)
+            {
+<tr>
+
+    <td>
+        @{ sno++; }
+        @sno
+    </td>
+    <td>
+        @item.CreationTime
+    </td>
+    <td>
+        @item.Source
+    </td>
+    <td>
+        @item.Destination
+    </td>
+    <td>
+        @item.TransactionType
+    </td>
+    <td>
+        @item.Amount
+    </td>
+    <td>
+        @item.LedgerBalance
+    </td>
+    <td>
+        @item.AvailableBalance
+    </td>
+    <td>
+        @item.From
+    </td>
+
+</tr>}
+        </tbody>
+
+    </table>
+</div>

@@ -1,0 +1,58 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Areas.Admin.Pages.WebBanner.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Banner</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Banner.UrlPath)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Banner.UrlPath)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Banner.UrlLink)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Banner.UrlLink)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Banner.AltText)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Banner.AltText)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Banner.SortOrder)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Banner.SortOrder)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Banner.Disable)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Banner.Disable)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Banner.DateUtc)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Banner.DateUtc)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Banner.Id" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

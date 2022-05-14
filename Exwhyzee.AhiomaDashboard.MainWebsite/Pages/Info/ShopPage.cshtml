@@ -1,0 +1,1124 @@
+﻿@page
+
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Pages.Info.ShopPageModel
+@{ ViewData["Title"] = "shop";
+    Layout = "/Pages/Shared/_WebLayout.cshtml"; }
+@{ bool isMobile = false;
+    string u = HttpContext.Request.Headers["User-Agent"];
+    System.Text.RegularExpressions.Regex b = new System.Text.RegularExpressions.Regex(@"(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino", System.Text.RegularExpressions.RegexOptions.IgnoreCase | System.Text.RegularExpressions.RegexOptions.Multiline);
+    System.Text.RegularExpressions.Regex v = new System.Text.RegularExpressions.Regex(@"1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-", System.Text.RegularExpressions.RegexOptions.IgnoreCase | System.Text.RegularExpressions.RegexOptions.Multiline);
+    if ((b.IsMatch(u) || v.IsMatch(u.Substring(0, 4))))
+    {
+        isMobile = true;
+    } }
+@section StyleMain {
+    @*<style>
+            @@media (min-width: 1261px) {
+                .productCarousel-slide {
+                    width: 23%;
+                }
+            }
+        </style>*@
+
+}
+@if (isMobile == false)
+{
+<partial name="_header_One" />
+ }
+else
+{
+<style>
+</style>
+                <div style="margin-top:40px;">.</div>}
+@if (isMobile == false)
+{
+
+                                                <div class="hidden-lg hidden-md">
+
+                                                </div>
+                                                                <div class="hidden-sm hidden-xs">
+
+                                                                    <div class="main-body clearfix">
+                                                                        <div class="">
+                                                                            <h3 class="" style="padding:5px 0 2px;color:#ff6a00;margin:6px auto 0px;text-align:center;">@Model.Tenant.BusinessName Shop (@Model.Tenant.Market.Name)</h3>
+                                                                            <h6 class="" style="padding:3px;color:#ff6a00;margin:1px auto;text-align:center;">@@ @Model.Tenant.TenantAddresses.FirstOrDefault().Address</h6>
+
+                                                                        </div>
+                                                                        <div class="clearfix"></div>
+                                                                        <div class="col-lg-12 col-md-12 col-sm-12 col_qavo block-slideshow__left" style="text-align:center;background-color:#000000;color:#ffffff;">
+                                                                            <div class="row">
+                                                                                <div class="col-md-7">
+                                                                                    <nav class="navUser" style="">
+
+                                                                                        <ul class="navUser-section">
+
+                                                                                            <li class="navUser-item d-none d-sm-block">
+                                                                                                <a class="navUser-action" style="color:#ffffff;" asp-page="/Info/ShopPage" asp-route-customerRef="" asp-route-name="@Model.Tenant.TenentHandle"><i class="fa fa-shopping-bag"></i> Visit Shop</a>
+                                                                                            </li>
+                                                                                            <li class="navUser-item d-none d-sm-block">
+                                                                                                <a class="navUser-action" style="color:#ffffff;" href="#"><i class="fa fa-product-hunt"></i> Category</a>
+                                                                                            </li>
+                                                                                            <li class="navUser-item d-none d-sm-block">
+                                                                                                <a class="navUser-action" style="color:#ffffff;" href="#"><i class="fa fa-product-hunt"></i> Products</a>
+                                                                                            </li>
+                                                                                            <li class="navUser-item d-none d-sm-block">
+                                                                                                <a class="navUser-action" style="color:#ffffff;" href="#"><i class="fa fa-salesforce"></i> Top Sales</a>
+                                                                                            </li>
+                                                                                            <li class="navUser-item d-none d-sm-block">
+                                                                                                <a class="navUser-action" style="color:#ffffff;" href="#"><i class="fa fa-money-check"></i> Discount</a>
+                                                                                            </li>
+                                                                                            <li class="navUser-item d-none d-sm-block">
+                                                                                                <a class="navUser-action" style="color:#ffffff;" href="#"><i class="fa fa-search-plus"></i>  Reviews</a>
+                                                                                            </li>
+
+
+                                                                                        </ul>
+
+                                                                                    </nav>
+
+                                                                                </div>
+
+                                                                            </div>
+
+                                                                        </div>
+                                                                        <div class="clearfix"></div>
+                                                                        <div class="col-lg-12 col-md-12 col-sm-12 col_qavo block-slideshow__left" style="text-align:center;">
+                                                                            <img src="https://manager.ahioma.com/@Model.Tenant.BannerUri" data-thumb="@Model.Tenant.BannerUri" alt="@Model.Tenant.BusinessName" style="border-radius: 3%;margin:0 auto;text-align:center;max-height:400px;width:100%;" />
+
+
+                                                                        </div>
+                                                                        <div class="clearfix"></div>
+
+                                                                        <div class="container-fluid">
+                                                                            <div class="row">
+                                                                                <div class="col-md-12">
+
+
+                                                                                    <div class="row page">
+
+                                                                                        <!--<aside class="col-sm-3 page-sidebar sidebar-offcanvas" id="faceted-search-container" style="margin-top:70px;">
+                                                                                            <nav>
+                                                                                                <span id="close-sidebar" class=" fa fa-times"></span>
+
+                                                                                                @await Component.InvokeAsync("ShopCategories", new { id = Model.Tenant.Id })
+
+
+
+                                                                                                <div class="module sb-banner sb-banner--cmsblock ">
+                                                                                                    <h5 class="block-title"> Ahioma</h5>
+
+                                                                                                    <div class="block-content clearfix ">
+
+
+
+                                                                                                        <div class="banners">
+                                                                                                            <div class="banner-figure">
+
+                                                                                                                <a href="#"><img class="img-fluid" src="~/w1/3.jpg" alt="Custom Title"></a>
+                                                                                                            </div>
+
+                                                                                                            <div class="banner-figcaption">
+                                                                                                                <div class="banner-figcaption__body">
+                                                                                                                    <h5 class="banner-figcaption__title">Ahia Pay</h5>
+
+                                                                                                                    <p class="banner-figcaption__text"></p><p>
+                                                                                                                        Coming Soon
+                                                                                                                    </p><p></p>
+
+                                                                                                                    <a href="#" class="button button--primary  banner-figcaption__button"> Read More</a>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+
+                                                                                                <div class="module sb-banner sb-banner--sidebarBanner ">
+
+                                                                                                    <div class="block-content clearfix ">-->
+                                                                                        @*<div class="banners">
+                                                                                                <div class="banner-figure">
+
+                                                                                                    <a href="#"><img class="img-fluid" src="~/w1/image-left.jpg" alt=" "></a>
+                                                                                                </div>
+
+                                                                                            </div>*@
+                                                                                        <!--</div>
+                                                                                                </div>
+
+
+                                                                                            </nav>
+                                                                                        </aside>-->
+                                                                                        <main class="col-lg-12 col-md-12 page-content" id="product-listing-container">
+                                                                                            <div class="module clearfix ">
+
+
+                                                                                                <div id="" class="sb-listing-tabs container-fluid">
+
+                                                                                                    <div class="ltabs-container d-flex">
+
+                                                                                                        <div class="ltabs-items-container ltabs-items-container--image">
+                                                                                                            <h3 class="text-center">Shop Products</h3>
+                                                                                                            <div class="clearfix"></div>
+                                                                                                            <div class="row">
+                                                                                                                <div class="col-md-3"></div>
+                                                                                                                <div class="col-md-6">
+                                                                                                                    <form class="sb-searchpro" method="get" asp-page="/Info/ShopSearch" asp-area="">
+                                                                                                                        <fieldset class="form-fieldset">
+                                                                                                                            <div class="input-group">
+                                                                                                                                <input hidden name="name" value="@Model.Tenant.TenentHandle" />
+                                                                                                                                <input class="form-control form-input" value="@TempData["search"]" name="searchString" placeholder="Kindly search Shop for your product in shop" autocomplete="off">
+                                                                                                                                <div class="input-group-append">
+                                                                                                                                    <button class="btn btn-outline-secondary" type="submit"><i class="fa fa-search"></i></button>
+                                                                                                                                </div>
+                                                                                                                            </div>
+
+                                                                                                                        </fieldset>
+                                                                                                                    </form>
+                                                                                                                </div>
+                                                                                                            </div>
+
+                                                                                                            <div class="clearfix"></div>
+                                                                                                            <section>
+                                                                                                                <div class="productsByCategoryTabs-products--carousel ">
+                                                                                                                    <section class="productCarousel products-list">
+
+                                                                                                                        <div class="">
+                                                                                                                            <div class="">
+                                                                                                                                @if (TempData["SortByCategory"] != null)
+                                                                                                                                {
+                                                                                                                @foreach (var cat in Model.StoreCategories)
+                                                                                                                {
+
+                                                                                            @await Component.InvokeAsync("ProductItemsShopCategory", new { id = cat.CategoryId, tid = Model.Tenant.Id })} }
+                                                                                                                                else
+                                                                                                                                {
+                                                                                                                                    foreach (var data in Model.Product)
+                                                                                                                                    {
+                                                                                            <div class="productCarousel-slide product-layout col-md-2 col-sm-6 col-xs-6">
+                                                                                                <article class="product-item-container ">
+                                                                                                    <div class="left-block d-flex align-items-center justify-content-center">
+
+
+                                                                                                        <a asp-page="/ProductDetails" asp-route-customerRef="" asp-route-id="@data.Id" asp-route-name="@data.Name.Replace(" ", "-")" asp-route-shop="@data.Tenant.BusinessName.Replace(" ", "-")" asp-route-mktstate="@data.Market.State.Replace(" ", "-")" asp-route-mktaddress="@data.Market.Address.Replace(" ", "-")" class="product-item-photo" tabindex="0">
+                                                                                                            @if (data.ImageThumbnail != null)
+                                                                                                            {
+                                                                                    <img class="img-responsive lazyautosizes lazyloaded" data-sizes="auto" src="https://manager.ahioma.com/@data.ImageThumbnail" alt="" title="" sizes="50px">}
+
+                                                                                                        </a>
+
+                                                                                                        <a asp-page="/ProductDetails" asp-route-customerRef="" asp-route-id="@data.Id" asp-route-name="@data.Name.Replace(" ", "-")" class="quickview btn-button d-none d-md-block" data-animation="false" data-product-id="126" title="Quick view" tabindex="0"> <i class="fa fa-search"></i></a>
+
+                                                                                                    </div>
+
+                                                                                                    <div class="right-block">
+                                                                                                        @if (isMobile == false)
+                                                                                                        {@*<h4 class="card-title" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                                                                                                    <a asp-page="/ProductDetails" asp-route-customerRef="" asp-route-id="@data.Id" asp-route-name="@data.Name.Replace(" ", "-")" asp-route-shop="@data.Tenant.BusinessName.Replace(" ", "-")" asp-route-mktstate="@data.Market.State.Replace(" ", "-")" asp-route-mktaddress="@data.Market.Address.Replace(" ", "-")" tabindex="0" title="@data.Name" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">@data.Name</a>
+                                                                                                                </h4>
+                                                                                                                <div class="price-section price-section--withoutTax ">
+
+                                                                                                                    <span data-product-price-without-tax="" class="pull-left" style="font-weight:900;color:#f56615;font-family:'Times New Roman', Times, serif;">&#8358;@data.Price.ToString("0")</span>
+                                                                                                                    <span data-product-price-without-tax="" class="pull-right mkt-name" title="@data.Tenant.BusinessName @@ @data.Market.Name" style="font-weight:800;color:#3a3535;">@data.Market.ShortName</span>
+
+                                                                                                                </div>*@}
+                                                                                                    </div>
+                                                                                                    <div class="right-block">
+                                                                                                        @if (isMobile == false)
+                                                                                                        {
+                                                                                <h4 class="card-title" style="padding-bottom:0px;margin-bottom:3px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
+                                                                                    <a asp-page="/ProductDetails" asp-route-customerRef="" asp-route-id="@data.Id" asp-route-name="@data.Name.Replace(" ", "-")" asp-route-shop="@data.Tenant.BusinessName.Replace(" ", "-")" asp-route-mktstate="@data.Market.State.Replace(" ", "-")" asp-route-mktaddress="@data.Market.Address.Replace(" ", "-")" tabindex="0" title="@data.Name" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">@data.Name</a>
+                                                                                </h4>
+                                                                                                            <h4 class="card-title" style="padding-bottom:0px;margin-bottom:3px;">
+                                                                                                                <a style="font-weight:900;color:#f56615;font-family:'Times New Roman', Times, serif;">
+                                                                                                                    &#8358;@data.Price.ToString("0")
+                                                                                                                    @if (data.OldPrice.ToString() != "0.00")
+                                                                                                                    {
+                                                                                                                    <span style="font-size:11px;text-decoration: line-through;padding-left:4px;color:#020310 !important;">&#8358;@string.Format("{0:C}", data.OldPrice).Replace(".00", "").Replace("$", "")</span>
+                                                                                                                    }
+                                                                                                                </a>
+                                                                                                            </h4>
+                                                                                                                                        <h4 class="card-title" style="padding-bottom:0px;margin-bottom:3px;">
+                                                                                                                                            <a title="@data.Tenant.BusinessName @@ @data.Market.Name" style="font-weight:800;color:#3a3535;">@data.Market.ShortName</a>
+                                                                                                                                        </h4>}
+                                                                                                    </div>
+                                                                                                </article>
+
+                                                                                            </div> }
+
+                                                                    <br /><br />
+                                                                                        <div class="clearfix"></div>
+                                                                                                            <div>
+                                                                                                                @{ int? p = 0;
+                                                                                                                    if (Model.CurrentPage == null)
+                                                                                                                    {
+                                                                                                                        p = 1;
+                                                                                                                    }
+                                                                                                                    else
+                                                                                                                    {
+                                                                                                                        p = Model.CurrentPage;
+                                                                                                                    } }
+                                                                                                            </div>
+                                                                                                                                @if (TempData["SortByCategory"] == null)
+                                                                                                                                {
+                                                                                                            <span> page @p of @Model.TotalPages pages(@Model.Count items)</span> var prevDisabled = !Model.Product.HasPreviousPage ? "disabled" : "";
+                                                                                                                                    var nextDisabled = !Model.Product.HasNextPage ? "disabled" : "";
+
+
+
+                                                                                    <a asp-page="./ShopPage"
+                                                                                       asp-route-pageIndex="@(Model.Product.PageIndex - 1)"
+                                                                                       asp-route-name="@Model.Name"
+                                                                                       asp-route-customerRef=""
+                                                                                       class="btn btn-primary @prevDisabled">
+                                                                                        Previous
+                                                                                    </a>
+                                                                                                            <a asp-page="./ShopPage"
+                                                                                                               asp-route-pageIndex="@(Model.Product.PageIndex + 1)"
+                                                                                                               asp-route-name="@Model.Name"
+                                                                                                               asp-route-customerRef=""
+                                                                                                               class="btn btn-primary @nextDisabled">
+                                                                                                                Next
+                                                                                                            </a>}}
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                    </section>
+                                                                                                                </div>
+
+                                                                                                            </section>
+                                                                                                        </div>
+
+
+                                                                                                    </div>
+                                                                                                </div>
+
+
+
+
+                                                                                            </div>
+
+
+                                                                                        </main>
+
+
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                                <div class="hidden-lg hidden-md">
+                                                                                    <style>
+                                                                                        nav ul a {
+                                                                                            padding: 0 5px;
+                                                                                        }
+
+                                                                                        #m-menu {
+                                                                                            text-align: center;
+                                                                                            list-style: none;
+                                                                                        }
+
+                                                                                            #m-menu li {
+                                                                                                display: inline;
+                                                                                                border: 2px solid black;
+                                                                                                border-radius: 7px;
+                                                                                                margin: 2px;
+                                                                                                padding: 3px;
+                                                                                                background: #666;
+                                                                                            }
+
+                                                                                            #m-menu a {
+                                                                                                text-decoration: none;
+                                                                                                font-family: sans-serif;
+                                                                                                font-weight: bold;
+                                                                                                color: #fff;
+                                                                                                font-variant: small-caps;
+                                                                                            }
+                                                                                    </style>
+                                                                                    <nav>
+                                                                                        <ul id="m-menu" style="background-color:#276ccc;height:36px;">
+                                                                                            <li><a href="#">Visit Shop</a></li>
+                                                                                            <li><a href="#">Category</a></li>
+                                                                                            <li><a href="#">Products</a></li>
+                                                                                            <li><a href="#">Reviews</a></li>
+                                                                                        </ul>
+                                                                                    </nav>
+                                                                                    <div class="container" style="width:90%;">
+                                                                                        <div class="section">
+
+                                                                                            <div class="row ">
+                                                                                                <div class="col s12 pad-0">
+
+                                                                                                    <div class="row ui-mediabox  prods prods-boxed">
+
+
+                                                                                                        <style>
+                                                                                                            .text-truncateaa {
+                                                                                                                display: -webkit-box;
+                                                                                                                -webkit-line-clamp: 2;
+                                                                                                                -webkit-box-orient: vertical;
+                                                                                                                overflow: hidden;
+                                                                                                                height: 25px;
+                                                                                                                line-height: 14px;
+                                                                                                                font-size: 10px;
+                                                                                                                color: #666;
+                                                                                                                margin: 4px 0;
+                                                                                                            }
+
+                                                                                                            .text-truncate-shop {
+                                                                                                                display: -webkit-box;
+                                                                                                                -webkit-line-clamp: 1;
+                                                                                                                -webkit-box-orient: vertical;
+                                                                                                                overflow: hidden;
+                                                                                                                height: 22px;
+                                                                                                                line-height: 14px;
+                                                                                                            }
+
+                                                                                                            .prod-info.boxed {
+                                                                                                                background: #ffffff;
+                                                                                                                padding: 0px 5px 5px 5px;
+                                                                                                                border-radius: 10px;
+                                                                                                            }
+
+                                                                                                            .sec-tit::after {
+                                                                                                                display: block;
+                                                                                                                position: relative;
+                                                                                                                content: " ";
+                                                                                                                height: 1px;
+                                                                                                                width: 40px;
+                                                                                                                margin: 6px 0 0px 0;
+                                                                                                                background: var(--primary-color);
+                                                                                                            }
+
+                                                                                                            .bot-20 {
+                                                                                                                margin-bottom: 10px;
+                                                                                                            }
+
+                                                                                                            .row {
+                                                                                                                margin-left: auto;
+                                                                                                                margin-right: auto;
+                                                                                                                margin-bottom: 10px;
+                                                                                                            }
+
+                                                                                                            .prod-img-wrap {
+                                                                                                                border-top-left-radius: 10px;
+                                                                                                                border-top-right-radius: 10px;
+                                                                                                            }
+                                                                                                        </style>
+
+                                                                                                        @if (TempData["SortByCategory"] != null)
+                                                                                                        {
+                                                                                        @foreach (var cat in Model.StoreCategories)
+                                                                                        {
+
+                                                                    @await Component.InvokeAsync("ProductItemsShopCategory", new { id = cat.CategoryId, tid = Model.Tenant.Id })} }
+                                                                                                        else
+                                                                                                        {
+                                                                                                            foreach (var data in Model.Product)
+                                                                                                            {
+
+
+                                                                    <div class="col s6">
+                                                                        <div class="prod-img-wrap">
+                                                                            @if (data.ImageThumbnail != null)
+                                                                            {
+
+                                                    <a asp-page="/ProductDetails" asp-route-customerRef="" asp-route-id="@data.Id" asp-route-name="@data.Name.Replace(" ", "-")" asp-route-shop="@data.Tenant.BusinessName.Replace(" ", "-")" asp-route-mktstate="" asp-route-mktaddress="" class="product-item-photo" tabindex="0">
+                                                        <img class="z-depth-1" style="width: 100%;vertical-align:middle;text-align:center;margin:0 auto;" src="https://manager.ahioma.com/@data.ImageThumbnail">
+                                                    </a>}
+                                                                        </div>
+                                                                        <div class="prod-info  boxed z-depth-1">
+                                                                            <a asp-page="/ProductDetails" asp-route-customerRef="" asp-route-id="@data.Id" asp-route-name="@data.Name.Replace(" ", "-")" asp-route-shop="@data.Tenant.BusinessName.Replace(" ", "-")" asp-route-mktstate="" asp-route-mktaddress="" class="product-item-photo" tabindex="0">
+                                                                                <h5 class="title text-truncateaa" style="-webkit-transition: 3.3s; -moz-transition: 3.3s; transition: 3.3s; -webkit-transition-timing-function: linear; -moz-transition-timing-function: linear; transition-timing-function: linear;">@data.Name</h5>
+                                                                            </a>     <span class="small date">
+                                                                                <a>
+
+                                                                                    <span style="font-size:10px;">  @data.Market.ShortName</span>
+                                                                                </a>
+
+                                                                                <span class="bot-0 price float-right" style="font-weight:900;font-size:10px;">
+                                                                                    &#8358;@data.Price.ToString("0")
+                                                                                    @if (data.OldPrice.ToString() != "0.00")
+                                                                                    {
+                                                                                <span style="font-size:11px;text-decoration: line-through;padding-left:4px;color:#020310 !important;">&#8358;@string.Format("{0:C}", data.OldPrice).Replace(".00", "").Replace("$", "")</span>}
+                                                                                </span>
+                                                                            </span>
+                                                                            <div class="spacer-line"></div>
+
+
+                                                                        </div>
+                                                                    </div>}
+                                                                                                        }
+
+                                                                                                    </div>
+                                                                                                    @{ int? pf = 0;
+                                                                                                        if (Model.CurrentPage == null)
+                                                                                                        {
+                                                                                                            pf = 1;
+                                                                                                        }
+                                                                                                        else
+                                                                                                        {
+                                                                                                            pf = Model.CurrentPage;
+                                                                                                        } }
+
+
+
+                                                                                                    @if (TempData["SortByCategory"] == null)
+                                                                                                    {
+                                                                                    <span> page @pf of @Model.TotalPages pages(@Model.Count items)</span> var prevDisabled = !Model.Product.HasPreviousPage ? "disabled" : "";
+                                                                                                        var nextDisabled = !Model.Product.HasNextPage ? "disabled" : "";
+
+                                                                <br />
+
+                                                                                    <a asp-page="./ShopPage"
+                                                                                       asp-route-pageIndex="@(Model.Product.PageIndex - 1)"
+                                                                                       asp-route-name="@Model.Name"
+                                                                                       asp-route-customerRef=""
+                                                                                       class="btn btn-primary @prevDisabled">
+                                                                                        Previous
+                                                                                    </a>
+                                                                                                        <a asp-page="./ShopPage"
+                                                                                                           asp-route-pageIndex="@(Model.Product.PageIndex + 1)"
+                                                                                                           asp-route-name="@Model.Name"
+                                                                                                           asp-route-customerRef=""
+                                                                                                           class="btn btn-primary @nextDisabled">
+                                                                                                            Next
+                                                                                                        </a>}
+                                                                                                </div>
+                                                                                            </div>
+
+
+
+
+                                                                                        </div>
+                                                                                    </div>
+
+
+                                                                                </div> }
+
+                                                                                                        else if (isMobile == true)
+                                                                                                        {
+
+
+
+<style>
+                                                                                                    .section-heading h6 {
+                                                                                                        margin-bottom: 0 !important;
+                                                                                                        color: #020310;
+                                                                                                        line-height: 1;
+                                                                                                        background: #ff5c00;
+                                                                                                        padding: 5px;
+                                                                                                        margin-top: 10px;
+                                                                                                        border-radius: 5px;
+                                                                                                        color: white;
+                                                                                                    }
+    .page-content-wrapper {
+        position: relative;
+        z-index: 1;
+        margin-top: 0px;
+        margin-bottom: 58px;
+    }
+                                                                                                </style><div class="page-content-wrapper">
+    @if (!String.IsNullOrEmpty(Model.Tenant.BannerUri))
+    {
+                                                                                                                    <div class="container">
+                                                                                                                        <style>
+
+                                                                                                                            .carousel {
+                                                                                                                                position: relative;
+                                                                                                                                width: 100%;
+                                                                                                                                min-height: 140px;
+                                                                                                                                overflow: hidden;
+                                                                                                                                background: #ccc;
+                                                                                                                            }
+
+                                                                                                                                .carousel .slide {
+                                                                                                                                    margin: 0;
+                                                                                                                                    padding: 0;
+                                                                                                                                    list-style: none;
+                                                                                                                                    width: 100%;
+                                                                                                                                    height: auto;
+                                                                                                                                    box-sizing: border-box;
+                                                                                                                                    position: absolute;
+                                                                                                                                    top: 0;
+                                                                                                                                    left: 0;
+                                                                                                                                    transition: left 0.5s ease-in-out;
+                                                                                                                                }
+
+                                                                                                                                .carousel input[type=radio] {
+                                                                                                                                    opacity: 0;
+                                                                                                                                    width: 0;
+                                                                                                                                    height: 0;
+                                                                                                                                }
+
+                                                                                                                                    .carousel input[type=radio]:checked + .dot {
+                                                                                                                                        background: #0091EA;
+                                                                                                                                    }
+
+                                                                                                                                .carousel .dot {
+                                                                                                                                    cursor: pointer;
+                                                                                                                                    text-indent: -99999px;
+                                                                                                                                    overflow: hidden;
+                                                                                                                                    display: inline-block;
+                                                                                                                                    width: 15px;
+                                                                                                                                    height: 15px;
+                                                                                                                                    background: #fff;
+                                                                                                                                    border: 3px solid #fff;
+                                                                                                                                    box-sizing: border-box;
+                                                                                                                                    border-radius: 100%;
+                                                                                                                                    position: absolute;
+                                                                                                                                    z-index: 100;
+                                                                                                                                    top: 90%;
+                                                                                                                                    float: right;
+                                                                                                                                }
+
+                                                                                                                                .carousel .arrow {
+                                                                                                                                    cursor: pointer;
+                                                                                                                                    position: absolute;
+                                                                                                                                    z-index: 100;
+                                                                                                                                    display: none;
+                                                                                                                                    top: 50%;
+                                                                                                                                    transform: translateY(-50%);
+                                                                                                                                }
+
+                                                                                                                                .carousel #slide-1:checked ~ .slides li.slide-1 {
+                                                                                                                                    left: 0;
+                                                                                                                                    z-index: 2;
+                                                                                                                                }
+
+                                                                                                                                .carousel #slide-1:checked ~ .slides li.slide-2 {
+                                                                                                                                    left: -100%;
+                                                                                                                                    opacity: 0;
+                                                                                                                                }
+
+                                                                                                                                .carousel #slide-1:checked ~ .slides li.slide-3 {
+                                                                                                                                    top: -1000%;
+                                                                                                                                }
+
+                                                                                                                                .carousel #slide-1:checked ~ .slides li.slide-4 {
+                                                                                                                                    top: -1000%;
+                                                                                                                                }
+
+                                                                                                                                .carousel #slide-1:checked ~ .slides li.slide-5 {
+                                                                                                                                    left: 100%;
+                                                                                                                                    opacity: 0;
+                                                                                                                                }
+
+                                                                                                                                .carousel #slide-1:checked ~ .arrow.slide-5,
+                                                                                                                                .carousel #slide-1:checked ~ .arrow.slide-2 {
+                                                                                                                                    display: block;
+                                                                                                                                }
+
+                                                                                                                                .carousel #slide-1:checked ~ .arrow.slide-5 {
+                                                                                                                                    left: 0;
+                                                                                                                                    overflow: hidden;
+                                                                                                                                    color: rgba(255, 255, 255, 0);
+                                                                                                                                    height: 30px;
+                                                                                                                                }
+
+                                                                                                                                    .carousel #slide-1:checked ~ .arrow.slide-5:before {
+                                                                                                                                        content: "";
+                                                                                                                                        font-family: "FontAwesome", sans-serif;
+                                                                                                                                        font-size: 30px;
+                                                                                                                                        color: white;
+                                                                                                                                        position: absolute;
+                                                                                                                                        left: 10px;
+                                                                                                                                    }
+
+                                                                                                                                .carousel #slide-1:checked ~ .arrow.slide-2 {
+                                                                                                                                    right: 0;
+                                                                                                                                    overflow: hidden;
+                                                                                                                                    color: rgba(255, 255, 255, 0);
+                                                                                                                                    height: 30px;
+                                                                                                                                }
+
+                                                                                                                                    .carousel #slide-1:checked ~ .arrow.slide-2:before {
+                                                                                                                                        content: "";
+                                                                                                                                        font-family: "FontAwesome", sans-serif;
+                                                                                                                                        font-size: 30px;
+                                                                                                                                        color: white;
+                                                                                                                                        position: absolute;
+                                                                                                                                        right: 10px;
+                                                                                                                                    }
+
+                                                                                                                                .carousel #slide-2:checked ~ .slides li.slide-1 {
+                                                                                                                                    left: 100%;
+                                                                                                                                    opacity: 0;
+                                                                                                                                }
+
+                                                                                                                                .carousel #slide-2:checked ~ .slides li.slide-2 {
+                                                                                                                                    left: 0;
+                                                                                                                                    z-index: 2;
+                                                                                                                                }
+
+                                                                                                                                .carousel #slide-2:checked ~ .slides li.slide-3 {
+                                                                                                                                    left: -100%;
+                                                                                                                                    opacity: 0;
+                                                                                                                                }
+
+                                                                                                                                .carousel #slide-2:checked ~ .slides li.slide-4 {
+                                                                                                                                    top: -1000%;
+                                                                                                                                }
+
+                                                                                                                                .carousel #slide-2:checked ~ .slides li.slide-5 {
+                                                                                                                                    top: -1000%;
+                                                                                                                                }
+
+                                                                                                                                .carousel #slide-2:checked ~ .arrow.slide-1,
+                                                                                                                                .carousel #slide-2:checked ~ .arrow.slide-3 {
+                                                                                                                                    display: block;
+                                                                                                                                }
+
+                                                                                                                                .carousel #slide-2:checked ~ .arrow.slide-1 {
+                                                                                                                                    left: 0;
+                                                                                                                                    overflow: hidden;
+                                                                                                                                    color: rgba(255, 255, 255, 0);
+                                                                                                                                    height: 30px;
+                                                                                                                                }
+
+                                                                                                                                    .carousel #slide-2:checked ~ .arrow.slide-1:before {
+                                                                                                                                        content: "";
+                                                                                                                                        font-family: "FontAwesome", sans-serif;
+                                                                                                                                        font-size: 30px;
+                                                                                                                                        color: white;
+                                                                                                                                        position: absolute;
+                                                                                                                                        left: 10px;
+                                                                                                                                    }
+
+                                                                                                                                .carousel #slide-2:checked ~ .arrow.slide-3 {
+                                                                                                                                    right: 0;
+                                                                                                                                    overflow: hidden;
+                                                                                                                                    color: rgba(255, 255, 255, 0);
+                                                                                                                                    height: 30px;
+                                                                                                                                }
+
+                                                                                                                                    .carousel #slide-2:checked ~ .arrow.slide-3:before {
+                                                                                                                                        content: "";
+                                                                                                                                        font-family: "FontAwesome", sans-serif;
+                                                                                                                                        font-size: 30px;
+                                                                                                                                        color: white;
+                                                                                                                                        position: absolute;
+                                                                                                                                        right: 10px;
+                                                                                                                                    }
+
+                                                                                                                                .carousel #slide-3:checked ~ .slides li.slide-1 {
+                                                                                                                                    top: -1000%;
+                                                                                                                                }
+
+                                                                                                                                .carousel #slide-3:checked ~ .slides li.slide-2 {
+                                                                                                                                    left: 100%;
+                                                                                                                                    opacity: 0;
+                                                                                                                                }
+
+                                                                                                                                .carousel #slide-3:checked ~ .slides li.slide-3 {
+                                                                                                                                    left: 0;
+                                                                                                                                    z-index: 2;
+                                                                                                                                }
+
+                                                                                                                                .carousel #slide-3:checked ~ .slides li.slide-4 {
+                                                                                                                                    left: -100%;
+                                                                                                                                    opacity: 0;
+                                                                                                                                }
+
+                                                                                                                                .carousel #slide-3:checked ~ .slides li.slide-5 {
+                                                                                                                                    top: -1000%;
+                                                                                                                                }
+
+                                                                                                                                .carousel #slide-3:checked ~ .arrow.slide-2,
+                                                                                                                                .carousel #slide-3:checked ~ .arrow.slide-4 {
+                                                                                                                                    display: block;
+                                                                                                                                }
+
+                                                                                                                                .carousel #slide-3:checked ~ .arrow.slide-2 {
+                                                                                                                                    left: 0;
+                                                                                                                                    overflow: hidden;
+                                                                                                                                    color: rgba(255, 255, 255, 0);
+                                                                                                                                    height: 30px;
+                                                                                                                                }
+
+                                                                                                                                    .carousel #slide-3:checked ~ .arrow.slide-2:before {
+                                                                                                                                        content: "";
+                                                                                                                                        font-family: "FontAwesome", sans-serif;
+                                                                                                                                        font-size: 30px;
+                                                                                                                                        color: white;
+                                                                                                                                        position: absolute;
+                                                                                                                                        left: 10px;
+                                                                                                                                    }
+
+                                                                                                                                .carousel #slide-3:checked ~ .arrow.slide-4 {
+                                                                                                                                    right: 0;
+                                                                                                                                    overflow: hidden;
+                                                                                                                                    color: rgba(255, 255, 255, 0);
+                                                                                                                                    height: 30px;
+                                                                                                                                }
+
+                                                                                                                                    .carousel #slide-3:checked ~ .arrow.slide-4:before {
+                                                                                                                                        content: "";
+                                                                                                                                        font-family: "FontAwesome", sans-serif;
+                                                                                                                                        font-size: 30px;
+                                                                                                                                        color: white;
+                                                                                                                                        position: absolute;
+                                                                                                                                        right: 10px;
+                                                                                                                                    }
+
+                                                                                                                                .carousel #slide-4:checked ~ .slides li.slide-1 {
+                                                                                                                                    top: -1000%;
+                                                                                                                                }
+
+                                                                                                                                .carousel #slide-4:checked ~ .slides li.slide-2 {
+                                                                                                                                    top: -1000%;
+                                                                                                                                }
+
+                                                                                                                                .carousel #slide-4:checked ~ .slides li.slide-3 {
+                                                                                                                                    left: 100%;
+                                                                                                                                    opacity: 0;
+                                                                                                                                }
+
+                                                                                                                                .carousel #slide-4:checked ~ .slides li.slide-4 {
+                                                                                                                                    left: 0;
+                                                                                                                                    z-index: 2;
+                                                                                                                                }
+
+                                                                                                                                .carousel #slide-4:checked ~ .slides li.slide-5 {
+                                                                                                                                    left: -100%;
+                                                                                                                                    opacity: 0;
+                                                                                                                                }
+
+                                                                                                                                .carousel #slide-4:checked ~ .arrow.slide-3,
+                                                                                                                                .carousel #slide-4:checked ~ .arrow.slide-5 {
+                                                                                                                                    display: block;
+                                                                                                                                }
+
+                                                                                                                                .carousel #slide-4:checked ~ .arrow.slide-3 {
+                                                                                                                                    left: 0;
+                                                                                                                                    overflow: hidden;
+                                                                                                                                    color: rgba(255, 255, 255, 0);
+                                                                                                                                    height: 30px;
+                                                                                                                                }
+
+                                                                                                                                    .carousel #slide-4:checked ~ .arrow.slide-3:before {
+                                                                                                                                        content: "";
+                                                                                                                                        font-family: "FontAwesome", sans-serif;
+                                                                                                                                        font-size: 30px;
+                                                                                                                                        color: white;
+                                                                                                                                        position: absolute;
+                                                                                                                                        left: 10px;
+                                                                                                                                    }
+
+                                                                                                                                .carousel #slide-4:checked ~ .arrow.slide-5 {
+                                                                                                                                    right: 0;
+                                                                                                                                    overflow: hidden;
+                                                                                                                                    color: rgba(255, 255, 255, 0);
+                                                                                                                                    height: 30px;
+                                                                                                                                }
+
+                                                                                                                                    .carousel #slide-4:checked ~ .arrow.slide-5:before {
+                                                                                                                                        content: "";
+                                                                                                                                        font-family: "FontAwesome", sans-serif;
+                                                                                                                                        font-size: 30px;
+                                                                                                                                        color: white;
+                                                                                                                                        position: absolute;
+                                                                                                                                        right: 10px;
+                                                                                                                                    }
+
+                                                                                                                                .carousel #slide-5:checked ~ .slides li.slide-1 {
+                                                                                                                                    left: -100%;
+                                                                                                                                    opacity: 0;
+                                                                                                                                }
+
+                                                                                                                                .carousel #slide-5:checked ~ .slides li.slide-2 {
+                                                                                                                                    top: -1000%;
+                                                                                                                                }
+
+                                                                                                                                .carousel #slide-5:checked ~ .slides li.slide-3 {
+                                                                                                                                    top: -1000%;
+                                                                                                                                }
+
+                                                                                                                                .carousel #slide-5:checked ~ .slides li.slide-4 {
+                                                                                                                                    left: 100%;
+                                                                                                                                    opacity: 0;
+                                                                                                                                }
+
+                                                                                                                                .carousel #slide-5:checked ~ .slides li.slide-5 {
+                                                                                                                                    left: 0;
+                                                                                                                                    z-index: 2;
+                                                                                                                                }
+
+                                                                                                                                .carousel #slide-5:checked ~ .arrow.slide-4,
+                                                                                                                                .carousel #slide-5:checked ~ .arrow.slide-1 {
+                                                                                                                                    display: block;
+                                                                                                                                }
+
+                                                                                                                                .carousel #slide-5:checked ~ .arrow.slide-4 {
+                                                                                                                                    left: 0;
+                                                                                                                                    overflow: hidden;
+                                                                                                                                    color: rgba(255, 255, 255, 0);
+                                                                                                                                    height: 30px;
+                                                                                                                                }
+
+                                                                                                                                    .carousel #slide-5:checked ~ .arrow.slide-4:before {
+                                                                                                                                        content: "";
+                                                                                                                                        font-family: "FontAwesome", sans-serif;
+                                                                                                                                        font-size: 30px;
+                                                                                                                                        color: white;
+                                                                                                                                        position: absolute;
+                                                                                                                                        left: 10px;
+                                                                                                                                    }
+
+                                                                                                                                .carousel #slide-5:checked ~ .arrow.slide-1 {
+                                                                                                                                    right: 0;
+                                                                                                                                    overflow: hidden;
+                                                                                                                                    color: rgba(255, 255, 255, 0);
+                                                                                                                                    height: 30px;
+                                                                                                                                }
+
+                                                                                                                                    .carousel #slide-5:checked ~ .arrow.slide-1:before {
+                                                                                                                                        content: "";
+                                                                                                                                        font-family: "FontAwesome", sans-serif;
+                                                                                                                                        font-size: 30px;
+                                                                                                                                        color: white;
+                                                                                                                                        position: absolute;
+                                                                                                                                        right: 10px;
+                                                                                                                                    }
+
+                                                                                                                                .carousel .dot.slide-6 {
+                                                                                                                                    left: 120px;
+                                                                                                                                }
+
+                                                                                                                                .carousel .dot.slide-5 {
+                                                                                                                                    left: 100px;
+                                                                                                                                }
+
+                                                                                                                                .carousel .dot.slide-4 {
+                                                                                                                                    left: 80px;
+                                                                                                                                }
+
+                                                                                                                                .carousel .dot.slide-3 {
+                                                                                                                                    left: 60px;
+                                                                                                                                }
+
+                                                                                                                                .carousel .dot.slide-2 {
+                                                                                                                                    left: 40px;
+                                                                                                                                }
+
+                                                                                                                                .carousel .dot.slide-1 {
+                                                                                                                                    left: 20px;
+                                                                                                                                }
+
+                                                                                                                                .carousel img {
+                                                                                                                                    width: 100%;
+                                                                                                                                }
+                                                                                                                        </style>
+
+                                                                                                                        <div class="">
+                                                                                                                            <div class="pt-3">
+                                                                                                                                <div class="carousel">
+                                                                                                                                  
+                                                                                                                                    
+
+                                                                                                                    <input type="radio" id="slide1" name="slides" value="slide-1" />
+
+
+                                                                                                                                    
+                                                                                                                    <label for="slide1" class="slide1 arrow">Slide 1</label>
+
+
+                                                                                                                                    <ul class="slides">
+                                                                                                                                       
+                                                                                                                        <li class="slide slide1"><img src="https://manager.ahioma.com/@Model.Tenant.BannerUri" /></li>
+
+
+                                                                                                                                    </ul>
+                                                                                                                                </div> 
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                    </div>
+    }
+                                                                                                        <div class="container">
+                                                                                                            <h5 class="" style="font-size:14px;color:#ff6a00;font-weight:900;text-align:center;text-shadow:1px 1px 1px #3a3535;">@Model.Tenant.BusinessName Shop (@Model.Tenant.Market.Name)</h5>
+                                                                                                            <h6 class="" style="font-size:12px;color:#ff6a00;font-weight:900;text-align:center;">@@ @Model.Tenant.TenantAddresses.FirstOrDefault().Address</h6>
+
+                                                                                                        </div>
+                                                                                                                    <!-- Product Catagories-->
+                                                                                                                    <div class="product-catagories-wrapper">
+                                                                                                                        <div class="container">
+                                                                                                                           
+                                                                                                                            <div class="product-catagory-wrap">
+                                                                                                                                <div class="row">
+                                                                                                                                   
+                                                                                                                                    <div class="col-4" style="padding:3px;">
+                                                                                                                                        <div class="card catagory-card">
+                                                                                                                                            <div class="card-body">
+                                                                                                                                                <a asp-page="/Info/ShopPage" asp-route-customerRef="" asp-route-name="@Model.Tenant.TenentHandle" class="text-danger">
+                                                                                                                                                    <i class="fa fa-shopping-bag" style="color:#ff5c00 !important;"></i>
+                                                                                                                                                    <span>Visit Shop</span>
+                                                                                                                                                </a>
+                                                                                                                                            </div>
+                                                                                                                                        </div>
+                                                                                                                                    </div>
+                                                                                                                                    <div class="col-4" style="padding:3px;">
+                                                                                                                                        <div class="card catagory-card">
+                                                                                                                                            <div class="card-body">
+                                                                                                                                                <a class="text-danger">
+                                                                                                                                                    <i class="fa fa-arrow-up" style="color:#ff5c00 !important;"></i>
+                                                                                                                                                    <span>Top Sale</span>
+                                                                                                                                                </a>
+                                                                                                                                            </div>
+                                                                                                                                        </div>
+                                                                                                                                    </div>
+                                                                                                                                    <div class="col-4" style="padding:3px;">
+                                                                                                                                        <div class="card catagory-card">
+                                                                                                                                            <div class="card-body">
+                                                                                                                                                <a class="text-danger">
+                                                                                                                                                    <i class="fa fa-money" style="color:#ff5c00 !important;"></i>
+                                                                                                                                                    <span>Discount</span>
+                                                                                                                                                </a>
+                                                                                                                                            </div>
+                                                                                                                                        </div>
+                                                                                                                                    </div>
+                                                                                                                                    <div class="col-4" style="padding:3px;">
+                                                                                                                                        <div class="card catagory-card">
+                                                                                                                                            <div class="card-body">
+                                                                                                                                                <a class="text-danger">
+                                                                                                                                                    <i class="fa fa-file" style="color:#ff5c00 !important;"></i>
+                                                                                                                                                    <span>Review</span>
+                                                                                                                                                </a>
+                                                                                                                                            </div>
+                                                                                                                                        </div>
+                                                                                                                                    </div>
+                                                                                                                                    <div class="col-4" style="padding:3px;">
+                                                                                                                                        <div class="card catagory-card">
+                                                                                                                                            <div class="card-body">
+                                                                                                                                                <a class="text-danger">
+                                                                                                                                                    <i class="fa fa-dashboard" style="color:#ff5c00 !important;"></i>
+                                                                                                                                                    <span>About My Shop</span>
+                                                                                                                                                </a>
+                                                                                                                                            </div>
+                                                                                                                                        </div>
+                                                                                                                                    </div>
+                                                                                                                                    <div class="col-4" style="padding:3px;">
+                                                                                                                                        <div class="card catagory-card">
+                                                                                                                                            <div class="card-body">
+                                                                                                                                                <a class="text-danger">
+                                                                                                                                                    <i class="fa fa-envelope" style="color:#ff5c00 !important;"></i>
+                                                                                                                                                    <span>Chat</span>
+                                                                                                                                                </a>
+                                                                                                                                            </div>
+                                                                                                                                        </div>
+                                                                                                                                    </div>
+
+                                                                                                                                    <!-- Single Catagory Card-->
+
+
+                                                                                                                                </div>
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                    </div>
+                                                                                                                    <!-- Flash Sale Slide-->
+                                                                                                                    <div class="flash-sale-wrapper">
+                                                                                                                        <div class="container">
+
+                                                                                                                           
+
+                                                                                                                            <!-- Flash Sale Slide-->
+                                                                                                                            
+                                                                                                                        </div>
+
+                                                                                                                    </div>
+                                                                                                                   
+                                                                                                                    <div class="container">
+
+                                                                                                                        <div class="section-heading">
+                                                                                                                            <h6 style="background-color:#7fd1eb;color:#1a1818;">
+                                                                                                                                <i class="fa fa-shopping-bag"></i>
+                                                                                                                                Products
+
+                                                                                                                            </h6>
+                                                                                                                        </div>
+                                                                                                                        <div class="row g-3">
+                                                                                                                            <style>
+                                                                                                                                .top-product-card .product-title {
+                                                                                                                                    font-size: 10px;
+                                                                                                                                    font-weight: 700;
+                                                                                                                                    margin-bottom: 0 !important;
+                                                                                                                                    color: #020310;
+                                                                                                                                    line-height: 1;
+                                                                                                                                    min-height: 30px;
+                                                                                                                                    max-height: 30px;
+                                                                                                                                    overflow: hidden;
+                                                                                                                                }
+
+                                                                                                                                .top-product-card .sale-price {
+                                                                                                                                    margin-bottom: 0.25rem;
+                                                                                                                                    color: #f56615;
+                                                                                                                                    font-weight: 700;
+                                                                                                                                    font-size: 0.725rem;
+                                                                                                                                    margin: 0;
+                                                                                                                                    line-height: 1.3;
+                                                                                                                                }
+                                                                                                                            </style>
+                                                                                                                            <!-- Single Top Product Card-->
+                                                                                                                            @foreach (var data in Model.Product)
+                                                                                                                            {
+                                                                                                                    <div class="col-6 col-md-4 col-lg-3">
+                                                                                                                        <div class="card top-product-card" style="border: 1px solid #ff5c002b;">
+                                                                                                                            <div class="card-body">
+
+                                                                                                                                @if (data.ImageThumbnail != null)
+                                                                                                                                {
+                                                                                                                    <a class="product-thumbnail d-block" style="margin:8px auto;" asp-page="/ProductDetails" asp-route-customerRef="" asp-route-id="@data.Id" asp-route-name="@data.Name.Replace(" ", "-")" asp-route-shop="@data.Tenant.BusinessName.Replace(" ", "-")" asp-route-mktstate="@data.Tenant.Market.State.Replace(" ", "-")" asp-route-mktaddress="@data.Tenant.Market.Address.Replace(" ", "-")">
+                                                                                                                        <img class="mb-2" src="https://manager.ahioma.com/@data.ImageThumbnail" alt="" style="margin: 10px auto 0 !important;">
+                                                                                                                    </a>}
+                                                                                                                                <a class="product-title d-block" asp-page="/ProductDetails" asp-route-customerRef="" asp-route-id="@data.Id" asp-route-name="@data.Name.Replace(" ", "-")" asp-route-shop="@data.Tenant.BusinessName.Replace(" ", "-")" asp-route-mktstate="@data.Tenant.Market.State.Replace(" ", "-")" asp-route-mktaddress="@data.Tenant.Market.Address.Replace(" ", "-")">
+                                                                                                                                    @data.Name
+
+                                                                                                                                </a>
+                                                                                                                                <p class="sale-price">
+                                                                                                                                    &#8358;@string.Format("{0:C}", data.Price).Replace(".00", "").Replace("$", "")
+                                                                                                                                    @if (data.OldPrice.ToString() != "0.00")
+                                                                                                                                    {
+                                                                                                                                <span style="font-size:11px;text-decoration: line-through;padding-left:4px;color:#020310 !important;">&#8358;@string.Format("{0:C}", data.OldPrice).Replace(".00", "").Replace("$", "")</span>}
+                                                                                                                                </p>
+                                                                                                                                <p class="sale-price" style="color: #020310 !important;">&#64;@data.Market.ShortName</p>
+
+                                                                                                                            </div>
+                                                                                                                        </div>
+                                                                                                                    </div> <!-- Single Top Product Card-->}
+
+                                                                                                                        </div>
+                                                                                                                        <div class="clearfix"></div>
+                                                                                                                        @{ int? pf = 0;
+                                                                                                                            if (Model.CurrentPage == null)
+                                                                                                                            {
+                                                                                                                                pf = 1;
+                                                                                                                            }
+                                                                                                                            else
+                                                                                                                            {
+                                                                                                                                pf = Model.CurrentPage;
+                                                                                                                            } }
+                                                                                                                        <span> page @pf of @Model.TotalPages pages(@Model.Count items)</span>
+
+                                                                                                                        @{var prevDisabledm = !Model.Product.HasPreviousPage ? "disabled" : "";
+                                                                                                                            var nextDisabledm = !Model.Product.HasNextPage ? "disabled" : "";
+
+                                                                                                                        }
+                                                                                                                        <br />
+
+                                                                                                                        <a asp-page="./PromoPage"
+                                                                                                                           asp-route-pageIndex="@(Model.Product.PageIndex - 1)"
+                                                                                                                           asp-route-name="@Model.Name."
+                                                                                                                           asp-route-customerRef=""
+                                                                                                                           class="btn btn-primary @prevDisabledm">
+                                                                                                                            Previous
+                                                                                                                        </a>
+                                                                                                                        <a asp-page="./PromoPage"
+                                                                                                                           asp-route-pageIndex="@(Model.Product.PageIndex + 1)"
+                                                                                                                           asp-route-name="@Model.Name"
+                                                                                                                           asp-route-customerRef=""
+                                                                                                                           class="btn btn-primary @nextDisabledm">
+                                                                                                                            Next
+                                                                                                                        </a>
+                                                                                                                    </div>
+                                                                                                                </div>}
+
+<div style="margin-bottom:20px">.</div>

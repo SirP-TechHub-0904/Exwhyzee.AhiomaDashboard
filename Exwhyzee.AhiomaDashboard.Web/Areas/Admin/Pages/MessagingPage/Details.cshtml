@@ -1,0 +1,56 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.Admin.Pages.MessagingPage.DetailsModel
+
+@{ ViewData["Title"] = "Details"; }
+
+<div class="row">
+    <div class="card-columns mx-auto d-flex justify-content-center col-12">
+
+        <div class="card">
+            <div class="card-header">
+
+                <h3 class="card-title">
+                    Compose Message
+                </h3>
+            </div>
+            <div class="card-body">
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Messaging.MassageType)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Messaging.MassageType)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Messaging.Date)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Messaging.Date)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Messaging.Contacts) <span style="font-size:16px;font-weight:900;"> (@Model.Messaging.Count)</span>
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Messaging.Contacts)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Messaging.Message)
+                    </dt>
+                    <dd>
+                        @Html.Raw(Model.Messaging.Message)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Messaging.Status)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Messaging.Status)
+                    </dd>
+                </dl>
+            </div>
+            <div>
+                <a asp-page="./Edit" asp-route-id="@Model.Messaging.Id">Edit</a> |
+                <a asp-page="./Index">Back to List</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,64 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Areas.Admin.Pages.SinglePages.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+<div class="row">
+    <div class="card-columns mx-auto d-flex justify-content-center col-12">
+
+        <div class="card">
+            <div class="card-header">
+
+                <h3 class="card-title">
+                    New Page
+
+
+                </h3>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="WebPages.Title" class="control-label"></label>
+                        <input asp-for="WebPages.Title" class="form-control" />
+                        <span asp-validation-for="WebPages.Title" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="WebPages.UniqueTitle" class="control-label"></label>
+                        <input asp-for="WebPages.UniqueTitle" class="form-control" />
+                        <span asp-validation-for="WebPages.UniqueTitle" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input asp-for="WebPages.Publish" /> @Html.DisplayNameFor(model => model.WebPages.Publish)
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="WebPages.Content" class="control-label"></label>
+                        <textarea id="mytextarea" asp-for="WebPages.Content" class="form-control"></textarea>
+                        <span asp-validation-for="WebPages.Content" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="WebPages.PageType" class="control-label"></label>
+                        @Html.DropDownListFor(model => model.WebPages.PageType, new SelectList(Enum.GetValues(typeof(Exwhyzee.Enums.PageType))), new { @class = "form-control" })
+                        <span asp-validation-for="WebPages.PageType" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                        <a asp-page="Index" class="btn btn-outline-primary waves-effect waves-light">Back</a>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

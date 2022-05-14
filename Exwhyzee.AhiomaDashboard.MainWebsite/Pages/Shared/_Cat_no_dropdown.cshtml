@@ -1,0 +1,71 @@
+﻿
+    <div class="header-bottom hidden-sm hidden-xs">
+        <div class="container ">
+            <div class="row" style="margin-bottom:0;">
+                <div class="header-bottom-left col-lg-3 col-md-2 col-3">
+
+
+                    <div id="menu--verticalCategories" class="navPages-container navPages-verticalCategories">
+
+                        <a asp-page="/ListCartigories" asp-route-customerRef="" class="navPages-action megamenuToogle-wrapper hidden-sm hidden-xs is-open" data-collapsible="verticalCategories" data-collapsible-disabled-breakpoint="medium" data-collapsible-disabled-state="open" data-collapsible-enabled-state="open" data-collapsible-limit="9" data-collapsible-textmore="More Categories" data-collapsible-textclose="Close Categories" aria-expanded="true" aria-controls="verticalCategories">
+                            <svg class="icon-alignleft" width="18" height="18"><use xlink:href="#icon-alignleft"></use></svg>
+                            <span class="title-mega">All Categories </span>
+                            <svg class="icon-caret-circle" width="16" height="16"><use xlink:href="#icon-caret-circle-down"></use></svg>
+                        </a>
+
+                        <div class="verticalCategories is-open" id="verticalCategories" aria-hidden="false" tabindex="-1">
+                            <span class="mobileMenu-close fa fa-times"></span>
+                            @await Component.InvokeAsync("Categories", new { customerRef = "" })
+                        </div>
+                    </div>
+
+                    <a href="#" class="mobileMenu-toggle mobileMenu--vertical" data-mobile-menu-toggle="menu--verticalCategories" aria-controls="menu--verticalCategories">
+                        <span class="mobileMenu-toggleIcon"> Vertical Categories</span>
+                    </a>
+
+                </div>
+                <div class="header-bottom-right col-lg-9 col-md-10 col-9">
+                    <div class="row">
+                        <div class="header-bottom__search collapsed-block col-xl-9 col-lg-8 col-sm-8 col-4">
+                            <h5 class="search-info-heading  d-sm-none d-xl-none">
+                                <span class="expander btn btn-outline-secondary"> <i class="fa fa-search"></i> </span>
+                            </h5>
+                            <div class="sb-quickSearch search-info-content" aria-hidden="true" tabindex="-1" data-prevent-quick-search-close="">
+
+                                <!-- snippet location forms_search -->
+                                <form class="sb-searchpro" method="get" asp-page="/Search" asp-route-customerRef="" asp-route-hdsearcw="asd23A-jnbsbdd-Nhauy" asp-route-catidlogger="hjdjfgbjhfbyewueureuweryweiuywurjhsdjbsjcfdshjsjchbcjbsdkvjbk">
+                                    <fieldset class="form-fieldset">
+                                        <div class="input-group">
+                                            <input class="form-control form-input" value="@TempData["search"]" name="searchString" placeholder="Kindly search for your product, shops and markets" autocomplete="off">
+                                            <input hidden name="catidlogger" value="MHHkkqndfmvnHGJHhgj2020-00-20MASTECH-ahioma-query-securjhh" />
+                                            <input hidden name="hdsearcw" value="12387875ghxGFX762HXJ768E6WE" />
+                                            <input hidden name="customerRef" value="" />
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-secondary" type="submit"><i class="fa fa-search"></i></button>
+                                            </div>
+                                        </div>
+
+                                    </fieldset>
+                                </form>
+
+
+
+                            </div>
+
+                        </div>
+
+                        <div class="header-bottom__cart col-xl-3 col-lg-4 col-sm-4 col-8 text-right">
+                            @{
+                                string user = User.Identity.Name;
+                                string wuser = User.Identity.Name;
+                            }
+                            @await Component.InvokeAsync("CartCount", new { name = user })
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

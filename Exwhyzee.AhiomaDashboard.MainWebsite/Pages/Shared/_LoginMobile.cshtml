@@ -1,0 +1,79 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+
+@if (SignInManager.IsSignedIn(User))
+{
+
+    @if (User.Identity.IsAuthenticated && User.IsInRole("mSuperAdmin"))
+    {
+        <li>
+            <a asp-area="Dashboard" asp-page="/Analysis/Index">
+                <i class="mdi mdi-view-dashboard"></i>
+                <span>Dashbaord</span>
+            </a>
+        </li>
+
+
+    }
+    else if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+    {
+
+
+        <li>
+            <a asp-area="Admin" asp-page="/Dashboard/Index">
+                <i class="mdi mdi-view-dashboard"></i>
+                <span>Dashbaord</span>
+            </a>
+        </li>
+    }
+    else if (User.Identity.IsAuthenticated && User.IsInRole("SOA"))
+    {
+        <li>
+            <a asp-area="SOA" asp-page="/Dashboard/Index">
+                <i class="mdi mdi-view-dashboard"></i>
+                <span>Dashbaord</span>
+            </a>
+        </li>
+
+
+    }
+    else if (User.Identity.IsAuthenticated && User.IsInRole("Store"))
+    {
+        <li>
+            <a asp-area="Store" asp-page="/Dashboard/Index">
+                <i class="mdi mdi-view-dashboard"></i>
+                <span>Dashbaord</span>
+            </a>
+        </li>
+
+
+
+    }
+    else if (User.Identity.IsAuthenticated && User.IsInRole("Customer"))
+    {
+<li>
+    <a asp-area="Customer" asp-page="/Dashboard/Index">
+        <i class="mdi mdi-view-dashboard"></i>
+        <span>Dashbaord</span>
+    </a>
+</li>
+
+       
+    }
+
+}
+else
+{
+
+
+    <li>
+        <a asp-page="/Login" asp-route-customerRef="">
+            <i class="mdi mdi-login"></i>
+            <span>Login</span>
+        </a>
+    </li>
+
+}
+

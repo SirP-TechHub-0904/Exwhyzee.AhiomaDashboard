@@ -1,0 +1,97 @@
+﻿<li class="navUser-item">
+    @if (User.Identity.IsAuthenticated && User.IsInRole("mSuperAdmin"))
+    {
+
+<a class="navUser-action has-dropdown" asp-area="Dashboard" asp-page="/Analysis/Index" data-dropdown="accountSelection" aria-controls="accountSelection" aria-expanded="false">
+    <i class="fa fa-user"></i>
+    @if (User.Identity.IsAuthenticated)
+    {
+@await Component.InvokeAsync("Surname") }
+else
+{
+<text>My Account</text>}
+
+    <i class="icon fa fa-caret-down" aria-hidden="true" style="margin-left:4px;font-weight:900;">
+    </i>
+</a> }
+else if (User.Identity.IsAuthenticated && User.IsInRole("SubAdmin"))
+{
+<a class="navUser-action has-dropdown" asp-area="AdminPage" asp-page="/Dashboard/Index" data-dropdown="accountSelection" aria-controls="accountSelection" aria-expanded="false">
+    <i class="fa fa-user"></i>
+    @if (User.Identity.IsAuthenticated)
+    {
+@await Component.InvokeAsync("Surname") }
+else
+{
+<text>My Account</text>}
+
+    <i class="icon fa fa-caret-down" aria-hidden="true" style="margin-left:4px;font-weight:900;">
+    </i>
+</a> }
+            else if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+            {
+
+<a class="navUser-action has-dropdown" asp-area="Admin" asp-page="/Dashboard/Index" data-dropdown="accountSelection" aria-controls="accountSelection" aria-expanded="false">
+    <i class="fa fa-user"></i>
+    @if (User.Identity.IsAuthenticated)
+    {
+@await Component.InvokeAsync("Surname") }
+else
+{
+<text>My Account</text>}
+    <i class="icon" aria-hidden="true"><svg><use xlink:href="#icon-chevron-down"></use></svg></i>
+</a> }
+else if (User.Identity.IsAuthenticated && User.IsInRole("SOA"))
+{
+
+<a class="navUser-action has-dropdown" asp-area="SOA" asp-page="/Dashboard/Index" data-dropdown="accountSelection" aria-controls="accountSelection" aria-expanded="false">
+    <i class="fa fa-user"></i> @if (User.Identity.IsAuthenticated)
+    {
+@await Component.InvokeAsync("Surname") }
+else
+{
+<text>My Account</text>}
+    <i class="icon" aria-hidden="true"><svg><use xlink:href="#icon-chevron-down"></use></svg></i>
+</a> }
+else if (User.Identity.IsAuthenticated && User.IsInRole("Store"))
+{
+
+<a class="navUser-action has-dropdown" asp-area="Store" asp-page="/Dashboard/Index" data-dropdown="accountSelection" aria-controls="accountSelection" aria-expanded="false">
+    <i class="fa fa-user"></i>  @if (User.Identity.IsAuthenticated)
+    {
+@await Component.InvokeAsync("Surname") }
+else
+{
+<text>My Account</text>}
+    <i class="icon" aria-hidden="true"><svg><use xlink:href="#icon-chevron-down"></use></svg></i>
+</a> }
+else if (User.Identity.IsAuthenticated && User.IsInRole("Customer"))
+{
+
+<a class="navUser-action has-dropdown" asp-area="Customer" asp-page="/Dashboard/Index" data-dropdown="accountSelection" aria-controls="accountSelection" aria-expanded="false">
+    <i class="fa fa-user"></i> @if (User.Identity.IsAuthenticated)
+    {
+@await Component.InvokeAsync("Surname") }
+else
+{
+<text>My Account</text>}
+    <i class="icon" aria-hidden="true"><svg><use xlink:href="#icon-chevron-down"></use></svg></i>
+</a> }
+else
+{
+<a class="navUser-action has-dropdown" data-dropdown="accountSelection" asp-page="/Login" asp-route-customerRef="" aria-controls="accountSelection" aria-expanded="false">
+    <i class="fa fa-user"></i> @if (User.Identity.IsAuthenticated)
+    {
+@await Component.InvokeAsync("Surname") }
+else
+{
+<text>My Account</text>}
+    <i class="icon" aria-hidden="true"><svg><use xlink:href="#icon-chevron-down"></use></svg></i>
+</a>}
+
+    <ul class="dropdown-menu" id="accountSelection" data-dropdown-content="" aria-hidden="true" tabindex="-1">
+
+        <partial name="_Login" />
+
+    </ul>
+</li>

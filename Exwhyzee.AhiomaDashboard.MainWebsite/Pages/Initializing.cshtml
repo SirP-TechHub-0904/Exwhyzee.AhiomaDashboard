@@ -1,0 +1,66 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Pages.InitializingModel
+@{
+    ViewData["Title"] = "Initializing";
+    Layout = "/Pages/Shared/_Initial.cshtml";
+
+
+}
+    <script type="text/javascript">
+        //$(document).ready(function () {
+        //    setTimeout(function () {
+        //        $('#showing').show();
+        //    }, 10000);
+        //}
+
+        window.onload = function () {
+            setTimeout(function () {
+                $("#showing").show();
+                $("#removeit").hide();
+                $("#dashboard2").show();
+                $("#dashboard").hide();
+            }, 10000);
+
+
+
+        };
+    </script>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-4"></div>
+            <div class="col-xl-4 text-center" style="margin-top:40px;">
+                <img src="~/images/ahioma_logo.png" style="margin:0 auto;text-align:center;" />
+                <h2 id="dashboard" style="display:none;">Configuring Your Dashboard...</h2>
+                <h2 id="dashboard2">Dashboard Completed</h2>
+                <div class="" id="removeit">
+                    <img src="~/images/loading-animated-png-6.gif" style="max-height:200px;margin:0 auto;text-align:center;" class="img-responsive" />
+                </div>
+                @*@if (TempData["error"] != null)
+                {
+                    <a asp-area="" asp-page="/ContactUsNow" class="btn btn-danger">
+                        <i class="fa fa-envelope"></i>
+                        <span>Click to Contact Us</span>
+                    </a>
+                }*@
+
+
+                <div id="showing" style="display:none;">
+                    <a asp-area="SOA" asp-page="/Dashboard/Index" class="btn btn-primary">
+                        <i class="fa fa-dashboard"></i>
+                        <span>Go To Dashboard</span>
+                    </a>
+
+                </div>
+
+                <div class="card">
+                    <div class="card-body" style="margin-top:10px;">
+                        <a href="https://t.me/joinchat/_lJjfMr13jM0MzBk" class="btn btn-success" target="_blank">CLICK TO JOIN OUR TELEGRAM PAGE</a>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-xl-4"></div>
+        </div>
+    </div>

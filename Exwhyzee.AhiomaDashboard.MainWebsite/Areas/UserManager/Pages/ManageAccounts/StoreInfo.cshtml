@@ -1,0 +1,468 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Areas.UserManager.Pages.ManageAccounts.StoreInfoModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="row">
+
+
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+
+                <h3 class="card-title">
+                    Store Details
+                </h3>
+                @if (User.Identity.IsAuthenticated && User.IsInRole("SO Admin"))
+                {
+            <a asp-page="./UpdateUserStatus" asp-route-uid="@Model.Tenant.UserProfile.UserId">
+                <button type="button" class="btn btn-primary btn-rounded waves-effect waves-light">Update Status</button>
+            </a>}
+                <a asp-page="./UpdateShop" asp-route-uid="@Model.Tenant.Id">
+                    <button type="button" class="btn btn-primary btn-rounded waves-effect waves-light">Update Shop</button>
+                </a>
+            </div>
+
+            <div class="card-body">
+
+
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                            <a class="nav-link active" id="v-Dashboard-tab" data-toggle="pill" href="#v-Dashboard" role="tab" aria-controls="v-Dashboard" aria-selected="false">General</a>
+                            <a class="nav-link mb-2" id="v-Products-tab" data-toggle="pill" href="#v-Products" role="tab" aria-controls="v-Products" aria-selected="false">Products</a>
+                            <a class="nav-link mb-2" id="v-Images-tab" data-toggle="pill" href="#v-Images" role="tab" aria-controls="v-Images" aria-selected="false">Shop Banners</a>
+
+
+                        </div>
+                    </div>
+                    <div class="col-md-10">
+
+
+                        <div class="tab-content text-muted mt-4 mt-md-0" id="v-pills-tabContent">
+                            <div class="tab-pane fade active show" id="v-Dashboard" role="tabpanel" aria-labelledby="v-Dashboard-tab">
+
+                                <div class="">
+                                    <div class="table-responsive">
+                                        <table class="table mb-0">
+
+
+                                            <tbody>
+                                                <tr>
+                                                    <th>Shop Owner</th>
+                                                    <td>@Html.DisplayFor(model => model.Tenant.UserProfile.Fullname)</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Shop Owner Email</th>
+                                                    <td>@Html.DisplayFor(model => model.Tenant.UserProfile.User.Email)</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Shop Owner Phone</th>
+                                                    <td>@Html.DisplayFor(model => model.Tenant.UserProfile.User.PhoneNumber)</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Business Name</th>
+                                                    <td>@Html.DisplayFor(model => model.Tenant.BusinessName)</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Ahioma Shop</th>
+                                                    <td>
+                                                        <a asp-page="/Info/ShopPage" asp-route-name="@Model.Tenant.TenentHandle">
+                                                            http://ahioma.com/@Html.DisplayFor(model => model.Tenant.TenentHandle)
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Business Description</th>
+                                                    <td>@Html.Raw(Model.Tenant.BusinessDescription)</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Do You Have Other Branches</th>
+                                                    <td>@Html.DisplayFor(model => model.Tenant.DoYouHaveOtherBranches)</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Date Created</th>
+                                                    <td>@Html.DisplayFor(model => model.Tenant.CreationTime)</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Market</th>
+                                                    <td>@Html.DisplayFor(model => model.Tenant.Market.Name)</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>SOA</th>
+                                                    <td> @await Component.InvokeAsync("FullNameAndID", new { uid = Model.Tenant.CreationUserId })</td>
+                                                </tr>
+
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="v-Analysis" role="tabpanel" aria-labelledby="v-Analysis-tab">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="card mini-stats-wid" style="background-color: #d3d6de;">
+                                            <div class="card-body">
+                                                <div class="media">
+                                                    <div class="media-body">
+                                                        <p class="font-weight-medium" style="color:#182038;">Item Orders from @Model.Tenant.BusinessName</p>
+                                                        <h4 class="mb-0" style="color:#182038;">0</h4>
+                                                    </div>
+
+                                                    <div class="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
+                                                        <span class="avatar-title">
+                                                            <i class="bx bx-copy-alt font-size-24"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="card mini-stats-wid" style="background-color: #d3d6de;">
+                                            <div class="card-body">
+                                                <div class="media">
+                                                    <div class="media-body">
+                                                        <p class="font-weight-medium" style="color:#182038;">Revenue from @Model.Tenant.BusinessName</p>
+                                                        <h4 class="mb-0" style="color:#182038;">N00,000.00</h4>
+                                                    </div>
+
+                                                    <div class="avatar-sm rounded-circle bg-primary align-self-center mini-stat-icon">
+                                                        <span class="avatar-title rounded-circle bg-primary">
+                                                            <i class="bx bx-archive-in font-size-24"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="card mini-stats-wid" style="background-color: #d3d6de;">
+                                            <div class="card-body">
+                                                <div class="media">
+                                                    <div class="media-body">
+                                                        <p class="font-weight-medium" style="color:#182038;">Pending Delivery from @Model.Tenant.BusinessName</p>
+                                                        <h4 class="mb-0" style="color:#182038;">0</h4>
+                                                    </div>
+
+                                                    <div class="avatar-sm rounded-circle bg-primary align-self-center mini-stat-icon">
+                                                        <span class="avatar-title rounded-circle bg-primary">
+                                                            <i class="bx bx-purchase-tag-alt font-size-24"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="tab-pane fade" id="v-Products" role="tabpanel" aria-labelledby="v-Products-tab">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="card mini-stats-wid" style="background-color: #d3d6de;">
+                                            <div class="card-body">
+                                                <div class="media">
+                                                    <div class="media-body">
+                                                        <p class="font-weight-medium" style="color:#182038;">Products</p>
+                                                        <h4 class="mb-0" style="color:#182038;">@Model.Count  <a asp-page="/Products/Index" asp-area="Admin" asp-route-id="@Model.Tenant.Id" class="btn btn-primary btn-sm">View Products</a></h4>
+                                                    </div>
+
+                                                    <div class="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
+                                                        <span class="avatar-title">
+                                                            <i class="bx bx-copy-alt font-size-24"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="tab-pane fade" id="v-Images" role="tabpanel" aria-labelledby="v-Images-tab">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        @Model.Tenant.BannerUri
+                                        <img src="@Model.Tenant.BannerUri" style="max-height:100px;width:auto;" class="img-responsive" />
+                                        <br />
+                                        <form asp-page-handler="BannerUpload" enctype="multipart/form-data" asp-route-id="@Model.Tenant.Id" method="post">
+
+
+                                            <div class="item form-group">
+                                                <label class="control-label" for="file">
+                                                    Upload Banner
+                                                </label>
+                                                <div class="">
+                                                    <input class="form-control" type="file" name="files" id="gallery-photo-add" multiple />
+                                                    <div class="gallery"></div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="submit" value="Upload" class="btn btn-primary" />
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="col-md-6">
+                                        @Model.Tenant.LogoUri
+                                        <img src="@Model.Tenant.LogoUri" style="max-height:100px;width:auto;" class="img-responsive" />
+                                        <br />
+                                        <form asp-page-handler="LogoUpload" enctype="multipart/form-data" asp-route-id="@Model.Tenant.Id" method="post">
+
+                                            <div class="item form-group">
+                                                <label class="control-label" for="file">
+                                                    Upload logo
+                                                </label>
+                                                <div class="">
+                                                    <input class="form-control" type="file" name="files" id="gallery-photo-add1" />
+                                                    <div class="gallery1"></div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="submit" value="Upload" class="btn btn-primary" />
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+
+                <h3 class="card-title">
+                    Store Categories
+
+                </h3>
+            </div>
+            <div class="card-body">
+                @foreach (var i in Model.StoreCategories)
+                {
+                    <div class="btn btn-primary" style="margin:5px;">
+
+                        <form asp-page-handler="RemoveCategory" asp-route-id="@i.Id" method="post">
+                            @i.CategoryName  <button>X</button>
+                        </form>
+                    </div>
+                }
+            </div>
+            <div class="card-body">
+                <form asp-page-handler="CategoryAdd" method="post" asp-route-id="@Model.Tenant.Id">
+                    @*<input type="hidden" name="tenantdataId" value="@Model.Tenant.Id" />*@
+                    <div class="form-group">
+                        <label class="control-label">Category</label>
+                        <select asp-for="CategorydataId" asp-items="@Model.CategoryListing" class="form-control" required="required">
+                            <option>Select Category</option>
+
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Add Category" class="btn btn-primary" />
+
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+
+        <div class="card">
+            <div class="card-header">
+
+                <h3 class="card-title">
+                    Store Addresses
+
+
+                </h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-xl-12">
+
+                        <!-- end row -->
+
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title mb-3">List of Store Addresses</h4>
+                                <table id="datatable7" class="table table-bordered dt-responsive nowrap dataTable no-footer dtr-inline" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
+
+                                    @*public string PhoneNumber { get; set; }
+                                        public string EmailAddress { get; set; }
+                                        public string State { get; set; }
+                                        public string LocalGovernment { get; set; }
+                                        public long MarketId { get; set; }
+                                        public string Longitude { get; set; }
+                                        public string Latitiude { get; set; }
+                                        public string Zipcode { get; set; }*@
+
+                                    <tbody>
+                                        @foreach (var i in Model.Tenant.TenantAddresses)
+                                        {
+                                            <tr>
+                                                <th colspan="2" class="text-center" style="padding: 0.2rem;">
+                                                    @i.Address
+
+                                                </th>
+
+                                            </tr>
+                                            <tr>
+                                                <th style="padding: 0.2rem;">
+                                                    PhoneNumber
+                                                </th>
+                                                <td style="padding: 0.2rem;">
+                                                    @i.PhoneNumber
+                                                </td>
+
+                                            </tr>
+                                            <tr>
+                                                <th style="padding: 0.2rem;">
+                                                    EmailAddress
+                                                </th>
+                                                <td style="padding: 0.2rem;">
+                                                    @i.EmailAddress
+                                                </td>
+
+                                            </tr>
+                                            <tr>
+                                                <th style="padding: 0.2rem;">
+                                                    State
+
+                                                </th>
+                                                <td style="padding: 0.2rem;">
+                                                    @i.State
+                                                </td>
+
+                                            </tr>
+                                            <tr>
+                                                <th style="padding: 0.2rem;">
+                                                    Local Government
+
+                                                </th>
+                                                <td style="padding: 0.2rem;">
+                                                    @i.LocalGovernment
+                                                </td>
+
+                                            </tr>
+                                            <tr>
+                                                <th style="padding: 0.2rem;">
+                                                    Longitude
+
+                                                </th>
+                                                <td style="padding: 0.2rem;">
+                                                    @i.Longitude
+                                                </td>
+
+                                            </tr>
+
+                                            <tr>
+                                                <th style="padding: 0.2rem;">
+                                                    Latitiude
+
+                                                </th>
+                                                <td style="padding: 0.2rem;">
+                                                    @i.Latitiude
+                                                </td>
+
+                                            </tr>
+                                            <tr>
+                                                <th style="padding: 0.2rem;">
+                                                    Zipcode
+
+                                                </th>
+                                                <td style="padding: 0.2rem;">
+                                                    @i.Zipcode
+                                                </td>
+
+                                            </tr>
+                                        }
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <!-- end card -->
+</div>
+@if (User.Identity.IsAuthenticated && User.IsInRole("Admin") || User.IsInRole("mSuperAdmin"))
+{
+    <a asp-page="./EditShop" asp-route-id="@Model.Tenant.Id">
+        Edit
+    </a>
+}
+
+
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+
+        <script type="text/javascript">
+            $(function () {
+                // multiple images prevuiew in browser
+                var imagesPreview = function (input, placeToInsertImagePreview) {
+                    if (input.files) {
+                        var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.gif|.png|.bmp)$/;
+                        var filesAmount = input.files.length;
+                        if (filesAmount <= 5) {
+                            for (i = 0; i < filesAmount; i++) {
+                                var reader = new FileReader();
+                                reader.onload = function (event) {
+                                    $($.parseHTML('<img>')).attr('src', event.target.result).attr('width', '100px').attr('height', '100px').attr('margin', '10px').attr('padding', '10px').appendTo(placeToInsertImagePreview);
+                                }
+                                reader.readAsDataURL(input.files[i]);
+                            }
+                        } else {
+                            window.alert("You cant upload more than 5 images");
+                        }
+                    }
+                };
+                $('#gallery-photo-add').on('change', function () {
+                    imagesPreview(this, 'div.gallery');
+                });
+            });
+
+        </script>
+
+        <script type="text/javascript">
+            $(function () {
+                // multiple images prevuiew in browser
+                var imagesPreview = function (input, placeToInsertImagePreview) {
+                    if (input.files) {
+                        var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.gif|.png|.bmp)$/;
+                        var filesAmount = input.files.length;
+                        if (filesAmount <= 5) {
+                            for (i = 0; i < filesAmount; i++) {
+                                var reader = new FileReader();
+                                reader.onload = function (event) {
+                                    $($.parseHTML('<img>')).attr('src', event.target.result).attr('width', '100px').attr('height', '100px').attr('margin', '10px').attr('padding', '10px').appendTo(placeToInsertImagePreview);
+                                }
+                                reader.readAsDataURL(input.files[i]);
+                            }
+                        } else {
+                            window.alert("You cant upload more than 5 images");
+                        }
+                    }
+                };
+                $('#gallery-photo-add1').on('change', function () {
+                    imagesPreview(this, 'div.gallery1');
+                });
+            });
+
+        </script>
+    }

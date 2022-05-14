@@ -1,0 +1,208 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.User.Pages.Account.ComfirmTransferModel
+@{ }
+<div class="row">
+    <div class="card-columns mx-auto d-flex justify-content-center col-12">
+
+        <div class="card">
+            <div class="card-header">
+
+                <h3 class="card-title">
+                    Transfer Money to My Account
+
+                </h3>
+                <h3 class="card-title">
+                    Available Balance <span class="btn btn-primary btn-sm">@Model.Wallet.WithdrawBalance</span>
+
+                </h3>
+            </div>
+            <div class="card-body">
+                <form onsubmit='disableButton()' method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <input name="Amount" type="hidden" value="@Model.iAmount" required="required" />
+                    <div class="alert alert-success">
+                        <strong>Bank: @Model.Profile.BankName</strong>
+                    </div>
+                    <div class="alert alert-success">
+                        <strong>Account Number: @Model.Profile.AccountNumber</strong>
+                    </div>
+                    <div class="alert alert-success">
+                        <strong>Account Name: @Model.Profile.AccountName</strong>
+                    </div>
+                    <div class="alert alert-success">
+                        <strong>Amount: @Model.iAmount</strong>
+                    </div>
+                    <div class="form-group">
+                        @*<input id='btn' type="submit" value="Transfer" class="btn btn-primary" />*@
+                        <button id="btn" type="submit" class="btn btn-success">Transfer</button>
+
+                        <a asp-page="Index" class="btn btn-outline-primary waves-effect waves-light">Back</a>
+                        <div id="timer" data-hours="0" data-minutes="0" data-seconds="30"></div>
+
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<div id="mainbody">
+    <a asp-page="/Account/Invalid" asp-area="User" style="visibility:hidden;display:none;">
+
+    </a>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script type="text/javascript">
+        $(document).ready(function () {
+            redirectUrl = $('#mainbody').find('a').attr('href');
+            setTimeout(function () {
+                window.location.replace(redirectUrl);
+            }, 30000);
+        });
+    </script>
+    <script>
+
+        const oneSec = 1000,
+            container = document.getElementById('timer');
+
+        let dataHours = container.getAttribute('data-hours'),
+            dataMinutes = container.getAttribute('data-minutes'),
+            dataSeconds = container.getAttribute('data-seconds'),
+            timerEnd = container.getAttribute('data-timer-end'),
+            timerOnEndMsg = "data-timer-end";
+
+        if (dataHours == '' || dataHours == null || dataHours == NaN) {
+            dataHours = "0";
+        }
+        if (dataMinutes == '' || dataMinutes == null || dataMinutes == NaN) {
+            dataMinutes = "0";
+        }
+        if (dataSeconds == '' || dataSeconds == null || dataSeconds == NaN) {
+            dataSeconds = "0";
+        }
+
+        let hoursSpan = document.createElement('span'),
+            minutesSpan = document.createElement('span'),
+            secondsSpan = document.createElement('span'),
+            separator1 = document.createElement('span'),
+            separator2 = document.createElement('span'),
+            separatorValue = ":",
+            max = 59,
+            s = parseInt(dataSeconds) > max ? max : parseInt(dataSeconds),
+            m = parseInt(dataMinutes) > max ? max : parseInt(dataMinutes),
+            h = parseInt(dataHours);
+
+        secondsSpan.classList.add('time');
+        minutesSpan.classList.add('time');
+        hoursSpan.classList.add('time');
+        separator1.classList.add('separator');
+        separator1.textContent = separatorValue;
+        separator2.classList.add('separator');
+        separator2.textContent = separatorValue;
+
+        checkValue = (value) => {
+            if (value < 10) {
+                return "0" + value;
+            } else {
+                return value;
+            }
+        }
+
+        hoursSpan.textContent = checkValue(dataHours);
+        minutesSpan.textContent = checkValue(dataMinutes);
+        secondsSpan.textContent = checkValue(dataSeconds);
+
+        timer = (sv, mv, hv) => {
+
+            s = parseInt(sv);
+            m = parseInt(mv);
+            h = parseInt(hv);
+
+            if (s > 0) {
+                return s -= 1;
+            } else {
+                s = max;
+                if (m > 0) {
+                    return m -= 1;
+                } else {
+                    m = max;
+                    if (h > 0) {
+                        return h -= 1;
+                    }
+                }
+            }
+        }
+
+        finished = () => {
+            max = 0;
+            let timerEnd = container.getAttribute(timerOnEndMsg);
+            container.setAttribute(timerOnEndMsg, 'true');
+            if (timerEnd == '' || timerEnd == null) {
+                container.textContent = "timer-end";
+            } else {
+                container.textContent = timerEnd;
+            }
+        }
+
+        counter = setInterval(() => {
+
+            if (h == 0 && m == 0 && s == 0) {
+                clearInterval(counter, finished());
+            }
+
+            if (s >= 0) {
+                timer(s, m, h);
+                hoursSpan.textContent = checkValue(h);
+                minutesSpan.textContent = checkValue(m);
+                secondsSpan.textContent = checkValue(s);
+            }
+        }, oneSec);
+
+        let children = [hoursSpan, separator1, minutesSpan, separator2, secondsSpan];
+
+        for (child of children) {
+            container.appendChild(child);
+        }
+
+    </script>
+
+    @*<script>
+            var disbledBtn = localStorage.getItem('disabled'); // get the id from localStorage
+            $(disbledBtn).attr("disabled", true); // set the attribute by the id
+
+            $('#btn').click(function () {
+                $("#btn").attr("disabled", true);
+                localStorage.setItem('disabled', '#btn'); // store the id in localStorage
+
+        });
+
+        </script>*@
+    @*<script>
+             setTimeout(function(){
+        window.location.reload(1);
+             }, 900000);
+
+             var timeleft = 20;
+             var downloadTimer = setInterval(function () {
+                 if (timeleft <= 0) {
+                     clearInterval(downloadTimer);
+                 }
+                 document.getElementById("progressBar").value = 10 - timeleft;
+                 timeleft -= 1;
+             }, 30000);
+         </script>*@
+    <script>
+        var seconds = document.getElementById("countdown").textContent;
+        var countdown = setInterval(function () {
+            seconds--;
+            (seconds == 1) ? document.getElementById("plural").textContent = "" : document.getElementById("plural").textContent = "s";
+            document.getElementById("countdown").textContent = seconds;
+            if (seconds <= 0) clearInterval(countdown);
+        }, 3000);
+    </script>
+
+}

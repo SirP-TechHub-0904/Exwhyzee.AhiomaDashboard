@@ -1,0 +1,54 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.Admin.Pages.FaqPages.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+
+                <h3 class="card-title">
+                    Details
+                </h3>
+            </div>
+            <div class="card-body">
+
+                <div>
+                    <hr />
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.FaqQuestion.Title)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.FaqQuestion.Title)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.FaqQuestion.Publish)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.FaqQuestion.Publish)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.FaqQuestion.Answer)
+                        </dt>
+                        <dd>
+                            @Html.Raw(Model.FaqQuestion.Answer)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.FaqQuestion.DateUtc)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.FaqQuestion.DateUtc)
+                        </dd>
+                    </dl>
+                </div>
+                <div>
+                    <a asp-page="./Edit" asp-route-id="@Model.FaqQuestion.Id">Edit</a> |
+                    <a asp-page="./Index">Back to List</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

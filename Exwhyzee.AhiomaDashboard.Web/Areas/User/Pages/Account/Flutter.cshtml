@@ -1,0 +1,72 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.User.Pages.Account.FlutterModel
+@{
+}
+
+<div class="row">
+    <div class="col-xl-12">
+        <div class="container">
+
+            <div class="card overflow-hidden">
+                <div class="bg-soft-primary" style="padding:50px;">
+                    <div class="row">
+
+
+                        <div class="col-md-6">
+                            <h3>AhiaPay Deposit</h3>
+
+                            <div>
+                                <div class="">
+                                    <form onsubmit='disableButton()' method="post">
+                                        <div asp-validation-summary="All" class="text-danger"></div>
+                                        <div class="form-group">
+                                            <label asp-for="Amount"></label>*
+                                            <input asp-for="Amount" class="form-control" id="amount" />
+                                            <span asp-validation-for="Amount" class="text-danger"></span>
+                                        </div>
+
+                                        <button id='btn' type="submit" class="btn btn-primary">Continue</button>
+                                    </form>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    <script src="~/lib/jquery-ui/jquery-ui.js"></script>
+    <script>
+        $(function () {
+            $('#continue').on('click', function (e) {
+                e.preventDefault();
+                var amount = $('#amount').val();
+                $('#new-amount').text(amount);
+                $('#confirm-dialog').dialog('open');
+            });
+
+            $("#confirm-dialog").dialog({
+                autoOpen: false,
+                modal: true,
+                resizable: false,
+                buttons: {
+                    "Ok": function () {
+                        $("#make-deposit-form").submit();
+                        $(this).dialog("close");
+                    },
+                    "Cancel": function (e) {
+                        $(this).dialog("close");
+                    }
+                }
+            })
+        });
+    </script>
+}

@@ -1,0 +1,81 @@
+﻿@page
+@model LoginModel
+
+@{ ViewData["Title"] = "Log in";
+    Layout = "/Pages/Shared/_LoginLayout.cshtml"; }
+
+
+<div class="">
+
+
+    @if (TempData["error"] != null)
+    {
+<div class="alert alert-danger">
+    <strong>@TempData["error"]</strong>
+</div>}
+    <form id="account" class="form" method="post">
+        <input asp-for="CustomerRef" type="hidden" />
+        <div class="panel">
+            <div class="panel-header">
+                <h4 class="panel-title text-center text-uppercase" style="color:#ff5c00;font-weight:700;">Sign in</h4>
+            </div>
+            <div class="panel-body" style="margin-bottom:0;">
+
+
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Input.Email"></label>
+                    <input asp-for="Input.Email" class="form-control" />
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label style="float:left;">
+                        Password 
+                    </label>
+                    <div> <span class="float-right btn" style="float:right !important;text-align:right !important;" onclick="myFunction()">Show <i class="fa fa-eye"></i></span>
+
+                    </div>
+                    <input asp-for="Input.Password" class="form-control" id="myInput" />
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <div class="">
+                        <label>
+                            Remember Me
+                        </label>
+                        <input asp-for="Input.RememberMe" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary" style="width:100%;background-color:#ff5c00;color:#ffffff;font-weight:800;">Log in</button>
+                </div>
+
+
+                <div class="form-group">
+                    <p class="float-left">
+                        <a asp-page="./Register" style="color:#ff5c00;" asp-route-customerRef="" asp-route-returnUrl="@Model.ReturnUrl">New Account</a>
+                    </p>
+
+                    <p class="float-right">
+                        <a asp-area="Identity" style="color:#ff5c00;" asp-page="/Account/ForgotPassword">Forgot your password?</a>
+                    </p>
+
+                </div>
+                <div style="text-align:center;display:none;" id="browserWarning">
+                    <btn class="btn btn-light-danger">Notice:for 100% effeciency, Please use Chrome or Safari.</btn><br><br>
+                </div>
+            </div>
+
+
+        </div>
+    </form>
+
+</div>
+
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+
+

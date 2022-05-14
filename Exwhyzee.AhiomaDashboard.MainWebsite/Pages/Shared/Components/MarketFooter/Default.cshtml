@@ -1,0 +1,15 @@
+﻿@model ICollection<Exwhyzee.AhiomaDashboard.EntityFramework.Tables.Market>
+
+
+@foreach (var data in Model)
+{
+<li>
+    <a asp-page="./MarketDetails" asp-route-customerRef="" asp-route-id="@data.Id" asp-route-name="@data.Name.Replace(" ", "-")" asp-route-mktstate="@data.State.Replace(" ", "-")" asp-route-mktaddress="@data.Address.Replace(" ", "-")" tabindex="0" title="@data.Name">
+
+        @data.Name
+    </a>
+</li>
+}
+<li>
+    <a asp-page="/Markets" asp-route-customerRef=""><strong>View all</strong></a>
+</li>

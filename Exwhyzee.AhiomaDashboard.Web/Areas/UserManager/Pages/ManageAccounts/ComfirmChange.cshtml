@@ -1,0 +1,187 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.UserManager.Pages.ManageAccounts.ComfirmChangeModel
+@{
+}
+
+<div class="row">
+    <div class="card-columns mx-auto d-flex justify-content-center col-12">
+
+        <div class="card">
+            <div class="card-header">
+
+                <h3 class="card-title">
+                   Cormfirm Change
+                </h3>
+            </div>
+            <div class="card-body">
+
+                @if (TempData["error"] != null)
+                {
+                    <div class="text-danger">@TempData["error"]</div>
+
+                }
+                @if (TempData["success"] != null)
+                {
+                    <div class="text-success">@TempData["success"]</div>
+
+                }
+
+            <div class="row">
+                <div class="col-xl-12">
+                    <h3 style="margin-left:10px;">Request Information</h3>
+                    <div class="alert alert-primary alert-dismissible">
+                        <h5 style="color:#121b63;font-weight:900;margin-bottom:1px;">Fullname: @Model.RequestData.Profile.Fullname</h5>
+                        <h3 style="color:#121b63;font-weight:900;margin-bottom:1px;">ID: @Model.RequestData.Profile.IdNumber</h3>
+                        <p style="margin-bottom: 1px;padding-bottom:2px;">Current Email: @Model.RequestData.Profile.User.Email</p>
+                        <p style="margin-bottom: 1px;padding-bottom:2px;">Old Email: @Model.RequestData.OldMail</p>
+                        <p style="margin-bottom: 1px;padding-bottom:2px;">New Email: @Model.RequestData.NewMail</p>
+                        <p style="margin-bottom: 1px;padding-bottom:2px;">Status: @Html.DisplayFor(modelItem => Model.RequestData.EmailStatus)</p>
+                        <br />
+                        <p style="margin-bottom: 1px;padding-bottom:2px;">Current Phone: @Model.RequestData.Profile.User.PhoneNumber</p>
+                        <p style="margin-bottom: 1px;padding-bottom:2px;">Old Phone: @Model.RequestData.OldPhone</p>
+                        <p style="margin-bottom: 1px;padding-bottom:2px;">New Phone: @Model.RequestData.NewPhone</p>
+                        <p style="margin-bottom: 1px;padding-bottom:2px;">Status: @Html.DisplayFor(modelItem => Model.RequestData.PhoneStatus)</p>
+
+                    </div>
+                </div>
+                
+                <div class="col-xl-12">
+                    <h3 style="margin-left:10px;">Data Information</h3>
+                    @if (Model.OldUser != null)
+                    {
+                        <div class="alert alert-success alert-dismissible">
+                            <h5 style="color:#121b63;font-weight:900;margin-bottom:1px;">Old Email Information</h5>
+                            <h3 style="color:#121b63;font-weight:900;margin-bottom:1px;">Fullname: @Model.OldUser.Fullname</h3>
+                            <p style="margin-bottom: 1px;padding-bottom:2px;">Email: @Model.OldUser.User.Email</p>
+                            <p style="margin-bottom: 1px;padding-bottom:2px;">Phone: @Model.OldUser.User.PhoneNumber</p>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-warning alert-dismissible">
+                            <h5 style="color:#121b63;font-weight:900;margin-bottom:1px;">No Old Email Information</h5>
+                            <h3 style="color:#121b63;font-weight:900;margin-bottom:1px;">Email: @Model.RequestData.OldMail</h3>
+
+                        </div>
+                    }
+                    @if (Model.NewUser != null)
+                    {
+                        <div class="alert alert-success alert-dismissible">
+                            <h5 style="color:#121b63;font-weight:900;margin-bottom:1px;">New Email Information</h5>
+                            <h3 style="color:#121b63;font-weight:900;margin-bottom:1px;">Fullname: @Model.NewUser.Fullname</h3>
+                            <p style="margin-bottom: 1px;padding-bottom:2px;">Email: @Model.NewUser.User.Email</p>
+                            <p style="margin-bottom: 1px;padding-bottom:2px;">Phone: @Model.NewUser.User.PhoneNumber</p>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-warning alert-dismissible">
+                            <h5 style="color:#121b63;font-weight:900;margin-bottom:1px;">No New Email Information</h5>
+                            <h3 style="color:#121b63;font-weight:900;margin-bottom:1px;">Email: @Model.RequestData.NewMail</h3>
+
+                        </div>
+                    }
+                    @if (Model.OldPhone != null)
+                    {
+                        <div class="alert alert-success alert-dismissible">
+                            <h5 style="color:#121b63;font-weight:900;margin-bottom:1px;">Old Phone Number Information</h5>
+                            <h3 style="color:#121b63;font-weight:900;margin-bottom:1px;">Fullname: @Model.OldPhone.Fullname</h3>
+                            <p style="margin-bottom: 1px;padding-bottom:2px;">Email: @Model.OldPhone.User.Email</p>
+                            <p style="margin-bottom: 1px;padding-bottom:2px;">Phone: @Model.OldPhone.User.PhoneNumber</p>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-danger alert-dismissible">
+                            <h5 style="color:#121b63;font-weight:900;margin-bottom:1px;">No Old Phone Number Information</h5>
+                            <h3 style="color:#121b63;font-weight:900;margin-bottom:1px;">Phone: @Model.RequestData.OldPhone</h3>
+
+                        </div>
+                    }
+                    @if (Model.NewPhone != null)
+                    {
+                        <div class="alert alert-success alert-dismissible">
+                            <h5 style="color:#121b63;font-weight:900;margin-bottom:1px;">New Phone Number Information</h5>
+                            <h3 style="color:#121b63;font-weight:900;margin-bottom:1px;">Fullname: @Model.NewPhone.Fullname</h3>
+                            <p style="margin-bottom: 1px;padding-bottom:2px;">Email: @Model.NewPhone.User.Email</p>
+                            <p style="margin-bottom: 1px;padding-bottom:2px;">Phone: @Model.NewPhone.User.PhoneNumber</p>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-danger alert-dismissible">
+                            <h5 style="color:#121b63;font-weight:900;margin-bottom:1px;">No New Phone Number Information</h5>
+                            <h3 style="color:#121b63;font-weight:900;margin-bottom:1px;">Phone: @Model.RequestData.NewPhone</h3>
+
+                        </div>
+                    }
+
+
+                    <form method="post" asp-page-handler="ChangeEmail">
+                        <h4 style="color:#ffffff;">Change Email</h4>
+                        <input type="hidden" value="@Model.RequestData.Id" name="RequestId" />
+
+                        <input type="submit" value="Change Email" class="btn btn-danger btn-xs" style="padding:2px;margin:1px;" />
+
+                    </form>
+                    @if (Model.NewUser == null)
+                    {
+                        <form method="post" asp-page-handler="ChangeEmail">
+                            <h4 style="color:#ffffff;">Change Email</h4>
+                            <input type="hidden" value="@Model.RequestData.Id" name="RequestId" />
+
+                            <input type="submit" value="Change Email" class="btn btn-danger btn-xs" style="padding:2px;margin:1px;" />
+
+                        </form>
+                    }
+                    else if (Model.RequestData.EmailStatus == Exwhyzee.Enums.ChangeDataStatus.Successful)
+                    {
+                        <button class="btn btn-primary">Email Already Updated</button>
+                    }
+                    else
+                    {
+                        <button class="btn btn-danger">Email Cannot be Changed</button>
+                    }
+                    @if (Model.NewPhone == null)
+                    {
+                        <form method="post" asp-page-handler="ChangePhone">
+
+                            <input type="hidden" value="@Model.RequestData.Id" name="RequestId" />
+
+                            <input type="submit" value="Change Phone Number" class="btn btn-danger btn-xs" style="padding:2px;margin:1px;" />
+
+
+                        </form>
+                    }
+                    else if (Model.RequestData.PhoneStatus == Exwhyzee.Enums.ChangeDataStatus.Successful)
+                    {
+                        <button class="btn btn-primary">Phone Already Changed</button>
+                    }
+                    else
+                    {
+                        <button class="btn btn-danger">Phone Cannot be Changed</button>
+                    }
+
+
+
+
+
+
+
+                </div>
+            </div>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+
+
+}

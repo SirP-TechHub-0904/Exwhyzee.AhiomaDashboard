@@ -1,0 +1,457 @@
+﻿@page
+
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Pages.Info.ShopSearchModel
+ @{   ViewData["Title"] = "shop";
+    Layout = "/Pages/Shared/_WebLayout.cshtml";
+}
+@section StyleMain {
+    @*<style>
+        @@media (min-width: 1261px) {
+            .productCarousel-slide {
+                width: 23%;
+            }
+        }
+    </style>*@
+
+}
+
+<div class="hidden-lg hidden-md">
+    <div class="">
+        <div class="section" style="padding-top:0;">
+            <img src="https://manager.ahioma.com/@Model.Tenant.BannerUri" alt="@Model.Tenant.BusinessName" style="width:100%;" class="img-responsive" />
+
+        </div>
+    </div>
+    <div class="container">
+        <div class="section">
+            <h5 class="" style="font-size:18px;color:#ff6a00;font-weight:900;text-align:center;text-shadow:1px 1px 1px #3a3535;">@Model.Tenant.BusinessName Shop (@Model.Tenant.Market.Name)</h5>
+            <h6 class="" style="font-size:14px;color:#ff6a00;font-weight:900;text-align:center;">@@ @Model.Tenant.TenantAddresses.FirstOrDefault().Address</h6>
+
+        </div>
+    </div>
+    <div class="container" style="width:90%;">
+        <div class="section">
+
+            <div class="row " style="margin-bottom:0px;">
+                <div class="col s12 pad-0">
+                    <div class="search-bar">
+                        <nav class="ui-forms">
+                            <div class="nav-wrapper">
+
+
+                                <form method="get" asp-page="/Info/ShopSearch" asp-area="">
+
+                                    <div class="input-field">
+                                        <input hidden name="name" value="@Model.Tenant.TenentHandle" />
+                                        <input id="search" name="searchString" type="search" placeholder="Search Products in Shops" value="@TempData["search"]" required="">
+                                        <label for="search" class="active">
+                                            <button type="submit" style="background: none; color: inherit; border: none; padding: 0; font: inherit; cursor: pointer; outline: inherit;">
+                                                <i class="mdi mdi-magnify"></i>
+                                            </button>
+                                        </label>
+                                        <i class="material-icons mdi mdi-close"></i>
+                                    </div>
+                                </form>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="hidden-sm hidden-xs">
+    <partial name="_header_One" />
+    <div class="main-body clearfix">
+        <div class="">
+            <h3 class="" style="padding:5px 0 2px;color:#ff6a00;margin:6px auto 0px;text-align:center;">@Model.Tenant.BusinessName Shop (@Model.Tenant.Market.Name)</h3>
+            <h6 class="" style="padding:3px;color:#ff6a00;margin:1px auto;text-align:center;">@@ @Model.Tenant.TenantAddresses.FirstOrDefault().Address</h6>
+
+        </div>
+        <div class="clearfix"></div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col_qavo block-slideshow__left" style="text-align:center;background-color:#000000;color:#ffffff;">
+            <div class="row">
+                <div class="col-md-7">
+                    <nav class="navUser" style="">
+
+                        <ul class="navUser-section">
+
+                            <li class="navUser-item d-none d-sm-block">
+                                <a class="navUser-action" style="color:#ffffff;" asp-page="/Info/ShopPage" asp-route-customerRef="" asp-route-name="@Model.Tenant.TenentHandle"><i class="fa fa-shopping-bag"></i> Visit Shop</a>
+                            </li>
+                            <li class="navUser-item d-none d-sm-block">
+                                <a class="navUser-action" style="color:#ffffff;" href="#"><i class="fa fa-product-hunt"></i> Category</a>
+                            </li>
+                            <li class="navUser-item d-none d-sm-block">
+                                <a class="navUser-action" style="color:#ffffff;" href="#"><i class="fa fa-product-hunt"></i> Products</a>
+                            </li>
+                            <li class="navUser-item d-none d-sm-block">
+                                <a class="navUser-action" style="color:#ffffff;" href="#"><i class="fa fa-salesforce"></i> Top Sales</a>
+                            </li>
+                            <li class="navUser-item d-none d-sm-block">
+                                <a class="navUser-action" style="color:#ffffff;" href="#"><i class="fa fa-money-check"></i> Discount</a>
+                            </li>
+                            <li class="navUser-item d-none d-sm-block">
+                                <a class="navUser-action" style="color:#ffffff;" href="#"><i class="fa fa-search-plus"></i>  Reviews</a>
+                            </li>
+
+
+                        </ul>
+
+                    </nav>
+
+                </div>
+
+            </div>
+
+        </div>
+        <div class="clearfix"></div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col_qavo block-slideshow__left" style="text-align:center;">
+            <img src="https://manager.ahioma.com/@Model.Tenant.BannerUri" data-thumb="@Model.Tenant.BannerUri" alt="@Model.Tenant.BusinessName" style="border-radius: 3%;margin:0 auto;text-align:center;max-height:400px;" />
+
+
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-6">
+                            <form class="sb-searchpro" method="get" asp-page="/Info/ShopSearch" asp-area="">
+                                <fieldset class="form-fieldset">
+                                    <div class="input-group">
+                                        <input hidden name="name" value="@Model.Tenant.TenentHandle" />
+                                        <input class="form-control form-input" value="@TempData["search"]" name="searchString" placeholder="Kindly search Shop for your product in shop" autocomplete="off">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-secondary" type="submit"><i class="fa fa-search"></i></button>
+                                        </div>
+                                    </div>
+
+                                </fieldset>
+                            </form>
+
+                        </div>
+                    </div>
+
+                    <div class="row page">
+
+
+                        <main class="col-lg-12 col-md-12 page-content" id="product-listing-container">
+                            <div class="module clearfix ">
+
+
+                                <div id="" class="sb-listing-tabs container-fluid">
+
+                                    <div id="" class="sb-listing-tabs container">
+
+                                        <div class="ltabs-container d-flex">
+
+                                            <div class="ltabs-items-container ltabs-items-container--image">
+                                                <section>
+                                                    <div class="productsByCategoryTabs-products--carousel ">
+                                                        <section class="productCarousel products-list">
+
+                                                            <div class="">
+                                                                <div class="">
+                                                                    @foreach (var data in Model.Product)
+                                                                    {
+                                                                        <div class="productCarousel-slide product-layout col-md-2 col-sm-6 col-xs-6">
+                                                                            <article class="product-item-container ">
+                                                                                <div class="left-block d-flex align-items-center justify-content-center">
+
+                                                                                    @{
+                                                                                        var df = "ddddddf";
+                                                                                    }
+                                                                                    <a asp-page="/ProductDetails" asp-route-customerRef="" asp-route-id="@data.Id" asp-route-name="" asp-route-shop="@data.Tenant.BusinessName.Replace(" ", "-")" asp-route-mktstate="@data.Market.State.Replace(" ", "-")" asp-route-mktaddress="@data.Market.Address.Replace(" ", "-")" class="product-item-photo" tabindex="0">
+                                                                                        @if (data.ImageThumbnail != null)
+                                                                                        {
+                                                                                            <img class="img-responsive lazyautosizes lazyloaded" data-sizes="auto" src="https://manager.ahioma.com/@data.ImageThumbnail" alt="" title="" sizes="50px">
+
+                                                                                        }
+
+                                                                                    </a>
+
+                                                                                    <a asp-page="/ProductDetails" asp-route-customerRef="" asp-route-id="@data.Id" asp-route-name="" asp-route-shop="@data.Tenant.BusinessName.Replace(" ", "-")" asp-route-mktstate="@data.Market.State.Replace(" ", "-")" asp-route-mktaddress="@data.Market.Address.Replace(" ", "-")" class="quickview btn-button d-none d-md-block" data-animation="false" data-product-id="126" title="Quick view" tabindex="0"> <i class="fa fa-search"></i></a>
+
+                                                                                </div>
+
+                                                                                <div class="right-block hidden-xs hidden-sm">
+
+                                                                                    <h4 class="card-title">
+                                                                                        <a asp-page="/ProductDetails" asp-route-customerRef="" asp-route-id="@data.Id" asp-route-name="" asp-route-shop="@data.Tenant.BusinessName.Replace(" ", "-")" asp-route-mktstate="@data.Market.State.Replace(" ", "-")" asp-route-mktaddress="@data.Market.Address.Replace(" ", "-")" tabindex="0" title="@data.Name">@data.Name</a>
+                                                                                    </h4>
+                                                                                    <div class="price-section price-section--withoutTax ">
+
+                                                                                        <span data-product-price-without-tax="" class="pull-left" style="font-weight:900;color:#f56615;font-family:'Times New Roman', Times, serif;">&#8358;@data.Price.ToString("0")</span>
+                                                                                        <span data-product-price-without-tax="" class="pull-right mkt-name" title="@data.Tenant.BusinessName @@ @data.Market.Name" style="font-weight:800;color:#3a3535;">@data.Market.ShortName</span>
+
+                                                                                    </div><div class="clearfix"></div>
+
+                                                                                    <h4 class="card-title" style="padding-bottom:0px;margin-bottom:3px;;text-align:center;">
+                                                                                        <a style="font-weight:800;color:#3a3535;" asp-page="/Info/ShopPage" asp-route-name="@data.Tenant.TenentHandle" tabindex="0" title="@data.Name">@data.Tenant.BusinessName</a>
+                                                                                    </h4>
+                                                                                </div>
+                                                                                <div class="right-block hidden-md hidden-lg">
+
+                                                                                    <h4 class="card-title" style="padding-bottom:0px;margin-bottom:3px;">
+                                                                                        <a asp-page="/ProductDetails" asp-route-customerRef="" asp-route-id="@data.Id" asp-route-name="" asp-route-shop="@data.Tenant.BusinessName.Replace(" ", "-")" asp-route-mktstate="@data.Market.State.Replace(" ", "-")" asp-route-mktaddress="@data.Market.Address.Replace(" ", "-")" tabindex="0" title="@data.Name">@data.Name</a>
+                                                                                    </h4>
+                                                                                    <h4 class="card-title" style="padding-bottom:0px;margin-bottom:3px;">
+                                                                                        <a style="font-weight:900;color:#f56615;font-family:'Times New Roman', Times, serif;">&#8358;@data.Price.ToString("0")</a>
+                                                                                    </h4>
+
+                                                                                </div>
+                                                                            </article>
+
+                                                                        </div>
+
+
+                                                                    }
+                                                                </div>
+
+                                                            </div>
+                                                        </section>
+                                                    </div>
+
+                                                </section>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+
+                                @{
+                                    int? p = 0;
+                                    if (Model.CurrentPage == null)
+                                    {
+                                        p = 1;
+                                    }
+                                    else
+                                    {
+                                        p = Model.CurrentPage;
+                                    }
+                                }
+                                page @p of @Model.TotalPages pages (@Model.Count items)
+                                <br />
+
+                                @{
+                                    var prevDisabled = !Model.Product.HasPreviousPage ? "disabled" : "";
+                                    var nextDisabled = !Model.Product.HasNextPage ? "disabled" : "";
+                                }
+
+
+                                <a asp-page="/Info/ShopSearch"
+                                   asp-route-pageIndex="@(Model.Product.PageIndex - 1)"
+                                   asp-route-customerRef=""
+                                   asp-route-searchString="@Model.searchStrings"
+                                   class="btn btn-primary @prevDisabled">
+                                    Previous
+                                </a>
+                                <a asp-page="/Info/ShopSearch"
+                                   asp-route-pageIndex="@(Model.Product.PageIndex + 1)"
+                                   asp-route-customerRef=""
+                                   asp-route-searchString="@Model.searchStrings"
+                                   class="btn btn-primary @nextDisabled">
+                                    Next
+                                </a>
+
+
+                            </div>
+
+
+                        </main>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+    <div class="hidden-lg hidden-md">
+        <div class="hidden-lg hidden-md">
+            <div class="container">
+                <div class="section">
+                    <h5 class="pagetitle">Search Results for @TempData["search"]</h5>
+                </div>
+            </div>
+        </div>
+        <div class="spacer"></div>
+        <div class="container" style="width:90%;">
+            <div class="section">
+
+                <div class="row ">
+                    <div class="col s12 pad-0">
+                        <div class="search-bar">
+                            <nav class="ui-forms">
+                                <div class="nav-wrapper">
+                                    <form method="get" asp-page="/Search" asp-route-hdsearcw="asd23A-jnbsbdd-Nhauy" asp-route-catidlogger="hjdjfgbjhfbyewueureuweryweiuywurjhsdjbsjcfdshjsjchbcjbsdkvjbk">
+                                        <div class="input-field">
+                                            <input hidden name="catidlogger" value="MHHkkqndfmvnHGJHhgj2020-00-20MASTECH-ahioma-query-securjhh" />
+                                            <input hidden name="hdsearcw" value="12387875ghxGFX762HXJ768E6WE" />
+                                            <input id="search" name="searchString" type="search" placeholder="Search Products in Shops and Markets" value="@TempData["search"]" required="">
+                                            <label for="search" class="active">
+                                                <button type="submit" style="background: none; color: inherit; border: none; padding: 0; font: inherit; cursor: pointer; outline: inherit;">
+                                                    <i class="mdi mdi-magnify"></i>
+                                                </button>
+                                            </label>
+                                            <i class="material-icons mdi mdi-close"></i>
+                                        </div>
+                                    </form>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="spacer"></div>
+
+            <div class="container" style="width:90%;">
+                <div class="section">
+
+                    <div class="row ">
+                        <div class="col s12 pad-0">
+
+                            <div class="row ui-mediabox  prods prods-boxed">
+
+
+                                <style>
+                                    .text-truncateaa {
+                                        display: -webkit-box;
+                                        -webkit-line-clamp: 2;
+                                        -webkit-box-orient: vertical;
+                                        overflow: hidden;
+                                        height: 25px;
+                                        line-height: 14px;
+                                        font-size: 10px;
+                                        color: #666;
+                                        margin: 4px 0;
+                                    }
+
+                                    .text-truncate-shop {
+                                        display: -webkit-box;
+                                        -webkit-line-clamp: 1;
+                                        -webkit-box-orient: vertical;
+                                        overflow: hidden;
+                                        height: 22px;
+                                        line-height: 14px;
+                                    }
+
+                                    .prod-info.boxed {
+                                        background: #ffffff;
+                                        padding: 0px 5px 5px 5px;
+                                        border-radius: 10px;
+                                    }
+
+                                    .sec-tit::after {
+                                        display: block;
+                                        position: relative;
+                                        content: " ";
+                                        height: 1px;
+                                        width: 40px;
+                                        margin: 6px 0 0px 0;
+                                        background: var(--primary-color);
+                                    }
+
+                                    .bot-20 {
+                                        margin-bottom: 10px;
+                                    }
+
+                                    .row {
+                                        margin-left: auto;
+                                        margin-right: auto;
+                                        margin-bottom: 10px;
+                                    }
+
+                                    .prod-img-wrap {
+                                        border-top-left-radius: 10px;
+                                        border-top-right-radius: 10px;
+                                    }
+                                </style>
+
+                                @foreach (var data in Model.Product)
+                                {
+
+                                    <div class="col s6">
+                                        <div class="prod-img-wrap">
+                                            @if (data.ImageThumbnail != null)
+                                            {
+
+                                                <a asp-page="/ProductDetails" asp-route-customerRef="" asp-route-id="@data.Id" asp-route-name="@data.Name.Replace(" ", "-")" asp-route-shop="@data.Tenant.BusinessName.Replace(" ", "-")" asp-route-mktstate="" asp-route-mktaddress="" class="product-item-photo" tabindex="0">
+                                                    <img class="z-depth-1" style="width: 100%;vertical-align:middle;text-align:center;margin:0 auto;" src="https://manager.ahioma.com/@data.ImageThumbnail">
+                                                </a>
+                                            }
+                                        </div>
+                                        <div class="prod-info  boxed z-depth-1">
+                                            <a asp-page="/ProductDetails" asp-route-customerRef="" asp-route-id="@data.Id" asp-route-name="@data.Name.Replace(" ", "-")" asp-route-shop="@data.Tenant.BusinessName.Replace(" ", "-")" asp-route-mktstate="" asp-route-mktaddress="" class="product-item-photo" tabindex="0">
+                                                <h5 class="title text-truncateaa" style="-webkit-transition: 3.3s; -moz-transition: 3.3s; transition: 3.3s; -webkit-transition-timing-function: linear; -moz-transition-timing-function: linear; transition-timing-function: linear;">@data.Name</h5>
+                                            </a>     <span class="small date">
+                                                <a>
+
+                                                    <span style="font-size:10px;">  @data.Market.ShortName</span>
+                                                </a>
+
+                                                <span class="bot-0 price float-right" style="font-weight:900;font-size:10px;">&#8358;@data.Price.ToString("0")</span>
+                                            </span>
+                                            <div class="spacer-line"></div>
+
+                                            <a asp-page="/Info/ShopPage" asp-route-customerRef="" asp-route-name="@data.Tenant.TenentHandle">
+                                                <h5 class="text-truncate-shop addtocart btn">
+                                                    @data.Tenant.BusinessName
+                                                </h5>
+                                            </a>
+                                        </div>
+                                    </div>
+                                }
+
+                            </div>
+                            @{
+                                int? pf = 0;
+                                if (Model.CurrentPage == null)
+                                {
+                                    pf = 1;
+                                }
+                                else
+                                {
+                                    pf = Model.CurrentPage;
+                                }
+                            }
+                            page @pf of @Model.TotalPages pages (@Model.Count items)
+                            <br />
+                            @{
+                                var prevDisabledm = !Model.Product.HasPreviousPage ? "disabled" : "";
+                                var nextDisabledm = !Model.Product.HasNextPage ? "disabled" : "";
+                            }
+
+
+                            <a asp-page="/Info/ShopSearch"
+                               asp-route-pageIndex="@(Model.Product.PageIndex - 1)"
+                               asp-route-customerRef=""
+                               asp-route-searchString="@Model.searchStrings"
+                               class="btn btn-primary @prevDisabledm">
+                                Previous
+                            </a>
+                            <a asp-page="/Info/ShopSearch"
+                               asp-route-pageIndex="@(Model.Product.PageIndex + 1)"
+                               asp-route-customerRef=""
+                               asp-route-searchString="@Model.searchStrings"
+                               class="btn btn-primary @nextDisabledm">
+                                Next
+                            </a>
+
+                        </div>
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>

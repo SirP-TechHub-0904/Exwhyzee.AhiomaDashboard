@@ -1,0 +1,194 @@
+﻿
+
+
+<div>
+    <style>
+        * {
+            font-size: 12px;
+            font-family: 'Times New Roman';
+        }
+
+        td,
+        th,
+        tr,
+        table {
+            border-top: 1px solid black;
+            border-collapse: collapse;
+        }
+
+            td.description,
+            th.description {
+                width: 75px;
+                max-width: 75px;
+            }
+
+            td.quantity,
+            th.quantity {
+                width: 40px;
+                max-width: 40px;
+                word-break: break-all;
+            }
+
+            td.price,
+            th.price {
+                width: 40px;
+                max-width: 40px;
+                word-break: break-all;
+            }
+
+        .centered {
+            text-align: center;
+            align-content: center;
+        }
+
+        .ticket {
+            width: 155px;
+            max-width: 155px;
+        }
+
+        img {
+            max-width: inherit;
+            width: inherit;
+        }
+
+        @@media print {
+            .hidden-print,
+            .hidden-print * {
+                display: none !important;
+            }
+        }
+
+        .printable {
+            display: none;
+        }
+
+        @@media print {
+            .non-printable {
+                display: none;
+            }
+
+            .printable {
+                display: block;
+            }
+        }
+    </style>
+    <input type="hidden" value="@ViewBag.Order.OrderId" id="iorder" />
+    <div class="ticket" style="color:#000000;">
+        <img src="https://ahioma.com/images/ahioma_logo.png" alt="Logo">
+        (Order ID: #@ViewBag.Order.OrderId)
+        <p class="centered">
+
+            <address class="small-text">
+                <strong>CustomerInformation</strong><br />
+                @ViewBag.Order.UserProfile.Fullname</br>
+                @ViewBag.Order.UserProfile.User.Email</br>
+                @ViewBag.Order.UserProfile.User.PhoneNumber</br>
+            </address>
+            <address class="small-text">
+                <strong>Customer Address:</strong>
+                @*@if (ViewBag.Order.UserProfile.UserAddresses.Count() > 0)
+                {
+                    foreach (var ip in ViewBag.Order.UserProfile.UserAddresses)
+                    {
+                        <strong>Address:</strong> @ip.Address<br />
+                        <strong>LGA:</strong> @ip.LocalGovernment<br />
+                        <strong>State:</strong> @ip.State
+
+                    }
+                }*@
+            </address>
+        </p>
+
+        <table class="table table-condensed" style="color:#000000;">
+            <thead>
+                <tr>
+
+                    <td><strong>S/N</strong></td>
+                    <td><strong>Name</strong></td>
+                    <td><strong>Shop</strong></td>
+                    <td><strong>Qty</strong></td>
+                    <td><strong>Amount</strong></td>
+                    <td><strong>Total</strong></td>
+
+                </tr>
+            </thead>
+            @{
+                int snoa = 0;
+            }
+            <tbody>
+
+                @foreach (var item in ViewBag.OrderItems)
+                {
+                    <tr>
+                        <td>
+                            @{ snoa++; }
+                            @snoa
+                        </td>
+                        <td style="line-height:1;">@item.Product.Name</td>
+
+                        <td style="line-height:1;font-size:9px;">@item.Product.Tenant.BusinessName</td>
+                        <td>@item.Quantity</td>
+                        <td>@item.Product.Price</td>
+                        <td>
+                            @{
+                                decimal t = item.Quantity * item.Product.Price;
+                            }
+                            @t
+                        </td>
+                    </tr>
+                }
+
+
+                <tr style="border-top:2px solid #000000;">
+                    <td colspan="4"></td>
+                    <td><strong>Logistic</strong></td>
+                    <td>@ViewBag.Order.LogisticAmount</td>
+                </tr>
+                <tr>
+                    <td colspan="4"></td>
+                    <td><strong>Vat</strong></td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td colspan="4"></td>
+                    <td style="line-height:1;"><strong>Grand Total</strong></td>
+                    @{
+                        decimal? ja = ViewBag.Order.OrderAmount + ViewBag.Order.LogisticAmount;
+                    }
+                    <td>&#8358;@ja</td>
+                </tr>
+                <tr>
+                    <td colspan="4"></td>
+                    <td><strong>Paid</strong></td>
+                    <td>&#8358;@ViewBag.Order.AmountPaid</td>
+                </tr>
+                <tr>
+                    <td colspan="4"></td>
+                    <td><strong>Balance</strong></td>
+                    <td>
+                        @{
+                            decimal? ba = (ViewBag.Order.OrderAmount + ViewBag.Order.LogisticAmount) - (ViewBag.Order.AmountPaid);
+                        }
+                        &#8358;@ba
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <p class="centered">
+            Thanks for your purchase!
+
+        </p>
+    </div>
+    <button id="btnPrint" class="hidden-print">Print</button>
+    <script>
+        var name = document.getElementById("iorder").value;
+        const $btnPrint = document.querySelector("#btnPrint");
+        $btnPrint.addEventListener("click", () => {
+            w = window.open();
+            w.document.write($('.order_'}+name).html());
+        w.print();
+        w.close();
+                            });
+    </script>
+</div>

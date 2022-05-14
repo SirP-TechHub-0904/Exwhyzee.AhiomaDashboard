@@ -1,0 +1,114 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.Manager.Pages.TransactionQueue.IndexModel
+@{
+}
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+
+                <h3 class="card-title">
+                  Details Transfer Queue
+                </h3>
+            </div>
+            <div class="card-body">
+                @TempData["success"]
+                @TempData["error"]
+
+                <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer table-responsive">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table id="datatable7" class="table table-bordered dt-responsive nowrap dataTable no-footer dtr-inline" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
+                                <thead>
+                                    <tr role="row">
+                                        <th></th>
+                                        <th>QueueStatus</th>
+                                        <th>
+                                            amount
+                                        </th>
+                                        <th>Date</th>
+                                        <th>ID</th>
+                                        <th>
+                                            Full Name
+                                        </th>
+                                        <th>
+                                            IDNUmber
+                                        </th>
+                                        <th>
+                                            TransactionId
+                                        </th>
+                                        <th>
+                                            account_bank
+                                        </th>
+                                        <th>
+                                            account_number
+                                        </th>
+
+                                        <th>narration</th>
+                                        <th>currency</th>
+                                        <th>reference</th>
+                                        <th>callback_url</th>
+                                        <th>debit_currency</th>
+
+
+
+                                    </tr>
+                                </thead>
+
+
+                                <tbody>
+
+                                    @foreach (var item in Model.TransactionQueues)
+                                    {
+                                        <tr>
+
+                                            <td>
+                                                <a asp-page="./Details" asp-route-id="@item.Id" class="btn btn-primary">Continue</a>
+                                                <a asp-page="/Wallets/WalletHistory" asp-route-id="@item.uid">
+                                                    History
+                                                </a>
+                                            </td>
+                                            <td> @Html.DisplayFor(model => item.QueueStatus)</td>
+                                            <td>
+                                                <button class="btn btn-danger">&#8358;@string.Format("{0:C}", Convert.ToDecimal(item.amount)).Replace(".00", "").Replace("$", "") </button>
+                                            </td>
+                                            <td>@item.Date</td>
+                                            <td>@item.Id</td>
+                                            <td>
+                                                @item.fullname
+                                            </td>
+                                            <td>
+                                                @item.IDNUmber
+                                            </td>
+                                            <td>
+                                                @item.TransactionId
+                                            </td>
+                                            <td>
+                                                @item.account_bank
+                                            </td>
+                                            <td>
+                                                @item.account_number
+                                            </td>
+
+                                            <td>@item.narration</td>
+                                            <td>@item.currency</td>
+                                            <td>@item.reference</td>
+                                            <td>@item.callback_url</td>
+                                            <td>@item.debit_currency</td>
+                                        </tr>
+
+
+                                    }
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div> <!-- end col -->
+</div>

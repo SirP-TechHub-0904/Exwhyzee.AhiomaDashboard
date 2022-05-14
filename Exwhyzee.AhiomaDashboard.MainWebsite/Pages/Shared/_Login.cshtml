@@ -1,0 +1,69 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+
+@if (SignInManager.IsSignedIn(User))
+{
+    <li class="dropdown-menu-item"><a href="#" title="Click here to proceed to checkout">Check out</a></li>
+
+    @if (User.Identity.IsAuthenticated && User.IsInRole("mSuperAdmin"))
+    {
+        <li class="dropdown-menu-item">
+            <a asp-area="Dashboard" asp-page="/Analysis/Index">
+
+                Dashboard
+            </a>
+        </li>
+    }
+    else if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+    {
+        <li class="dropdown-menu-item">
+            <a asp-area="Admin" asp-page="/Dashboard/Index">
+
+                Dashboard
+            </a>
+        </li>
+    }
+    else if (User.Identity.IsAuthenticated && User.IsInRole("SOA"))
+    {
+        <li class="dropdown-menu-item">
+            <a asp-area="SOA" asp-page="/Dashboard/Index">
+
+                Dashboard
+            </a>
+        </li>
+    }
+    else if (User.Identity.IsAuthenticated && User.IsInRole("Store"))
+    {
+        <li class="dropdown-menu-item">
+            <a asp-area="Store" asp-page="/Dashboard/Index">
+
+                Dashboard
+            </a>
+        </li>
+    }
+    else if (User.Identity.IsAuthenticated && User.IsInRole("Customer"))
+    {
+        <li class="dropdown-menu-item">
+            <a asp-area="Customer" asp-page="/Dashboard/Index">
+
+                Dashboard
+            </a>
+        </li>
+    }
+    <li class="dropdown-menu-item">
+        <a href="javascript: document.getElementById('logoutForm').submit()">
+
+            Logout
+        </a>
+    </li>
+    
+}
+else
+{
+
+    <li class="dropdown-menu-item"> <a asp-page="/Login" asp-route-customerRef="">Login</a></li>
+    <li class="dropdown-menu-item">  <a asp-page="/Register" asp-route-customerRef="">Register</a></li>
+}
+

@@ -1,0 +1,70 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.Admin.Pages.SoaRequests.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+        <div class="card">
+            <div class="card-header">
+
+                <h3 class="card-title">
+                    SOA Request Update
+
+
+                </h3>
+            </div>
+            <div class="card-body">
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <form method="post">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="SoaRequest.Id" />
+                            <input type="hidden" asp-for="SoaRequest.Date" />
+                            <div class="form-group">
+                                <label asp-for="SoaRequest.FullName" class="control-label">Fullname: @Model.SoaRequest.FullName</label>
+                                <input asp-for="SoaRequest.FullName" class="form-control" type="hidden" />
+                                <span asp-validation-for="SoaRequest.FullName" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="SoaRequest.PhoneNumber" class="control-label">Phone: @Model.SoaRequest.PhoneNumber</label>
+                                <input asp-for="SoaRequest.PhoneNumber" class="form-control" type="hidden" />
+                                <span asp-validation-for="SoaRequest.PhoneNumber" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="SoaRequest.ShopAddress" class="control-label">Address: @Model.SoaRequest.ShopAddress</label>
+                                <input asp-for="SoaRequest.ShopAddress" class="form-control" type="hidden" />
+                                <span asp-validation-for="SoaRequest.ShopAddress" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="SoaRequest.BusinessName" class="control-label">Business Name: @Model.SoaRequest.BusinessName</label>
+                                <input asp-for="SoaRequest.BusinessName" class="form-control" type="hidden" />
+                                <span asp-validation-for="SoaRequest.BusinessName" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="SoaRequest.Email" class="control-label">Email: @Model.SoaRequest.Email</label>
+                                <input asp-for="SoaRequest.Email" class="form-control" type="hidden" />
+                                <span asp-validation-for="SoaRequest.Email" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="SoaRequest.IdNumber" class="control-label">SOA ID Number to Assign This shop to the SOA</label>
+                                <input asp-for="SoaRequest.IdNumber" class="form-control" />
+                                <span asp-validation-for="SoaRequest.IdNumber" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Save" class="btn btn-default" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div>
+                    <a asp-page="./Index">Back to List</a>
+                </div>
+            </div>
+            </div>
+            @section Scripts {
+                @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+            }

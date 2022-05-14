@@ -1,0 +1,75 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.User.Pages.Account.CallBackLinkModel
+@{
+}
+@{
+    ViewData["Title"] = "Callback";
+    Layout = "/Pages/Shared/_Initial.cshtml";
+
+}
+<script type="text/javascript">
+        //$(document).ready(function () {
+        //    setTimeout(function () {
+        //        $('#showing').show();
+        //    }, 10000);
+        //}
+
+        window.onload = function () {
+            setTimeout(function () {
+                $("#showing").show();
+                $("#removeit").hide();
+                $("#dashboard2").show();
+                $("#dashboard").hide();
+            }, 2000);
+
+
+
+        };
+</script>
+<div class="container">
+    <div class="row">
+        <div class="col-xl-4"></div>
+        <div class="col-xl-4 text-center" style="margin-top:40px;">
+            <img src="~/images/ahioma_logo.png" style="margin:0 auto;text-align:center;" />
+
+            @await Html.PartialAsync("_StatusMessage", Model.StatusMessage)
+
+            <div class="" id="removeit">
+                <img src="~/images/loading-animated-png-6.gif" style="max-height:200px;margin:0 auto;text-align:center;" class="img-responsive" />
+            </div>
+            <div id="showing" style="display:none;">
+                <a asp-page="/Account/Index" asp-area="User" class="btn btn-primary">
+
+                    <span>Go To  My Wallet <i class="fa fa-money"></i></span>
+                </a>
+
+            </div>
+
+
+
+
+        </div>
+        <div class="col-xl-4"></div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+
+    <script type="text/javascript">
+    (function () {
+        setTimeout(function () {
+            window.location = @Url.Page(
+                       "/Account/Index",
+                       pageHandler: null,
+                       values: new { area = "User" },
+                       protocol: Request.Scheme);
+        }, 1000); /* 1000 = 1 second*/
+    })();
+    </script>
+
+
+}

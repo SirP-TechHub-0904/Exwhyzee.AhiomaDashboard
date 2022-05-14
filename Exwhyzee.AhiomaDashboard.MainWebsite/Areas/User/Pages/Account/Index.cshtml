@@ -1,0 +1,229 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Areas.User.Pages.Account.IndexModel
+@{
+}
+
+<style>
+    .nav-tabs-custom .nav-item .nav-link.active {
+        color: #556ee6;
+        background-color: #e3e6e9;
+    }
+    .nav-tabs-custom .nav-item .nav-link {
+        border: none;
+        background-color: #55586f;
+    }
+</style>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+
+
+                    <div class="row">
+
+                        <div class="col-md-6 col-sm-12">
+
+                            <h3 class="card-title">
+                                AhiaPay Dashboard
+                            </h3>
+                        </div>
+                        <div class="col-md-6 col-sm-12 hidden-md hidden-sm hidden-xs" style="border-radius:0px;">
+                            <div class="form-group">
+
+                                <div class="btn-group pull-right" style="width:100%;">
+                                    @*<a class="btn" style="background-color:#ff5c00 !important;color:#000000 !important;text-shadow:0px 0px 0 #000000;float:right; border-radius:0px;border:1px solid #FFF;">Balance: NGN @Model.Wallet?.Balance</a>*@
+                                    @if (Model.Profile.DisableAhiaPayTransfer == true)
+                                    {
+                                <a href="#" class="btn" style="background-color:#278526 !important;color:#970707 !important;float:right;border-radius:0px;vertical-align:middle !important;border:1px solid #FFF;">Transfer Suspended</a> }
+                            else
+                            {
+
+                                <a asp-page="/Account/AhiaPayTransfer" asp-area="User" class="btn" style="background-color:#278526 !important;color:#FFF !important;float:right;border-radius:0px;vertical-align:middle !important;border:1px solid #FFF;">Transfer</a>}
+
+                                    @if (Model.Profile.DisableBankTransfer != true)
+                                    {
+                                <a asp-page="/Account/TransferToBank" asp-area="User" class="btn" style="background-color:#278526 !important;color:#FFF !important;float:right;border-radius:0px;vertical-align:middle !important;border:1px solid #FFF;">Withdraw</a> }
+                                            else
+                                            {
+                                <a href="#" class="btn" style="background-color:#278526 !important;color:#970707 !important;float:right;border-radius:0px;vertical-align:middle !important;border:1px solid #FFF;">Withdraw Suspended</a>}
+
+
+                                    @if (Model.Profile.DisableDeposit == true)
+                                    {
+                                <a asp-page="#" asp-area="User" class="btn" style="background-color:#278526 !important;color:#ff0000 !important;float:right;border-radius:0px;vertical-align:middle !important;border:1px solid #FFF;">Deposit Suspended</a> }
+                            else
+                            {
+                                <a asp-page="/Account/Deposit" asp-area="User" class="btn" style="background-color:#278526 !important;color:#FFF !important;float:right;border-radius:0px;vertical-align:middle !important;border:1px solid #FFF;">Deposit</a>}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12 hidden-lg pull-right" style="border-radius:0px;">
+                          
+                            <div class="form-group">
+
+                                <div class="btn-group pull-right" style="width:100%;">
+                                    @if (Model.Profile.DisableAhiaPayTransfer != true)
+                                    {
+                                <a asp-page="/Account/AhiaPayTransfer" asp-area="User" class="btn" style="background-color:#278526 !important;color:#FFF !important;float:right;border-radius:0px;vertical-align:middle !important;border:1px solid #FFF;">Transfer</a> }
+                            else
+                            {
+                                <a asp-page="#" asp-area="User" class="btn" style="background-color:#278526 !important;color:#ff0000 !important;float:right;border-radius:0px;vertical-align:middle !important;border:1px solid #FFF;">Transfer Suspended</a>}
+
+                                    @if (Model.Profile.DisableBankTransfer != true)
+                                    {
+                                <a asp-page="/Account/TransferToBank" asp-area="User" class="btn" style="background-color:#278526 !important;color:#FFF !important;float:right;border-radius:0px;vertical-align:middle !important;border:1px solid #FFF;">Withdraw</a> }
+                            else
+                            {
+                                <a href="#" class="btn" style="background-color:#278526 !important;color:#970707 !important;float:right;border-radius:0px;vertical-align:middle !important;border:1px solid #FFF;">Withdraw Suspended</a>}
+
+
+                                    @if (Model.Profile.DisableDeposit != true)
+                                    {
+
+                                <a asp-page="/Account/Deposit" asp-area="User" class="btn" style="background-color:#278526 !important;color:#FFF !important;float:right;border-radius:0px;vertical-align:middle !important;border:1px solid #FFF;">Deposit</a>}
+                            else
+                            {
+                                <a asp-page="#" asp-area="User" class="btn" style="background-color:#278526 !important;color:#ff0000 !important;float:right;border-radius:0px;vertical-align:middle !important;border:1px solid #FFF;">Deposit Suspended</a>}
+
+                                    
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    @if (TempData["error"] != null)
+                    {
+                        <div class="alert alert-danger alert-dismissible">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>@TempData["error"]</strong>
+                        </div>
+                    }
+                    @if (TempData["success"] != null)
+                    {
+                        <div class="alert alert-success alert-dismissible">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>@TempData["success"]</strong>
+                        </div>
+                    }
+                   
+
+                    <div class="">
+                        <div class="card">
+                            <div class="card-body" style="padding-left:0px;padding-right:0px;">
+
+                                <!-- Nav tabs -->
+                                <ul class="nav nav-tabs nav-tabs-custom nav-justified" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" data-toggle="tab" href="#home1" role="tab" aria-selected="true">
+                                            <span class="d-block d-sm-none"> Balance</span>
+                                            <span class="d-none d-sm-block">Balance</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-toggle="tab" asp-page="/Account/TransactionHistory" role="tab" aria-selected="false">
+                                            <span class="d-block d-sm-none">History</span>
+                                            <span class="d-none d-sm-block">Balance History</span>
+                                        </a>
+                                    </li>
+                                    @*<li class="nav-item">
+                                        <a class="nav-link" data-toggle="tab" href="#messages1" role="tab" aria-selected="false">
+                                            <span class="d-block d-sm-none">Settlement</span>
+                                            <span class="d-none d-sm-block">Settlement</span>
+                                        </a>
+                                    </li>*@
+
+                                </ul>
+
+                                <!-- Tab panes -->
+                                <div class="tab-content p-3 text-muted">
+                                    <div class="tab-pane active" id="home1" role="tabpanel">
+                                        <div class="row">
+                                            <div class="col-md-12" style="border-bottom:1px solid #808080;">
+                                                <h2>
+                                                    NGN Wallet
+                                                </h2>
+                                            </div>
+                                            <div class="col-md-4" style="padding:15px;border:1px solid #f6f6f6;">
+
+
+
+                                                <h5>LEDGER BALANCE</h5>
+                                                @if (Model.Profile.DisableAhiaPay == true)
+                                                {
+                                                    <h3> NGN XXXXXX</h3>
+                                                }
+                                                else
+                                                {
+                                            <h3> NGN @Model.Wallet.Balance</h3>}
+                                                <p>This is your holding balance.</p>
+                                            </div>
+                                            <div class="col-md-4" style="padding:15px;border:1px solid #f6f6f6;">
+
+
+
+                                                <h5>AVAILABLE BALANCE</h5>
+                                                @if (Model.Profile.DisableAhiaPay == true)
+                                                {
+                                            <h3> NGN XXXXXX</h3> }
+                                        else
+                                        {
+                                            <h3>NGN @Model.Wallet.WithdrawBalance</h3>}
+                                                @if (Model.Profile.DisableBankTransfer != true)
+                                                {
+                                            <p> Money here is available for <a asp-page="./TransferToBank">transfers</a> to Bank.</p> }
+                                                        else
+                                                        {
+                                                            <p> Transfer to Bank Suspended.</p>
+                                                        }
+                                            </div>
+                                            <div class="col-md-4" style="padding:15px;border:1px solid #f6f6f6;">
+
+                                                @if (Model.Profile.BankName != null)
+                                                {
+                                            <h5>@Model.Profile.BankName</h5>
+                                                            <h6>@Model.Profile.AccountName</h6>
+                                                                            <p>(@Model.Profile.AccountNumber)</p>
+                                                                                            @if (Model.Profile.DisableBankTransfer != true)
+                                                                                            {
+                                                                            <p> <a asp-page="./AddBankInfomation">update bank account.</a></p> }
+                                                                        else
+                                                                        {
+                                            <p>update bank account Suspended</p>} }
+                                                                                                        else
+                                                                                                        {
+                                                                                            <h5>BANK NAME</h5>
+                                                                                                            <h6>Account Information</h6>
+                                                                                                                            @if (Model.Profile.DisableBankTransfer != true)
+                                                                                                                            {
+                                                                                                            <p> Kindly <a asp-page="./AddBankInfomation">update bank account.</a></p>
+                                                                                                            }
+                                                                                                        else
+                                                                                                        {
+                                                                                        <p>Suspended</p>}}
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="tab-pane" id="profile1" role="tabpanel">
+                                        <p class="mb-0">
+                                            Coming soon...
+                                        </p>
+                                    </div>
+                                    <div class="tab-pane" id="messages1" role="tabpanel">
+                                        <p class="mb-0">
+                                            Coming soon...
+                                        </p>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+        </div> <!-- end col -->
+    </div>

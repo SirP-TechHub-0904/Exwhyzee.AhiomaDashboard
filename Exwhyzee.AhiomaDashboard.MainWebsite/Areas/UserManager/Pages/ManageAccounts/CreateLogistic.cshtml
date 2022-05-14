@@ -1,0 +1,172 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Areas.UserManager.Pages.ManageAccounts.CreateLogisticModel
+@{
+}
+
+<div class="row">
+    <div class="card-columns mx-auto d-flex justify-content-center col-12">
+
+        <div class="card">
+            <div class="card-header">
+
+                <h3 class="card-title">
+                    New Logistic Company
+
+                    @TempData["success"]
+                </h3>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    @if (TempData["error"] != null)
+                    {
+                        <div class="text-danger">@TempData["error"]</div>
+
+                    }
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-group">
+                        <label asp-for="Input.Surname" class="control-label">Owner Surname</label>
+                        <input asp-for="Input.Surname" class="form-control" />
+                        <span asp-validation-for="Input.Surname" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.FirstName" class="control-label">Owner FirstName</label>
+                        <input asp-for="Input.FirstName" class="form-control" />
+                        <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.OtherNames" class="control-label">Owner OtherNames</label>
+                        <input asp-for="Input.OtherNames" class="form-control" />
+                        <span asp-validation-for="Input.OtherNames" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.CompanyName" class="control-label">Business Name</label>
+                        <input asp-for="Input.CompanyName" class="form-control" />
+                        <span asp-validation-for="Input.CompanyName" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Input.ContactAddress" class="control-label"></label>
+                        <input asp-for="Input.ContactAddress" class="form-control" />
+                        <span asp-validation-for="Input.ContactAddress" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.State" class="control-label"></label>
+                        <select asp-for="Input.State" asp-items="Model.StateListing" id="State" class="form-control">
+                            <option>Select State</option>
+
+                        </select>                        <span asp-validation-for="Input.State" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.LocalGovernment" class="control-label">Local Government</label>
+                        <select asp-for="Input.LocalGovernment" id="LGA" class="form-control" required="required"></select>
+                        <span asp-validation-for="Input.LocalGovernment" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Input.PhoneNumber" class="control-label"></label>
+                        <input asp-for="Input.PhoneNumber" class="form-control" />
+                        <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.Email" class="control-label"></label>
+                        <input asp-for="Input.Email" class="form-control" />
+                        <span asp-validation-for="Input.Email" class="text-danger"></span>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label asp-for="Input.Description" class="control-label">business Description</label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="The flag of the product."></i>
+                        <textarea id="mytextarea" name="Input.Description" class="form-control"></textarea>
+
+                        <span asp-validation-for="Input.Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.CompanyDocument" class="control-label">Company Document</label><i class="fa fa-question-circle" style="margin-left:4px;" data-container="body" data-placement="top" data-toggle="tooltip" title="" data-original-title="The flag of the product."></i>
+                        <textarea id="mytextarea" name="Input.CompanyDocument" class="form-control"></textarea>
+
+                        <span asp-validation-for="Input.Description" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Input.CustomerCareNumber" class="control-label">Customer Care Number</label>
+                        <input asp-for="Input.CustomerCareNumber" required="required" class="form-control" />
+                        <span asp-validation-for="Input.CustomerCareNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.Facebook" class="control-label">Facebook Page</label>
+                        <input asp-for="Input.Facebook" class="form-control" />
+                        <span asp-validation-for="Input.Facebook" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.Instagram" class="control-label">Instagram Handle</label>
+                        <input asp-for="Input.Instagram" class="form-control" />
+                        <span asp-validation-for="Input.Instagram" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.WhatsappNumber" class="control-label">Whatsapp Number</label>
+                        <input asp-for="Input.WhatsappNumber" class="form-control" />
+                        <span asp-validation-for="Input.WhatsappNumber" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="Input.LinkedIn" class="control-label">LinkedIn Account</label>
+                        <input asp-for="Input.LinkedIn" class="form-control" />
+                        <span asp-validation-for="Input.LinkedIn" class="text-danger"></span>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label asp-for="Input.Password"></label>
+                        <input asp-for="Input.Password" class="form-control" />
+                        <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Input.ConfirmPassword"></label>
+                        <input asp-for="Input.ConfirmPassword" class="form-control" />
+                        <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                    </div>
+                   
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                        <a asp-page="Index" class="btn btn-outline-primary waves-effect waves-light">Back</a>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+<script type="text/jscript">
+        $(function () {
+            $('#State').change(function () {
+
+
+                $.getJSON('/Home/GetLgaList/' + $('#State').val(), function (data) {
+
+                    var items = '<option>Choose LGA</option>';
+                    $.each(jQuery.map(data, function (i, local) {
+                        items += "<option value='" + i.value + "'>" + i.text + "</option>";
+
+                    }));
+
+                    $('#LGA').html(items);
+                });
+            });
+        });
+
+    ///
+    function nospaces(t) {
+        if (t.value.match(/\s/g)) {
+            t.value = t.value.replace(/\s/g, '');
+        }
+    }
+</script>
+}

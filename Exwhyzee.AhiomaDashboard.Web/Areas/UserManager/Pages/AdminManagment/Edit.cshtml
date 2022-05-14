@@ -1,0 +1,52 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.UserManager.Pages.AdminManagment.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>Edit</h2>
+
+<h4>Wallet</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Wallet.Id" />
+            <input type="hidden" asp-for="Wallet.UserId" />
+         
+            <div class="form-group">
+                <label asp-for="Wallet.Balance" class="control-label"></label>
+                <input asp-for="Wallet.Balance" class="form-control" />
+                <span asp-validation-for="Wallet.Balance" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Wallet.WithdrawBalance" class="control-label"></label>
+                <input asp-for="Wallet.WithdrawBalance" class="form-control" />
+                <span asp-validation-for="Wallet.WithdrawBalance" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Wallet.CreationTime" class="control-label"></label>
+                <input asp-for="Wallet.CreationTime" class="form-control" />
+                <span asp-validation-for="Wallet.CreationTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Wallet.LastUpdateTime" class="control-label"></label>
+                <input asp-for="Wallet.LastUpdateTime" class="form-control" />
+                <span asp-validation-for="Wallet.LastUpdateTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

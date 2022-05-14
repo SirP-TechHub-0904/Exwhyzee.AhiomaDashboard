@@ -1,0 +1,122 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.Admin.Pages.Markets.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+    <div class="row">
+        <div class="card-columns mx-auto d-flex justify-content-center col-12">
+
+            <div class="card">
+                <div class="card-header">
+
+                    <h3 class="card-title">
+                        Edit Market
+
+
+                    </h3>
+                    <h6> image size: 210 by 270</h6>
+                </div>
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="Market.Id" />
+
+                        <div class="form-group">
+                            <label asp-for="Market.Name" class="control-label"></label>
+                            <input asp-for="Market.Name" class="form-control" />
+                            <span asp-validation-for="Market.Name" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Market.ShortName" class="control-label"></label>
+                            <input asp-for="Market.ShortName" class="form-control" />
+                            <span asp-validation-for="Market.ShortName" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Market.State" class="control-label">States (@Model.Market.State)</label>
+                            <select asp-for="Market.State" asp-items="Model.StateListing" id="State" class="form-control" required="required">
+                                <option>Select State</option>
+
+                            </select>                        <span asp-validation-for="Market.State" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Market.LocalGovernment" class="control-label">Local Government (@Model.Market.LocalGovernment)</label>
+                            <select asp-for="Market.LocalGovernment" id="LGA" class="form-control"></select>
+                            <span asp-validation-for="Market.LocalGovernment" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Market.Address" class="control-label"></label>
+                            <input asp-for="Market.Address" class="form-control" />
+                            <span asp-validation-for="Market.Address" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Market.SortOrder" class="control-label"></label>
+                            <input asp-for="Market.SortOrder" class="form-control" />
+                            <span asp-validation-for="Market.SortOrder" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Market.UserId" class="control-label">Supervisor</label>
+                            <select asp-for="Market.UserId" asp-items="Model.UserListing" class="form-control" required="required">
+                                <option>Select Supervisor</option>
+
+                            </select>
+                            <span asp-validation-for="Market.UserId" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Market.MarketType" class="control-label"></label>
+                            @Html.DropDownListFor(model => model.Market.MarketType, new SelectList(Enum.GetValues(typeof(Exwhyzee.Enums.MarketType))), new { @class = "form-control" })
+
+                            <span asp-validation-for="Market.MarketType" class="text-danger"></span>
+                        </div>
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="file">
+                                Upload Images
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input class="form-control" type="file" name="files" id="gallery-photo-add" multiple />
+                                <div class="gallery"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Update" class="btn btn-primary" />
+                            <a asp-page="Index" class="btn btn-outline-primary waves-effect waves-light">Back</a>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+<script type="text/jscript">
+    $(function () {
+        $('#State').change(function () {
+
+            //var fruits = ["apple", "orange", "cherry"];
+            //fruits.forEach(myFunction);
+            //var res = "";
+            //function myFunction(item, index) {
+            //    res += index + ":" + item + "<br>";
+            //}
+            //console.log(res);
+            $.getJSON('/Home/GetLgaList/' + $('#State').val(), function (data) {
+
+                var items = '<option>Choose Market LGA</option>';
+                $.each(jQuery.map(data, function (i, local) {
+                    items += "<option value='" + i.value + "'>" + i.text + "</option>";
+
+                }));
+
+                $('#LGA').html(items);
+            });
+        });
+    });
+</script>
+}

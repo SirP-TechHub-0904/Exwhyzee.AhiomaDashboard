@@ -1,0 +1,141 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.Admin.Pages.SubCategories.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="row">
+    <div class="card-columns mx-auto d-flex justify-content-center col-12">
+
+        <div class="card">
+            <div class="card-header">
+
+                <h3 class="card-title">
+                    Edit Sub Category
+
+
+                </h3>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="SubCategory.Id" />
+                    <input type="hidden" asp-for="SubCategory.CategoryId" />
+                    <input type="hidden" asp-for="SubCategory.UpdatedOnUtc" />
+                    <input type="hidden" asp-for="SubCategory.CreatedOnUtc" />
+                    <div class="form-group">
+                        <label asp-for="SubCategory.Name" class="control-label"></label>
+                        <input asp-for="SubCategory.Name" class="form-control" />
+                        <span asp-validation-for="SubCategory.Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="SubCategory.Description" class="control-label"></label>
+                        <input asp-for="SubCategory.Description" class="form-control" />
+                        <span asp-validation-for="SubCategory.Description" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label asp-for="SubCategory.Status" class="control-label"></label>
+                        @Html.DropDownListFor(model => model.SubCategory.Status, new SelectList(Enum.GetValues(typeof(Exwhyzee.Enums.EntityStatus))), new { @class = "form-control" })                        <span asp-validation-for="SubCategory.Status" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="SubCategory.MetaKeywords" class="control-label"></label>
+                        <input asp-for="SubCategory.MetaKeywords" class="form-control" />
+                        <span asp-validation-for="SubCategory.MetaKeywords" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="SubCategory.MetaDescription" class="control-label"></label>
+                        <input asp-for="SubCategory.MetaDescription" class="form-control" />
+                        <span asp-validation-for="SubCategory.MetaDescription" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="SubCategory.MetaTitle" class="control-label"></label>
+                        <input asp-for="SubCategory.MetaTitle" class="form-control" />
+                        <span asp-validation-for="SubCategory.MetaTitle" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input asp-for="SubCategory.ShowOnHomePage" /> @Html.DisplayNameFor(model => model.SubCategory.ShowOnHomePage)
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input asp-for="SubCategory.FeaturedProductsOnHomaPage" /> @Html.DisplayNameFor(model => model.SubCategory.FeaturedProductsOnHomaPage)
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input asp-for="SubCategory.ShowOnSearchBox" /> @Html.DisplayNameFor(model => model.SubCategory.ShowOnSearchBox)
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="SubCategory.SearchBoxDisplayOrder" class="control-label"></label>
+                        <input asp-for="SubCategory.SearchBoxDisplayOrder" class="form-control" />
+                        <span asp-validation-for="SubCategory.SearchBoxDisplayOrder" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input asp-for="SubCategory.IncludeInTopMenu" /> @Html.DisplayNameFor(model => model.SubCategory.IncludeInTopMenu)
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input asp-for="SubCategory.LimitedToStores" /> @Html.DisplayNameFor(model => model.SubCategory.LimitedToStores)
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="SubCategory.Stores" class="control-label"></label>
+                        <input asp-for="SubCategory.Stores" class="form-control" />
+                        <span asp-validation-for="SubCategory.Stores" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input asp-for="SubCategory.Published" /> @Html.DisplayNameFor(model => model.SubCategory.Published)
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="SubCategory.DisplayOrder" class="control-label"></label>
+                        <input asp-for="SubCategory.DisplayOrder" class="form-control" />
+                        <span asp-validation-for="SubCategory.DisplayOrder" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="SubCategory.Flag" class="control-label"></label>
+                        <input asp-for="SubCategory.Flag" class="form-control" />
+                        <span asp-validation-for="SubCategory.Flag" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="SubCategory.Icon" class="control-label"></label>
+                        <input asp-for="SubCategory.Icon" class="form-control" />
+                        <span asp-validation-for="SubCategory.Icon" class="text-danger"></span>
+                    </div>
+                 
+
+                    <div class="form-group">
+                        <input type="submit" value="Update" class="btn btn-primary" />
+                        <a asp-page="Index" class="btn btn-outline-primary waves-effect waves-light">Back</a>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

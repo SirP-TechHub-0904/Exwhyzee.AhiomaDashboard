@@ -1,0 +1,47 @@
+﻿@page
+@model AccessDeniedModel
+@{ ViewData["Title"] = "Access denied";
+
+    Layout = "/Pages/Shared/_LoginLayout.cshtml"; }
+
+<div class="main-body clearfix sidebar--left">
+    <div class="container">
+
+        <div class="sb-breadcrumbs breadcrumb-bg ">
+            <ul class="breadcrumb ">
+                <li class="breadcrumb-item ">
+                    <i class="fa fa-home"></i>
+                    <a href="/" class="breadcrumb-label">Home</a>
+                </li>
+
+                <li class="breadcrumb-item is-active">
+                    <a href="#" class="breadcrumb-label">Access Denied</a>
+                </li>
+
+            </ul>
+
+        </div>
+        <main class="page">
+            <section class="page-content content_404 row">
+                <div class="item-left col-lg-6 col-md-7">
+                    <img src="~/images/access-denied.png" alt="">
+                </div>
+                <div class="item-right col-lg-6 col-md-5">
+                    <h1 class="page-heading">404 Error - Page not found</h1>
+                    <h1>@TempData["error"]</h1>
+                    <p>
+                        You do not have access to this resource.
+                    </p>
+
+
+
+                </div>
+
+
+            </section>
+        </main>
+
+
+    </div>
+
+</div>

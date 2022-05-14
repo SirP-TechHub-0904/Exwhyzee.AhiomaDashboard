@@ -1,0 +1,55 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.Admin.Pages.WebBanner.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Banner</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Banner.UrlPath)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Banner.UrlPath)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Banner.UrlLink)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Banner.UrlLink)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Banner.AltText)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Banner.AltText)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Banner.SortOrder)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Banner.SortOrder)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Banner.Disable)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Banner.Disable)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Banner.DateUtc)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Banner.DateUtc)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Banner.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

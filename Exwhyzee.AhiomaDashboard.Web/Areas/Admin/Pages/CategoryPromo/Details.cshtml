@@ -1,0 +1,131 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.Admin.Pages.CategoryPromo.DetailsModel
+
+@{ ViewData["Title"] = "Details"; }
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <h1>Details</h1>
+
+                <div>
+                    <h4>Promo Category</h4>
+                    <hr />
+                    <dl class="row">
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.Market.Name)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Market.Name)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.Market.Description)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Market.Description)
+                        </dd>
+                        <dt class="col-sm-2">
+                            @Html.DisplayNameFor(model => model.Market.Show)
+                        </dt>
+                        <dd class="col-sm-10">
+                            @Html.DisplayFor(model => model.Market.Show)
+                        </dd>
+                        @*<dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.Market.Banner)
+                            </dt>
+                            <dd class="col-sm-10">
+                                <img src="@Model.Market.Banner" style="height:200px;" class="img-fluid" />
+                            </dd>*@
+
+                    </dl>
+                </div>
+                <div>
+                    <a asp-page="./Edit" asp-route-id="@Model.Market.Id">Edit</a> |
+                    <a asp-page="./Index">Back to List</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+
+                <h3 class="card-title">
+                    Products Under Category
+
+
+                </h3>
+            </div>
+            <div class="card-body">
+
+
+                <div id="datatable_wrapper" class="dataTables_wrapper table-responsive dt-bootstrap4 no-footer">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table id="datatable7" class="table table-bordered dt-responsive nowrap dataTable no-footer dtr-inline" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
+                                <thead>
+                                    <tr role="row">
+                                        <th>S/N</th>
+
+                                        <th>
+                                            Name
+                                        </th>
+                                        <th>Image</th>
+                                        <th>
+                                            New Price
+                                        </th>
+                                        <th>Old Price</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                @{ int sno = 0; }
+
+                                <tbody>
+
+                                    @foreach (var io in Model.PromoProducts)
+                                    {
+                        <tr>
+                            <td>
+                                @{ sno++; }
+                                @sno
+                            </td>
+                            <td>
+
+                                @Html.DisplayFor(modelItem => io.Product.Name)
+
+                            </td>
+                            <td>
+                                @if (io.Product.ProductPictures.FirstOrDefault() != null)
+                                {
+                <img src="@io.Product.ProductPictures.FirstOrDefault().PictureUrlThumbnail" class="img-responsive" alt="" style="max-height:50px;" />}
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => io.Product.Price)
+                            </td>
+                            <td>
+                                <a asp-page="./AddOldPrice" asp-route-id="@io.ProductId" asp-route-cid="@io.Id">
+                                    @Html.DisplayFor(modelItem => io.Product.OldPrice)
+                                </a>
+                            </td>
+                            <td>
+                                <a asp-page="./DeleteProduct" asp-route-id="@io.Id" asp-route-cid="@io.PromoCategoryId">
+                                    delete
+                                </a>
+                            </td>
+
+                        </tr>}
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div> <!-- end col -->
+</div>

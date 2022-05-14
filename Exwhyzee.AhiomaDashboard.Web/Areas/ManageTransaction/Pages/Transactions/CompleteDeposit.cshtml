@@ -1,0 +1,70 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.ManageTransaction.Pages.Transactions.CompleteDepositModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="row">
+    <div class="card-columns mx-auto d-flex justify-content-center col-12">
+
+        <div class="card">
+            <div class="card-header">
+
+                <h3 class="card-title">
+                   Complete Deposit
+
+                    @TempData["success"]
+                </h3>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    @if (TempData["error"] != null)
+                    {
+                <div class="text-danger">@TempData["error"]</div>}
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    
+
+                    @*<div class="form-group">
+            <label asp-for="Transaction.TransactionReference" class="control-label"></label>
+            <input asp-for="Transaction.TransactionReference" class="form-control" />
+        </div>*@
+                    <div class="form-group">
+                        <label asp-for="TransactionId" class="control-label"> TransactionId</label>
+                        <input asp-for="TransactionId" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="source" class="control-label"> Source = checkout || if it is order</label>
+                        <input asp-for="source" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="orderid" class="control-label"></label>
+                        <input asp-for="orderid" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ahiapaystatus" class="control-label">ahiapaystatus = success || if paid with ahipay</label>
+                        <input asp-for="ahiapaystatus" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="transactiontype" class="control-label">transactiontype == deposit || for online deposit</label>
+                        <input asp-for="transactiontype" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Update" class="btn btn-primary" />
+                        <a asp-page="Index" class="btn btn-outline-primary waves-effect waves-light">Back</a>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

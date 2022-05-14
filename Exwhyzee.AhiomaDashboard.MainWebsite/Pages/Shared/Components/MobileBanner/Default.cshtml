@@ -1,0 +1,37 @@
+﻿@model ICollection<Exwhyzee.AhiomaDashboard.EntityFramework.Tables.Banner>
+
+
+<div class="carousel carousel-fullscreen carousel-slider home_carousel" style="height: 400px;">
+    @foreach (var i in Model.Take(1))
+    {
+
+        string name = i.UrlLink.Replace("/Banner/", "").Replace("http","").Replace("ahioma", "").Replace(":", "").Replace("jpeg", "").Replace("png", "").Replace("gif", "");
+
+        name = name.Replace(".", "").Replace("/", "").Replace(" ", "");
+        <div class="carousel-item active" href="#carousel-slide-main!" style="transform: translateX(0px) translateX(0px) translateX(0px) translateZ(0px); z-index: 0; opacity: 1; visibility: visible;">
+            <div class="bg" style="background-image: url('@i.UrlLink')"></div>
+            <div class="item-content center-align white-text">
+                <div class="spacer-large"></div>
+                
+            </div>
+        </div>
+     
+    }
+    @foreach (var i in Model.Skip(1))
+    {
+
+        string name = i.UrlLink.Replace("/Banner/", "").Replace("http", "").Replace("ahioma", "").Replace(":", "").Replace("jpeg", "").Replace("png", "").Replace("gif", "");
+
+        name = name.Replace(".", "").Replace("/", "").Replace(" ", "");
+        <div class="carousel-item" href="#carousel-slide-@name!" style="z-index: -2; opacity: 1; visibility: visible; transform: translateX(0px) translateX(-750px) translateZ(0px);">
+            <div class="bg" style="background-image: url('@i.UrlLink')"></div>
+            <div class="item-content center-align white-text">
+                <div class="spacer-large"></div>
+
+            </div>
+        </div>
+    }
+
+    <ul class="indicators"><li class="indicator-item"></li><li class="indicator-item"></li><li class="indicator-item active"></li><li class="indicator-item"></li></ul>
+</div>
+

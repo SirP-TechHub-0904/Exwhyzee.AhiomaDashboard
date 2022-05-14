@@ -1,0 +1,117 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Areas.ManageTransaction.Pages.Transactions.TransactionInfoModel
+@{
+}
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+
+                    <h3 class="card-title">
+                        Transaction of <span class="btn btn-primary btn-sm"> @*@Model.Order.Product.Name*@</span> by <span class="btn btn-warning btn-sm">@Model.Order.UserProfile.Fullname (@Model.Order.UserProfile.IdNumber)</span>
+
+                    </h3>
+                    <h3 class="card-title">
+                        Date <span class="btn btn-primary btn-sm"> @*@Model.Order.DateOfTransaction*@</span>
+                    </h3>
+                    <h3 class="card-title">
+                        Amount <span class="btn btn-primary btn-sm"> @Model.Order.AmountPaid</span>
+                    </h3>
+                    @if (TempData["error"] != null)
+                    {
+                        <div class="alert alert-danger alert-dismissible">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>@TempData["error"]</strong>
+                        </div>
+                    }
+                    @if (TempData["success"] != null)
+                    {
+                        <div class="alert alert-success alert-dismissible">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>@TempData["success"]</strong>
+                        </div>
+                    }
+                </div>
+                <div class="card-body table-responsive">
+
+
+                    <div id="datatable_wrapper" class="dataTables_wrapper table-responsive dt-bootstrap4 no-footer">
+                        <div class="row">
+                            <div class="col-md-12 table-responsive">
+                                <table id="datatable7" class="table table-bordered dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
+
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                               Date
+                                            </th>
+
+                                            <th>
+                                                Account ID
+                                            </th>
+                                            <th>
+                                                Reason
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.Transactions[0].Amount)
+                                            </th>
+
+                                            <th>
+                                                Transaction Type
+                                            </th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.Transactions[0].Status)
+                                            </th>
+                                           
+                                            <th>
+                                               Transaction Code
+                                            </th>
+                                            <th>Payout Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model.Transactions)
+                                        {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.DateOfTransaction)
+                                            </td>
+
+                                            <td>
+                                                @await Component.InvokeAsync("AccountName", new { uid = item.UserId })<br />
+                                                (@await Component.InvokeAsync("AccountId", new { uid = item.UserId }))
+
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Description)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Amount)
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.TransactionType)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Status)
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.TrackCode)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.PayoutStatus)
+                                            </td>
+
+                                        </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,44 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Areas.Admin.Pages.Products.UpdateProductCommissionModel
+@{
+}
+
+<div class="row">
+    <div class="card-columns mx-auto d-flex justify-content-center col-12">
+
+        <div class="card">
+            <div class="card-header">
+
+                <h3 class="card-title">
+                    Update Commission in % (Product: @Model.Product.Name - Shop: @Model.Product.Tenant.BusinessName)
+
+
+                </h3>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="ProductId" value="@Model.Product.Id" />
+                    <div class="form-group">
+                        <label class="control-label">Commisson</label>
+                        <input asp-for="Product.Commision" class="form-control" />
+                        <span asp-validation-for="Product.Commision" class="text-danger"></span>
+
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                        <a asp-page="Index" class="btn btn-outline-primary waves-effect waves-light">Back</a>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

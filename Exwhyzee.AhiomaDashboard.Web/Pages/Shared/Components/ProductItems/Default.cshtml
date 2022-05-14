@@ -1,0 +1,66 @@
+﻿
+@*@model ICollection<Exwhyzee.AhiomaDashboard.Data.Repository.Products.ProductDto>*@
+
+<style>
+@@media (min-width: 1200px){
+.products-list .col-md-2 .product-item-container .left-block {
+    min-height: 180px;
+}
+                                                             }
+</style>
+
+
+@foreach (var data in ViewBag.product)
+{
+
+    <div class="productCarousel-slide product-layout col-md-2 col-sm-6 col-xs-6">
+        <article class="product-item-container ">
+            <div class="left-block d-flex align-items-center justify-content-center">
+
+                @{
+                    var df = "ddddddf";
+                }
+                <a asp-page="/ProductDetails" asp-route-customerRef="" asp-route-id="@data.Id" asp-route-name="@data.Name.Replace(" ", "-")" asp-route-shop="@data.Tenant.BusinessName.Replace(" ", "-")" asp-route-mktstate="@data.Tenant.Market.State.Replace(" ", "-")" asp-route-mktaddress="@data.Tenant.Market.Address.Replace(" ", "-")" class="product-item-photo" tabindex="0">
+                    @if (data.ImageThumbnail != null)
+                    {
+                        <img class="img-responsive lazyautosizes lazyloaded" data-sizes="auto" src="@data.ImageThumbnail" alt="" title="" sizes="50px">
+
+                    }
+
+                </a>
+
+                <a asp-page="/ProductDetails" asp-route-customerRef="" asp-route-id="@data.Id" asp-route-name="@data.Name.Replace(" ", "-")" asp-route-shop="@data.Tenant.BusinessName.Replace(" ", "-")" asp-route-mktstate="@data.Tenant.Market.State.Replace(" ", "-")" asp-route-mktaddress="@data.Tenant.Market.Address.Replace(" ", "-")" class="quickview btn-button d-none d-md-block" data-animation="false" data-product-id="126" title="Quick view" tabindex="0"> <i class="fa fa-search"></i></a>
+
+            </div>
+
+            <div class="right-block hidden-xs hidden-sm">
+
+                <h4 class="card-title">
+                    <a asp-page="/ProductDetails" asp-route-customerRef="" asp-route-id="@data.Id" asp-route-name="@data.Name.Replace(" ", "-")" asp-route-shop="@data.Tenant.BusinessName.Replace(" ", "-")" asp-route-mktstate="@data.Tenant.Market.State.Replace(" ", "-")" asp-route-mktaddress="@data.Tenant.Market.Address.Replace(" ", "-")" tabindex="0" title="@data.Name">@data.Name</a>
+                </h4>
+                <div class="price-section price-section--withoutTax ">
+
+                    <span data-product-price-without-tax="" class="pull-left" style="font-weight:900;color:#f56615;font-family:'Times New Roman', Times, serif;">&#8358;@string.Format("{0:C}", data.Price).Replace(".00", "").Replace("$", "")@if (data.Quantity < 1) {<span>XXX</span> }</span>
+                    <span data-product-price-without-tax="" class="pull-right mkt-name" title="@data.Tenant.BusinessName @@ @data.Market.Name" style="font-weight:800;color:#3a3535;">@data.Market.ShortName</span>
+
+                </div>
+
+            </div>
+            <div class="right-block hidden-md hidden-lg">
+
+                <h4 class="card-title" style="padding-bottom:0px;margin-bottom:3px;">
+                    <a asp-page="/ProductDetails" asp-route-customerRef="" asp-route-id="@data.Id" asp-route-name="@data.Name.Replace(" ", "-")" asp-route-shop="@data.Tenant.BusinessName.Replace(" ", "-")" asp-route-mktstate="@data.Tenant.Market.State.Replace(" ", "-")" asp-route-mktaddress="@data.Tenant.Market.Address.Replace(" ", "-")" tabindex="0" title="@data.Name">@data.Name</a>
+                </h4>
+                <h4 class="card-title" style="padding-bottom:0px;margin-bottom:3px;">
+                    <a style="font-weight:900;color:#f56615;font-family:'Times New Roman', Times, serif;">&#8358;@string.Format("{0:C}", data.Price).Replace(".00", "").Replace("$", "")@if (data.Quantity < 1)
+                                        {<span>XXX</span>}</a>
+                </h4>
+                <h4 class="card-title" style="padding-bottom:0px;margin-bottom:3px;">
+                    <a title="@data.Tenant.BusinessName @@ @data.Market.Name" style="font-weight:800;color:#3a3535;">@data.Market.ShortName</a>
+                </h4>
+
+            </div>
+        </article>
+
+    </div>
+}

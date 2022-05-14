@@ -1,0 +1,10 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Areas.Admin.Pages.Dashboard.IndexModel
+@{
+}
+
+
+@await Component.InvokeAsync("EmailVerify", new { uid = "" })
+@await Component.InvokeAsync("PhoneVerify", new { uid = "" })
+
+<h1>Remind Admin to Design This Dashboard</h1>

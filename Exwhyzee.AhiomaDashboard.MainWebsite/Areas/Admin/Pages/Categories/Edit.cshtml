@@ -1,0 +1,177 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Areas.Admin.Pages.Categories.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+    <div class="row">
+        <div class="card-columns mx-auto d-flex justify-content-center col-12">
+
+            <div class="card">
+                <div class="card-header">
+
+                    <h3 class="card-title">
+                        Edit Category
+
+
+                    </h3>
+                </div>
+                <div class="card-body">
+                    
+                    <form method="post" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="Category.Id" />
+                        <input type="hidden" asp-for="Category.CreatedOnUtc" />
+                        <input type="hidden" asp-for="Category.UpdatedOnUtc" />
+                        <input type="hidden" asp-for="Category.HomeBarner" />
+                        <div class="form-group">
+                            <label asp-for="Category.Name" class="control-label"></label>
+                            <input asp-for="Category.Name" class="form-control" />
+                            <span asp-validation-for="Category.Name" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Category.Description" class="control-label"></label>
+                            <input asp-for="Category.Description" class="form-control" />
+                            <span asp-validation-for="Category.Description" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Category.Status" class="control-label"></label>
+                            @Html.DropDownListFor(model => model.Category.Status, new SelectList(Enum.GetValues(typeof(Exwhyzee.Enums.EntityStatus))), new { @class = "form-control" })                        <span asp-validation-for="Category.Status" class="text-danger"></span>
+                            <span asp-validation-for="Category.Status" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Category.MetaKeywords" class="control-label"></label>
+                            <input asp-for="Category.MetaKeywords" class="form-control" />
+                            <span asp-validation-for="Category.MetaKeywords" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Category.MetaDescription" class="control-label"></label>
+                            <input asp-for="Category.MetaDescription" class="form-control" />
+                            <span asp-validation-for="Category.MetaDescription" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Category.MetaTitle" class="control-label"></label>
+                            <input asp-for="Category.MetaTitle" class="form-control" />
+                            <span asp-validation-for="Category.MetaTitle" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label>
+                                    <input asp-for="Category.ShowOnHomePage" /> @Html.DisplayNameFor(model => model.Category.ShowOnHomePage)
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label>
+                                    <input asp-for="Category.FeaturedProductsOnHomaPage" /> @Html.DisplayNameFor(model => model.Category.FeaturedProductsOnHomaPage)
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label>
+                                    <input asp-for="Category.ShowOnSearchBox" /> @Html.DisplayNameFor(model => model.Category.ShowOnSearchBox)
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Category.SearchBoxDisplayOrder" class="control-label"></label>
+                            <input asp-for="Category.SearchBoxDisplayOrder" class="form-control" />
+                            <span asp-validation-for="Category.SearchBoxDisplayOrder" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label>
+                                    <input asp-for="Category.IncludeInTopMenu" /> @Html.DisplayNameFor(model => model.Category.IncludeInTopMenu)
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label>
+                                    <input asp-for="Category.LimitedToStores" /> @Html.DisplayNameFor(model => model.Category.LimitedToStores)
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Category.Stores" class="control-label"></label>
+                            <input asp-for="Category.Stores" class="form-control" />
+                            <span asp-validation-for="Category.Stores" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label>
+                                    <input asp-for="Category.Published" /> @Html.DisplayNameFor(model => model.Category.Published)
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Category.DisplayOrder" class="control-label"></label>
+                            <input asp-for="Category.DisplayOrder" class="form-control" />
+                            <span asp-validation-for="Category.DisplayOrder" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Category.Flag" class="control-label"></label>
+                            <input asp-for="Category.Flag" class="form-control" />
+                            <span asp-validation-for="Category.Flag" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Category.Icon" class="control-label"></label>
+                            <input asp-for="Category.Icon" class="form-control" />
+                            <span asp-validation-for="Category.Icon" class="text-danger"></span>
+                        </div>
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="file">
+                                Upload images
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input class="form-control" type="file" name="files" id="gallery-photo-add" />
+                                <div class="gallery"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="submit" value="Create" class="btn btn-primary" />
+                            <a asp-page="Index" class="btn btn-outline-primary waves-effect waves-light">Back</a>
+                        </div>
+                    </form>
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            @section Scripts {
+                @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+<script type="text/javascript">
+        $(function () {
+            // multiple images prevuiew in browser
+            var imagesPreview = function (input, placeToInsertImagePreview) {
+                if (input.files) {
+                    var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.gif|.png|.bmp)$/;
+                    var filesAmount = input.files.length;
+                    if (filesAmount <= 5) {
+                        for (i = 0; i < filesAmount; i++) {
+                            var reader = new FileReader();
+                            reader.onload = function (event) {
+                                $($.parseHTML('<img>')).attr('src', event.target.result).attr('width', '100px').attr('height', '100px').attr('margin', '10px').attr('padding', '10px').appendTo(placeToInsertImagePreview);
+                            }
+                            reader.readAsDataURL(input.files[i]);
+                        }
+                    } else {
+                        window.alert("You cant upload more than 5 images");
+                    }
+                }
+            };
+            $('#gallery-photo-add').on('change', function () {
+                imagesPreview(this, 'div.gallery');
+            });
+        });
+
+</script>
+            }

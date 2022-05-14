@@ -1,0 +1,165 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Areas.Manager.Pages.Data.FTransactionsModel
+@{
+}
+@{
+    ViewData["Title"] = "Transfer";
+}
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+
+                <h3 class="card-title">
+                    All Transfer
+
+                </h3>
+
+            </div>
+            <div class="card-body table-responsive">
+                <table border="1" style="padding:4px;text-align:center;vertical-align:middle;" class="table table-bordered dt-responsive nowrap dataTable no-footer">
+                    <tr>
+                        <th>Status</th>
+                        <th>Message</th>
+                        <th>Total</th>
+                        <th>Page Current</th>
+                        <th>Page Total</th>
+
+                    </tr>
+                    <tr>
+                        <td>@Model.Transactions.status</td>
+                        <td> @Model.Transactions.message</td>
+                        <td>@Model.Transactions.meta.page_info.total</td>
+                        <td> @Model.Transactions.meta.page_info.current_page</td>
+                        <td>@Model.Transactions.meta.page_info.total_pages</td>
+
+                    </tr>
+                </table>
+                New Fetch
+                <form asp-page="./FTransaction" method="get">
+                    <div class="form-actions no-color">
+                        <div class="row">
+
+                            <div class="col-md-3">
+                                <input type="text" name="from" placeholder="Date from YYYY-MM-DD" class="form-control" />
+
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" name="to" placeholder="Date to YYYY-MM-DD" class="form-control" />
+                            </div>
+                            <div class="col-md-3">
+                                <input type="number" name="page" placeholder="Page number" class="form-control" />
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" name="customerEmail" placeholder="customer Email" class="form-control" />
+                            </div>
+
+
+                        </div><br />
+                        <div class="row">
+
+                            <div class="col-md-3">
+                                <input type="text" name="customerName" placeholder="customer Name" class="form-control" />
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" name="tx_ref" placeholder="tx_ref" class="form-control" />
+                            </div>
+                            <div class="col-md-3">
+                                <select class="form-control" name="status">
+                                    <option value="All">All</option>
+                                    <option value="failed">Failed</option>
+                                    <option value="successful">Successful</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <input type="submit" value="Fetch" class="btn btn-primary" />
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </form>
+
+                <div id="datatable_wrapper" class="dataTables_wrapper table-responsive dt-bootstrap4 no-footer">
+                    <div class="row">
+                        <div class="col-md-12 table-responsive">
+                            <table id="datatable7" class="table table-bordered dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
+
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            S/N
+                                        </th>
+
+                                        <th>
+                                            Id
+                                        </th>
+                                        <th>
+                                            Date
+                                        </th>
+                                        <th>
+                                            Amount
+                                        </th>
+                                        <th>
+                                            Amount Charged
+                                        </th>
+
+                                        <th>
+                                            fee
+                                        </th>
+                                        <th>
+                                            Amount Settled
+                                        </th>
+                                        <th>
+                                            Payment Type
+                                        </th>
+                                        <th>Customer</th>
+                                        <th>Email</th>
+
+                                        <th>
+                                            Status
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                @{
+                                    int sno = 0;
+                                }
+                                <tbody>
+
+                                    @foreach (var item in Model.Transactions.data)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @{ sno++; }
+                                                @sno
+                                            </td>
+                                            <td>@item.id</td>
+                                            <td>@item.created_at</td>
+                                            <td>@item.amount</td>
+                                            <td>@item.charged_amount</td>
+                                            <td>@item.app_fee</td>
+                                            <td>@item.amount_settled</td>
+                                            <td>@item.payment_type</td>
+                                            <td>@item.customer.name</td>
+                                            <td>@item.customer.email</td>
+
+                                            <td>@item.status</td>
+
+
+                                            <td>Details</td>
+
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

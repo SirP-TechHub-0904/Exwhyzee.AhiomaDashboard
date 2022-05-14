@@ -1,0 +1,713 @@
+﻿ @page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.ManageTransaction.Pages.Transactions.InvoiceModel
+@{
+}
+
+<link href="~/css/overrides.css" rel="stylesheet" />
+<link href="~/css/styles.css" rel="stylesheet" />
+<link href="~/css/invoice.css" rel="stylesheet" />
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>
+
+
+<div class="row non-printable aprint">
+
+
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+
+
+
+                <div class="container-fluid invoice-container">
+
+
+                    <div class="row">
+                        <div class="col-sm-7">
+
+                            <p><img src="~/images/ahioma_logo.png" title="edi"></p>
+                            <h3 style="color:#000000;">Invoice #@Model.Order.OrderId</h3>
+
+                        </div>
+                        <div class="col-sm-5 text-center">
+
+                            <div class="invoice-status">
+
+                                <span class="unpaid"> @Html.DisplayFor(model => model.Order.Status)</span>
+
+                            </div>
+
+                            <div class="small-text" style="text-align:left;color:#000000;">
+                                <h6 style="margin-bottom:2px;padding-bottom:1px;color:#000000;">Items - @Model.Order.OrderItems.Count()</h6>
+                                <h6 style="margin-bottom:2px;padding-bottom:1px;color:#000000;">Total Amount Paid - &#8358;@Model.Order.AmountPaid</h6>
+                                <h6 style="margin-bottom:2px;padding-bottom:1px;color:#000000;">Date: @Model.Order.DateOfOrder.ToString("dd MMM, yyyy")</h6>
+                                <p style="margin-bottom:2px;padding-bottom:1px;color:#000000;">@Model.Order.Note</p>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <hr>
+
+
+                    <div class="row">
+                        <div class="col-sm-6 pull-sm-right text-right-sm">
+                            <strong>Customer Information:</strong>
+                            <address class="small-text">
+                                <strong> Id Number:</strong> @Model.Order.UserProfile.IdNumber</br>
+                                <strong>Fullname:</strong> @Model.Order.UserProfile.Fullname</br>
+                                <strong>Email:</strong> @Model.Order.UserProfile.User.Email</br>
+                                <strong>Phone:</strong> @Model.Order.UserProfile.User.PhoneNumber</br>
+                            </address>
+                            <address class="small-text">
+                                <strong>Customer Address:</strong>
+
+                                @foreach (var ip in Model.Order.UserProfile.UserAddresses)
+                                {
+                                    <strong>Address:</strong> @ip.Address<br />
+                                    <strong>LGA:</strong> @ip.LocalGovernment<br />
+                                    <strong>State:</strong> @ip.State
+
+                                }
+
+                            </address>
+                        </div>
+                        <div class="col-sm-6">
+                            <strong>Payment Method:</strong>
+                            <address class="small-text">
+                                <strong> @Model.Order.PaymentMethod</strong></br>
+
+                            </address>
+                            <strong>Delivery Method:</strong>
+                            <address class="small-text">
+                                <strong> @Model.Order.DeliveryMethod</strong></br>
+
+                            </address>
+                        </div>
+                    </div>
+
+
+                    <br>
+
+                    <style>
+                        .table td, .table th {
+                            padding: .3rem;
+                            
+                        }
+                        .table-condensed > tbody > tr > td, .table-condensed > thead > tr > th {
+                             padding: 0; 
+                        }
+                    </style>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><strong style="color:#000000;">Invoice Items</strong></h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-condensed" style="color:#000000;">
+                                    <thead>
+                                        <tr>
+
+                                            <td><strong>S/N</strong></td>
+                                            <td><strong>Name</strong></td>
+                                            <td><strong>Image</strong></td>
+                                            <td><strong>Shop</strong></td>
+                                            <td><strong>Status</strong></td>
+                                            <td><strong>Qty</strong></td>
+                                            <td><strong>Amount</strong></td>
+                                            <td><strong>Total</strong></td>
+
+                                        </tr>
+                                    </thead>
+                                    @{
+                                        int sno = 0;
+                                        int snor = 0;
+                                    }
+                                <tbody>
+
+                                    @foreach (var item in Model.OrderItems)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @{ sno++; }
+                                                @sno
+                                            </td>
+                                            <td style="line-height:1;">@item.Product.Name</td>
+                                            <td>
+                                                @if (item.Product.ProductPictures.Count() > 0) {
+                                                <a href="/@item.Product.ProductPictures.FirstOrDefault().PictureUrl">
+                                                    <img src="@item.Product.ProductPictures.FirstOrDefault().PictureUrlThumbnail" style="max-height:50px;" class="img-responsive" />
+                                                </a>
+                                                }
+                                            </td>
+                                            <td style="line-height:1;">@item.Product.Tenant.BusinessName</td>
+                                            <td>@item.Status</td>
+                                            <td>@item.Quantity</td>
+                                            <td>@item.Product.Price</td>
+                                            <td>
+                                                @{
+                                                    decimal t = item.Quantity * item.Product.Price;
+                                                }
+                                                @t
+                                            </td>
+                                        </tr>
+                                    }
+
+
+                                    <tr style="border-top:2px solid #000000;">
+                                        <td colspan="6"></td>
+                                        <td>Logistics</td>
+                                        <td>@Model.Order.LogisticAmount</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="6"></td>
+                                        <td>Vat</td>
+                                        <td>0</td>
+                                    </tr>
+                                    <tr style="border-top:2px solid #000000;">
+                                        <td colspan="6"></td>
+                                        <td><strong>Total</strong></td>
+                                        @{
+                                            decimal? j = Model.Order.OrderAmount + Model.Order.LogisticAmount;
+                                        }
+                                        <td>&#8358;@j</td>
+                                    </tr>
+                                    <tr style="border-bottom:2px solid #000000;">
+                                        <td colspan="6"></td>
+                                        <td><strong>Paid</strong></td>
+                                        <td>&#8358;@Model.Order.AmountPaid</td>
+                                    </tr>
+                                    @foreach (var item in Model.ReversedOrderItems)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @{ snor++; }
+                                                @snor
+                                            </td>
+                                            <td style="line-height:1;">@item.Product.Name</td>
+                                            <td>
+                                                <a href="/@item.Product.ProductPictures.FirstOrDefault().PictureUrl">
+                                                    <img src="@item.Product.ProductPictures.FirstOrDefault().PictureUrlThumbnail" style="max-height:50px;" class="img-responsive" />
+                                                </a>
+                                            </td>
+                                            <td style="line-height:1;">@item.Product.Tenant.BusinessName</td>
+                                            <td>@item.Status</td>
+                                            <td>@item.Quantity</td>
+                                            <td>@item.Product.Price</td>
+                                            <td>
+                                                @{
+                                                    decimal t = item.Quantity * item.Product.Price;
+                                                }
+                                                @t
+                                            </td>
+                                        </tr>
+                                    }
+                                    <tr>
+                                        <td colspan="6"></td>
+                                        <td><strong>Total Reversed </strong></td>
+                                        @{
+                                            decimal? jr = Model.ReversedOrderItems.Select(x => x.Product.Price).Sum();
+                                        }
+                                        <td>&#8358;@jr</td>
+                                    </tr>
+                                    <tr style="border-top:2px solid #000000;">
+                                        <td colspan="6"></td>
+                                        <td><strong>Grand Total</strong></td>
+                                        @{
+                                            decimal? jrs = Model.Order.AmountPaid - Model.ReversedOrderItems.Select(x => x.Product.Price).Sum();
+                                        }
+                                        <td>&#8358;@jrs</td>
+                                    </tr>
+                                    <tr style="border-top:2px solid #000000;">
+                                        <td colspan="6"></td>
+                                        <td><strong>Balance</strong></td>
+                                        <td>
+                                            @{
+                                                decimal? b = (Model.Order.OrderAmount + Model.Order.LogisticAmount) - (Model.Order.AmountPaid);
+                                            }
+                                            &#8358;@b
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    @{
+                        string inv = "Invoice_Receipt_" + Model.Order.OrderId + "_By_" + Model.Order.UserProfile.Fullname.Replace(" ", "_");
+                    }
+                    <input type="hidden" value="@inv" id="name123" />
+                    <div class="pull-right btn-group btn-group-sm hidden-print">
+                        <a data-toggle="modal" data-target="#MainprintModal" id="padmin" class="btn btn-success"><i class="fa fa-print"></i> Print</a>
+                        <a data-toggle="modal" data-target="#printModal" class="btn btn-default"><i class="fa fa-print"></i> POS Print</a>
+                        <a href="#" onclick="myFunction()" class="btn btn-default"><i class="fa fa-download"></i> Download</a>
+                        <a asp-page="/Transactions/MoreInvoice" asp-area="ManageTransaction" asp-route-id="@Model.Order.Id" class="btn btn-default"><i class="fa fa-download"></i> More Invoice</a>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="MainprintModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+
+            <div class="modal-body" id="bprint" style="background-color:#ffffff;">
+                <div class="container-fluid invoice-container">
+
+
+                    <div class="row">
+                        <div class="col-sm-7">
+
+                            <p><img src="~/images/ahioma_logo.png" title="edi"></p>
+                            <h3 style="color:#000000;">Invoice #@Model.Order.OrderId</h3>
+
+                        </div>
+                        <div class="col-sm-5 text-center">
+
+                            <div class="invoice-status">
+
+                                <span class="unpaid"> @Html.DisplayFor(model => model.Order.Status)</span>
+
+                            </div>
+
+                            <div class="small-text" style="text-align:left;color:#000000;">
+                                <h6 style="margin-bottom:2px;padding-bottom:1px;color:#000000;">Items - @Model.Order.OrderItems.Count()</h6>
+                                <h6 style="margin-bottom:2px;padding-bottom:1px;color:#000000;">Total Amount Paid - &#8358;@Model.Order.AmountPaid</h6>
+                                <h6 style="margin-bottom:2px;padding-bottom:1px;color:#000000;">Date: @Model.Order.DateOfOrder.ToString("dd MMM, yyyy")</h6>
+                                <p style="margin-bottom:2px;padding-bottom:1px;color:#000000;">@Model.Order.Note</p>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <hr>
+
+
+                    <div class="row">
+                        <div class="col-sm-6 pull-sm-right text-right-sm">
+                            <strong>Customer Information:</strong>
+                            <address class="small-text">
+                                <strong> Id Number:</strong> @Model.Order.UserProfile.IdNumber</br>
+                                <strong>Fullname:</strong> @Model.Order.UserProfile.Fullname</br>
+                                <strong>Email:</strong> @Model.Order.UserProfile.User.Email</br>
+                                <strong>Phone:</strong> @Model.Order.UserProfile.User.PhoneNumber</br>
+                            </address>
+                            <address class="small-text">
+                                <strong>Customer Address:</strong>
+
+                                @foreach (var ip in Model.Order.UserProfile.UserAddresses)
+                                {
+                                <strong>Address:</strong>  @ip.Address<br />
+                                <strong>LGA:</strong>  @ip.LocalGovernment<br />
+                                <strong>State:</strong>  @ip.State
+
+                                }
+
+                            </address>
+                        </div>
+                        <div class="col-sm-6">
+                            <strong>Payment Method:</strong>
+                            <address class="small-text">
+                                <strong> @Model.Order.PaymentMethod</strong></br>
+
+                            </address>
+                            <strong>Delivery Method:</strong>
+                            <address class="small-text">
+                                <strong> @Model.Order.DeliveryMethod</strong></br>
+
+                            </address>
+                        </div>
+                    </div>
+
+
+                    <br>
+
+                    <style>
+                        .table td, .table th {
+                            padding: .3rem;
+                        }
+
+                        .table-condensed > tbody > tr > td, .table-condensed > thead > tr > th {
+                            padding: 0;
+                        }
+                    </style>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title"><strong style="color:#000000;">Invoice Items</strong></h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table table-condensed" style="color:#000000;">
+                                    <thead>
+                                        <tr>
+
+                                            <td><strong>S/N</strong></td>
+                                            <td><strong>Name</strong></td>
+                                            <td><strong>Image</strong></td>
+                                            <td><strong>Shop</strong></td>
+                                            <td><strong>Qty</strong></td>
+                                            <td><strong>Amount</strong></td>
+                                            <td><strong>Total</strong></td>
+
+                                        </tr>
+                                    </thead>
+                                    @{
+                                        int ssno = 0;
+                                    }
+                                    <tbody>
+
+                                        @foreach (var item in Model.OrderItems)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @{ ssno++; }
+                                                @ssno
+                                            </td>
+                                            <td style="line-height:1;">@item.Product.Name</td>
+                                            <td>
+                                                @if (item.Product.ProductPictures.Count() > 0)
+                                                {
+
+                                            <a href="/@item.Product.ProductPictures.FirstOrDefault().PictureUrl">
+                                                <img src="@item.Product.ProductPictures.FirstOrDefault().PictureUrlThumbnail" style="max-height:50px;" class="img-responsive" />
+                                            </a>}
+                                                            </td>
+                                            <td style="line-height:1;">@item.Product.Tenant.BusinessName</td>
+                                            <td>@item.Quantity</td>
+                                            <td>@item.Product.Price</td>
+                                            <td>
+                                                @{
+                                                decimal t = item.Quantity * item.Product.Price;
+                                                }
+                                                @t
+                                            </td>
+                                        </tr>
+                                            }
+
+
+                                        <tr style="border-top:2px solid #000000;">
+                                            <td colspan="6"></td>
+                                            <td>Logistic</td>
+                                            <td>@Model.Order.LogisticAmount</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="6"></td>
+                                            <td>Vat</td>
+                                            <td>0</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="6"></td>
+                                            <td><strong>Grand Total</strong></td>
+                                            @{
+                                                decimal? sj = Model.Order.OrderAmount + Model.Order.LogisticAmount;
+                                            }
+                                            <td>&#8358;@sj</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="6"></td>
+                                            <td><strong>Paid</strong></td>
+                                            <td>&#8358;@Model.Order.AmountPaid</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="6"></td>
+                                            <td><strong>Balance</strong></td>
+                                            <td>
+                                                @{
+                                                    decimal? sb = (Model.Order.OrderAmount + Model.Order.LogisticAmount) - (Model.Order.AmountPaid);
+                                                }
+                                                &#8358;@sb
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    @{
+                        string ginv = "Invoice_Receipt_" + Model.Order.OrderId + "_By_" + Model.Order.UserProfile.Fullname.Replace(" ", "_");
+                    }
+                    <input type="hidden" value="@ginv" id="name123" />
+                    <div class="pull-right btn-group btn-group-sm hidden-print">
+                        <a href="javascript:window.print()" id="padmin" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
+                        <a data-toggle="modal" data-target="#printModal" class="btn btn-default"><i class="fa fa-print"></i> POS Print</a>
+                        <a href="#" onclick="myFunction()" class="btn btn-default"><i class="fa fa-download"></i> Download</a>
+                        
+                    </div>
+
+
+                </div>
+            </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- Modal -->
+    <div id="printModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+
+                <div class="modal-body" id="bprint" style="background-color:#ffffff;">
+                    <style>
+                       
+
+                        td,
+                        th,
+                        tr,
+                        table {
+                            border-top: 1px solid black;
+                            border-collapse: collapse;
+                        }
+
+                            td.description,
+                            th.description {
+                                width: 75px;
+                                max-width: 75px;
+                            }
+
+                            td.quantity,
+                            th.quantity {
+                                width: 40px;
+                                max-width: 40px;
+                                word-break: break-all;
+                            }
+
+                            td.price,
+                            th.price {
+                                width: 40px;
+                                max-width: 40px;
+                                word-break: break-all;
+                            }
+
+                        .centered {
+                            text-align: center;
+                            align-content: center;
+                        }
+
+                        .ticket {
+                            width: 155px;
+                            max-width: 155px;
+                        }
+
+                        img {
+                            max-width: inherit;
+                            width: inherit;
+                        }
+
+                        @@media print {
+                            .hidden-print,
+                            .hidden-print * {
+                                display: none !important;
+                            }
+                        }
+
+                        .printable {
+                            display: none;
+                        }
+
+                        @@media print {
+                            .non-printable {
+                                display: none;
+                            }
+
+                            .printable {
+                                display: block;
+                            }
+                        }
+                    </style>
+
+                    <div class="ticket" style="color:#000000;">
+                        <img src="https://ahioma.com/images/ahioma_logo.png" alt="Logo">
+                        (Order ID: #@Model.Order.OrderId)
+                        <p class="centered">
+
+                            <address class="small-text">
+                                <strong>CustomerInformation</strong><br />
+                                @Model.Order.UserProfile.Fullname</br>
+                                @Model.Order.UserProfile.User.Email</br>
+                                @Model.Order.UserProfile.User.PhoneNumber</br>
+                            </address>
+                            <address class="small-text">
+                                <strong>Customer Address:</strong>
+
+                                @foreach (var ip in Model.Order.UserProfile.UserAddresses)
+                            {
+                                <strong>Address:</strong>  @ip.Address<br />
+                                <strong>LGA:</strong>  @ip.LocalGovernment<br />
+                                <strong>State:</strong>  @ip.State
+
+                            }
+
+                            </address>
+                        </p>
+
+                        <table class="table table-condensed" style="color:#000000;">
+                            <thead>
+                                <tr>
+
+                                    <td><strong>S/N</strong></td>
+                                    <td><strong>Name</strong></td>
+                                    <td><strong>Shop</strong></td>
+                                    <td><strong>Qty</strong></td>
+                                    <td><strong>Amount</strong></td>
+                                    <td><strong>Total</strong></td>
+
+                                </tr>
+                            </thead>
+                            @{
+                            int snoa = 0;
+                            }
+                            <tbody>
+
+                                @foreach (var item in Model.OrderItems)
+                                {
+                                <tr>
+                                    <td>
+                                        @{ snoa++; }
+                                        @snoa
+                                    </td>
+                                    <td style="line-height:1;">@item.Product.Name</td>
+
+                                    <td style="line-height:1;font-size:9px;">@item.Product.Tenant.BusinessName</td>
+                                    <td>@item.Quantity</td>
+                                    <td>@item.Product.Price</td>
+                                    <td>
+                                        @{
+            decimal t = item.Quantity * item.Product.Price;
+                                        }
+                                        @t
+                                    </td>
+                                </tr>
+    }
+
+
+                                <tr style="border-top:2px solid #000000;">
+                                    <td colspan="4"></td>
+                                    <td><strong>Logistic</strong></td>
+                                    <td>@Model.Order.LogisticAmount</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4"></td>
+                                    <td><strong>Vat</strong></td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4"></td>
+                                    <td style="line-height:1;"><strong>Grand Total</strong></td>
+                                    @{
+                                    decimal? ja = Model.Order.OrderAmount + Model.Order.LogisticAmount;
+                                    }
+                                    <td>&#8358;@ja</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4"></td>
+                                    <td><strong>Paid</strong></td>
+                                    <td>&#8358;@Model.Order.AmountPaid</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4"></td>
+                                    <td><strong>Balance</strong></td>
+                                    <td>
+                                        @{
+                                        decimal? ba = (Model.Order.OrderAmount + Model.Order.LogisticAmount) - (Model.Order.AmountPaid);
+                                        }
+                                        &#8358;@ba
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                        <p class="centered">
+                            Thanks for your purchase!
+
+                        </p>
+                    </div>
+                    <button id="btnPrint" class="hidden-print">Print</button>
+                    <script>
+                        const $btnPrint = document.querySelector("#btnPrint");
+                        $btnPrint.addEventListener("click", () => {
+                            window.print();
+                        });
+                    </script>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    @section Scripts {
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+        <script>
+
+
+            var x = document.getElementById("name123").value;
+            var namm = x + ' Ahioma Invoice' + '.pdf';
+            console.log(x + "dd");
+            console.log(namm);
+            console.log("sd");
+            function myFunction() {
+                let doc = new jsPDF('p', 'pt', 'a4');
+                doc.addHTML(document.body, function () {
+                    doc.save(namm);
+                });
+            }
+        </script>
+
+        <script type="text/javascript">
+            function onTryItClick() {
+                var content = document.getElementById("iframecontent").innerHTML;
+                var iframe = document.getElementById("myiframeid");
+
+                var frameDoc = iframe.document;
+                if (iframe.contentWindow)
+                    frameDoc = iframe.contentWindow.document;
+
+                frameDoc.open();
+                frameDoc.writeln(content);
+                frameDoc.close();
+            }
+        </script>
+        <script>
+            $(document).ready(function () {
+                $(".padmin").click(function () {
+                    $("div.aprint").addClass("printable");
+                    $("div.bprint").addClass("non-printable");
+                });
+            });
+
+            $(document).ready(function () {
+                $(".printModal").click(function () {
+                    $("div.aprint").addClass("non-printable");
+                    $("div.bprint").addClass("printable");
+                });
+            });
+
+        </script>
+    }

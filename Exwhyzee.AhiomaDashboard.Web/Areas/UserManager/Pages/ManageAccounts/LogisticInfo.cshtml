@@ -1,0 +1,259 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.UserManager.Pages.ManageAccounts.LogisticInfoModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="row">
+
+
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+
+                <h3 class="card-title">
+                    Logistic Details
+                </h3>
+                @if (User.Identity.IsAuthenticated && User.IsInRole("SO Admin"))
+                {
+                    <a asp-page="./UpdateUserStatus" asp-route-uid="@Model.Logistic.UserProfile.UserId">
+                        <button type="button" class="btn btn-primary btn-rounded waves-effect waves-light">Update Status</button>
+                    </a>
+                }
+
+            </div>
+
+            <div class="card-body">
+
+
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                            <a class="nav-link active" id="v-Dashboard-tab" data-toggle="pill" href="#v-Dashboard" role="tab" aria-controls="v-Dashboard" aria-selected="false">General</a>
+
+                        </div>
+                    </div>
+                    <div class="col-md-10">
+
+
+                        <div class="tab-content text-muted mt-4 mt-md-0" id="v-pills-tabContent">
+                            <div class="tab-pane fade active show" id="v-Dashboard" role="tabpanel" aria-labelledby="v-Dashboard-tab">
+
+                                <div class="">
+                                    <div class="table-responsive">
+                                        <table class="table mb-0">
+
+
+                                            <tbody>
+                                                <tr>
+                                                    <th>Logistic Owner</th>
+                                                    <td>@Html.DisplayFor(model => model.Logistic.UserProfile.Fullname)</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Logistic Owner Email</th>
+                                                    <td>@Html.DisplayFor(model => model.Logistic.UserProfile.User.Email)</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Logistic Owner Phone</th>
+                                                    <td>@Html.DisplayFor(model => model.Logistic.UserProfile.User.PhoneNumber)</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Company</th>
+                                                    <td>@Html.DisplayFor(model => model.Logistic.CompanyName)</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Description</th>
+                                                    <td>@Html.Raw(Model.Logistic.Description)</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <th>Business Document</th>
+                                                    <td>@Html.Raw(Model.Logistic.CompanyDocument)</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <th>Date Created</th>
+                                                    <td>@Html.DisplayFor(model => model.Logistic.CreationTime)</td>
+                                                </tr>
+
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+
+                <h3 class="card-title">
+                    Vehicles
+
+                </h3>
+            </div>
+            <div class="card-body">
+
+
+                <div id="datatable_wrapper" class="dataTables_wrapper table-responsive dt-bootstrap4 no-footer">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table id="datatable7" class="table table-bordered dt-responsive nowrap dataTable no-footer dtr-inline" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
+                                <thead>
+                                    <tr role="row">
+                                        <th>S/N</th>
+                                        <th>
+                                            Vehicle Name
+                                        </th>
+
+                                        <th>
+                                            Vehicle PhoneNumber
+                                        </th>
+                                        <th>
+                                            Vehicle Size
+                                        </th>
+                                        <th>
+                                            Vehicle Type
+                                        </th>
+                                        <th>
+                                            Location
+                                        </th>
+
+                                        <th>
+                                            Least Amount
+                                        </th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+
+                                @{
+                                    int sno = 0;
+                                }
+
+                                <tbody>
+
+                                    @foreach (var item in Model.Logistic.LogisticVehicles)
+                                    {
+                                    <tr>
+                                        <td>
+                                            @{ sno++; }
+                                            @sno
+                                        </td>
+                                        <td>
+                                            <a asp-page="/VehicleLogistic/Details" asp-route-id="@item.Id">
+                                                @Html.DisplayFor(modelItem => item.VehicleName)
+                                            </a>
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.VehiclePhoneNumber)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.VehicleSize)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.VehicleType)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.LGA)
+                                            in
+                                            @Html.DisplayFor(modelItem => item.State)
+
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.LeastAmount)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.VehicleStatus)
+
+                                            <a asp-page="./UpdateVehicleStatus" asp-route-uid="@item.Id">
+                                                <i class="fa fa-refresh" style="margin-right:5px;"></i>
+                                            </a>
+
+
+
+                                        </td>
+                                    </tr>
+                                    }
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- end card -->
+            </div>
+
+        </div>
+    </div>
+</div>
+<a asp-page="./EditLogistic" asp-route-id="@Model.Logistic.Id">
+    Edit
+</a>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+
+    <script type="text/javascript">
+        $(function () {
+            // multiple images prevuiew in browser
+            var imagesPreview = function (input, placeToInsertImagePreview) {
+                if (input.files) {
+                    var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.gif|.png|.bmp)$/;
+                    var filesAmount = input.files.length;
+                    if (filesAmount <= 5) {
+                        for (i = 0; i < filesAmount; i++) {
+                            var reader = new FileReader();
+                            reader.onload = function (event) {
+                                $($.parseHTML('<img>')).attr('src', event.target.result).attr('width', '100px').attr('height', '100px').attr('margin', '10px').attr('padding', '10px').appendTo(placeToInsertImagePreview);
+                            }
+                            reader.readAsDataURL(input.files[i]);
+                        }
+                    } else {
+                        window.alert("You cant upload more than 5 images");
+                    }
+                }
+            };
+            $('#gallery-photo-add').on('change', function () {
+                imagesPreview(this, 'div.gallery');
+            });
+        });
+
+    </script>
+
+    <script type="text/javascript">
+        $(function () {
+            // multiple images prevuiew in browser
+            var imagesPreview = function (input, placeToInsertImagePreview) {
+                if (input.files) {
+                    var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.gif|.png|.bmp)$/;
+                    var filesAmount = input.files.length;
+                    if (filesAmount <= 5) {
+                        for (i = 0; i < filesAmount; i++) {
+                            var reader = new FileReader();
+                            reader.onload = function (event) {
+                                $($.parseHTML('<img>')).attr('src', event.target.result).attr('width', '100px').attr('height', '100px').attr('margin', '10px').attr('padding', '10px').appendTo(placeToInsertImagePreview);
+                            }
+                            reader.readAsDataURL(input.files[i]);
+                        }
+                    } else {
+                        window.alert("You cant upload more than 5 images");
+                    }
+                }
+            };
+            $('#gallery-photo-add1').on('change', function () {
+                imagesPreview(this, 'div.gallery1');
+            });
+        });
+
+    </script>
+}

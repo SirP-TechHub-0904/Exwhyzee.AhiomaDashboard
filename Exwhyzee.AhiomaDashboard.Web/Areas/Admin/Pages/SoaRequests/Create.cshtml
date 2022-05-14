@@ -1,0 +1,54 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.Admin.Pages.SoaRequests.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>SoaRequest</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="SoaRequest.FullName" class="control-label"></label>
+                <input asp-for="SoaRequest.FullName" class="form-control" />
+                <span asp-validation-for="SoaRequest.FullName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SoaRequest.PhoneNumber" class="control-label"></label>
+                <input asp-for="SoaRequest.PhoneNumber" class="form-control" />
+                <span asp-validation-for="SoaRequest.PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SoaRequest.ShopAddress" class="control-label"></label>
+                <input asp-for="SoaRequest.ShopAddress" class="form-control" />
+                <span asp-validation-for="SoaRequest.ShopAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SoaRequest.BusinessName" class="control-label"></label>
+                <input asp-for="SoaRequest.BusinessName" class="form-control" />
+                <span asp-validation-for="SoaRequest.BusinessName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SoaRequest.Email" class="control-label"></label>
+                <input asp-for="SoaRequest.Email" class="form-control" />
+                <span asp-validation-for="SoaRequest.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

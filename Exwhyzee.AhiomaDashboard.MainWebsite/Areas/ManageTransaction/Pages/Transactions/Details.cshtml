@@ -1,0 +1,79 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Areas.ManageTransaction.Pages.Transactions.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Transaction</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Transaction.WalletId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Transaction.WalletId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Transaction.UserId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Transaction.UserId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Transaction.Sender)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Transaction.Sender)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Transaction.Amount)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Transaction.Amount)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Transaction.DateOfTransaction)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Transaction.DateOfTransaction)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Transaction.TransactionType)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Transaction.TransactionType)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Transaction.Status)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Transaction.Status)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Transaction.TransactionReference)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Transaction.TransactionReference)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Transaction.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Transaction.Description)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Transaction.TrackCode)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Transaction.TrackCode)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Transaction.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

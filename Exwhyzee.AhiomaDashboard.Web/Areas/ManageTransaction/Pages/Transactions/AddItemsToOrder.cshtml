@@ -1,0 +1,265 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.ManageTransaction.Pages.Transactions.AddItemsToOrderModel
+@{
+}
+<div class="row">
+    <style>
+        .table td, .table th {
+            padding: .1rem;
+        }
+        p {
+            margin-bottom: 0px;
+        }
+    </style>
+
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+
+                @if (TempData["error"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissible">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>@TempData["error"]</strong>
+                    </div>}
+                @if (TempData["success"] != null)
+                {
+                    <div class="alert alert-success alert-dismissible">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>@TempData["success"]</strong>
+                    </div>}
+
+
+                <div class="text-muted mt-4">
+                    <h4>Order <button class="btn btn-primary">(@Model.Order.OrderId)</button> <button class="btn btn-warning">(@Html.DisplayFor(modelItem => Model.Order.Status))</button></h4>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="" style="padding:10px;margin-bottom:10px;background-color:#2a2b2f;border-radius:7px;box-shadow:1px 1px 1px 1px rgba(35, 39, 48, 0.85);">
+                                <h4>Order Information</h4>
+                                <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Reference Id:</strong> @Model.Order.ReferenceId</p>
+                                <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Amount Paid:</strong> @Model.Order.AmountPaid</p>
+                                <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Order Cost:</strong> @Model.Order.OrderAmount</p>
+                                <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Vat:</strong> @Model.Order.Vat</p>
+                                <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Logistic Amount:</strong> @Model.Order.LogisticAmount</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="" style="padding:10px;margin-bottom:10px;background-color:#2a2b2f;border-radius:7px;box-shadow:1px 1px 1px 1px rgba(35, 39, 48, 0.85);">
+
+                                <h4>Order Reconsiliation</h4>
+                                <p style="color:#ff0000;">
+                                    <i class="fa fa-chevron-right text-primary mr-1" style="color:#ff0000;"></i> <strong>Additional Payment:</strong> @Model.Order.AdditionalPayment
+
+                                </p>
+                                <p style="color:#ff0000;"><i class="fa fa-chevron-right text-primary mr-1" style="color:#ff0000;"></i> <strong>Order Cost After Confirmation:</strong> @Model.Order.OrderCostAfterProcessing</p>
+                                <p style="color:#ff0000;">
+                                    <i class="fa fa-chevron-right text-primary mr-1" style="color:#ff0000;"></i> <strong>Differences:</strong>
+                                    @*@{ decimal? diff = (Model.Order.AmountPaid - Model.Order.LogisticAmount - (Model.Order.AmountMovedToCustomer + Model.Order.AmountMovedToAdmin + Model.Order.AdditionalPayment)) - Model.Order.OrderCostAfterProcessing; }*@
+
+                                    @{ decimal? orderamt = Model.Order.AmountPaid - Model.Order.LogisticAmount;
+                                        decimal? diff = (orderamt + (Model.Order.AdditionalPayment)) - Model.Order.OrderCostAfterProcessing - Model.Order.AmountMovedToCustomer + Model.Order.AmountMovedToAdmin; }
+
+                                    @diff
+                                </p>
+                                <p style="color:;">
+                                    <i class="fa fa-chevron-right text-primary mr-1" style="color:#ff0000;"></i> <strong>Amount Transfered to Admin:</strong> @Model.Order.AmountMovedToAdmin
+
+                                </p>
+                                <p style="color:;">
+                                    <i class="fa fa-chevron-right text-primary mr-1" style="color:#ff0000;"></i> <strong>Amount Transfered to Customer:</strong> @Model.Order.AmountMovedToCustomer
+
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="" style="padding:10px;margin-bottom:10px;background-color:#2a2b2f;border-radius:7px;box-shadow:1px 1px 1px 1px rgba(35, 39, 48, 0.85);">
+
+                                <h4>Customer Information</h4>
+                                <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Name:</strong> @Model.Order.UserProfile.Fullname</p>
+                                <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Email:</strong> @Model.Order.UserProfile.User.Email</p>
+                                <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Phone:</strong> @Model.Order.UserProfile.User.PhoneNumber</p>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                  
+                    <a asp-page="./OrderDetails" asp-route-id="@Model.OrderId" class="btn btn-primary btn-xs" style="margin-left:20px;">
+                        Back to Orders
+                    </a>
+                    <h4>Order Items (@Model.Order.OrderItems.Where(c => c.Status != Exwhyzee.Enums.OrderStatus.OutOfStock).Count())</h4>
+                    <div class="table-responsive">
+
+                        <table id="datatable7" class="table table-bordered dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
+
+                            <thead>
+                                <tr>
+                                    <th>
+                                        S/N
+                                    </th>
+
+                                    <th>
+                                        Items
+                                    </th>
+                                    <th>Shop</th>
+
+                                    <th>
+                                        Amount
+                                    </th>
+
+                                    <th>
+                                        Quantity
+                                    </th>
+                                    <th>
+                                        Total
+                                    </th>
+                                    <th>
+                                        Status
+                                    </th>
+
+                                </tr>
+                            </thead>
+                            @{ int sno = 0; }
+                            <tbody>
+                                @foreach (var item in Model.OrderItems.Where(c => c.Status != Exwhyzee.Enums.OrderStatus.OutOfStock))
+                                {
+
+                                    <tr>
+                                        <td>
+                                            @{ sno++; }
+                                            @sno
+                                        </td>
+
+
+                                        <td>
+                                            (@item.Product.Id)
+                                            <a asp-page="/ProductInfo" asp-area="" asp-route-id="@item.ProductId" title="@item.Product.Name">
+                                                @if (item.Product.Name.Length > 35)
+                                                {
+                                                    @item.Product.Name.Substring(0, 34) <text>...</text> }
+                                                else
+                                                {
+                                                    @Html.DisplayFor(modelItem => item.Product.Name)}
+
+                                            </a>
+                                        </td>
+                                        <td>
+
+                                            @Html.DisplayFor(modelItem => item.Product.Tenant.BusinessName)
+
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Price)
+
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Quantity)
+                                        </td>
+                                        <td>
+                                            @{ decimal total = item.Quantity * item.Price; }
+                                            @total
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Status)
+
+
+
+                                        </td>
+
+
+                                    </tr>
+}
+
+                            </tbody>
+                        </table>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div class="card-body">
+                @if (Model.Product == null)
+                {
+                    <form method="post" asp-page-handler="FetchProduct">
+                        <br />
+                        <div class="panel-body" style="padding:2px;">
+
+
+                            <h6 style="color:#ffffff;text-align:center;">Get Product to Add</h6>
+                            <h6 style="color:#ffffff;text-align:center;">Amount Available &#8358;@diff</h6>
+
+                            <input type="hidden" name="GetOrderId" value="@Model.Order.Id" />
+                            <div class="form-group">
+                                <label asp-for="ProductId" class="control-label">Product Id</label>
+                                <input asp-for="ProductId" class="form-control" required="required" />
+
+                            </div>
+
+
+                        </div>
+                        <div class="panel-footer">
+                            <input type="submit" value="Get Product and Confirm" class="btn btn-primary" />
+                            <a href="#" title="Close" class="btn btn-danger" data-dismiss="modal">Close</a>
+
+                        </div>
+                    </form>
+                }else if (Model.Product != null)
+                {
+                <form method="post" asp-page-handler="AddProduct">
+                    <br />
+                    <div class="panel-body" style="padding:2px;">
+
+
+                        <h6 style="color:#ffffff;text-align:center;">Add @Model.Product.Name to This Order</h6>
+                        <h6 style="color:#ffffff;text-align:center;">Amount Available &#8358;@diff</h6>
+                        <h6 style="color:#ffffff;text-align:center;">Shop (@Model.Product.Tenant.BusinessName)</h6>
+
+                        <input type="hidden" name="GetOrderId" value="@Model.Order.Id" />
+
+                        <input asp-for="CProductId" type="hidden" value="@Model.Product.Id" class="form-control" required="required" />
+                        <p>Product name: <strong>@Model.Product.Name</strong></p>
+                        <p>Product price: <strong>@Model.Product.Price</strong></p>
+                        <div class="form-group">
+                            <label asp-for="CQuantity" class="control-label">Quantity</label>
+                            <input asp-for="CQuantity" class="form-control" required="required" />
+
+                        </div>
+                        @if (Model.Product.UseColor == true)
+                        {
+                            <div class="form-group">
+                                <label class="control-label">Choose Color</label>
+                                <select name="CColor" asp-items="Model.ColorListing" class="form-control">
+                                </select>
+                            </div>
+                        }
+                        @if (Model.Product.UseSize == true)
+                        {
+                            <div class="form-group">
+                                <label class="control-label">Choose Size</label>
+                                <select name="CSize" asp-items="Model.SizeListing" class="form-control">
+                                </select>
+                            </div>
+                        }
+
+
+                    </div>
+                    <div class="panel-footer">
+                        <input type="submit" value="Add" class="btn btn-primary" />
+                        <a href="#" title="Close" class="btn btn-danger" data-dismiss="modal">Close</a>
+
+                    </div>
+                </form>
+                }
+            </div>
+        </div>
+    </div>
+
+
+
+</div>

@@ -1,0 +1,80 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.Manager.Pages.Wallets.AuthWith2faModel
+@{
+    ViewData["Title"] = "Two-factor authentication";
+}
+<style>
+    .nav-tabs-custom .nav-item .nav-link.active {
+        color: #556ee6;
+        background-color: #e3e6e9;
+    }
+
+    .nav-tabs-custom .nav-item .nav-link {
+        border: none;
+        background-color: #55586f;
+    }
+</style>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+
+
+                <div class="row">
+
+                    <div class="col-md-6 col-sm-12">
+
+                        <h3 class="card-title">
+                            Authenticate
+                        </h3>
+                    </div>
+
+
+
+                </div>
+
+
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="panel">
+                                    <div class="panel-header">
+                                        <h2 class="panel-title">Complete Using Two-factor authentication</h2>
+                                    </div>
+                                    <div class="panel-body">
+
+                                        <p>Your login is protected with an Google authenticator app. Enter your authenticator code below.</p>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <form method="post" asp-route-returnUrl="@Model.ReturnUrl">
+
+                                                    <input name="UserId" value="@Model.PostUserId" type="hidden" />
+                                                    <div asp-validation-summary="All" class="text-danger"></div>
+                                                    <div class="form-group">
+                                                        <label asp-for="Input.TwoFactorCode"></label>
+                                                        <input asp-for="Input.TwoFactorCode" class="form-control" autocomplete="off" />
+                                                        <span asp-validation-for="Input.TwoFactorCode" class="text-danger"></span>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <button type="submit" class="btn btn-primary">Log in</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

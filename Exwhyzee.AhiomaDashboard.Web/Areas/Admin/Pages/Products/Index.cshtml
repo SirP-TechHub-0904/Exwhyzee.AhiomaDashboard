@@ -1,0 +1,528 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.Admin.Pages.Products.IndexModel
+@using System.Globalization
+@{ ViewData["Title"] = "Index"; }
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+
+                <h3 class="card-title">
+
+                    @if (TempData["Third"] != null)
+                    {
+        <span>
+            Product List for @Model.Tenant.BusinessName Uploaded by @Model.Profile.Fullname (@Model.Profile.IdNumber)
+        </span>}
+    else
+    {
+<span>Product List</span>}
+                </h3>
+                @if (Model.TenantId != null)
+                {
+                    if (Model.Tenant.UserProfile.User.EmailConfirmed == true)
+                    {
+                        if (Model.Tenant.TenantStatus == Exwhyzee.Enums.TenantEnum.Enable)
+                        {
+                            if (Model.ProductCheck.Count() > 0)
+                            {
+    <h4>Kindly Correct the error in these product before you can upload a new product. Thank you</h4>
+                                @foreach (var i in Model.ProductCheck)
+                                {
+    <div class="alert alert-warning">
+        <strong>Note!</strong> @i.Note
+        <br />
+        <a asp-page="./Edit" asp-route-id="@i.ProductId" class="btn btn-primary">
+            Edit @i.Product.Name
+        </a>
+    </div>} }
+                            else
+                            {
+                                if (TempData["Third"] == null)
+                                {
+    <a asp-page="Create" asp-route-tid="@Model.TenantId" class="btn btn-light waves-effect pull-right">
+        <i class="bx bx-hourglass bx-spin font-size-16 align-middle mr-2"></i>
+        Create New
+    </a> }
+else
+{
+<a asp-page="Create" asp-route-tid="@Model.TenantId" asp-route-uid="@TempData["Third"]" class="btn btn-light waves-effect pull-right">
+    <i class="bx bx-hourglass bx-spin font-size-16 align-middle mr-2"></i>
+    Create New
+</a> }
+}
+}
+else
+{
+<div class="alert alert-danger alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Shop not verified</strong>
+</div> }
+}
+else
+{
+<div class="alert alert-warning alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Confirm your account from your email</strong>
+</div>}
+}
+                </h3>
+                @if (TempData["error"] != null)
+                {
+    <div class="alert alert-danger alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>@TempData["error"]</strong>
+    </div>}
+                @if (TempData["success"] != null)
+                {
+    <div class="alert alert-success alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>@TempData["success"]</strong>
+    </div>}
+            </div>
+            <div class="card-body table-responsive">
+
+                <form asp-page="./Index" method="get">
+                    <div class="form-actions no-color">
+                        <div class="row">
+                            <input type="hidden" name="id" value="@Model.TenantId" />
+                            <input type="hidden" name="uid" value="@TempData["Third"]" />
+                            <div class="col-md-12">Find by name, date, price, commission:</div>
+                            <div class="col-md-3"><input type="text" name="SearchString" class="form-control" value="@Model.CurrentFilter" /></div>
+                            <div class="col-md-3"><input type="submit" value="Search" class="btn btn-primary" /></div>
+
+                            <div class="col-md-5">
+
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+                @{ int? p = 0;
+                    if (Model.CurrentPage == null)
+                    {
+                        p = 1;
+                    }
+                    else
+                    {
+                        p = Model.CurrentPage;
+                    } }
+                page @p of @Model.TotalPages pages (@Model.Count items)
+
+                <div id="datatable_wrapper" class="dataTables_wrapper table-responsive dt-bootstrap4 no-footer">
+                    <div class="row">
+                        <div class="col-md-12 table-responsive">
+                            <table id="" class="table table-bordered dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
+
+                                <thead>
+                                    <tr>
+                                        <th>Action</th>
+                                        <th>Id</th>
+                                        <th>
+                                            <a asp-page="./Index" asp-route-sortOrder="@Model.Date" asp-route-currentFilter="@Model.CurrentFilter">
+                                                Date
+                                            </a>
+
+                                        </th>
+                                        <th>
+                                            <a asp-page="./Index" asp-route-sortOrder="@Model.Name" asp-route-currentFilter="@Model.CurrentFilter">
+                                                Name
+                                            </a>
+
+                                        </th>
+                                        <th>
+                                            <a>
+                                                Category
+                                            </a>
+
+                                        </th>
+                                        <th>
+                                            <a asp-page="./Index" asp-route-sortOrder="@Model.Publish" asp-route-currentFilter="@Model.CurrentFilter">
+                                                Publish
+                                            </a>
+
+                                        </th>
+                                        <th>Image</th>
+
+                                        <th>
+                                            <a asp-page="./Index" asp-route-sortOrder="@Model.Shop" asp-route-currentFilter="@Model.CurrentFilter">
+                                                Store Name
+                                            </a>
+
+                                        </th>
+
+                                        <th>
+                                            <a asp-page="./Index" asp-route-sortOrder="@Model.Quantity" asp-route-currentFilter="@Model.CurrentFilter">
+                                                Qty
+                                            </a>
+
+                                        </th>
+
+                                        <th>
+                                            <a asp-page="./Index" asp-route-sortOrder="@Model.Price" asp-route-currentFilter="@Model.CurrentFilter">
+                                                Price (NG)
+                                            </a>
+
+                                        </th>
+
+                                        @if (User.Identity.IsAuthenticated && User.IsInRole("mSuperAdmin"))
+                                        {
+                            <th>
+                                <a asp-page="./Index" asp-route-sortOrder="@Model.Commission" asp-route-currentFilter="@Model.CurrentFilter">
+                                    Commission
+                                </a>
+
+                            </th>}
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.Product)
+                                    {
+                        <tr>
+
+                            <td>
+                                <a asp-page="/Purchases/Create" class="btn btn-primary btn-sm" asp-route-id="@item.Id">
+                                    Add QTY/Price
+                                </a>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Id)
+                            </td>
+                            <td>
+
+                                @Html.DisplayFor(modelItem => item.CreatedOnUtc.Date)
+                            </td>
+                            <td>
+                                <a asp-page="./Edit" asp-route-id="@item.Id">
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </a>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Category.Name)
+                            </td>
+                            <td>
+                                @if (item.Published == true)
+                                {
+                <a asp-page="./UpdateProductStatus" asp-route-id="@item.Id" asp-route-tid="@Model.TenantId"
+                   asp-route-uid="@Model.UID">
+                    true
+                    <i class="fa fa-refresh" style="margin-right:5px;"></i>
+                </a> }
+            else
+            {
+<a asp-page="./UpdateProductStatus" asp-route-id="@item.Id">
+    <span style="color:#ff0000;">false</span>
+    <i class="fa fa-refresh" style="margin-right:5px;"></i>
+</a>}
+                            </td>
+                            <td>
+                                @if (item.ProductPictures.FirstOrDefault() != null)
+                                {
+                <img src="@item.ProductPictures.FirstOrDefault().PictureUrlThumbnail" class="img-responsive" alt="" style="max-height:50px;" />}
+                            </td>
+
+                            <td>
+                                @item.Tenant.BusinessName
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Quantity)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Price)
+                            </td>
+                            @if (User.Identity.IsAuthenticated && User.IsInRole("mSuperAdmin"))
+                            {
+            <td>
+                @Html.DisplayFor(modelItem => item.Commision)
+                <a asp-page="./UpdateProductCommission" asp-route-id="@item.Id">
+
+                    <i class="fa fa-refresh" style="margin-right:5px;"></i>
+                </a>
+            </td>}
+                            <td>
+                                <a asp-page="./AddToPromo" class="btn btn-primary" asp-route-pid="@item.Id"
+                                   asp-route-sortOrder="@Model.CurrentSort"
+                                   asp-route-pageIndex="@(Model.Product.PageIndex)"
+                                   asp-route-currentFilter="@Model.CurrentFilter" asp-route-id="@Model.TenantId"
+                                   asp-route-uid="@Model.UID" asp-route-currentPage="@(Model.CurrentPage)">
+                                    Add to promo
+                                </a>
+                            </td>
+                        </tr>}
+                                </tbody>
+
+                            </table>
+                            <br />
+
+                            page @p of @Model.TotalPages pages (@Model.Count items)
+
+
+
+                            @{ var prevDisabled = !Model.Product.HasPreviousPage ? "disabled" : "";
+                                var nextDisabled = !Model.Product.HasNextPage ? "disabled" : ""; }
+                            @if (Model.TenantId != null)
+                            {
+                <div>
+
+
+
+                    <ul class="pagination">
+                        <li class="page-item @(!Model.ShowFirst ? "disabled" : "")">
+                            <a asp-page="./Index" asp-route-CurrentPage="1" asp-route-id="@Model.TenantId" class="page-link"><i class="fas fa-fast-backward"></i></a>
+                        </li>
+
+                        <li class="page-item @(!Model.ShowPrevious ? "disabled" : "")">
+                            <a asp-page="./Index" asp-route-sortOrder="@Model.CurrentSort"
+                               asp-route-pageIndex="@(Model.Product.PageIndex - 1)"
+                               asp-route-currentFilter="@Model.CurrentFilter" asp-route-id="@Model.TenantId"
+                               asp-route-uid="@Model.UID" asp-route-CurrentPage="@(Model.CurrentPage - 1)" class="page-link"><i class="fas fa-step-backward"></i></a>
+                        </li>
+                        @{ int? fnumber = Model.CurrentPage - 5;
+                            int? lnumber = Model.CurrentPage + 5; }
+
+
+
+                        @for (var i = fnumber; i <= lnumber; i++)
+                        {
+
+                            if (!i.ToString().Contains("-"))
+                            {
+                                if (i != 0)
+                                {
+
+
+        <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+            <a asp-page="./Index" asp-route-sortOrder="@Model.CurrentSort"
+               asp-route-pageIndex="@i"
+               asp-route-currentFilter="@Model.CurrentFilter"
+               asp-route-uid="@Model.UID" asp-route-currentpage="@i" class="page-link">@i</a>
+        </li>
+}
+}
+if (i == Model.TotalPages)
+{
+    break;
+}
+
+}
+
+                        <li class="page-item  @(!Model.ShowNext ? "disabled" : "")">
+                            <a asp-page="./Index" asp-route-sortOrder="@Model.CurrentSort"
+                               asp-route-pageIndex="@(Model.CurrentPage + 1)"
+                               asp-route-currentFilter="@Model.CurrentFilter" asp-route-id="@Model.TenantId"
+                               asp-route-uid="@Model.UID" asp-route-CurrentPage="@(Model.CurrentPage + 1)" class="page-link"><i class="fas fa-step-forward"></i></a>
+                        </li>
+
+                        <li class="page-item  @(!Model.ShowLast ? "disabled" : "")">
+                            <a asp-page="./Index" asp-route-sortOrder="@Model.CurrentSort"
+                               asp-route-pageIndex="@(Model.TotalPages)"
+                               asp-route-currentFilter="@Model.CurrentFilter" asp-route-id="@Model.TenantId"
+                               asp-route-uid="@Model.UID" asp-route-CurrentPage="@Model.TotalPages" class="page-link"><i class="fas fa-fast-forward"></i></a>
+                        </li>
+                    </ul>
+                </div> }
+            else
+            {
+
+<div>
+
+
+    <ul class="pagination">
+        <li class="page-item @(!Model.ShowFirst ? "disabled" : "")">
+            <a asp-page="./Index" asp-route-CurrentPage="1" class="page-link"><i class="fas fa-fast-backward"></i></a>
+        </li>
+
+        <li class="page-item @(!Model.ShowPrevious ? "disabled" : "")">
+            <a asp-page="./Index" asp-route-sortOrder="@Model.CurrentSort"
+               asp-route-pageIndex="@(Model.CurrentPage - 1)"
+               asp-route-currentFilter="@Model.CurrentFilter"
+               asp-route-uid="@Model.UID" asp-route-CurrentPage="@(Model.CurrentPage - 1)" class="page-link"><i class="fas fa-step-backward"></i></a>
+        </li>
+        @{ int? fnumber = Model.CurrentPage - 5;
+            int? lnumber = Model.CurrentPage + 5; }
+
+
+
+        @for (var i = fnumber; i <= lnumber; i++)
+        {
+
+            if (!i.ToString().Contains("-"))
+            {
+                if (i != 0)
+                {
+
+
+<li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+    <a asp-page="./Index" asp-route-sortOrder="@Model.CurrentSort"
+       asp-route-pageIndex="@i"
+       asp-route-currentFilter="@Model.CurrentFilter"
+       asp-route-uid="@Model.UID" asp-route-currentpage="@i" class="page-link">@i</a>
+</li>}
+                    }
+                    if (i == Model.TotalPages)
+                    {
+                        break;
+                    }
+
+                }
+
+        <li class="page-item  @(!Model.ShowNext? "disabled":"")">
+            <a asp-page="./Index" asp-route-sortOrder="@Model.CurrentSort"
+               asp-route-pageIndex="@(Model.CurrentPage + 1)"
+               asp-route-currentFilter="@Model.CurrentFilter"
+               asp-route-uid="@Model.UID" asp-route-CurrentPage="@(Model.CurrentPage + 1)" class="page-link"><i class="fas fa-step-forward"></i></a>
+        </li>
+
+        <li class="page-item  @(!Model.ShowLast? "disabled":"")">
+            <a asp-page="./Index" asp-route-sortOrder="@Model.CurrentSort"
+               asp-route-pageIndex="@(Model.TotalPages)"
+               asp-route-currentFilter="@Model.CurrentFilter"
+               asp-route-uid="@Model.UID" asp-route-CurrentPage="@Model.TotalPages" class="page-link"><i class="fas fa-fast-forward"></i></a>
+        </li>
+    </ul>
+</div> 
+                            
+                            }
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div> <!-- end col -->
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+
+        function checkingReg() {
+
+                            var number = document.getElementById('product').value;
+                            var student = {};
+                            student.ProductId = number
+            $.ajax({
+                            type: "POST",
+                url: "@Url.Action("UpdateProduct", "Home")",
+                data: JSON.stringify(student),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                                    console.log(data)
+                    $("#food").append(
+                        //"<div class=\"alert-box\" data-alert>" + data+"<a class=\"close\">&times;</a></div>"
+                        "<span>" + data + "</span>"
+                    );
+                    $(this).unbind("click");
+                                }
+
+                            });
+                            console.log(student + "jj")
+        }
+
+    </script>
+
+}
+
+
+
+
+
+
+@*
+
+    <!--@Model.CurrentPage of
+    @Model.TotalPages pages-->
+    <paging class="pagination" total-records="@Model.total" show-total-pages="true" show-total-records="true" page-size="@Model.pageSize" page-no="@Model.pageNo"></paging>*
+
+    <!--<nav aria-label="Page navigation">
+        <ul class="pagination flex-wrap">
+            <li class="page-item @(Model.EnablePrevious ? " " : " disabled" )">
+                <a asp-route-currentPage="1"
+                   class="page-link" aria-label="Frist">
+                    <span aria-hidden="true">|<</span>
+                    <span class="sr-only">First</span>
+                </a>
+            </li>
+            <li class="page-item @(Model.EnablePrevious ? " " : " disabled" )">
+                <a asp-route-currentPage="@(Model.CurrentPage -1)"
+                   class="page-link" aria-label="Next">
+                    <span aria-hidden="true"><</span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </li>
+            @if (Model.CurrentPage > 5)
+            {
+                <li class="page-item disabled">
+                    <a href="#" class="page-link">
+                        <span aria-hidden="true">...</span>
+                        <span class="sr-only">...</span>
+                    </a>
+                </li>
+            }
+            @{
+                int old2 = 0;
+                if (Model.CurrentPage > 5)
+                {
+                    old2 = (Model.CurrentPage - 6);
+                }
+                else
+                {
+                    old2 = 1;
+                }
+
+
+            }
+
+            @for (var i = old2; i <= (old2 + (Model.CurrentPage - 4)); i++)
+            {
+                <li class="page-item @(i == Model.CurrentPage ? " active" : "" )">
+                    <a asp-route-currentPage="@i" class="page-link">@i</a>
+                </li>
+                if (i == old2 + Model.CurrentPage)
+                    break;
+
+            }
+            @for (var i = Model.CurrentPage; i <= (Model.CurrentPage + 5); i++)
+            {
+                <li class="page-item @(i == Model.CurrentPage ? " active" : "" )">
+                    <a asp-route-currentPage="@i" class="page-link">@i</a>
+                </li>
+                if (Model.CurrentPage == Model.TotalPages)
+                    break;
+            }
+
+            @if (Model.TotalPages > Model.CurrentPage + 5)
+            {
+                <li class="page-item disabled">
+                    <a href="#" class="page-link">
+                        <span aria-hidden="true">...</span>
+                        <span class="sr-only">...</span>
+                    </a>
+                </li>
+            }
+
+            <li class="page-item @(Model.EnableNext ? " " : " disabled" )">
+                <a asp-route-currentpage="@(Model.CurrentPage + 1)"
+                   class="page-link" aria-label="Previous">
+                    <span aria-hidden="true">></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+            </li>
+            <li class="page-item @(Model.EnableNext ? " " : " disabled" )">
+                <a asp-route-currentPage="@Model.TotalPages"
+                   class="page-link" aria-label="Last">
+                    <span aria-hidden="true">>|</span>
+                    <span class="sr-only">Last</span>
+                </a>
+            </li>
+        </ul>
+    </nav>-->
+
+*@

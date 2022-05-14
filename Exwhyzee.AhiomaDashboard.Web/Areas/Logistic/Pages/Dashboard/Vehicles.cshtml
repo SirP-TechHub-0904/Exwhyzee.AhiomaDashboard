@@ -1,0 +1,104 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.Logistic.Pages.Dashboard.VehiclesModel
+@{
+}
+
+<div class="card">
+    <div class="card-header">
+
+        <h3 class="card-title">
+            Vehicles
+
+        </h3>
+        <a asp-page="/VehicleLogistic/Create" asp-area="Admin" asp-route-id="@Model.LogisticId" class="btn btn-light waves-effect pull-right">
+            <i class="bx bx-hourglass bx-spin font-size-16 align-middle mr-2"></i>
+            Add Vehicle
+        </a>
+    </div>
+    <div class="card-body">
+
+
+        <div id="datatable_wrapper" class="dataTables_wrapper table-responsive dt-bootstrap4 no-footer">
+            <div class="row">
+                <div class="col-sm-12">
+                    <table id="datatable7" class="table table-bordered dt-responsive nowrap dataTable no-footer dtr-inline" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
+                        <thead>
+                            <tr role="row">
+                                <th>S/N</th>
+                                <th>
+                                    Vehicle Name
+                                </th>
+
+                                <th>
+                                    Vehicle PhoneNumber
+                                </th>
+                                <th>
+                                    Vehicle Size
+                                </th>
+                                <th>
+                                    Vehicle Type
+                                </th>
+                                <th>
+                                    Location
+                                </th>
+
+                                <th>
+                                    Least Amount
+                                </th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+
+                        @{
+                            int sno = 0;
+                        }
+
+                        <tbody>
+
+                            @foreach (var item in Model.LogisticVehicle)
+                            {
+                            <tr>
+                                <td>
+                                    @{ sno++; }
+                                    @sno
+                                </td>
+                                <td>
+                                    <a asp-page="/VehicleLogistic/Details" asp-area="Admin" asp-route-id="@item.Id">
+                                        @Html.DisplayFor(modelItem => item.VehicleName)
+                                    </a>
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.VehiclePhoneNumber)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.VehicleSize)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.VehicleType)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LGA)
+                                    in
+                                    @Html.DisplayFor(modelItem => item.State)
+
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.LeastAmount)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.VehicleStatus)
+
+
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+        <!-- end card -->
+    </div>
+</div>

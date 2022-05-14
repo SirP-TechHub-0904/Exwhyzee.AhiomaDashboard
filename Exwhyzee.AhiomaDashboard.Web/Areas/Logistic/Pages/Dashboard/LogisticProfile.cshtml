@@ -1,0 +1,95 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.Logistic.Pages.Dashboard.LogisticProfileModel
+@{
+}
+@{
+    ViewData["Title"] = "Logistic";
+}
+
+<div class="row">
+
+
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+
+                <h3 class="card-title">
+                    Logistic Details
+                </h3>
+              
+
+
+            </div>
+
+            <div class="card-body">
+
+
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                            <a class="nav-link active" id="v-Dashboard-tab" data-toggle="pill" href="#v-Dashboard" role="tab" aria-controls="v-Dashboard" aria-selected="false">General</a>
+
+                        </div>
+                    </div>
+                    <div class="col-md-10">
+
+
+                        <div class="tab-content text-muted mt-4 mt-md-0" id="v-pills-tabContent">
+                            <div class="tab-pane fade active show" id="v-Dashboard" role="tabpanel" aria-labelledby="v-Dashboard-tab">
+
+                                <div class="">
+                                    <div class="table-responsive">
+                                        <table class="table mb-0">
+
+
+                                            <tbody>
+                                                <tr>
+                                                    <th>Logistic Owner</th>
+                                                    <td>@Html.DisplayFor(model => model.Logistic.UserProfile.Fullname)</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Logistic Owner Email</th>
+                                                    <td>@Html.DisplayFor(model => model.Logistic.UserProfile.User.Email)</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Logistic Owner Phone</th>
+                                                    <td>@Html.DisplayFor(model => model.Logistic.UserProfile.User.PhoneNumber)</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Company</th>
+                                                    <td>@Html.DisplayFor(model => model.Logistic.CompanyName)</td>
+                                                </tr>
+                                                <tr>
+                                                    <th>Description</th>
+                                                    <td>@Html.Raw(Model.Logistic.Description)</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <th>Business Document</th>
+                                                    <td>@Html.Raw(Model.Logistic.CompanyDocument)</td>
+                                                </tr>
+
+                                                <tr>
+                                                    <th>Date Created</th>
+                                                    <td>@Html.DisplayFor(model => model.Logistic.CreationTime)</td>
+                                                </tr>
+
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <a asp-page="./Update" asp-route-id="@Model.Logistic.Id">
+                                Update
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+    </div>
+</div>

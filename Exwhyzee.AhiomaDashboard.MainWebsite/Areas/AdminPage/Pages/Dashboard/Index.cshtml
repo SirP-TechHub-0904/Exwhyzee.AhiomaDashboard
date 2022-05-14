@@ -1,0 +1,255 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Areas.AdminPage.Pages.Dashboard.IndexModel
+@{
+}
+
+
+
+<style>
+    .text-muted {
+        color: #bdcee6 !important;
+    }
+
+    .mb-4, .my-4 {
+        margin-bottom: 1.5rem !important;
+        color: #ff5c00;
+    }
+</style>
+<div class="row">
+
+    <div class="col-xl-12">
+        <div class="card" style="background-color:#222736;">
+            <div class="card-body" style="position: relative;">
+                <h4 class="card-title mb-4 float-sm-left" style="font-size:20px;font-weight:900;">PROJECT 12,000 SHOPS IN ARIARIA FOR 100 DAYS </h4>
+
+                <div class="clearfix"></div>
+
+
+            </div>
+        </div>
+        @*order*@
+        <div class="card" style="background-color:#222736;">
+            <div class="card-body" style="position: relative;">
+                <h4 class="card-title mb-4 float-sm-left">
+                    <span id="demo" style="font-size:50px;"></span>
+                </h4>
+
+                <div class="clearfix"></div>
+
+                <!-- end row -->
+
+
+            </div>
+        </div>
+        @*product*@
+        @{
+        var date = DateTime.UtcNow.AddHours(1).ToString("dd MMM, yyyy");
+        }
+    <div class="card" style="background-color:#222736;">
+        <div class="card-body" style="position: relative;">
+            <h4 class="card-title mb-4 float-sm-left">Dashboard Update from <strong><i><sup>@Model.StartDate.Value.ToString("ddd dd MMM, yyyy")</sup></i></strong>  to <strong><i><sup>@Model.EndDate.Value.ToString("ddd dd MMM, yyyy")</sup></i></strong></h4>
+            </div>
+            <div class="card-body" style="position: relative;">
+
+                <div class="clearfix"></div>
+             
+                <form asp-page="./Index" method="get">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card mini-stats-wid">
+                                <div class="card-body">
+                                    <div class="media">
+
+                                        <input type="date" name="DateOne" placeholder="Start Date" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card mini-stats-wid">
+                                <div class="card-body">
+                                    <div class="media">
+                                        <input type="date" name="DateTwo" placeholder="End Date" class="form-control" />
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="card mini-stats-wid">
+                                <div class="card-body">
+                                    <div class="media">
+
+                                        <input type="submit" value="Get Update" class="btn btn-primary" style="width:100%;" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end row -->
+                </form>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card mini-stats-wid">
+                            <div class="card-body">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <p class="text-muted font-weight-medium"> Product</p>
+                                        <h4 class="mb-0">@Model.iProduct</h4>
+                                    </div>
+
+                                    <div class="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
+                                        <span class="avatar-title">
+                                            <i class="bx bxl-product-hunt font-size-24"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card mini-stats-wid">
+                            <div class="card-body">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <p class="text-muted font-weight-medium"> Shops</p>
+                                        <h4 class="mb-0">@Model.iShop</h4>
+                                    </div>
+
+                                    <div class="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
+                                        <span class="avatar-title">
+                                            <i class="bx bxl-product-hunt font-size-24"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card mini-stats-wid">
+                            <div class="card-body">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <p class="text-muted font-weight-medium"> SOA</p>
+                                        <h4 class="mb-0">@Model.iSoa</h4>
+                                    </div>
+
+                                    <div class="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
+                                        <span class="avatar-title">
+                                            <i class="bx bxl-product-hunt font-size-24"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- end row -->
+            </div>
+        </div>
+        <div class="card" style="background-color:#222736;">
+            <div class="card-body" style="position: relative;">
+                <h4 class="card-title mb-4 float-sm-left">Total Data</h4>
+                <div class="clearfix"></div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card mini-stats-wid">
+                            <div class="card-body">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <p class="text-muted font-weight-medium">Total Product</p>
+                                        <h4 class="mb-0">@Model.iProductAll</h4>
+                                    </div>
+
+                                    <div class="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
+                                        <span class="avatar-title">
+                                            <i class="bx bxl-product-hunt font-size-24"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card mini-stats-wid">
+                            <div class="card-body">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <p class="text-muted font-weight-medium">Total Shops</p>
+                                        <h4 class="mb-0">@Model.iShopAll</h4>
+                                    </div>
+
+                                    <div class="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
+                                        <span class="avatar-title">
+                                            <i class="bx bxl-product-hunt font-size-24"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card mini-stats-wid">
+                            <div class="card-body">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <p class="text-muted font-weight-medium">Total SOA</p>
+                                        <h4 class="mb-0">@Model.iSoaAll</h4>
+                                    </div>
+
+                                    <div class="mini-stat-icon avatar-sm rounded-circle bg-primary align-self-center">
+                                        <span class="avatar-title">
+                                            <i class="bx bxl-product-hunt font-size-24"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- end row -->
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+
+
+
+
+<script>
+    // Set the date we're counting down to
+    var countDownDate = new Date("Jun 19, 2021 00:01:00").getTime();
+
+    // Update the count down every 1 second
+    var x = setInterval(function () {
+
+        // Get today's date and time
+        var now = new Date().getTime();
+
+        // Find the distance between now and the count down date
+        var distance = countDownDate - now;
+
+        // Time calculations for days, hours, minutes and seconds
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Display the result in the element with id="demo"
+        document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+            + minutes + "m " + seconds + "s Remaining";
+
+        // If the count down is finished, write some text
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("demo").innerHTML = "EXPIRED";
+        }
+    }, 1000);
+</script>

@@ -1,0 +1,614 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Areas.ManageTransaction.Pages.Transactions.OrderDetailsModel
+@{ }
+<div class="row">
+
+
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                <style>
+                    p {
+                        margin-bottom: 0px;
+                    }
+
+                    .table td, .table th {
+                        padding: .2rem;
+                    }
+                    tr#strikeout td:before {
+                        content: " ";
+                        position: absolute;
+                        top: 50%;
+                        left: 0;
+                        border-bottom: 12px solid rgba(255, 0, 0, 0.40);
+                        width: 100%;
+                    }
+
+                    tr.strikeout td:after {
+                        content: "\00B7";
+                        font-size: 9px;
+                        color:#ff0000;
+                    }
+                    table {
+                        border-collapse: collapse;
+                        empty-cells: show;
+                    }
+
+                    td {
+                        position: relative;
+                    }
+                    .modal-window {
+                        position: fixed;
+                        top: 0;
+                        right: 0;
+                        bottom: 0;
+                        left: 0;
+                        z-index: 999;
+                        visibility: hidden;
+                        opacity: 0;
+                        pointer-events: none;
+                        -webkit-transition: all 0.3s;
+                        transition: all 0.3s;
+                    }
+
+                        .modal-window:target {
+                            visibility: visible;
+                            opacity: 1;
+                            pointer-events: auto;
+                        }
+
+                        .modal-window > div {
+                            width: 50%;
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            -webkit-transform: translate(-50%, -50%);
+                            transform: translate(-50%, -50%);
+                            padding: 2em;
+                            /*background: #ffffff;*/
+                        }
+
+                        .modal-window header {
+                            font-weight: bold;
+                        }
+
+                        .modal-window h1 {
+                            font-size: 150%;
+                            margin: 0 0 15px;
+                        }
+
+                    .modal-close {
+                        color: #000000;
+                        line-height: 50px;
+                        font-size: 80%;
+                        position: absolute;
+                        right: 30px;
+                        text-align: center;
+                        top: 50px;
+                        width: 70px;
+                        text-decoration: none;
+                    }
+
+                        .modal-close:hover {
+                            color: black;
+                        }
+
+                    /* Demo Styles */
+                    html,
+                    body {
+                        height: 100%;
+                    }
+
+
+                    .modal-window div:not(:last-of-type) {
+                        margin-bottom: 15px;
+                    }
+
+                    small {
+                        color: #aaa;
+                    }
+                </style>
+                @if (TempData["error"] != null)
+                {
+            <div class="alert alert-danger alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>@TempData["error"]</strong>
+            </div>}
+                @if (TempData["success"] != null)
+                {
+            <div class="alert alert-success alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>@TempData["success"]</strong>
+            </div>}
+
+
+            <div class="text-muted mt-4">
+                <h4>Order <button class="btn btn-primary">(@Model.Order.OrderId)</button> <button class="btn btn-warning">(@Html.DisplayFor(modelItem => Model.Order.Status))</button></h4>
+
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="" style="padding:10px;margin-bottom:10px;background-color:#2a2b2f;border-radius:7px;box-shadow:1px 1px 1px 1px rgba(35, 39, 48, 0.85);">
+                            <h4>Order Information</h4>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Reference Id:</strong> @Model.Order.ReferenceId</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Amount Paid:</strong> @Model.Order.AmountPaid</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Order Cost:</strong> @Model.Order.OrderAmount</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Vat:</strong> @Model.Order.Vat</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Logistic Amount:</strong> @Model.Order.LogisticAmount</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Track Order:</strong> @Model.Order.TrackOrderId</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Date:</strong> @Model.Order.DateOfOrder</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Delivery Date:</strong> @Model.Order.DeliveredDate</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Invoice Id:</strong> @Model.Order.InvoiceNumber</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Delivery Method:</strong> @Model.Order.DeliveryMethod</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Payment Method:</strong> @Model.Order.PaymentMethod</p>
+
+                            <h4>Order Reconsiliation</h4>
+                            <p style="color:#ff0000;">
+                                <i class="fa fa-chevron-right text-primary mr-1" style="color:#ff0000;"></i> <strong>Additional Payment:</strong> @Model.Order.AdditionalPayment
+
+                                <a class="btn btn-success btn-sm" href="#open-modal3"><i class="fa fa-money"></i> Add fund from ahioma</a>
+
+                            </p>
+                            <p style="color:#ff0000;"><i class="fa fa-chevron-right text-primary mr-1" style="color:#ff0000;"></i> <strong>Order Cost After Confirmation:</strong> @Model.Order.OrderCostAfterProcessing</p>
+                            <p style="color:#ff0000;">
+                                <i class="fa fa-chevron-right text-primary mr-1" style="color:#ff0000;"></i> <strong>Differences:</strong>
+                                @{ decimal? orderamt = Model.Order.AmountPaid - Model.Order.LogisticAmount;
+                                                decimal? diff = (orderamt + (Model.Order.AmountMovedToCustomer + Model.Order.AmountMovedToAdmin + Model.Order.AdditionalPayment)) - Model.Order.OrderCostAfterProcessing; }
+
+                                @diff
+                            </p>
+
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="" style="padding:10px;margin-bottom:10px;background-color:#2a2b2f;border-radius:7px;box-shadow:1px 1px 1px 1px rgba(35, 39, 48, 0.85);">
+
+                            <h4>Customer Information</h4>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Name:</strong> @Model.Order.UserProfile.Fullname</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Email:</strong> @Model.Order.UserProfile.User.Email</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Phone:</strong> @Model.Order.UserProfile.User.PhoneNumber</p>
+
+                            @if (Model.Order.UserAddress != null)
+                            {<p>
+                                    <i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Address:</strong>
+
+                                    @Model.Order.UserAddress.Address
+                                </p>
+                                                <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>LGA:</strong> @Model.Order.UserAddress.LocalGovernment</p>
+                                                                <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>State:</strong> @Model.Order.UserAddress.State</p>}
+                        </div>
+                    </div>  <div class="col-md-3">
+                        <div class="" style="padding:10px;margin-bottom:10px;background-color:#2a2b2f;border-radius:7px;box-shadow:1px 1px 1px 1px rgba(35, 39, 48, 0.85);">
+
+                            <h4>Transaction Information</h4>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Id:</strong> @Model.Order.Transaction.Id</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Date:</strong> @Model.Order.Transaction.DateOfTransaction</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Description:</strong> @Model.Order.Transaction.Description</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Status:</strong> @Model.Order.Transaction.Status</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Track Code:</strong> @Model.Order.Transaction.TrackCode</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Transaction Reference:</strong> @Model.Order.Transaction.TransactionReference</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Type:</strong> @Model.Order.Transaction.TransactionType</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Transaction By:</strong> @Model.UserName</p>
+                        </div>
+                    </div><div class="col-md-3">
+                        <div class="" style="padding:10px;margin-bottom:10px;background-color:#2a2b2f;border-radius:7px;box-shadow:1px 1px 1px 1px rgba(35, 39, 48, 0.85);">
+
+                            <h4>Logistic Information</h4>
+                            @if (Model.Order.LogisticVehicleId != null)
+                            {
+                <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Company Name:</strong> @Model.Order.LogisticVehicle.LogisticProfile.CompanyName</p>
+                                <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Customer Care:</strong> @Model.Order.LogisticVehicle.LogisticProfile.CustomerCareNumber</p>
+                                                <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Vehicle Name:</strong> @Model.Order.LogisticVehicle.VehicleName</p>
+                                                                <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Vehicle Type:</strong> @Model.Order.LogisticVehicle.VehicleType</p>
+                                                                                <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Vehicle Plate Number:</strong> @Model.Order.LogisticVehicle.VehiclePlateNumber</p>
+                                                                                                <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Vehicle Phone Number:</strong> @Model.Order.LogisticVehicle.VehiclePhoneNumber</p> }
+                                                                                            else
+                                                                                            {
+                                                                                <p>
+                                                                                    <i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Not Logistic Assigned Yet:</strong>
+
+                                                                                    <a asp-page="./AddLogisticToOrder" asp-route-id="@Model.Order.Id" class="btn btn-danger">
+                                                                                        Assign Logistic Vehicle
+                                                                                    </a>
+                                                                                </p>}
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="" style="padding:10px;margin-bottom:10px;background-color:#2a2b2f;border-radius:7px;box-shadow:1px 1px 1px 1px rgba(35, 39, 48, 0.85);">
+
+                            <p style="color:;">
+                                <i class="fa fa-chevron-right text-primary mr-1" style="color:#ff0000;"></i> <strong>Amount Transfered to Admin:</strong> @Model.Order.AmountMovedToAdmin
+                                <a class="btn btn-success btn-sm" href="#open-modal2"><i class="fa fa-money"></i> Transfer to AhiaPay</a>
+
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="" style="padding:10px;margin-bottom:10px;background-color:#2a2b2f;border-radius:7px;box-shadow:1px 1px 1px 1px rgba(35, 39, 48, 0.85);">
+
+                            <p style="color:;">
+                                <i class="fa fa-chevron-right text-primary mr-1" style="color:#ff0000;"></i> <strong>Amount Transfered to Customer:</strong> @Model.Order.AmountMovedToCustomer
+                                <a class="btn btn-success btn-sm" href="#open-modal1"><i class="fa fa-money"></i> Transfer to AhiaPay</a>
+
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+                <a asp-page="./UpdateOrderStatus" asp-route-id="@Model.Order.Id" class="btn btn-danger">
+                    Update Order Status ( @Html.DisplayFor(model => model.Order.Status))
+                </a>
+                <a asp-page="./Orders" class="btn btn-primary" style="margin-left:20px;">
+                    Back to Orders
+                </a>
+                <a asp-page="./AddItemsToOrder" asp-route-id="@Model.Order.Id" class="btn btn-primary" style="margin-left:20px;">
+                    Add Items ToOrder
+                </a>
+                <a asp-page="./FinancialManagement" asp-route-id="@Model.Order.Id" class="btn btn-warning" style="margin-left:20px;">
+                    Financial Management
+                </a>
+
+              
+                <h4>Order Items Information (@Model.Order.OrderItems.Count())</h4>
+                <div class="table-responsive">
+                    <table id="datatable7" class="table table-bordered dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
+
+                        <thead>
+                            <tr>
+                                <th>
+                                    S/N
+                                </th>
+                                <th>Date</th>
+                                <th>Order Items ID</th>
+
+                                <th>
+                                    Items
+                                </th>
+                                <th>Shop</th>
+                                <th>Image</th>
+                                <th>
+                                    Product Price
+                                </th>
+                                <th>
+                                    Amount
+                                </th>
+
+                                <th>
+                                    Quantity
+                                </th>
+                                <th>
+                                    Total
+                                </th>
+                                <th>
+                                    Status
+                                </th>
+                                <th>SS</th>
+                                <th>LS</th>
+                                <th>CS</th>
+
+                            </tr>
+                        </thead>
+                        @{ int sno = 0; }
+                        <tbody>
+                            @foreach (var item in Model.OrderItems)
+                            {
+                                if (item.Status == Exwhyzee.Enums.OrderStatus.OutOfStock)
+                                {
+                <tr id="strikeout">
+                    <td>
+                        @{ sno++; }
+                        @sno
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateOfOrder)
+                    </td>
+
+                    <td>
+                        <a asp-page="./ItemOrderList" asp-route-id="@item.Id">
+
+                            @Html.DisplayFor(modelItem => item.Id)
+                        </a>
+                    </td>
+
+
+
+                    <td>
+                        <a asp-page="/ProductInfo" asp-area="" asp-route-id="@item.ProductId" title="@item.Product.Name">
+                            @if (item.Product.Name.Length > 35)
+                            {
+            @item.Product.Name.Substring(0, 34) <text>...</text> }
+        else
+        {
+            @Html.DisplayFor(modelItem => item.Product.Name)}
+
+                        </a>
+                    </td>
+                    <td>
+
+                        @Html.DisplayFor(modelItem => item.Product.Tenant.BusinessName)
+
+                    </td>
+                    <td>
+
+                        @if (item.Product.ProductPictures.Count() > 0)
+                        {
+            <a href="@item.Product.ProductPictures.FirstOrDefault().PictureUrl">
+                <img src="@item.Product.ProductPictures.FirstOrDefault().PictureUrlThumbnail" style="max-height:50px;width:auto;" />
+            </a>}
+                    </td>
+                    <td>
+                        <span class="text-danger">
+                            <strong>
+                                @Html.DisplayFor(modelItem => item.Product.Price)
+                            </strong>
+                        </span>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                        @if (item.Status != Exwhyzee.Enums.OrderStatus.Completed)
+                        {
+            <form method="post" id="UpdatePrice" asp-page-handler="UpdatePrice">
+
+                <input type="hidden" value="@item.Id" name="OrderItemId" />
+
+                <input type="submit" value="update price" class="btn btn-danger btn-xs" style="padding:2px;margin:1px;" />
+
+            </form>}
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Quantity)
+                    </td>
+                    <td>
+                        @{ decimal total = item.Quantity * item.Price; }
+                        @total
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status)
+                        @if (item.Status != Exwhyzee.Enums.OrderStatus.Completed)
+                        {
+            <form method="post" id="OutOfStock" asp-page-handler="OutOfStock">
+
+                <input type="hidden" value="@item.Id" name="OrderItemId" />
+                @if (item.Status != Exwhyzee.Enums.OrderStatus.OutOfStock)
+                {
+            <input type="submit" value="OutOfStock" class="btn btn-danger btn-xs" style="padding:2px;margin:1px;" /> }
+        else
+        {
+            <input type="submit" value="AddToStock" class="btn btn-primary btn-xs" style="padding:2px;margin:1px;" />}
+
+            </form>}
+
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ShopStatus)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LogisticStatus)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CustomerStatus)
+                    </td>
+
+                </tr>
+ }
+            else
+            {
+            <tr>
+                <td>
+                    @{ sno++; }
+                    @sno
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateOfOrder)
+                </td>
+
+                <td>
+                    <a asp-page="./ItemOrderList" asp-route-id="@item.Id">
+
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </a>
+                </td>
+
+
+
+                <td>
+                    <a asp-page="/ProductInfo" asp-area="" asp-route-id="@item.ProductId" title="@item.Product.Name">
+                        @if (item.Product.Name.Length > 35)
+                        {
+            @item.Product.Name.Substring(0, 34) <text>...</text> }
+        else
+        {
+            @Html.DisplayFor(modelItem => item.Product.Name)}
+
+                    </a>
+                </td>
+                <td>
+
+                    @Html.DisplayFor(modelItem => item.Product.Tenant.BusinessName)
+
+                </td>
+                <td>
+
+                    @if (item.Product.ProductPictures.Count() > 0)
+                    {
+            <a href="@item.Product.ProductPictures.FirstOrDefault().PictureUrl">
+                <img src="@item.Product.ProductPictures.FirstOrDefault().PictureUrlThumbnail" style="max-height:50px;width:auto;" />
+            </a>}
+                </td>
+                <td>
+                    <span class="text-danger">
+                        <strong>
+                            @Html.DisplayFor(modelItem => item.Product.Price)
+                        </strong>
+                    </span>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                    @if (item.Status != Exwhyzee.Enums.OrderStatus.Completed)
+                    {
+            <form method="post" id="UpdatePrice" asp-page-handler="UpdatePrice">
+
+                <input type="hidden" value="@item.Id" name="OrderItemId" />
+
+                <input type="submit" value="update price" class="btn btn-danger btn-xs" style="padding:2px;margin:1px;" />
+
+            </form>}
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td>
+                    @{ decimal total = item.Quantity * item.Price; }
+                    @total
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                    @if (item.Status != Exwhyzee.Enums.OrderStatus.Completed)
+                    {
+            <form method="post" id="OutOfStock" asp-page-handler="OutOfStock">
+
+                <input type="hidden" value="@item.Id" name="OrderItemId" />
+
+                <input type="submit" value="OutOfStock" class="btn btn-danger btn-xs" style="padding:2px;margin:1px;" />
+
+            </form>}
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ShopStatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LogisticStatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerStatus)
+                </td>
+
+            </tr>
+}
+    }
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+
+<div id="open-modal1" class="modal-window">
+    <div class="" style="">
+        <a href="#" title="Close" class="modal-close">Close</a>
+
+        <!-- Modal content-->
+        <div class="panel" style="box-shadow: 1px 1px 1px 1px #808080;background-color:#ffffff;padding:20px;color:#000000;">
+            <form method="post" asp-page-handler="MoveToCustomer">
+                <br />
+                <div class="panel-body" style="padding:20px;">
+
+
+                    <h3 style="color:#000000;text-align:center;">Transfer to @Model.Order.UserProfile.Fullname</h3>
+                    <h3 style="color:#000000;text-align:center;">Amount to Transfer from &#8358;@diff</h3>
+                    <input type="hidden" name="GetUserId" value="@Model.Order.UserProfile.UserId" />
+                    <input type="hidden" name="GetOrderId" value="@Model.Order.Id" />
+                    <div class="form-group">
+                        <label asp-for="Amount" class="control-label"></label>
+                        <input asp-for="Amount" class="form-control" required="required" />
+
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="IncludeLogistic" class="control-label">Include Logistic Fee</label>
+                        <input asp-for="IncludeLogistic"/>
+
+                    </div>
+
+
+                </div>
+                <div class="panel-footer">
+                    <input type="submit" value="Transfer" class="btn btn-primary" />
+                    <a href="#" title="Close" class="btn btn-danger" data-dismiss="modal">Close</a>
+
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+</div>
+
+
+<div id="open-modal2" class="modal-window">
+    <div class="" style="">
+        <a href="#" title="Close" class="modal-close">Close</a>
+
+        <!-- Modal content-->
+        <div class="panel" style="box-shadow: 1px 1px 1px 1px #808080;background-color:#ffffff;padding:20px;color:#000000;">
+            <form method="post" asp-page-handler="MoveToAdmin">
+                <br />
+                <div class="panel-body" style="">
+
+
+                    <h3 style="color:#000000;text-align:center;">Transfer to Ahioma</h3>
+                   
+                    <input type="hidden" name="GetOrderId" value="@Model.Order.Id" />
+                    <div class="form-group">
+                        <label asp-for="Amount" class="control-label"></label>
+                        <input asp-for="Amount" class="form-control" required="required" />
+
+                    </div>
+                 
+                </div>
+                <div class="panel-footer">
+                    <input type="submit" value="Transfer" class="btn btn-primary" />
+                    <a href="#" title="Close" class="btn btn-danger" data-dismiss="modal">Close</a>
+
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+</div>
+
+
+<div id="open-modal3" class="modal-window">
+    <div class="" style="">
+        <a href="#" title="Close" class="modal-close">Close</a>
+
+        <!-- Modal content-->
+        <div class="panel" style="box-shadow: 1px 1px 1px 1px #808080;background-color:#ffffff;padding:20px;color:#000000;">
+            <form method="post" asp-page-handler="AddFund">
+                <br />
+                <div class="panel-body" style="">
+
+
+                    <h3 style="color:#000000;text-align:center;">Add Fund to Complete Order</h3>
+                    
+                    <input type="hidden" name="GetId" value="@Model.Order.Id" />
+                    <input type="hidden" name="CustomerName" value="@Model.Order.UserProfile.Fullname" />
+                    <div class="form-group">
+                        <label asp-for="FundAmount" class="control-label">Fund Amount</label>
+                        <input asp-for="FundAmount" class="form-control" required="required" />
+
+                    </div>
+
+                </div>
+                <div class="panel-footer">
+                    <input type="submit" value="Top Up" class="btn btn-primary" />
+                    <a href="#" title="Close" class="btn btn-danger" data-dismiss="modal">Close</a>
+
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,10 @@
+﻿
+@if (TempData["UserVerify"] != null)
+{
+    <div class="alert alert-warning">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        Kindly
+
+        <a asp-page="/Account/Manage/PhoneNumber" asp-area="Identity">Click the link to confirm your phone number</a>
+    </div>
+}

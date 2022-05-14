@@ -1,0 +1,215 @@
+﻿@page "{name}"
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Pages.shopModel
+@{
+   
+}
+
+@section StyleMain {
+    <style>
+        @@media (min-width: 1261px) {
+            .productCarousel-slide {
+                width: 17%;
+            }
+        }
+    </style>
+
+}
+<partial name="_header_One" />
+<div class="main-body clearfix sidebar--left">
+    <div class="">
+        <h3 class="" style="padding:5px 0 2px;color:#ff6a00;margin:6px auto 0px;text-align:center;">@Model.Tenant.BusinessName Shop (@Model.Tenant.Market.Name)</h3>
+        <h6 class="" style="padding:3px;color:#ff6a00;margin:1px auto;text-align:center;">@@ @Model.Tenant.TenantAddresses.FirstOrDefault().Address</h6>
+
+        <div class="col-lg-12 col-sm-12 text-right container" style="background-color:#000000;color:#ffffff;">
+            <div class="row">
+                <div class="col-md-7">
+                    <nav class="navUser" style="">
+
+                        <ul class="navUser-section">
+
+                            <li class="navUser-item d-none d-sm-block">
+                                <a class="navUser-action" style="color:#ffffff;" asp-page="./Shop" asp-route-name="@Model.Tenant.TenentHandle"><i class="fa fa-shopping-bag"></i> Visit Shop</a>
+                            </li>
+                            <li class="navUser-item d-none d-sm-block">
+                                <a class="navUser-action" style="color:#ffffff;" href="#"><i class="fa fa-product-hunt"></i> Products</a>
+                            </li>
+                            <li class="navUser-item d-none d-sm-block">
+                                <a class="navUser-action" style="color:#ffffff;" href="#"><i class="fa fa-salesforce"></i> Top Sales</a>
+                            </li>
+                            <li class="navUser-item d-none d-sm-block">
+                                <a class="navUser-action" style="color:#ffffff;" href="#"><i class="fa fa-money-check"></i> Discount</a>
+                            </li>
+                            <li class="navUser-item d-none d-sm-block">
+                                <a class="navUser-action" style="color:#ffffff;" href="#"><i class="fa fa-search-plus"></i>  Reviews</a>
+                            </li>
+
+
+                        </ul>
+
+                    </nav>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col_qavo block-slideshow__left" style="text-align:center;">
+        <img src="https://manager.ahioma.com/@Model.Tenant.BannerUri" data-thumb="@Model.Tenant.BannerUri" alt="@Model.Tenant.BusinessName" style="border-radius: 3%;margin:0 auto;text-align:center;max-height:400px;" />
+
+
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+
+                <div class="row page">
+
+                    <aside class="col-sm-3 page-sidebar sidebar-offcanvas" id="faceted-search-container" style="margin-top:70px;">
+                        <nav>
+                            <span id="close-sidebar" class=" fa fa-times"></span>
+
+                            @await Component.InvokeAsync("ShopCategories", new { id = Model.Tenant.Id })
+
+
+
+                            <div class="module sb-banner sb-banner--cmsblock ">
+                                <h5 class="block-title"> Ahioma</h5>
+
+                                <div class="block-content clearfix ">
+
+
+
+                                    <div class="banners">
+                                        <div class="banner-figure">
+
+                                            <a href="#"><img class="img-fluid" src="~/w1/3.jpg" alt="Custom Title"></a>
+                                        </div>
+
+                                        <div class="banner-figcaption">
+                                            <div class="banner-figcaption__body">
+                                                <h5 class="banner-figcaption__title">Ahia Pay</h5>
+
+                                                <p class="banner-figcaption__text"></p><p>
+Coming Soon...                                                </p><p></p>
+
+                                                <a href="#" class="button button--primary  banner-figcaption__button"> Read More</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="module sb-banner sb-banner--sidebarBanner ">
+
+                                <div class="block-content clearfix ">
+
+
+
+                                    @*<div class="banners">
+                                            <div class="banner-figure">
+
+                                                <a href="#"><img class="img-fluid" src="~/w1/image-left.jpg" alt=" "></a>
+                                            </div>
+
+                                        </div>*@
+                                </div>
+                            </div>
+
+
+                        </nav>
+                    </aside>
+                    <main class="col-lg-9 col-md-12 page-content" id="product-listing-container">
+                        <div class="module clearfix ">
+
+
+                            <div id="" class="sb-listing-tabs container">
+
+                                <div class="ltabs-container d-flex">
+
+                                    <div class="ltabs-items-container ltabs-items-container--image">
+                                        <h3 class="text-center">Shop Products</h3>
+                                        <section>
+                                            <div class="productsByCategoryTabs-products--carousel ">
+                                                <section class="productCarousel products-list">
+
+                                                    <div class="">
+                                                        <div class="">
+                                                            @foreach (var data in Model.NewProductList)
+                                                            {
+                                                                <div class="productCarousel-slide product-layout col-md-2 col-sm-6 col-xs-6">
+                                                                    <article class="product-item-container ">
+                                                                        <div class="left-block d-flex align-items-center justify-content-center">
+
+
+                                                                            <a asp-page="/ProductDetails" asp-route-id="@data.Id" asp-route-name="@data.ShortDescription.Replace(" ", "-")" asp-route-shop="@data.Tenant.BusinessName.Replace(" ", "-")" asp-route-mktstate="@data.Tenant.Market.State.Replace(" ", "-")" asp-route-mktaddress="@data.Tenant.Market.Address.Replace(" ", "-")" class="product-item-photo" tabindex="0">
+                                                                                @if (data.ProductPictures.FirstOrDefault() != null)
+                                                                                {
+                                                                                    <img class="img-responsive lazyautosizes lazyloaded" data-sizes="auto" src="https://manager.ahioma.com/@data.ImageThumbnail" alt="" title="" sizes="50px">
+
+                                                                                }
+
+                                                                            </a>
+
+                                                                            <a asp-page="/ProductDetails" asp-route-id="@data.Id" asp-route-name="@data.ShortDescription.Replace(" ", "-")" class="quickview btn-button d-none d-md-block" data-animation="false" data-product-id="126" title="Quick view" tabindex="0"> <i class="fa fa-search"></i></a>
+
+                                                                        </div>
+
+                                                                        <div class="right-block hidden-xs hidden-sm">
+
+                                                                            <h4 class="card-title">
+                                                                                <a asp-page="/ProductDetails" asp-route-id="@data.Id" asp-route-name="@data.ShortDescription.Replace(" ", "-")" asp-route-shop="@data.Tenant.BusinessName.Replace(" ", "-")" asp-route-mktstate="@data.Tenant.Market.State.Replace(" ", "-")" asp-route-mktaddress="@data.Tenant.Market.Address.Replace(" ", "-")" tabindex="0" title="@data.Name">@data.Name</a>
+                                                                            </h4>
+                                                                            <div class="price-section price-section--withoutTax ">
+
+                                                                                <span data-product-price-without-tax="" class="pull-left" style="font-weight:900;color:#f56615;font-family:'Times New Roman', Times, serif;">&#8358;@data.Price.ToString("0")</span>
+                                                                                <span data-product-price-without-tax="" class="pull-right mkt-name" title="@data.Tenant.BusinessName @@ @data.Tenant.Market.Name" style="font-weight:800;color:#3a3535;">@data.Tenant.Market.ShortName</span>
+
+                                                                            </div>
+
+                                                                        </div>
+                                                                        <div class="right-block hidden-md hidden-lg">
+
+                                                                            <h4 class="card-title" style="padding-bottom:0px;margin-bottom:3px;">
+                                                                                <a asp-page="/ProductDetails" asp-route-id="@data.Id" asp-route-name="@data.ShortDescription.Replace(" ", "-")" asp-route-shop="@data.Tenant.BusinessName.Replace(" ", "-")" asp-route-mktstate="@data.Tenant.Market.State.Replace(" ", "-")" asp-route-mktaddress="@data.Tenant.Market.Address.Replace(" ", "-")" tabindex="0" title="@data.Name">@data.Name</a>
+                                                                            </h4>
+                                                                            <h4 class="card-title" style="padding-bottom:0px;margin-bottom:3px;">
+                                                                                <a style="font-weight:900;color:#f56615;font-family:'Times New Roman', Times, serif;">&#8358;@data.Price.ToString("0")</a>
+                                                                            </h4>
+                                                                            <h4 class="card-title" style="padding-bottom:0px;margin-bottom:3px;">
+                                                                                <a title="@data.Tenant.BusinessName @@ @data.Tenant.Market.Name" style="font-weight:800;color:#3a3535;">@data.Tenant.Market.ShortName</a>
+                                                                            </h4>
+
+                                                                        </div>
+                                                                    </article>
+
+                                                                </div>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                </section>
+                                            </div>
+
+                                        </section>
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
+                    </main>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

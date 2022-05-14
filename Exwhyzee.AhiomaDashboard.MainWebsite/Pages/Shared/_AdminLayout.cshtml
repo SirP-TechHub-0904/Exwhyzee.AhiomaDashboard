@@ -1,0 +1,1237 @@
+﻿<!DOCTYPE html>
+<!-- saved from url=(0062)https://themesbrand.com/skote/layouts/vertical/projects-create.html -->
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>Dashboard | Ahioma - Your Virtual Market</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    @*<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">*@
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="~/images/NEW-VF.png">
+
+    <!-- Bootstrap Css -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="~/v1/bootstrap-dark.min.css" rel="stylesheet" type="text/css">
+    <!-- Icons Css -->
+    <link href="~/v1/icons.min.css" rel="stylesheet" type="text/css">
+    <!-- App Css-->
+    <link href="~/v1/app-dark.min.css" rel="stylesheet" type="text/css">
+    <link href="~/css/site.css" rel="stylesheet" />
+
+    <link href="~/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/fileupload/assets/css/demo.html5imageupload.css" rel="stylesheet" />
+    <style>
+    </style>
+    <link href="~/css/main.css" rel="stylesheet" />
+    <link href="~/summernote/summernote-bs4.css" rel="stylesheet" />
+    <style>
+
+        .card-mini-text {
+            color: #182038;
+        }
+
+        .card-mini {
+            background-color: #d3d6de;
+        }
+
+        .nav-pills .nav-link {
+            text-transform: uppercase;
+        }
+
+        .page-title-box {
+            padding-bottom: 0px;
+        }
+
+        kbd {
+            padding: .2rem .4rem;
+            font-size: 87.5%;
+            font-weight: 900;
+            color: #ec2020;
+            background-color: #f8f9fa;
+            border-radius: .2rem;
+        }
+
+        @@media (max-width: 576px) {
+            .sb-searchpro .input-group .form-control {
+                font-size: 15px;
+            }
+        }
+    </style>
+    @RenderSection("StyleMain", required: false)
+
+</head>
+
+<body data-sidebar="dark">
+
+    <!-- Begin page -->
+    <div id="layout-wrapper">
+
+        <header id="page-topbar">
+            <div class="navbar-header">
+                <div class="d-flex">
+                    <!-- LOGO -->
+                    <div class="navbar-brand-box">
+
+
+                        <a href="#" class="logo logo-light">
+                            <span class="logo-sm">
+                                <img src="~/images/NEW-VF.png" alt="" height="">
+                            </span>
+                            <span class="logo-lg">
+                                <img src="~/images/ahioma_logo.png" alt="" height="">
+                            </span>
+                        </a>
+
+
+                    </div>
+
+                    <button type="button" class="btn btn-sm px-3 font-size-16 header-item waves-effect" id="vertical-menu-btn">
+                        <i class="fa fa-fw fa-bars"></i>
+                    </button>
+
+                    <!-- App Search-->
+                    <form class="app-search d-none d-lg-block">
+                        <div class="position-relative">
+                            <input type="text" class="form-control" placeholder="Search...">
+                            <span class="fa fa-search"></span>
+                        </div>
+                    </form>
+
+                </div>
+
+                <div class="d-flex">
+
+                    <div class="dropdown d-inline-block d-lg-none ml-2">
+                        <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-search-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="bx bx-fullscreen"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0" aria-labelledby="page-header-search-dropdown">
+
+                            <form class="p-3">
+                                <div class="form-group m-0">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Search ..." aria-label="Recipient&#39;s username">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="submit"><i class="mdi mdi-magnify"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+
+
+
+
+                    <div class="dropdown d-none d-lg-inline-block ml-1">
+                        <button type="button" class="btn header-item noti-icon waves-effect" data-toggle="fullscreen">
+                            <i class="bx bx-fullscreen"></i>
+                        </button>
+                    </div>
+
+                    <div class="dropdown d-inline-block">
+                        <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-notifications-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="bx bx-bell bx-tada"></i>
+                            <span class="badge badge-danger badge-pill">3</span>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right p-0" aria-labelledby="page-header-notifications-dropdown">
+                            <div class="p-3">
+                                <div class="row align-items-center">
+                                    <div class="col">
+                                        <h6 class="m-0"> Notifications </h6>
+                                    </div>
+                                    <div class="col-auto">
+                                        <a href="#!" class="small"> View All</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div data-simplebar="init" style="max-height: 230px;">
+                                <div class="simplebar-wrapper" style="margin: 0px;">
+                                    <div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask">
+                                        <div class="simplebar-offset" style="right: 0px; bottom: 0px;">
+                                            <div class="simplebar-content-wrapper" style="height: auto; overflow: hidden;">
+                                                <div class="simplebar-content" style="padding: 0px;">
+                                                    <a href="" class="text-reset notification-item">
+                                                        <div class="media">
+                                                            <div class="avatar-xs mr-3">
+                                                                <span class="avatar-title bg-primary rounded-circle font-size-16">
+                                                                    <i class="bx bx-cart"></i>
+                                                                </span>
+                                                            </div>
+                                                            <div class="media-body">
+                                                                <h6 class="mt-0 mb-1">Your order is placed</h6>
+                                                                <div class="font-size-12 text-muted">
+                                                                    <p class="mb-1">If several languages coalesce the grammar</p>
+                                                                    <p class="mb-0"><i class="mdi mdi-clock-outline"></i> 3 min ago</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                    <a href="" class="text-reset notification-item">
+                                                        <div class="media">
+                                                            <img src="~/v1/avatar-3.jpg" class="mr-3 rounded-circle avatar-xs" alt="user-pic">
+                                                            <div class="media-body">
+                                                                <h6 class="mt-0 mb-1">James Lemire</h6>
+                                                                <div class="font-size-12 text-muted">
+                                                                    <p class="mb-1">It will seem like simplified English.</p>
+                                                                    <p class="mb-0"><i class="mdi mdi-clock-outline"></i> 1 hours ago</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                    <a href="" class="text-reset notification-item">
+                                                        <div class="media">
+                                                            <div class="avatar-xs mr-3">
+                                                                <span class="avatar-title bg-success rounded-circle font-size-16">
+                                                                    <i class="bx bx-badge-check"></i>
+                                                                </span>
+                                                            </div>
+                                                            <div class="media-body">
+                                                                <h6 class="mt-0 mb-1">Your item is shipped</h6>
+                                                                <div class="font-size-12 text-muted">
+                                                                    <p class="mb-1">If several languages coalesce the grammar</p>
+                                                                    <p class="mb-0"><i class="mdi mdi-clock-outline"></i> 3 min ago</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+
+                                                    <a href="" class="text-reset notification-item">
+                                                        <div class="media">
+                                                            <img src="~/v1/avatar-4.jpg" class="mr-3 rounded-circle avatar-xs" alt="user-pic">
+                                                            <div class="media-body">
+                                                                <h6 class="mt-0 mb-1">Salena Layfield</h6>
+                                                                <div class="font-size-12 text-muted">
+                                                                    <p class="mb-1">As a skeptical Cambridge friend of mine occidental.</p>
+                                                                    <p class="mb-0"><i class="mdi mdi-clock-outline"></i> 1 hours ago</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div><div class="simplebar-placeholder" style="width: 0px; height: 0px;"></div>
+                                </div><div class="simplebar-track simplebar-horizontal" style="visibility: hidden;"><div class="simplebar-scrollbar" style="transform: translate3d(0px, 0px, 0px); display: none;"></div></div><div class="simplebar-track simplebar-vertical" style="visibility: hidden;"><div class="simplebar-scrollbar" style="transform: translate3d(0px, 0px, 0px); display: none;"></div></div>
+                            </div>
+                            <div class="p-2 border-top">
+                                <a class="btn btn-sm btn-link font-size-14 btn-block text-center" href="javascript:void(0)">
+                                    <i class="fa fa-arrow-circle-right mr-1"></i> View More..
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    @await Component.InvokeAsync("UserDropdown")
+
+                </div>
+            </div>
+        </header> <!-- ========== Left Sidebar Start ========== -->
+        <div class="vertical-menu">
+
+            <div data-simplebar="init" class="h-100">
+                <div class="simplebar-wrapper" style="margin: 0px;">
+                    <div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask">
+                        <div class="simplebar-offset" style="right: -17px; bottom: 0px;">
+                            <div class="simplebar-content-wrapper" style="height: 100%; overflow: hidden scroll;">
+                                <div class="simplebar-content" style="padding: 0px;">
+
+                                    <!--- Sidemenu -->
+                                    <div id="sidebar-menu">
+                                        <!-- Left Menu Start -->
+                                        <ul class="metismenu list-unstyled" id="side-menu">
+
+                                            <li class="menu-title">Account Id <span style="font-weight:900;">(@await Component.InvokeAsync("UserCode"))</span> </li>
+                                            <li class="menu-title">Menu</li>
+                                            @if (User.Identity.IsAuthenticated && User.IsInRole("mSuperAdmin"))
+                                            {
+                                                <li>
+                                                    <a asp-area="Dashboard" asp-page="/Analysis/Index" class="waves-effect">
+                                                        <i class="fa fa-dashboard"></i><span class="badge badge-pill badge-info-1 float-right" style="background-color:#ff5c00;">active</span>
+                                                        <span>Dashboard</span>
+                                                    </a>
+                                                </li>
+                                            }
+                                            else if (User.Identity.IsAuthenticated && User.IsInRole("SubAdmin"))
+                                            {
+                                                <li>
+                                                    <a asp-area="AdminPage" asp-page="/Dashboard/Index" class="waves-effect">
+                                                        <i class="fa fa-dashboard"></i><span class="badge badge-pill badge-info-1 float-right" style="background-color:#ff5c00;">active</span>
+                                                        <span>Dashboard</span>
+                                                    </a>
+                                                </li>
+                                            }
+                                            else if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                                            {
+                                                <li>
+                                                    <a asp-area="Admin" asp-page="/Dashboard/Index" class="waves-effect">
+                                                        <i class="fa fa-dashboard"></i><span class="badge badge-pill badge-info-1 float-right" style="background-color:#ff5c00;">active</span>
+                                                        <span>Dashboard</span>
+                                                    </a>
+                                                </li>
+                                            }
+                                            else if (User.Identity.IsAuthenticated && User.IsInRole("SOA"))
+                                            {
+                                                <li>
+                                                    <a asp-area="SOA" asp-page="/Dashboard/Index" class="waves-effect">
+                                                        <i class="fa fa-dashboard"></i><span class="badge badge-pill badge-info-1 float-right" style="background-color:#ff5c00;">active</span>
+                                                        <span>Dashboard</span>
+                                                    </a>
+                                                </li>
+                                            }
+                                            else if (User.Identity.IsAuthenticated && User.IsInRole("Store"))
+                                            {
+                                                <li>
+                                                    <a asp-area="Store" asp-page="/Dashboard/Index" class="waves-effect">
+                                                        <i class="fa fa-dashboard"></i><span class="badge badge-pill badge-info-1 float-right" style="background-color:#ff5c00;">active</span>
+                                                        <span>Dashboard</span>
+                                                    </a>
+                                                </li>
+                                            }
+                                            else if (User.Identity.IsAuthenticated && User.IsInRole("Customer"))
+                                            {
+                                                <li>
+                                                    <a asp-area="Customer" asp-page="/Dashboard/Index" class="waves-effect">
+                                                        <i class="fa fa-dashboard"></i><span class="badge badge-pill badge-info-1 float-right" style="background-color:#ff5c00;">active</span>
+                                                        <span>Dashboard</span>
+                                                    </a>
+                                                </li>
+                                            }
+                                            <li>
+                                                <a href="/">
+                                                    <i class="bx bx-home"></i>
+                                                    <span>Home</span>
+                                                </a>
+                                            </li>
+
+                                            <li class="menu-title">Account</li>
+                                            <li>
+                                                <a asp-area="User" asp-page="/Account/Profile" class="waves-effect">
+                                                    <i class="bx bx-user-check"></i>
+                                                    <span>Profile</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a asp-area="User" asp-page="/Account/Index" class=" waves-effect">
+                                                    <i class="bx bx-money"></i>
+                                                    <span>AhiaPay</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a asp-area="User" asp-page="/Account/TransactionHistory">
+                                                    <i class="bx bx-money"></i>
+                                                    <span>My Transactions</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a asp-area="User" asp-page="/Account/MyOrders">
+                                                    <i class="bx bx-store"></i>
+                                                    <span>My Orders</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a asp-area="User" asp-page="/Account/Transfers">
+                                                    <i class="bx bx-send"></i>
+                                                    <span>My Transfer</span>
+                                                </a>
+                                            </li>
+                                            <li class="menu-title">Bills Payment</li>
+                                            <li>
+                                                <a class="waves-effect" asp-page="/">
+                                                    <i class="fa fa-phone"></i>
+                                                    <span>Dashboard</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="waves-effect" asp-page="/Payment/Airtime" asp-area="Bills">
+                                                    <i class="fa fa-phone"></i>
+                                                    <span>Airtime</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="waves-effect" asp-page="/">
+                                                    <i class="fa fa-phone"></i>
+                                                    <span>Data</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="waves-effect" asp-page="/">
+                                                    <i class="fa fa-globe"></i>
+                                                    <span>Cable</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="waves-effect" asp-page="/">
+                                                    <i class="fa fa-lightbulb"></i>
+                                                    <span>Utility Bills</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="waves-effect" asp-page="/">
+                                                    <i class="fa fa-phone"></i>
+                                                    <span>Beneficiaries</span>
+                                                </a>
+                                            </li>
+                                            @if (User.Identity.IsAuthenticated && User.IsInRole("mSuperAdmin") || User.IsInRole("StatusManager"))
+                                            {
+                                                <li class="menu-title">One Naira One View </li>
+                                                <li>
+                                                    <a asp-area="OneNairaOneView" asp-page="/Dashboard/Index" class="waves-effect">
+                                                        <i class="fa fa-dashboard"></i><span class="badge badge-pill badge-info-1 float-right" style="background-color:#ff5c00;">new</span>
+                                                        <span>Dashboard</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a asp-area="OneNairaOneView" asp-page="/Dashboard/AdUsers" class="waves-effect">
+                                                        <i class="fa fa-users"></i>
+                                                        <span>Users</span>
+                                                    </a>
+                                                </li>
+                                                @*<li>
+                <a asp-area="OneNairaOneView" asp-page="/Dashboard/OneHistory" class="waves-effect">
+                    <i class="fa fa-money"></i>
+                    <span>History</span>
+                </a>
+            </li>*@
+                                            }
+
+
+                                            @if (User.Identity.IsAuthenticated && User.IsInRole("SubAdmin"))
+                                            {
+                                                <li class="menu-title">Admin</li>
+                                                <li>
+                                                    <a asp-area="AdminPage" asp-page="/Shops/Index" class="waves-effect">
+                                                        <i class="fa fa-dashboard"></i>
+                                                        <span>All SO</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a asp-area="AdminPage" asp-page="/Users/Index" class="waves-effect">
+                                                        <i class="fa fa-dashboard"></i>
+                                                        <span>All SOA</span>
+                                                    </a>
+                                                </li>
+                                            }
+                                            @if (User.Identity.IsAuthenticated && User.IsInRole("SOA"))
+                                            {
+                                                <li class="menu-title">SOA</li>
+                                                <li>
+                                                    <a asp-area="SOA" asp-page="/Dashboard/Referrals" class="waves-effect">
+                                                        <i class="fa fa-users"></i>
+                                                        <span>Referrals</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a asp-area="SOA" asp-page="/Dashboard/Shops" class="waves-effect">
+                                                        <i class="fa fa-home"></i>
+                                                        <span>Shops</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a asp-area="SOA" asp-page="/Orders/Orders" class="waves-effect">
+                                                        <i class="fa fa-shopping-cart"></i>
+                                                        <span>Shop Orders</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a asp-area="SOA" asp-page="/Dashboard/Commission" class="waves-effect">
+                                                        <i class="fa fa-house-user"></i>
+                                                        <span>Commission</span>
+                                                    </a>
+                                                </li>
+                                            }
+                                            @if (User.Identity.IsAuthenticated && User.IsInRole("Logistic"))
+                                            {
+                                                <li class="menu-title">Logistic</li>
+
+                                                <li>
+                                                    <a asp-area="Logistic" asp-page="/Dashboard/LogisticProfile" class="waves-effect">
+                                                        <i class="fa fa-car"></i>
+                                                        <span>Logistic Profile</span>
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <a asp-area="Logistic" asp-page="/Dashboard/Vehicles" class="waves-effect">
+                                                        <i class="fa fa-car"></i>
+                                                        <span>Vehicles</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a asp-area="Logistic" asp-page="/Dashboard/LogisticOrders" class="waves-effect">
+                                                        <i class="fa fa-car"></i>
+                                                        <span>Orders to Deliver</span>
+                                                    </a>
+                                                </li>
+                                            }
+                                            @await Component.InvokeAsync("ThirdPartyUpload")
+
+
+
+                                            @if (User.Identity.IsAuthenticated && User.IsInRole("Store"))
+                                            {
+                                                <li class="menu-title">Shop Owner (SO)</li>
+                                                <li>
+                                                    <a asp-area="UserManager" asp-page="/ManageAccounts/StoreInfo" class="waves-effect">
+                                                        <i class="fa fa-house-user"></i>
+                                                        <span>My Shop</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a asp-area="Admin" asp-page="/Products/Index" class="waves-effect">
+                                                        <i class="fa fa-box"></i>
+                                                        <span>My Products</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a asp-area="Store" asp-page="/Orders/Orders" class="waves-effect">
+                                                        <i class="fa fa-shopping-cart"></i>
+                                                        <span>Shop Orders</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a asp-area="Store" asp-page="/Transactions/Index" class="waves-effect">
+                                                        <i class="fa fa-shopping-cart"></i>
+                                                        <span>Shop Transaction</span>
+                                                    </a>
+                                                </li>
+                                            }
+                                            @if (User.Identity.IsAuthenticated && User.IsInRole("mSuperAdmin") || User.IsInRole("Admin") || User.IsInRole("CustomerCare"))
+                                            {
+                                                <li class="menu-title">Admin</li>
+
+
+                                                <li>
+                                                    <a asp-area="UserManager" asp-page="/ManageAccounts/AllUsers" class="waves-effect">
+                                                        <i class="fa fa-users"></i>
+                                                        Users
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <a asp-area="UserManager" asp-page="/ManageAccounts/AllSOA" class="waves-effect">
+                                                        <i class="fa fa-users"></i>
+                                                        SOAs
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a asp-area="Admin" asp-page="/SoaRequests/Index" class="waves-effect">
+                                                        <i class="fa fa-users"></i>
+                                                        SOA Request
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <a asp-area="UserManager" asp-page="/ManageAccounts/AllSO" class="waves-effect">
+                                                        <i class="fa fa-users"></i>
+                                                        SOs
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <a asp-area="UserManager" asp-page="/ManageAccounts/AllCustomers" class="waves-effect">
+                                                        <i class="fa fa-users"></i>
+                                                        Customers
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a asp-area="UserManager" asp-page="/ManageAccounts/AllLogistic" class="waves-effect">
+                                                        <i class="fa fa-users"></i>
+                                                        Logistic
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a asp-area="UserManager" asp-page="/ManageAccounts/UserChangeRequest" class="waves-effect">
+                                                        <i class="fa fa-users"></i>
+                                                        Email/Phone Request Change
+                                                    </a>
+                                                </li>
+                                                <li class="menu-title">Order & Transaction</li>
+                                                <li>
+                                                    <a asp-area="ManageTransaction" asp-page="/Transactions/Orders" class="waves-effect">
+                                                        <i class="fa fa-image"></i>
+                                                        All Orders
+                                                    </a>
+                                                </li>
+                                                @*<li>
+                <a asp-area="ManageTransaction" asp-page="/Transactions/Index" class="waves-effect">
+                    <i class="fa fa-image"></i>
+                    All Transactions
+                </a>
+            </li>*@
+                                                <li>
+                                                    <a asp-area="ManageTransaction" asp-page="/Transactions/Index2" class="waves-effect">
+                                                        <i class="fa fa-image"></i>
+                                                        All Transactions
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a asp-area="ManageTransaction" asp-page="/Transactions/AllTransfer" class="waves-effect">
+                                                        <i class="fa fa-money"></i>
+                                                        All Transfer
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a asp-area="Dashboard" asp-page="/Analysis/SoaStatistic" class="waves-effect">
+                                                        <i class="fa fa-file"></i>
+                                                        <span>SOA Statistic</span>
+                                                    </a>
+                                                </li>
+                                                <li class="menu-title">Aba Project Admin</li>
+                                                <li>
+                                                    <a asp-area="AdminPage" asp-page="/Dashboard/Index" class="waves-effect">
+                                                        <i class="fa fa-dashboard"></i>
+                                                        <span>Dashboard</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a asp-area="AdminPage" asp-page="/Shops/Index" class="waves-effect">
+                                                        <i class="fa fa-dashboard"></i>
+                                                        <span>All SO</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a asp-area="AdminPage" asp-page="/Users/Index" class="waves-effect">
+                                                        <i class="fa fa-dashboard"></i>
+                                                        <span>All SOA</span>
+                                                    </a>
+                                                </li>
+                                            }
+                                            @if (User.Identity.IsAuthenticated && User.IsInRole("mSuperAdmin") || User.IsInRole("Admin") || User.IsInRole("CustomerCare") || User.IsInRole("Logistic"))
+                                            {
+                                                <li class="menu-title">Order Management</li>
+
+                                                <li>
+                                                    <a asp-area="ManageTransaction" asp-page="/AdminOrders/Orders" class="waves-effect">
+                                                        <i class="fa fa-image"></i>
+                                                        All Orders and Details
+                                                    </a>
+                                                </li>
+                                            }
+                                            @if (User.Identity.IsAuthenticated && User.IsInRole("mSuperAdmin") || User.IsInRole("MainAdmin"))
+                                            {
+                                                <li class="menu-title">Main Admin</li>
+                                                @*<li>
+                <a asp-area="ManageTransaction" asp-page="/Transactions/Orders" class="waves-effect">
+                    <i class="fa fa-image"></i>
+                    All Orders
+                </a>
+            </li>*@
+
+                                                <li>
+                                                    <a asp-area="Manager" asp-page="/Wallets/Index" class=" waves-effect">
+                                                        <i class="fa fa-money"></i>
+                                                        <span>Wallets</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a asp-area="Manager" asp-page="/Data/FTransfer" class=" waves-effect">
+                                                        <i class="fa fa-money"></i>
+                                                        <span>Fluter Transfer</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a asp-area="Manager" asp-page="/Data/FTransactions" class=" waves-effect">
+                                                        <i class="fa fa-money"></i>
+                                                        <span>Fluter Transactions</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a asp-area="Logistic" asp-page="/Dashboard/Index" class=" waves-effect">
+                                                        <i class="fa fa-car"></i>
+                                                        <span>Logistic</span>
+                                                    </a>
+                                                </li>
+                                            }
+
+                                            @if (User.Identity.IsAuthenticated && User.IsInRole("mSuperAdmin") || User.IsInRole("Admin"))
+                                            {
+                                                <li class="menu-title">Product Managment</li>
+
+                                                <li>
+                                                    <a asp-area="Admin" asp-page="/Categories/Index" class=" waves-effect">
+                                                        <i class="fa fa-bars"></i>
+                                                        <span>Categories</span>
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <a asp-area="Admin" asp-page="/Manufacturers/Index" class=" waves-effect">
+                                                        <i class="bx bx-store"></i>
+                                                        <span>Manufacturers</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a asp-area="Admin" asp-page="/Markets/Index" class=" waves-effect">
+                                                        <i class="bx bxs-landmark"></i>
+                                                        <span>Market</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a asp-area="Admin" asp-page="/Products/Index" class=" waves-effect">
+                                                        <i class="bx bx-store"></i>
+                                                        <span>Products</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a asp-area="Admin" asp-page="/CategoryPromo/Index" class=" waves-effect">
+                                                        <i class="bx bx-store"></i>
+                                                        <span>Promo Category</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a asp-area="Admin" asp-page="/CheckProduct/Index" class=" waves-effect">
+                                                        <i class="bx bx-store"></i>
+                                                        <span>Validate Products</span>
+                                                    </a>
+                                                </li>
+                                                if (User.Identity.IsAuthenticated && User.IsInRole("mSuperAdmin") || User.IsInRole("FirstSet"))
+                                                {
+
+                                                    <li>
+                                                        <a asp-area="Admin" asp-page="/Products/FirstSet" class=" waves-effect">
+                                                            <i class="bx bx-store"></i>
+                                                            <span>Update First Set</span>
+                                                        </a>
+                                                    </li>
+                                                }
+                                                if (User.Identity.IsAuthenticated && User.IsInRole("mSuperAdmin") || User.IsInRole("SecondSet"))
+                                                {
+
+                                                    <li>
+                                                        <a asp-area="Admin" asp-page="/Products/SecondSet" class=" waves-effect">
+                                                            <i class="bx bx-store"></i>
+                                                            <span>Update Second Set</span>
+                                                        </a>
+                                                    </li>
+                                                }
+                                                if (User.Identity.IsAuthenticated && User.IsInRole("mSuperAdmin") || User.IsInRole("ThirdSet"))
+                                                {
+
+                                                    <li>
+                                                        <a asp-area="Admin" asp-page="/Products/ThirdSet" class=" waves-effect">
+                                                            <i class="bx bx-store"></i>
+                                                            <span>Update Third Set</span>
+                                                        </a>
+                                                    </li>
+                                                }
+
+                                                if (User.Identity.IsAuthenticated && User.IsInRole("mSuperAdmin") || User.IsInRole("FouthSet"))
+                                                {
+
+                                                    <li>
+                                                        <a asp-area="Admin" asp-page="/Products/FouthSet" class=" waves-effect">
+                                                            <i class="bx bx-store"></i>
+                                                            <span>Update Fourth Set</span>
+                                                        </a>
+                                                    </li>
+                                                }
+
+
+                                                <li>
+                                                    <a asp-area="Admin" asp-page="/Products/ProductSearch" class=" waves-effect">
+                                                        <i class="bx bx-store"></i>
+                                                        <span>Products Search</span>
+                                                    </a>
+                                                </li>
+                                            }
+                                            @if (User.Identity.IsAuthenticated && User.IsInRole("mSuperAdmin"))
+                                            {
+                                                <li class="menu-title">Data Manager</li>
+
+                                                <li>
+                                                    <a asp-area="Dashboard" asp-page="/Commission/Index" class="waves-effect">
+                                                        <i class="fa fa-money"></i>
+                                                        <span>Commission</span>
+                                                    </a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                                        <i class="fa fa-key"></i>
+                                                        <span>Manage Permissions</span>
+                                                    </a>
+                                                    <ul class="sub-menu mm-collapse" aria-expanded="false">
+                                                        <li><a asp-area="Identity" asp-page="/Roles/Roles">Roles</a></li>
+                                                        <li><a asp-area="Identity" asp-page="/ROles/CreateRole">Create Roles</a></li>
+
+                                                    </ul>
+                                                </li>
+                                            }
+
+                                            @if (User.Identity.IsAuthenticated && User.IsInRole("mSuperAdmin") || User.IsInRole("Admin") || User.IsInRole("Content"))
+                                            {
+                                                <li class="menu-title">Components</li>
+
+                                                <li>
+                                                    <a asp-area="Admin" asp-page="/WebBanner/Index" class="waves-effect">
+                                                        <i class="fa fa-image"></i>
+                                                        <span>Banner</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a asp-area="Admin" asp-page="/SinglePages/Index" class="waves-effect">
+                                                        <i class="fa fa-file"></i>
+                                                        <span>Site Pages</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a asp-area="Admin" asp-page="/FaqPages/Index" class="waves-effect">
+                                                        <i class="fa fa-question"></i>
+                                                        <span>FAQ Pages</span>
+                                                    </a>
+                                                </li>
+
+                                                <li class="menu-title">Messaging</li>
+
+                                                <li>
+                                                    <a asp-area="Admin" asp-page="/MessagingPage/Index" class="waves-effect">
+                                                        <i class="fa fa-envelope"></i>
+                                                        <span>Send Message</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a asp-area="Admin" asp-page="/MessagingPage/MessageHistory" class="waves-effect">
+                                                        <i class="fa fa-envelope"></i>
+                                                        <span>Message History</span>
+                                                    </a>
+                                                </li>
+                                            }
+                                            @if (User.Identity.IsAuthenticated && User.IsInRole("mSuperAdmin"))
+                                            {
+                                                <li class="menu-title">Utility Manager</li>
+
+                                                <li>
+                                                    <a asp-area="Admin" asp-page="/UtilityParameters/Index" class="waves-effect">
+                                                        <i class="fa fa-image"></i>
+                                                        <span>Utility Parameters</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a asp-area="Admin" asp-page="/Beneficiaries/Index" class="waves-effect">
+                                                        <i class="fa fa-file"></i>
+                                                        <span>Beneficiaries</span>
+                                                    </a>
+                                                </li>
+
+
+                                            }
+
+                                            <li class="menu-title">Security</li>
+
+                                            <li>
+                                                <a class="waves-effect" asp-page="/Account/Manage/TwoFactorAuthentication" asp-area="Identity">
+                                                    <i class="fa fa-key"></i>
+                                                    <span>2 factor Auth.</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a class="waves-effect" asp-page="/Account/Manage/ChangePassword" asp-area="Identity">
+                                                    <i class="fa fa-key"></i>
+                                                    <span>Change Password</span>
+                                                </a>
+                                            </li>
+
+                                            <li>
+                                                <a class="waves-effect" href="javascript:document.getElementById('logoutForm').submit()">
+                                                    <i class="fa fa-sign-out"></i>
+                                                    <span>Logout</span>
+                                                </a>
+                                            </li>
+                                            @if (User.Identity.IsAuthenticated && User.IsInRole("mSuperAdmin"))
+                                            {
+                                                <li class="menu-title">Manage Settings</li>
+                                                <li>
+                                                    <a class="waves-effect" asp-page="/Settings/Details" asp-area="Admin">
+                                                        <i class="fa fa-gears"></i>
+                                                        <span>Settings</span>
+                                                    </a>
+                                                </li>
+                                            }
+                                            @if (User.Identity.IsAuthenticated && User.IsInRole("mSuperAdmin"))
+                                            {
+                                                <li class="menu-title">More</li>
+                                                <li>
+                                                    <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                                        <i class="bx bx-store"></i>
+                                                        <span>Manage</span>
+                                                    </a>
+                                                    <ul class="sub-menu mm-collapse" aria-expanded="false">
+                                                        <li><a asp-area="Manager" asp-page="/TransactionQueue/Index">Queue Transaction</a></li>
+                                                        <li><a asp-area="Manager" asp-page="/TransactionQueue/WHistory">W History</a></li>
+                                                        <li><a asp-area="Reconsile" asp-page="/Data/ResetPassword">PS</a></li>
+                                                        <li><a asp-area="Reconsile" asp-page="/AhiaPay/Index">AP</a></li>
+                                                        <li><a asp-area="Admin" asp-page="/Images/Index">Images</a></li>
+                                                        <li><a asp-area="Reconsile" asp-page="/Transfers/AdminAhiaPayTransfer">AhiaPay Reconsile</a></li>
+
+                                                        <li><a asp-area="Reconsile" asp-page="/Accounts/RxAccount">Rx Account</a></li>
+                                                        <li><a asp-area="Reconsile" asp-page="/Accounts/ProductRx">Product Rx</a></li>
+
+                                                    </ul>
+                                                </li>
+                                            }
+                                        </ul>
+                                    </div>
+                                    <form asp-area="Identity" id="logoutForm" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                                        @*<button type="submit" class="nav-link btn btn-link text-dark">Logout</button>*@
+                                    </form>
+                                    <!-- Sidebar -->
+                                </div>
+                            </div>
+                        </div>
+                    </div><div class="simplebar-placeholder" style="width: auto; height: 1001px;"></div>
+                </div><div class="simplebar-track simplebar-horizontal" style="visibility: hidden;"><div class="simplebar-scrollbar" style="transform: translate3d(0px, 0px, 0px); display: none;"></div></div><div class="simplebar-track simplebar-vertical" style="visibility: visible;"><div class="simplebar-scrollbar" style="height: 255px; transform: translate3d(0px, 0px, 0px); display: block;"></div></div>
+            </div>
+        </div>
+        <!-- Left Sidebar End -->
+        <!-- ============================================================== -->
+        <!-- Start right Content here -->
+        <!-- ============================================================== -->
+        <div class="main-content">
+
+            <div class="page-content">
+                <div class="container-fluid">
+
+                    <!-- start page title -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-title-box d-flex align-items-center justify-content-between">
+                                <h4 class="mb-0 font-size-18" style="color:#182038;">Dashboard</h4>
+
+                                <div class="page-title-right">
+                                    <ol class="breadcrumb m-0">
+                                        <li class="breadcrumb-item active" style="color:#182038;">No_1 Virtual Market</li>
+                                    </ol>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-title-box d-flex align-items-center justify-content-between">
+                                @await Component.InvokeAsync("CustomerRef")
+
+                            </div>
+                        </div>
+
+                    </div>
+                    @RenderBody()
+                </div>
+                <!-- container-fluid -->
+            </div>
+
+
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <script>document.write(new Date().getFullYear())</script> © Ahioma.
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="text-sm-right d-none d-sm-block">
+                                Powered by <a href="#">EXWHYZEE</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <!-- end main content-->
+
+    </div>
+    <!-- END layout-wrapper -->
+    <!-- Right bar overlay-->
+    <div class="rightbar-overlay"></div>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="~/v1/jquery.min.js"></script>
+    <script src="~/v1/bootstrap.bundle.min.js"></script>
+    <script src="~/v1/metisMenu.min.js"></script>
+    <script src="~/v1/simplebar.min.js"></script>
+    <script src="~/v1/waves.min.js"></script>
+    <script src="~/v1/dashboard.init.js"></script>
+    <!-- apexcharts -->
+    <script src="~/v1/apexcharts.min.js"></script>
+    <!-- Required datatable js -->
+    <script src="~/v1/jquery.dataTables.min.js"></script>
+    <script src="~/v1/dataTables.bootstrap4.min.js"></script>
+    <!-- Buttons examples -->
+    <script src="~/v1/dataTables.buttons.min.js"></script>
+    <script src="~/v1/buttons.bootstrap4.min.js"></script>
+    <script src="~/v1/jszip.min.js"></script>
+    <script src="~/v1/pdfmake.min.js"></script>
+    <script src="~/v1/vfs_fonts.js"></script>
+    <script src="~/v1/buttons.html5.min.js"></script>
+    <script src="~/v1/buttons.print.min.js"></script>
+    <script src="~/v1/buttons.colVis.min.js"></script>
+
+    <!-- Responsive examples -->
+    @*<script src="~/v1/dataTables.responsive.min.js"></script>
+        <script src="~/v1/responsive.bootstrap4.min.js"></script>*@
+
+    <!-- Datatable init js -->
+    <script src="~/v1/datatables.init.js"></script>
+    <script src="~/fileupload/assets/js/html5imageupload.js"></script>
+
+    <script src="~/v1/app.js"></script>
+    @*<script src="~/summernote/summernote-bs4.min.js"></script>*@
+
+    <script src="~/tinymce/tinymce.min.js"></script>
+
+    <script>
+        tinymce.init({
+            mode: "specific_textareas",
+            selector: "textarea#mytextarea",
+            height: 400,
+            theme: 'modern'
+        });</script>
+
+    @*<script>
+        $(function () {
+            // Summernote
+            $('#mytextarea').summernote({
+                height: 300, minHeight: null, maxHeight: null, focus: !0,
+
+                callbacks: {
+                    onKeydown: function (e) {
+                        var t = e.currentTarget.innerText;
+                        if (t.length >= max) {
+                            //delete key
+                            if (e.keyCode != 8)
+                                e.preventDefault();
+                            // add other keys ...
+                        }
+                    },
+                    onKeyup: function (e) {
+                        var t = e.currentTarget.innerText;
+                        if (typeof callbackMax == 'function') {
+                            callbackMax(max - t.length);
+                        }
+                    },
+                    onPaste: function (e) {
+                        var t = e.currentTarget.innerText;
+                        var bufferText = ((e.originalEvent || e).clipboardData || window.clipboardData).getData('Text');
+                        e.preventDefault();
+                        var all = t + bufferText;
+                        document.execCommand('insertText', false, all.trim().substring(0, 9999999400));
+                        if (typeof callbackMax == 'function') {
+                            callbackMax(max - t.length);
+                        }
+                    }
+                }
+            })
+        })
+
+        $('div.note-group-select-from-files').remove();
+    </script>*@
+    <script>
+
+        $('#retrievingfilename').html5imageupload({
+            onAfterProcessImage: function () {
+                $('#filename').val($(this.element).data('name'));
+            },
+            onAfterCancel: function () {
+                $('#filename').val('');
+            }
+
+        });
+
+        $('#save').html5imageupload({
+            onSave: function (data) {
+                console.log(data);
+            },
+
+        });
+
+        $('.dropzone').html5imageupload();
+
+        $("#myModal").on('shown.bs.modal', function () {
+            $('#modaldialog').html5imageupload();
+        });
+        /*
+        $('#form').html5imageupload({
+            onAfterProcessImage: function() {
+                $(this.element).closest('form').submit();
+            }
+        });
+
+        $('form button.btn').unbind('click').click(function(e) {
+              e.preventDefault()
+              $(this).closest('form').find('#form').data('html5imageupload').imageCrop()
+        });*/
+
+
+    </script>
+    <script>
+        var currencyInput = document.querySelector('input[type="currency"]')
+        var currency = 'NGN' // https://www.currency-iso.org/dam/downloads/lists/list_one.xml
+
+        // format inital value
+        onBlur({ target: currencyInput })
+
+        // bind event listeners
+        currencyInput.addEventListener('focus', onFocus)
+        currencyInput.addEventListener('blur', onBlur)
+
+
+        function localStringToNumber(s) {
+            return Number(String(s).replace(/[^0-9.-]+/g, ""))
+        }
+
+        function onFocus(e) {
+            var value = e.target.value;
+            e.target.value = value ? localStringToNumber(value) : ''
+        }
+
+        function onBlur(e) {
+            var value = e.target.value
+
+            var options = {
+                maximumFractionDigits: 2,
+                currency: currency,
+                style: "currency",
+                currencyDisplay: "symbol"
+            }
+
+            e.target.value = value
+                ? localStringToNumber(value).toLocaleString(undefined, options)
+                : ''
+        }
+    </script>
+    <script>
+        var currencyInput = document.querySelector('input[type="currency2"]')
+        var currency = 'NGN' // https://www.currency-iso.org/dam/downloads/lists/list_one.xml
+
+        // format inital value
+        onBlur({ target: currencyInput })
+
+        // bind event listeners
+        currencyInput.addEventListener('focus', onFocus)
+        currencyInput.addEventListener('blur', onBlur)
+
+
+        function localStringToNumber(s) {
+            return Number(String(s).replace(/[^0-9.-]+/g, ""))
+        }
+
+        function onFocus(e) {
+            var value = e.target.value;
+            e.target.value = value ? localStringToNumber(value) : ''
+        }
+
+        function onBlur(e) {
+            var value = e.target.value
+
+            var options = {
+                maximumFractionDigits: 2,
+                currency: currency,
+                style: "currency",
+                currencyDisplay: "symbol"
+            }
+
+            e.target.value = value
+                ? localStringToNumber(value).toLocaleString(undefined, options)
+                : ''
+        }
+    </script>
+    <script>
+        var currencyInput = document.querySelector('input[type="currency3"]')
+        var currency = 'NGN' // https://www.currency-iso.org/dam/downloads/lists/list_one.xml
+
+        // format inital value
+        onBlur({ target: currencyInput })
+
+        // bind event listeners
+        currencyInput.addEventListener('focus', onFocus)
+        currencyInput.addEventListener('blur', onBlur)
+
+
+        function localStringToNumber(s) {
+            return Number(String(s).replace(/[^0-9.-]+/g, ""))
+        }
+
+        function onFocus(e) {
+            var value = e.target.value;
+            e.target.value = value ? localStringToNumber(value) : ''
+        }
+
+        function onBlur(e) {
+            var value = e.target.value
+
+            var options = {
+                maximumFractionDigits: 2,
+                style: "currency",
+                currencyDisplay: "symbol"
+            }
+
+            e.target.value = value
+                ? localStringToNumber(value).toLocaleString(undefined, options)
+                : ''
+        }
+    </script>
+    @RenderSection("Scripts", required: false)
+
+    <script>
+        //$("#datatable").DataTable({ order: [[0, "desc"]] });
+        $('#datatable7').dataTable();
+    </script>
+    <script>
+        function disableButton() {
+            var btn = document.getElementById('btn');
+            console.log("passe");
+            btn.disabled = true;
+            btn.innerText = 'waiting...';
+            console.log("posting");
+        }
+    </script>
+
+    <script>
+        // functionality to copy text from inviteCode to clipboard
+
+        // trigger copy event on click
+        $('#copys').on('click', function (event) {
+            console.log(event);
+            copyToClipboard(event);
+        });
+
+        // event handler
+        function copyToClipboard(e) {
+            // alert('this function was triggered');
+            // find target element
+            var
+                t = e.target,
+                c = t.dataset.copytarget,
+                inp = (c ? document.querySelector(c) : null);
+            console.log(inp);
+            // check if input element exist and if it's selectable
+            if (inp && inp.select) {
+                // select text
+                inp.select();
+                try {
+                    // copy text
+                    document.execCommand('copy');
+                    inp.blur();
+
+                    // copied animation
+                    t.classList.add('copied');
+                    setTimeout(function () {
+                        t.classList.remove('copied');
+                    }, 1500);
+                } catch (err) {
+                    //fallback in case exexCommand doesnt work
+                    alert('please press Ctrl/Cmd+C to copy');
+                }
+
+            }
+
+        }
+    </script>
+
+</body>
+</html>

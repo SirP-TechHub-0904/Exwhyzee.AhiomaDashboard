@@ -1,0 +1,96 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Areas.UserManager.Pages.Users.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>UserProfile</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <i>@Model.UserProfile.UserId</i>
+            <input type="hidden" asp-for="UserProfile.Id" />
+            <input type="hidden" asp-for="UserProfile.UserId" />
+            @* <input type="hidden" asp-for="UserProfile.DateRegistered" />
+        <input type="hidden" asp-for="UserProfile.Status" />
+        <input type="hidden" asp-for="UserProfile.IdNumber" />
+        <input type="hidden" asp-for="UserProfile.IDCardBack" />
+        <input type="hidden" asp-for="UserProfile.IDCardFront" />
+        <input type="hidden" asp-for="UserProfile.ProfileUrl" />
+        <input type="hidden" asp-for="UserProfile.Note" />
+        <input type="hidden" asp-for="UserProfile.Roles" />
+        <input type="hidden" asp-for="UserProfile.NextOfKinPhoneNumber" />
+        <input type="hidden" asp-for="UserProfile.NextOfKin" />
+        <input type="hidden" asp-for="UserProfile.Logs" />
+        <input type="hidden" asp-for="UserProfile." />
+        <input type="hidden" asp-for="UserProfile.NextOfKin" />
+        <input type="hidden" asp-for="UserProfile.NextOfKin" />*@
+            <div class="form-group">
+                <label class="control-label">Email</label>
+                <input type="text" value="@Model.UserProfile.User.Email" name="Email" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">Phone</label>
+                <input type="text" value="@Model.UserProfile.User.PhoneNumber" name="Phone" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">Email Confirmed</label>
+                <input type="checkbox" name="ConfirmEmail" class="form-control" />
+                
+            </div>
+            <div class="form-group">
+                <label class="control-label">Phone Confirmed</label>
+                <input type="checkbox" value="@Model.UserProfile.User.PhoneNumberConfirmed" name="ConfirmPhone" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="UserProfile.Surname" class="control-label"></label>
+                <input asp-for="UserProfile.Surname" class="form-control" />
+                <span asp-validation-for="UserProfile.Surname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserProfile.FirstName" class="control-label"></label>
+                <input asp-for="UserProfile.FirstName" class="form-control" />
+                <span asp-validation-for="UserProfile.FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserProfile.OtherNames" class="control-label"></label>
+                <input asp-for="UserProfile.OtherNames" class="form-control" />
+                <span asp-validation-for="UserProfile.OtherNames" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserProfile.FirstTimeLogin" class="control-label"></label>
+                <input asp-for="UserProfile.FirstTimeLogin" class="form-control" />
+                <span asp-validation-for="UserProfile.FirstTimeLogin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserProfile.ReferralApproval" class="control-label"></label>
+                <input asp-for="UserProfile.ReferralApproval" class="form-control" />
+                <span asp-validation-for="UserProfile.ReferralApproval" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserProfile.ReferralLink" class="control-label"></label>
+                <input asp-for="UserProfile.ReferralLink" class="form-control" />
+                <span asp-validation-for="UserProfile.ReferralLink" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

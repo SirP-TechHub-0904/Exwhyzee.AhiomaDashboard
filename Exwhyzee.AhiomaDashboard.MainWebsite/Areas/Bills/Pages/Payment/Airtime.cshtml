@@ -1,0 +1,83 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Areas.Bills.Pages.Payment.AirtimeModel
+@{
+}
+<div class="row">
+    <div class="col-xl-12">
+        <div class="container">
+
+            <div class="card overflow-hidden">
+                <div class="bg-soft-primary" style="padding:50px;">
+                    <div class="row">
+
+
+                        <div class="col-md-6">
+                            <div>
+                                @await Html.PartialAsync("_StatusMessage", Model.StatusMessage)
+                            </div>
+
+                            <h3>AhiaPay (&#8358;@Model.Balance)</h3>
+                            @if (Model.UserProfile.DisableUtility != true)
+                            {
+                                <form onsubmit='disableButton()' method="post">
+                                    <div asp-validation-summary="All" class="text-danger"></div>
+                                    <div class="">
+                                        <!--Raffle Properties-->
+                                        <div class="">
+                                            <div class="item form-group">
+                                                <label class="control-label" for="name">
+                                                   Network <span class="required">*</span>
+                                                </label>
+                                                <div class="">
+                                                    <select class="form-control" asp-for="Parameter.Network" required="required">
+                                                        <option value="MTN">MTN</option>
+                                                        <option value="MTNSNS">MTN Share n Sell</option>
+                                                        <option value="GLO">GLO</option>
+                                                        <option value="AIRTEL">AIRTEL</option>
+                                                        <option value="9MOBILE">9MOBILE</option>
+                                                    </select>
+                                                </div>
+                                                <span asp-validation-for="Parameter.Network" class="text-danger"></span>
+                                            </div>
+                                            <div class="item form-group">
+                                                <label class="control-label" for="name">
+                                                    Phone Number <span class="required">*</span>
+                                                </label>
+                                                <div class="">
+                                                    <input class="form-control" id="input2" asp-for="Parameter.PhoneNumber" placeholder="Enter Phone Number" autofocus required="required" type="text">
+                                                </div>
+                                                <span asp-validation-for="Parameter.PhoneNumber" class="text-danger"></span>
+                                            </div>
+                                            <div class="item form-group">
+                                                <label class="control-label" for="name">
+                                                    Amount  <span class="required">*</span>
+                                                </label>
+                                                <div class="">
+                                                    <input class="form-control" asp-for="Parameter.Amount" name="transferMoney.Amount" placeholder="Enter Amount" autofocus required="required" maxlength="@Model.Balance" type="number">
+                                                    <span asp-validation-for="Parameter.Amount" class="text-danger"></span>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="ln_solid"></div>
+                                    <div class="form-group">
+                                        <div class="">
+                                            @*<button type="button" class="btn btn-primary" asp-route="/RaffleManagement/Index">Cancel</button>*@
+                                            <button id="btn" type="submit" class="btn btn-success">Send</button>
+                                        </div>
+                                    </div>
+                                </form> }
+                            else
+                            {
+                                <h3>Your AhiaPay Transfer has been suspended!!!</h3>
+                            }
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

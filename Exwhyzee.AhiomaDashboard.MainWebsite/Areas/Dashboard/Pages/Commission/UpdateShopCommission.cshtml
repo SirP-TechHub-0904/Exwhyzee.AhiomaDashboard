@@ -1,0 +1,34 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Areas.Dashboard.Pages.Commission.UpdateShopCommissionModel
+@{
+}
+
+<div class="card">
+    <div class="row">
+        <div class="col-md-4">
+            <form method="post">
+                Update All Product commission for @Model.Shop.BusinessName shop
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Shop.Id" />
+                <div class="form-group">
+                    <label asp-for="Shop.Commission" class="control-label"></label>
+                    <input asp-for="Shop.Commission" class="form-control" />
+                    <span asp-validation-for="Shop.Commission" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Take</label>
+                    <input name="take" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Skip</label>
+                    <input name="skip" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Update" class="btn btn-default" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>

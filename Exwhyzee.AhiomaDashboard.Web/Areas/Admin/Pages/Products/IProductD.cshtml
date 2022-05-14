@@ -1,0 +1,45 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.Admin.Pages.Products.IProductDModel
+@{
+}
+
+<div class="container">
+    @if (Model.Product != null)
+    {
+        <form method="post" asp-page-handler="ProductD" enctype="multipart/form-data">
+
+            <h3 style="color:#ffffff;">product id @Model.Product.Id</h3>
+            <h3 style="color:#ffffff;">product name @Model.Product.Name</h3>
+            <h3 style="color:#ffffff;">product shop @Model.Product.Tenant.BusinessName</h3>
+
+            <div class="form-group">
+               
+                <input asp-for="ProductId" value="@Model.Product.Id" hidden="hidden" type="hidden" class="form-control" required="required" />
+
+            </div>
+
+
+            <div class="form-group">
+                <input type="submit" value="D 1" class="btn btn-primary" />
+            </div>
+        </form>
+    }
+    else
+    {
+        <form method="post" asp-page-handler="GProductD" enctype="multipart/form-data">
+
+            <h3 style="color:#ffffff;">Product Id</h3>
+
+            <div class="form-group">
+                <label asp-for="GetPId" class="control-label"></label>
+                <input asp-for="GetPId" class="form-control" required="required" />
+
+            </div>
+
+
+            <div class="form-group">
+                <input type="submit" value="Get" class="btn btn-primary" />
+            </div>
+        </form>
+    }
+</div>

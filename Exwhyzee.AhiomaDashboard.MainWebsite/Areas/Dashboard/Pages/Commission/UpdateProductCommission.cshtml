@@ -1,0 +1,29 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Areas.Dashboard.Pages.Commission.UpdateProductCommissionModel
+@{
+}
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="card">
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            @Model.Product.Name Product from @Model.Product.Tenant.BusinessName
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Product.Id" />
+            <div class="form-group">
+                <label asp-for="Product.Commision" class="control-label"></label>
+                <input asp-for="Product.Commision" class="form-control" />
+                <span asp-validation-for="Product.Commision" class="text-danger"></span>
+            </div>
+      
+            <div class="form-group">
+                <input type="submit" value="Update" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+</div>

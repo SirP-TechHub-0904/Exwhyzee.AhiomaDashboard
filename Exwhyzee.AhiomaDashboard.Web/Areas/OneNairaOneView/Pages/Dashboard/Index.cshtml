@@ -1,0 +1,271 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.OneNairaOneView.Pages.Dashboard.IndexModel
+@{
+}
+
+<style>
+    .text-muted {
+        color: #bfc8e2 !important;
+        font-size: 10px;
+    }
+</style>
+
+<div class="row">
+
+
+    <div class="col-xl-4">
+        <div class="card overflow-hidden">
+            <div class="bg-soft-primary">
+                <div class="row">
+                    <div class="col-7">
+                        <div class="text-primary p-3">
+                            <h5 class="text-primary">Total One Naira One View Subscribers</h5>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="card-body pt-0">
+                <div class="row">
+
+
+                    <div class="col-sm-12">
+                        <div class="pt-4">
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <h5 class="font-size-15">@Model.AllUsers</h5>
+                                    <p class="text-muted mb-0">All Subscribers</p>
+                                </div>
+
+
+
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-xl-4">
+        <div class="card overflow-hidden">
+            <div class="bg-soft-primary">
+                <div class="row">
+                    <div class="col-7">
+                        <div class="text-primary p-3">
+                            <h5 class="text-primary">Total Amount Credited</h5>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="card-body pt-0">
+                <div class="row">
+                    <a asp-page="./CreditedPage">
+
+                        <div class="col-sm-12">
+                            <div class="pt-4">
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h5 class="font-size-15">@Model.Credit</h5>
+                                        <p class="text-muted mb-0">Credited</p>
+                                    </div>
+
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-xl-4">
+        <div class="card overflow-hidden">
+            <div class="bg-soft-primary">
+                <div class="row">
+                    <div class="col-7">
+                        <div class="text-primary p-3">
+                            <h5 class="text-primary">Total Amount Credited Subscribers</h5>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="card-body pt-0">
+                <div class="row">
+                    <a asp-page="./CreditedSubscriber">
+
+                        <div class="col-sm-12">
+                            <div class="pt-4">
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h5 class="font-size-15">@Model.Debit</h5>
+                                        <p class="text-muted mb-0">Total Amount Spent</p>
+                                    </div>
+
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                        </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+<form asp-page="./Index" method="get">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card mini-stats-wid">
+                <div class="card-body">
+                    <div class="media">
+
+                        <input type="date" name="DateOne" placeholder="Date" class="form-control" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card mini-stats-wid">
+                <div class="card-body">
+                    <div class="media">
+
+                        <input type="submit" value="Filter" class="btn btn-primary" style="width:100%;" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end row -->
+</form>
+
+<div class="row">
+
+
+    <div class="col-xl-4">
+        <div class="card overflow-hidden">
+            <div class="bg-soft-primary">
+                <div class="row">
+                    <div class="col-7">
+                        <div class="text-primary p-3">
+                            <h5 class="text-primary">Today One Naira One View Subscribers</h5>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="card-body pt-0">
+                <div class="row">
+
+
+                    <div class="col-sm-12">
+                        <div class="pt-4">
+
+                            <div class="row">
+                                <div class="col-12">
+                                    <h5 class="font-size-15">@Model.NewAddUsers</h5>
+                                    <p class="text-muted mb-0">New Subscribers</p>
+                                </div>
+
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-xl-4">
+        <div class="card overflow-hidden">
+            <div class="bg-soft-primary">
+                <div class="row">
+                    <div class="col-7">
+                        <div class="text-primary p-3">
+                            <h5 class="text-primary">Amount Credited Today</h5>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="card-body pt-0">
+                <div class="row">
+                    <a asp-page="./CreditedPage">
+
+                        <div class="col-sm-12">
+                            <div class="pt-4">
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h5 class="font-size-15">@Model.TodayCredit</h5>
+                                        <p class="text-muted mb-0">Credited</p>
+                                    </div>
+
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-xl-4">
+        <div class="card overflow-hidden">
+            <div class="bg-soft-primary">
+                <div class="row">
+                    <div class="col-7">
+                        <div class="text-primary p-3">
+                            <h5 class="text-primary">Amount Credited Subscribers Today</h5>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="card-body pt-0">
+                <div class="row">
+                    <a asp-page="./CreditedSubscriber">
+                        <div class="col-sm-12">
+                            <div class="pt-4">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h5 class="font-size-15">@Model.Debit</h5>
+                                        <p class="text-muted mb-0">Total Amount Spent</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>

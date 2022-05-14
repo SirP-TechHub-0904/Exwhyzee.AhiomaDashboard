@@ -1,0 +1,14 @@
+﻿@model ICollection<Exwhyzee.AhiomaDashboard.EntityFramework.Tables.Category>
+
+
+
+    @foreach (var data in Model)
+    {
+    <li>
+        <a asp-page="/Category" asp-route-customerRef="@ViewBag.CustomerRef" asp-route-id="@data.Id" asp-route-name="@data.Name.Replace(" ", "-")" asp-route-desc="@data.Description.Replace(" ", "-")">@data.Name</a>
+    </li>
+    }
+<li>
+    <a asp-page="/CategoryList"><strong>View all</strong></a>
+</li>
+     

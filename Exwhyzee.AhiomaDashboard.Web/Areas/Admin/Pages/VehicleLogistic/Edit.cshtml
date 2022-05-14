@@ -1,0 +1,83 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.Admin.Pages.VehicleLogistic.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="row">
+    <div class="card-columns mx-auto d-flex justify-content-center col-12">
+
+        <div class="card">
+            <div class="card-header">
+
+                <h3 class="card-title">
+                    New Logistic Vehicle
+
+
+                </h3>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <form method="post">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" asp-for="LogisticVehicle.Id" />
+                            <input type="hidden" asp-for="LogisticVehicle.VehicleStatus" />
+                            <input type="hidden" asp-for="LogisticVehicle.LogisticProfileId" />
+                            <div class="form-group">
+                                <label asp-for="LogisticVehicle.VehicleName" class="control-label"></label>
+                                <input asp-for="LogisticVehicle.VehicleName" class="form-control" />
+                                <span asp-validation-for="LogisticVehicle.VehicleName" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="LogisticVehicle.VehiclePlateNumber" class="control-label"></label>
+                                <input asp-for="LogisticVehicle.VehiclePlateNumber" class="form-control" />
+                                <span asp-validation-for="LogisticVehicle.VehiclePlateNumber" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="LogisticVehicle.VehiclePhoneNumber" class="control-label"></label>
+                                <input asp-for="LogisticVehicle.VehiclePhoneNumber" class="form-control" />
+                                <span asp-validation-for="LogisticVehicle.VehiclePhoneNumber" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="LogisticVehicle.VehicleSize" class="control-label"></label>
+                                <input asp-for="LogisticVehicle.VehicleSize" class="form-control" />
+                                <span asp-validation-for="LogisticVehicle.VehicleSize" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="LogisticVehicle.VehicleType" class="control-label"></label>
+                                <input asp-for="LogisticVehicle.VehicleType" class="form-control" />
+                                <span asp-validation-for="LogisticVehicle.VehicleType" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="LogisticVehicle.State" class="control-label"></label>
+                                <input asp-for="LogisticVehicle.State" class="form-control" />
+                                <span asp-validation-for="LogisticVehicle.State" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="LogisticVehicle.LGA" class="control-label"></label>
+                                <input asp-for="LogisticVehicle.LGA" class="form-control" />
+                                <span asp-validation-for="LogisticVehicle.LGA" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="LogisticVehicle.LeastAmount" class="control-label"></label>
+                                <input asp-for="LogisticVehicle.LeastAmount" class="form-control" />
+                                <span asp-validation-for="LogisticVehicle.LeastAmount" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="submit" value="Save" class="btn btn-default" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+                @section Scripts {
+                    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+                }

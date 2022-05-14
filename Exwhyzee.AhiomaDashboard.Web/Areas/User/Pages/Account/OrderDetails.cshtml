@@ -1,0 +1,164 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.User.Pages.Account.OrderDetailsModel
+@{
+}
+<div class="row">
+
+
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h4>
+                    <a onclick="goBack()"><i class="fa fa-caret-left" style="font-size:15px;font-weight:900;"></i></a>
+                    Order Details
+                </h4>
+            </div>
+            <div class="card-body">
+
+                <div class="row">
+                    <div class="col-md-8">
+
+                        <div class="">
+                            <h4 style="margin-bottom:2px;padding-bottom:1px;">
+                                Order ID - @Model.Order.OrderId
+                            </h4>
+                            <h6 style="margin-bottom:2px;padding-bottom:1px;">Items - @Model.Order.OrderItems.Count()</h6>
+                            <h6 style="margin-bottom:2px;padding-bottom:1px;">Total Amount Paid - &#8358;@Model.Order.AmountPaid</h6>
+                            <h6 style="margin-bottom:2px;padding-bottom:1px;">Date: @Model.Order.DateOfOrder</h6>
+                            <h6 style="margin-bottom:2px;padding-bottom:1px;">
+                                @if (Model.Order.DeliveredDate != null) {
+                                <span>   Delivery Date:  @Model.Order.DeliveredDate.Value.ToString("ddd dd MMM, yyyy")</span>
+    }
+                            </h6>
+                            <h6 style="margin-bottom:2px;padding-bottom:1px;">@if(Model.Order.Note != null){ <span> Note: @Model.Order.Note </span>}</h6>
+                            <br />
+                            <div class="btn-group pull-right" style="width:100%;">
+                                <a asp-page="./BuyAgain" class="btn" style="background-color:#278526 !important;color:#FFF !important;float:right;border-radius:0px;vertical-align:middle !important;border:1px solid #FFF;">Buy Again</a>
+                                <a asp-page="./TrackOrder" asp-route-id="@Model.OrderItem.Id" class="btn" style="background-color:#278526 !important;color:#FFF !important;float:right;border-radius:0px;vertical-align:middle !important;border:1px solid #FFF;">Track Order</a>
+                            </div>
+                            <h3>Ordered Item</h3>
+
+
+                            @foreach (var item in Model.Order.OrderItems.Where(x => x.Id == Model.OrderItem.Id))
+                            {
+
+                            @await Component.InvokeAsync("OrderedItem", new { id = item.Id })
+
+
+                            }
+                            @if (Model.Order.OrderItems.Count() > 1)
+                            {
+                            <h3>Other Items in this Order</h3>
+                            @foreach (var item in Model.Order.OrderItems.Where(x => x.Id != Model.OrderItem.Id))
+                                {
+
+                            @await Component.InvokeAsync("OrderedItem", new { id = item.Id })
+
+                                }
+
+                            }
+
+                            <style>
+                                p{
+                                    margin-bottom:0.1px;
+                                }
+                                h5{
+                                    color:#182038;
+                                }
+                                .panel-heading {
+                                    padding: 8px;
+                                    border-radius: 7px 7px 0 0;
+
+                                }
+                                .panel-body {
+                                    padding: 8px;
+                                    border-radius: 0 0 7px 7px;
+                                }
+                            </style>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="panel">
+                                    <div class="panel-heading" style="background-color:#FFF;color:#182038;">
+                                        <h5>Shop Information</h5>
+                                    </div>
+                                    <div class="panel-body" style="background-color:#FFF;color:#182038;">
+                                        <p><i class="fa fa-dot-circle text-primary mr-1"></i> <strong>Name:</strong> @Model.OrderItem.Product.Tenant.BusinessName</p>
+                                        <p><i class="fa fa-dot-circle text-primary mr-1"></i> <strong>Email:</strong> @Model.OrderItem.Product.Tenant.User.Email</p>
+                                        <p><i class="fa fa-dot-circle text-primary mr-1"></i> <strong>Phone:</strong> @Model.OrderItem.Product.Tenant.User.PhoneNumber</p>
+                                        @if (Model.OrderItem.Product.Tenant.TenantAddresses.Count() > 0)
+                            {
+                                        <p><i class="fa fa-dot-circle text-primary mr-1"></i> <strong>Address:</strong> @Model.OrderItem.Product.Tenant.TenantAddresses.FirstOrDefault().Address</p>
+                                        <p><i class="fa fa-dot-circle text-primary mr-1"></i> <strong>LGA:</strong> @Model.OrderItem.Product.Tenant.TenantAddresses.FirstOrDefault().LocalGovernment</p>
+                                        <p><i class="fa fa-dot-circle text-primary mr-1"></i> <strong>State:</strong> @Model.OrderItem.Product.Tenant.TenantAddresses.FirstOrDefault().State</p>
+                            }
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="panel">
+                                    <div class="panel-heading" style="background-color:#FFF;color:#182038;"><h5>Item Information</h5></div>
+                                    <div class="panel-body" style="background-color:#FFF;color:#182038;">
+
+                                        <p><i class="fa fa-dot-circle text-primary mr-1"></i> <strong> Id:</strong> @Model.OrderItem.Id</p>
+                                        <p><i class="fa fa-dot-circle text-primary mr-1"></i> <strong>Product:</strong> @Model.OrderItem.Product.Name</p>
+                                        <p><i class="fa fa-dot-circle text-primary mr-1"></i> <strong>Shop:</strong> @Model.OrderItem.Product.Tenant.BusinessName</p>
+                                        <p><i class="fa fa-dot-circle text-primary mr-1"></i> <strong>Quantity:</strong> @Model.OrderItem.Quantity</p>
+                                        <p><i class="fa fa-dot-circle text-primary mr-1"></i> <strong>Size:</strong> @Model.OrderItem.ItemSize</p>
+                                        <p><i class="fa fa-dot-circle text-primary mr-1"></i> <strong>Color:</strong> @Model.OrderItem.Itemcolor</p>
+                                        <p><i class="fa fa-dot-circle text-primary mr-1"></i> <strong>Date:</strong> @Model.OrderItem.DateOfOrder</p>
+                                        <p>
+                                            <i class="fa fa-dot-circle text-primary mr-1"></i> <strong>Status:</strong>
+                                            @Html.DisplayFor(model => model.OrderItem.Status)
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="panel">
+                                    <div class="panel-heading" style="background-color:#FFF;color:#182038;"><h5>Payment Information</h5></div>
+                                    <div class="panel-body" style="background-color:#FFF;color:#182038;">
+                                        @Model.OrderItem.PaymentMethod
+                                        @if (Model.Payment != null)
+                                        {
+                                            if (Model.Payment.status == "error")
+                                            {
+                                        <p><i class="fa fa-dot-circle text-primary mr-1"></i> <strong> No Payment Made</strong>  </p>
+
+                                            }
+                                            else
+                                            {
+                                                <p><i class="fa fa-dot-circle text-primary mr-1"></i> <strong> Status:</strong> @Model.Payment.status</p>
+                                                <p><i class="fa fa-dot-circle text-primary mr-1"></i> <strong>Amount:</strong> @Model.Payment.data.amount</p>
+                                                <p><i class="fa fa-dot-circle text-primary mr-1"></i> <strong>Payment Type:</strong> @Model.Payment.data.payment_type</p>
+                                                <p><i class="fa fa-dot-circle text-primary mr-1"></i> <strong>Last 4 Digit of Card:</strong> @Model.Payment.data.card.last_4digits</p>
+                                                <p><i class="fa fa-dot-circle text-primary mr-1"></i> <strong>Bank:</strong> @Model.Payment.data.card.issuer</p>
+                                                <p><i class="fa fa-dot-circle text-primary mr-1"></i> <strong>Country:</strong> @Model.Payment.data.card.country</p>
+                                                <p><i class="fa fa-dot-circle text-primary mr-1"></i> <strong>Card Type:</strong> @Model.Payment.data.card.type</p>
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="panel">
+                                    <div class="panel-heading" style="background-color:#FFF;color:#182038;"><h5>Delivery Information</h5></div>
+                                    <div class="panel-body" style="background-color:#FFF;color:#182038;">
+                                        @Model.OrderItem.DeliveryMethod
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        </div>
+                    </div>
+                   
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+</div>

@@ -1,0 +1,98 @@
+﻿@model Exwhyzee.AhiomaDashboard.EntityFramework.Tables.OrderItem
+
+
+<div class="card" style="background-color: #e4e7eb !important;">
+    <div class="row no-gutters align-items-center">
+        <div class="col-md-3 col-sm-3 col-xs-3">
+            @if (Model.Product.ProductPictures.FirstOrDefault() != null)
+            {
+                <a href="@Model.Product.ProductPictures.FirstOrDefault().PictureUrl">
+                    <img src="https://manager.ahioma.com/@Model.Product.ProductPictures.FirstOrDefault().PictureUrlThumbnail" style="margin:auto auto !important;text-align:center !important;padding:0;max-height:100px;max-width:100px;" class="img-fluid" />
+                </a>
+            }
+        </div>
+        <div class="col-md-9 col-sm-9 col-xs-9">
+            <div class="card-body" style="padding:10px;">
+                <h5 class="card-title" style="overflow:hidden;color:#182038;margin-bottom:4px;"> @Html.DisplayFor(modelItem => Model.Product.Name)</h5>
+                <h6 style="overflow:hidden;color:#182038;margin-bottom:4px;">@Model.DateOfOrder.ToString("ddd dd MMM, yyyy hh:mm tt")</h6>
+                <h6 style="overflow:hidden;color:#182038;margin-bottom:4px;">
+                    <span style="padding-right:7px;">QTY: @Model.Quantity</span>
+
+                    @if (Model.ItemSize != null)
+                    {
+                        <span style="margin-right:7px;">Size: @Model.ItemSize</span>
+                    }
+                    @if (Model.Itemcolor != null)
+                    {
+                        <span style="margin-right:7px;">Colour: @Model.Itemcolor</span>
+                    }
+
+
+                </h6>
+                <h6 class="card-text">
+                    <div class="row">
+                        <div class="col-sm-12" style="padding-right:0px !important;margin-right:0 !important;">
+                            <span class="bg-gray-200" style="margin-right:5px;">
+                                <a href="#">
+                                    @{
+                                        decimal amt = Model.Product.Price * Model.Quantity;
+                                    }
+                                    <span style="color:#ff0000">&#8358;@amt </span>
+
+                                </a>
+                            </span>
+                            <span class="bg-gray-200" style="margin-right:5px;">
+                                <a href="#">
+                                    <span style="color:#ff0000">Order ID: </span>@Html.DisplayFor(modelItem => Model.OrderId)
+
+
+                                </a>
+                            </span>
+
+                            <span class="bg-gray-200">
+                                <a href="#">
+                                    <span style="color:#ff0000">Track ID: </span> @Html.DisplayFor(modelItem => Model.ReferenceId)
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+
+
+                </h6>
+                @if (Model.Status == Exwhyzee.Enums.OrderStatus.Pending)
+                {
+                    <button type="button" class="btn btn-info waves-effect waves-light btn-xs" style="background-color: #ff6a00; color: #e4e7eb;">Pending</button>
+
+                }
+                else if (Model.Status == Exwhyzee.Enums.OrderStatus.Processing)
+                {
+                    <button type="button" class="btn btn-info waves-effect waves-light btn-xs" style="background-color: #ff6a00; color: #e4e7eb;">Awaiting Confirmation</button>
+
+                }
+
+                else if (Model.Status == Exwhyzee.Enums.OrderStatus.Cancel)
+                {
+                    <button type="button" class="btn btn-danger waves-effect waves-light" style="background-color: #4c72cb; color: #e4e7eb;">Cancel</button>
+
+                }
+                else if (Model.Status == Exwhyzee.Enums.OrderStatus.Completed)
+                {
+                    <button type="button" class="btn btn-success waves-effect waves-light" style="background-color: #459039; color: #e4e7eb;">Supplied</button>
+
+                }
+                else if (Model.Status == Exwhyzee.Enums.OrderStatus.Reversed)
+                {
+                    <button type="button" class="btn btn-warning waves-effect waves-light" style="background-color: #c53737; color: #e4e7eb;">Reversed</button>
+
+                }
+
+                else
+                {
+                    <button type="button" class="btn btn-warning waves-effect waves-light" style="background-color:#182038;color:#e4e7eb;">..........</button>
+
+                }
+
+            </div>
+        </div>
+    </div>
+</div>

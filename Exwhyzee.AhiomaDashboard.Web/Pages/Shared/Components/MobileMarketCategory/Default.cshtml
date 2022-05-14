@@ -1,0 +1,66 @@
+﻿@model ICollection<Exwhyzee.AhiomaDashboard.EntityFramework.Tables.Market>
+
+
+@foreach (var data in Model)
+{
+    <a asp-page="./MarketDetails" asp-route-customerRef="@ViewBag.CustomerRef" asp-route-id="@data.Id" asp-route-name="@data.Name.Replace(" ", "-")" asp-route-mktstate="@data.State.Replace(" ", "-")" asp-route-mktaddress="@data.Address.Replace(" ", "-")" tabindex="0" title="@data.Name">
+
+        <div class="col-sm-3 col-xs-3" style="margin-bottom:7px;">
+            <div class="text-center">
+
+                <img src="@data.ImageUrl" style="max-height:25px;" />
+                <br />
+
+                <div class="text-center" style="text-overflow:ellipsis;overflow:hidden;white-space: nowrap;font-size:9px;">
+                    @data.Name
+                </div>
+                <div class="text-center" style="text-overflow:ellipsis;overflow:hidden;white-space: nowrap;font-size:8px;">
+                    @if (data.MarketType == Enums.MarketType.Junction)
+                    {
+                        <span>Junction</span>
+                    }
+                    else if (data.MarketType == Enums.MarketType.Mall)
+                    {
+                        <span>Mall</span>
+                    }
+                    else if (data.MarketType == Enums.MarketType.Market)
+                    {
+                        <span>Market</span>
+                    }
+                    else if (data.MarketType == Enums.MarketType.Road)
+                    {
+                        <span>Road</span>
+                    }
+                    else if (data.MarketType == Enums.MarketType.Street)
+                    {
+                        <span>Street</span>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </a>
+}
+
+
+<a asp-page="./Markets" asp-route-customerRef="@ViewBag.CustomerRef" tabindex="0" title="Markets">
+
+    <div class="col-sm-3 col-xs-3" style="margin-bottom:7px;">
+        <div class="text-center">
+
+            <img src="~/B.png" style="max-height:25px;" />
+            <br />
+
+            <div class="text-center" style="text-overflow:ellipsis;overflow:hidden;white-space: nowrap;font-size:9px;">
+                View
+            </div>
+            <div class="text-center" style="text-overflow:ellipsis;overflow:hidden;white-space: nowrap;font-size:8px;">
+
+                <span>More</span>
+
+            </div>
+        </div>
+    </div>
+</a>
+
+

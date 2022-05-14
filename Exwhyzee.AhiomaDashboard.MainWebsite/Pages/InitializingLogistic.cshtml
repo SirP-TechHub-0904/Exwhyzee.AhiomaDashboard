@@ -1,0 +1,47 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Pages.InitializingLogisticModel
+@{
+    ViewData["Title"] = "Initializing";
+    Layout = "/Pages/Shared/_Initial.cshtml";
+
+
+}
+    <script type="text/javascript">
+        //$(document).ready(function () {
+        //    setTimeout(function () {
+        //        $('#showing').show();
+        //    }, 10000);
+        //}
+
+        window.onload = function () {
+            setTimeout(function () {
+                $("#showing").show();
+                $("#removeit").hide();
+                $("#dashboard2").show();
+                $("#dashboard").hide();
+            }, 10000);
+
+
+
+        };
+    </script>
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-4"></div>
+            <div class="col-xl-4 text-center" style="margin-top:40px;">
+                <img src="~/images/ahioma_logo.png" style="margin:0 auto;text-align:center;" />
+                <h2 id="dashboard" style="display:none;">Configuring Your Dashboard...</h2>
+                <h2 id="dashboard2">Dashboard Completed</h2>
+                <div class="" id="removeit">
+                    <img src="~/images/loading-animated-png-6.gif" style="max-height:200px;margin:0 auto;text-align:center;" class="img-responsive" />
+                </div>
+                <div id="showing" style="display:none;">
+                   <h3>To Continue, Kindly Verify your Account from the mail sent to your email. </h3>
+                </div>
+                
+               
+
+            </div>
+            <div class="col-xl-4"></div>
+        </div>
+    </div>

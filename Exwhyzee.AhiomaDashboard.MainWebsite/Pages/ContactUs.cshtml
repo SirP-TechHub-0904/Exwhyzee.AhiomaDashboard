@@ -1,0 +1,116 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Pages.ContactUsModel
+@{
+    ViewData["Title"] = "ContactUs";
+    Layout = "/Pages/Shared/_WebLayout.cshtml";
+}
+
+<partial name="_header_One" />
+
+<div class="main-body clearfix sidebar--left">
+    <div class="container">
+
+        <div class="sb-breadcrumbs breadcrumb-bg ">
+            <ul class="breadcrumb ">
+                <li class="breadcrumb-item ">
+                    <i class="fa fa-home"></i>
+                    <a href="/" class="breadcrumb-label">Home</a>
+                </li>
+
+                <li class="breadcrumb-item is-active">
+                    <a href="#" class="breadcrumb-label">Contact Us</a>
+                </li>
+
+            </ul>
+
+        </div>
+        <main class="page page--contact">
+
+
+
+            <div class="page-content row flex-row-reverse">
+
+               
+
+                <div class="col-sm-4  col-md-5 ">
+                    <div class="storeLocation">
+                        <h3>Ahioma Information</h3>
+                        @*<p class="store-info">Curabitur condimentum magna et blandit rutrum, ligula enim blandit ipsum, lorem commodo odio diam et risus. Pellentesque pretium eros eu est placerat a malesuada turpis pharetra. Aenean ut cursus augue nulla vel laoreet diamos.</p>
+                        <div class="store-address"><span>Ranelagh, Liverpool, L3 5UL, England</span></div>*@
+                        <div class="store-email">Email:&nbsp;<a href="">info@ahioma.com</a></div>
+                        <div class="store-phone">Call:&nbsp;<span>07060530000</span></div>
+                        <div class="store-phone">whatsapp:&nbsp;<span>07060530000</span></div>
+                        <label><strong>Opening Hours:</strong></label>
+                        <div class="item1">24/7</div>
+                       
+                    </div>
+                </div>
+                <div class="col-sm-8  col-md-7 ">
+                    <h1 class="page-heading">Contact Us</h1>
+                    <p>If you nedd assistance selecting the right product of you then get it touch! Our friendly staff can offer you expert advice 7 days a week over the phone, by email or at one of our stores. We're here to help you get broad!</p>
+                    <form data-contact-form="" class="form" method="post">
+
+
+                        <input type="hidden" name="page_id" id="page_id" value="4">
+                        <div class="form-row form-row--half">
+                            <div class="form-field">
+                                <label class="form-label" for="contact_fullname">Full Name</label>
+                                <input class="form-input" type="text" id="contact_fullname" name="contact_fullname" value="">
+                            </div>
+
+                            <div class="form-field">
+                                <label class="form-label" for="contact_phone">Phone Number</label>
+                                <input class="form-input" type="text" id="contact_phone" name="contact_phone" value="">
+                            </div>
+
+                            <div class="form-field">
+                                <label class="form-label" for="contact_email">
+                                    Email Address
+                                    <small>Required</small>
+                                </label>
+                                <input class="form-input" type="text" id="contact_email" name="contact_email" value="">
+                                <span style="display: none;"></span>
+                            </div>
+
+                            <div class="form-field">
+                                <label class="form-label" for="contact_orderno">Order Number</label>
+                                <input class="form-input" type="text" id="contact_orderno" name="contact_orderno">
+                            </div>
+
+                            <div class="form-field">
+                                <label class="form-label" for="contact_companyname">Company Name</label>
+                                <input class="form-input" type="text" id="contact_companyname" name="contact_companyname">
+                            </div>
+
+                            <div class="form-field">
+                                <label class="form-label" for="contact_rma">RMA Number</label>
+                                <input class="form-input" type="text" id="contact_rma" name="contact_rma">
+                            </div>
+                        </div>
+
+                        <div class="form-field">
+                            <label class="form-label" for="contact_question">
+                                Comments/Questions
+                                <small>Required</small>
+                            </label>
+                            <textarea name="contact_question" id="contact_question" rows="5" cols="50" class="form-input"></textarea>
+                            <span style="display: none;"></span>
+                        </div>
+
+
+                        <div class="form-actions text-left">
+                            <input class="button button--primary" type="submit" value="Submit Form">
+                        </div>
+                    </form>
+                </div>
+
+
+
+            </div>
+
+        </main>
+
+
+    </div>
+
+</div>

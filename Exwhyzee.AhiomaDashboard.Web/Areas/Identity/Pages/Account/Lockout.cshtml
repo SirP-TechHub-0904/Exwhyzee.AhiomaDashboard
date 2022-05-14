@@ -1,0 +1,15 @@
+﻿@page
+@model LockoutModel
+@{
+    ViewData["Title"] = "Locked out";
+    Layout = "/Pages/Shared/_LoginLayout.cshtml";
+}
+
+<header>
+    <h1 class="text-danger">@ViewData["Title"]</h1>
+    <h4>We noticed several invalid login attempts</h4>
+    <p class="text-danger">This account has been locked out, please try again later.</p>
+
+    <h3>Kindly Identify Yourself.</h3>
+    <a asp-page="/Account/RecoverAccount" class="btn btn-danger" asp-area="Identity">Recover Account</a>
+</header>

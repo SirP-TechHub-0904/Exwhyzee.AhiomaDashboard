@@ -1,0 +1,205 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Areas.Admin.Pages.Categories.CategoryPageModel
+@{
+}
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+
+                <h3 class="card-title">
+                    Product List for @Model.Category.Name
+
+                </h3>
+                @if (TempData["error"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissible">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>@TempData["error"]</strong>
+                    </div>
+                }
+                @if (TempData["success"] != null)
+                {
+                    <div class="alert alert-success alert-dismissible">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>@TempData["success"]</strong>
+                    </div>
+                }
+            </div>
+            <div class="card-body table-responsive">
+
+
+                <div id="datatable_wrapper" class="dataTables_wrapper table-responsive dt-bootstrap4 no-footer">
+                    <div class="row">
+                        <div class="col-md-12 table-responsive">
+                            <table id="datatable7" class="table table-bordered dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
+
+                                <thead>
+                                    <tr>
+                                        <th>Action</th>
+                                        <th>
+                                            Date
+                                        </th>
+                                        <th>
+                                            Name
+                                        </th>
+                                        <th>
+                                            Publish
+                                        </th>
+                                        <th>Image</th>
+
+                                        <th>
+                                            Store Name
+                                        </th>
+                                        <th>
+                                            Show in Home
+                                        </th>
+                                        <th>
+                                            Qty
+                                        </th>
+
+                                        <th>
+                                            Price (NG)
+                                        </th>
+
+                                        @if (User.Identity.IsAuthenticated && User.IsInRole("mSuperAdmin"))
+                                        {
+                                            <th>
+                                                Commission
+                                            </th>
+                                        }
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.Product)
+                                    {
+                                        <tr>
+
+                                            <td>
+                                                <a asp-page="./UpdateSortOrder" class="btn btn-primary btn-sm" asp-route-id="@item.Id">
+                                                    Update Sort Order
+                                                </a>
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.CreatedOnUtc)
+                                            </td>
+                                            <td>
+                                                <a asp-page="/Products/Edit" asp-route-id="@item.Id" target="_blank">
+                                                    @Html.DisplayFor(modelItem => item.Name)
+                                                </a>
+                                            </td>
+                                            <td>
+                                                @if (item.Published == true)
+                                                {
+                                                    <a asp-page="/Products/UpdateProductStatus" asp-route-id="@item.Id">
+                                                        true
+                                                        <i class="fa fa-refresh" style="margin-right:5px;"></i>
+                                                    </a>
+                                                }
+                                                else
+                                                {
+                                                    <a asp-page="/Products/UpdateProductStatus" asp-route-id="@item.Id">
+                                                        <span style="color:#ff0000;">false</span>
+                                                        <i class="fa fa-refresh" style="margin-right:5px;"></i>
+                                                    </a>
+                                                }
+                                            </td>
+                                            <td>
+                                                @if (item.ProductPictures.FirstOrDefault() != null)
+                                                {
+                                                    <img src="@item.ProductPictures.FirstOrDefault().PictureUrlThumbnail" class="img-responsive" alt="" style="max-height:50px;" />
+
+                                                }
+                                            </td>
+
+                                            <td>
+                                                @item.Tenant.BusinessName
+                                            </td>
+                                            <td>
+                                                <a asp-page="./ProductShowOnHome" asp-route-id="@item.Id" asp-route-cId="@item.CategoryId">
+                                                    @if (item.ShowOnHomePage == true)
+                                                    {
+                                                        <span>
+                                                            true
+                                                            <i class="fa fa-refresh" style="margin-right:5px;"></i>
+                                                        </span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span>
+                                                            <span style="color:#ff0000;">false</span>
+                                                            <i class="fa fa-refresh" style="margin-right:5px;"></i>
+                                                        </span>
+                                                    }
+                                                </a>
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Quantity)
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Price)
+                                            </td>
+                                            @if (User.Identity.IsAuthenticated && User.IsInRole("mSuperAdmin"))
+                                            {
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Commision)
+                                                    <a asp-page="ProductShowOnHome/UpdateProductCommission" asp-route-id="@item.Id">
+
+                                                        <i class="fa fa-refresh" style="margin-right:5px;"></i>
+                                                    </a>
+                                                </td>
+                                            }
+
+                                        </tr>
+                                    }
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div> <!-- end col -->
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+
+        function checkingReg() {
+
+            var number = document.getElementById('product').value;
+            var student = {};
+            student.ProductId = number
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("UpdateProduct", "Home")",
+                data: JSON.stringify(student),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    console.log(data)
+                    $("#food").append(
+                        //"<div class=\"alert-box\" data-alert>" + data+"<a class=\"close\">&times;</a></div>"
+                        "<span>" + data + "</span>"
+                    );
+                    $(this).unbind("click");
+                }
+
+            });
+            console.log(student + "jj")
+        }
+
+    </script>
+
+}

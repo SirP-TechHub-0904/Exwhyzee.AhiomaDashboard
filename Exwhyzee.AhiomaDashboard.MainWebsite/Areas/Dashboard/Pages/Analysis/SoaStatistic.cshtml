@@ -1,0 +1,119 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Areas.Dashboard.Pages.Analysis.SoaStatisticModel
+@{
+}
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+
+                <h3 class="card-title">
+                   SOA Statistic from (@Model.StartDate.Date to @Model.EndDate.Date)
+
+                </h3>
+               
+            </div>
+            <div class="card-body">
+
+                <form asp-page="./SoaStatistic" method="get">
+                    <div class="form-actions no-color">
+                        
+                            Query By Date
+                            <div class="row">
+                                <div class="col-md-4"><input type="date" name="DateOne" placeholder="Start Date" class="form-control" /></div>
+                                <div class="col-md-4"><input type="date" name="DateTwo" placeholder="End Date" class="form-control" /></div>
+                                <div class="col-md-4"><input type="submit" value="Query" class="btn btn-primary" /></div>
+                            </div>
+                            
+                            
+                             <br />
+                            <a asp-page="./SoaStatistic">Back to Last 5 Days</a>
+                       
+                    </div>
+                </form>
+
+                <div id="datatable_wrapper" class="dataTables_wrapper table-responsive dt-bootstrap4 no-footer">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table id="datatable7" class="table table-bordered dt-responsive nowrap dataTable no-footer dtr-inline" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
+                                <thead>
+                                    <tr role="row">
+                                        <th>S/N</th>
+                                        <th>Date Start</th>
+                                        <th>Date End</th>
+                                        <th>
+                                            Full Name
+                                        </th>
+                                        <th>ID</th>
+
+                                        <th>
+                                            SOA Referral
+                                        </th>
+                                        <th>
+                                            Shop
+                                        </th>
+                                        <th>
+                                            Product
+                                        </th>
+
+                                    </tr>
+                                </thead>
+
+
+                                <tbody>
+                                    @{
+                                        int sno = 0;
+                                    }
+                                    @foreach (var item in Model.SoaStatisticDto.OrderBy(x=>x.SoaName))
+                                    {
+                                        <tr>
+                                            <td>
+                                                @{ sno++; }
+                                                @sno
+                                            </td>
+                                            <td>
+                                                @item.DateStart.ToString("ddd dd MMM, yyyy")
+                                            </td>
+                                            <td>
+                                                @item.DateEnd.ToString("ddd dd MMM, yyyy")
+                                            </td>
+                                            <td>
+                                                <a asp-page="/ManageAccounts/Details" asp-area="UserManager" asp-route-uid="@item.UserId">
+                                                    @Html.DisplayFor(modelItem => item.SoaName)
+                                                </a>
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.SoaId)
+                                            </td>
+                                            <td>
+                                                <a asp-page="./SoaReferralList" asp-route-userid="@item.UserId" asp-route-fdate="@item.DateStart" asp-route-sdate="@item.DateEnd">
+                                                    @Html.DisplayFor(modelItem => item.ReferralCount)
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a asp-page="./ShopList" asp-route-userid="@item.UserId" asp-route-fdate="@item.DateStart" asp-route-sdate="@item.DateEnd">
+                                                    @Html.DisplayFor(modelItem => item.ShopCount)
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a asp-page="./ProductList" asp-route-userid="@item.UserId" asp-route-fdate="@item.DateStart" asp-route-sdate="@item.DateEnd">
+                                                    @Html.DisplayFor(modelItem => item.ProductCount)
+                                                </a>
+                                            </td>
+
+
+                                        </tr>
+                                    }
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div> <!-- end col -->
+</div>

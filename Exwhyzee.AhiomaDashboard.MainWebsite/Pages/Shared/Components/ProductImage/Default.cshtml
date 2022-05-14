@@ -1,0 +1,9 @@
+﻿@model Exwhyzee.AhiomaDashboard.EntityFramework.Tables.ProductPicture
+@if (Model!= null)
+{
+
+
+<a href="/@Model.PictureUrl">
+    <img src="https://manager.ahioma.com/@Model.PictureUrlThumbnail" style="max-height:50px;" class="img-responsive" />
+</a>
+}

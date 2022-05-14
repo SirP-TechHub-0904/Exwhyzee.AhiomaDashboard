@@ -1,0 +1,92 @@
+﻿@model IEnumerable<Exwhyzee.AhiomaDashboard.EntityFramework.Tables.ProductCart>
+
+
+<aside class="layout-cart" style="width: 33.33333% !important;">
+    <article class="cart optimizedCheckout-orderSummary" data-test="cart">
+        <header class="cart-header">
+            <h3 class="cart-title optimizedCheckout-headingSecondary">Order Summary</h3>
+            <a class="cart-header-link" data-test="cart-edit-link" asp-area="User" asp-page="/Account/MyCart" id="cart-edit-link" target="_top">
+                Edit Cart
+            </a>
+        </header>
+        <section class="cart-section optimizedCheckout-orderSummary-cartSection">
+            <h3 class="cart-section-heading optimizedCheckout-contentPrimary" data-test="cart-count-total">@Model.Count() Item</h3>
+            <ul aria-live="polite" class="productList">
+                @foreach (var i in Model)
+                {
+    <li class="productList-item is-visible">
+        <div class="product" data-test="cart-item">
+            <figure class="product-column product-figure">
+                @if (i.Product.ProductPictures.FirstOrDefault() != null)
+                {
+    <img alt="@i.Product.ShortDescription" data-test="cart-item-image" src="https://manager.ahioma.com/@i.Product.ProductPictures.FirstOrDefault().PictureUrlThumbnail">}
+            </figure>
+            <div class="product-column product-body">
+                <h5 class="product-title optimizedCheckout-contentPrimary" data-test="cart-item-product-title">@i.Quantity x @i.Product.Name</h5>
+                <ul class="product-options optimizedCheckout-contentSecondary" data-test="cart-item-product-options"></ul>
+            </div>
+            <div class="product-column product-actions">
+                <div class="product-price optimizedCheckout-contentPrimary" data-test="cart-item-product-price" style="font-weight:900;">&#8358;@i.Product.Price</div>
+            </div>
+        </div>
+    </li>}
+            </ul>
+        </section>
+        <section class="cart-section optimizedCheckout-orderSummary-cartSection">
+            <div data-test="cart-subtotal">
+                <div aria-live="polite" class="cart-priceItem optimizedCheckout-contentPrimary cart-priceItem--subtotal">
+                    <span class="cart-priceItem-label">
+                        <span data-test="cart-price-label">Subtotal  </span>
+                    </span><span class="cart-priceItem-value">
+                        <span data-test="cart-price-value" style="font-weight:900;">&#8358;@TempData["sum"]</span>
+                    </span>
+                </div>
+            </div>
+            <div data-test="cart-shipping">
+                <div aria-live="polite" class="cart-priceItem optimizedCheckout-contentPrimary">
+                    <span class="cart-priceItem-label">
+                        <span data-test="cart-price-label">Delivery  </span>
+                    </span><span class="cart-priceItem-value">
+                        <span data-test="cart-price-value" style="font-weight:900;">
+                            @if (ViewBag.Logistic != "Free Delivery")
+                            {
+
+                                <span> &#8358;</span>}@TempData["Logistic"].00
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                @*<div data-test="cart-taxes">
+                    <div aria-live="polite" class="cart-priceItem optimizedCheckout-contentPrimary">
+                        <span class="cart-priceItem-label">
+                            <span data-test="cart-price-label">Tax  </span>
+                        </span><span class="cart-priceItem-value">
+                            <span data-test="cart-price-value">&#8358;0.00</span>
+                        </span>
+                    </div>
+                </div>*@
+            </section><section class="cart-section optimizedCheckout-orderSummary-cartSection">
+                <div data-test="cart-total">
+                    <div aria-live="polite" class="cart-priceItem optimizedCheckout-contentPrimary cart-priceItem--total">
+                        <span class="cart-priceItem-label"><span data-test="cart-price-label">Total (Naira)  </span></span>
+                        <span class="cart-priceItem-value"><span data-test="cart-price-value">&#8358;@TempData["Oversum"]</span></span>
+                    </div>
+                </div>
+            </section>
+        <hr />
+
+            <section class="cart-section optimizedCheckout-orderSummary-cartSection" style="box-shadow:1px 1px 1px #000000;">
+                <div data-test="cart-total">
+                    <div aria-live="polite" class="cart-priceItem optimizedCheckout-contentPrimary cart-priceItem--total">
+                        
+                        <span class="cart-priceItem-label">
+                            <h4>NEED HELP?</h4>
+                            <span style="font-weight:900;">
+                                Contact an Expert to Assist you with your Order (+234 706 053 0000) or chat Us Live
+                            </span>
+                            </span>
+                    </div>
+                </div>
+            </section>
+        </article>
+</aside>

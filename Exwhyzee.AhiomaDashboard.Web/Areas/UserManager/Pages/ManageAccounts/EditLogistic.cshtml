@@ -1,0 +1,65 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.UserManager.Pages.ManageAccounts.EditLogisticModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Logistic</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Logistic.Id" />
+
+
+
+            <div class="form-group">
+                <label asp-for="Logistic.CompanyName" class="control-label"></label>
+                <input asp-for="Logistic.CompanyName" class="form-control" />
+                <span asp-validation-for="Logistic.CompanyName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Logistic.Description" class="control-label"></label>
+                <input asp-for="Logistic.Description" class="form-control" />
+                <span asp-validation-for="Logistic.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Logistic.LogisticStatus" class="control-label"></label>
+                @Html.DropDownListFor(model => model.Logistic.LogisticStatus, new SelectList(Enum.GetValues(typeof(Exwhyzee.Enums.LogisticEnum))), new { @class = "form-control" })
+                <span asp-validation-for="Logistic.LogisticStatus" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Logistic.CompanyDocument" class="control-label"></label>
+                <input asp-for="Logistic.CompanyDocument" class="form-control" />
+                <span asp-validation-for="Logistic.CompanyDocument" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Logistic.CustomerCareNumber" class="control-label"></label>
+                <input asp-for="Logistic.CustomerCareNumber" class="form-control" />
+                <span asp-validation-for="Logistic.CustomerCareNumber" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="Logistic.Referee" class="control-label"></label>
+                <input asp-for="Logistic.Referee" class="form-control" />
+                <span asp-validation-for="Logistic.Referee" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,37 @@
+﻿@model ICollection<Exwhyzee.AhiomaDashboard.EntityFramework.Tables.Category>
+
+
+
+<ul class="navPages-list navPages-list--categories">
+    @foreach (var data in Model)
+    {
+<li class="navPages-item navPages-item--default ">
+    <a class="navPages-action has-subMenu" asp-page="/Category" asp-route-customerRef="@ViewBag.CustomerRef" asp-route-id="@data.Id" asp-route-name="@data.Name.Replace(" ", "-")" asp-route-desc="@data.Description.Replace(" ", "-")">
+        <i class="@data.Icon"></i>
+        @data.Name
+        <span class=" has-subMenu" data-collapsible="navPages-vertical-22" aria-controls="navPages-vertical-22" aria-expanded="false">
+            <i class="icon navPages-action-moreIcon" aria-hidden="true"><svg><use xlink:href="#icon-chevron-right"></use></svg></i>
+        </span>
+
+    </a>
+    <div class="navPage-subMenu subMenu--default" id="navPages-vertical-22" aria-hidden="true" tabindex="-1">
+        <ul class="navPage-subMenu-list">
+            @foreach (var sub in data.SubCategories)
+            {
+<li class="navPage-subMenu-item">
+    <a class="navPage-subMenu-action navPages-action has-subMenu" asp-page="/SubCategory" asp-route-customerRef="@ViewBag.CustomerRef" asp-route-id="@sub.Id" asp-route-name="" asp-route-desc="@data.Description.Replace(" ", "-")">
+        @sub.Name
+
+
+
+    </a>
+
+
+</li>}
+        </ul>
+    </div>
+</li>}
+    <li class="navPages-item loadmore">
+        <a class="navPages-action" asp-page="/ListCartigories" asp-route-customerRef="@ViewBag.CustomerRef"><i class="fa fa-plus-circle"></i><span class="more-view"> More Categories</span> </a>
+    </li>
+</ul>

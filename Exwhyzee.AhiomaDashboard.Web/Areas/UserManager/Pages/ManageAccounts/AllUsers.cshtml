@@ -1,0 +1,298 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.UserManager.Pages.Users.AllUsersModel
+
+@{ ViewData["Title"] = "Index"; }
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+
+                <h3 class="card-title">
+                    All Users (@Model.Count)
+
+                </h3>
+
+            </div>
+            <div class="card-body">
+                <div class="button-items">
+                    <a asp-page="./AllActiveUsers">
+                        <button type="button" class="btn btn-primary btn-rounded waves-effect waves-light">All Active Users</button>
+                    </a>
+                    <a asp-page="./NonActiveUsers">
+                        <button type="button" class="btn btn-secondary btn-rounded waves-effect waves-light">Non Active Users</button>
+                    </a>
+                </div>
+            </div>
+            <div class="card-body">
+                <form asp-page="./AllUsers" method="get">
+                    <div class="form-actions no-color">
+                        <div class="row">
+                            <div class="col-md-12">Search...</div>
+                            <div class="col-md-3"><input type="text" name="SearchString" class="form-control" value="@Model.CurrentFilter" /></div>
+                            <div class="col-md-3"><input type="submit" value="Search" class="btn btn-primary" /></div>
+
+                            <div class="col-md-5">
+
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+                @{ int? p = 0;
+                    if (Model.CurrentPage == null)
+                    {
+                        p = 1;
+                    }
+                    else
+                    {
+                        p = Model.CurrentPage;
+                    } }
+                page @p of @Model.TotalPages pages (@Model.Count Users)
+
+                @if (TempData["success"] != null)
+                {
+            <div class="alert alert-success alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>@TempData["success"]</strong>
+            </div>}
+                @if (TempData["error"] != null)
+                {
+            <div class="alert alert-danger alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>@TempData["error"]</strong>
+            </div>}
+
+                <div id="" class="dataTables_wrapper table-responsive dt-bootstrap4 no-footer">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table id="" class="table table-bordered dt-responsive nowrap dataTable no-footer dtr-inline" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
+                                <thead>
+                                    <tr role="row">
+                                        <th>S/N</th>
+
+                                        <th>Date</th>
+                                        <th>ID</th>
+                                        <th>
+                                            Full Name
+                                        </th>
+                                        <th>
+                                            Email
+                                        </th>
+                                        <th>
+                                            Phone
+                                        </th>
+                                        <th>ADs</th>
+                                        @*<th>DOB</th>*@
+                                        <th>
+                                            Status
+                                        </th>
+                                        <th>
+                                           ID UPD
+                                        </th>
+                                        <th style="font-size:0.8rem;">Last Updated</th>
+                                        <th>
+                                            Roles
+                                        </th>
+                                    </tr>
+                                </thead>
+
+                                @{ int sno = Model.TotalPages; }
+                                <tbody>
+
+                                    @foreach (var item in Model.Profile)
+                                    {
+                        <tr>
+                            <td>
+                                @{ sno--; }
+                                @sno
+                            </td>
+
+                            <td title="@Html.DisplayFor(modelItem => item.DateRegistered)">
+                                @item.DateRegistered.ToString("dd-MM-yyyy")
+                            </td>
+                            <td>
+                                <a asp-page="./Details" asp-route-uid="@item.UserId">
+                                    @Html.DisplayFor(modelItem => item.IdNumber)
+                                    </a>
+                            </td>
+                            <td style="font-size: 0.7rem;line-height: 0.9;">
+                                <a asp-page="./Details" asp-route-uid="@item.UserId">
+                                    @Html.DisplayFor(modelItem => item.Fullname)
+                                </a>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.User.Email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.User.PhoneNumber)
+                            </td>
+                            <td>
+                                @if (item.ActivateForAdvert == true)
+                                {
+                <a asp-page="./ActivateForAdvert" asp-route-id="@item.Id">
+                    <i class="fa fa-money" style="margin-right:5px;font-size: 20px;color: green;"></i>
+                </a> }
+            else
+            {
+            <a asp-page="./ActivateForAdvert" asp-route-id="@item.Id">
+                <i class="fa fa-money" style="margin-right:5px;font-size: 20px;color: red;"></i>
+            </a>}
+
+                            </td>
+                            @*<td>
+                                @Html.DisplayFor(modelItem => item.DOB)
+                            </td>*@
+                            <td>
+                                
+
+                                <a asp-page="./UpdateUserStatus" asp-route-uid="@item.UserId">
+                                    @Html.DisplayFor(modelItem => item.Status)
+                                </a>
+
+
+
+                            </td>
+                            <td>
+                                @if (!String.IsNullOrEmpty(item.IDCardFront))
+                                {
+
+                                    <text>true</text>
+                                }
+                                else
+                                {
+                                    <text>true</text>
+
+                                }
+                            </td>
+                                    <td title="@item.LastUserUpdated" style="font-size:0.7rem;">
+                            @item.LastUserUpdated.ToString("dd-MM-yyyy")</td>
+                            <td style="font-size:0.6rem;line-height:0.9;">
+                               
+                                <a asp-page="./UpdateUserPermission" asp-route-uid="@item.UserId" asp-route-fullname="@item.Fullname">
+                                    @Html.DisplayFor(modelItem => item.Roles)
+                                </a>
+                            </td>
+
+                        </tr>}
+
+
+                                </tbody>
+                            </table>
+
+                            <br />
+
+                            page @p of @Model.TotalPages pages (@Model.Count items)
+
+
+
+                            @{ var prevDisabled = !Model.Profile.HasPreviousPage ? "disabled" : "";
+                                var nextDisabled = !Model.Profile.HasNextPage ? "disabled" : ""; }
+
+                            <div>
+                                <ul class="pagination">
+                                    <li class="page-item @(!Model.ShowFirst ? "disabled" : "")">
+                                        <a asp-page="./AllUsers" asp-route-CurrentPage="1" class="page-link"><i class="fas fa-fast-backward"></i></a>
+                                    </li>
+
+                                    <li class="page-item @(!Model.ShowPrevious ? "disabled" : "")">
+                                        <a asp-page="./AllUsers" asp-route-sortOrder="@Model.CurrentSort"
+                                           asp-route-pageIndex="@(Model.Profile.PageIndex - 1)"
+                                           asp-route-currentFilter="@Model.CurrentFilter" asp-route-CurrentPage="@(Model.CurrentPage - 1)" class="page-link"><i class="fas fa-step-backward"></i></a>
+                                    </li>
+                                    @{ int? fnumber = Model.CurrentPage - 5;
+                                        int? lnumber = Model.CurrentPage + 5; }
+
+
+
+                                    @for (var i = fnumber; i <= lnumber; i++)
+                                    {
+
+                                        if (!i.ToString().Contains("-"))
+                                        {
+                                            if (i != 0)
+                                            {
+
+
+                        <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                            <a asp-page="./AllUsers" asp-route-sortOrder="@Model.CurrentSort"
+                               asp-route-pageIndex="@i"
+                               asp-route-currentFilter="@Model.CurrentFilter" asp-route-currentpage="@i" class="page-link">@i</a>
+                        </li>
+}
+                }
+                if (i == Model.TotalPages)
+                {
+                    break;
+                }
+
+            }
+
+                                    <li class="page-item  @(!Model.ShowNext ? "disabled" : "")">
+                                        <a asp-page="./AllUsers" asp-route-sortOrder="@Model.CurrentSort"
+                                           asp-route-pageIndex="@(Model.CurrentPage + 1)"
+                                           asp-route-currentFilter="@Model.CurrentFilter" asp-route-CurrentPage="@(Model.CurrentPage + 1)" class="page-link"><i class="fas fa-step-forward"></i></a>
+                                    </li>
+
+                                    <li class="page-item  @(!Model.ShowLast ? "disabled" : "")">
+                                        <a asp-page="./AllUsers" asp-route-sortOrder="@Model.CurrentSort"
+                                           asp-route-pageIndex="@(Model.TotalPages)"
+                                           asp-route-currentFilter="@Model.CurrentFilter"
+                                           asp-route-CurrentPage="@Model.TotalPages" class="page-link"><i class="fas fa-fast-forward"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                        <button id="btnExport" onClick="fnExcelReport()">Export to xls</button>
+                    </div>
+
+                </div>
+            </div>
+        </div> <!-- end col -->
+    </div>
+    </div>
+    @section Scripts {
+        <script>
+            var d = new Date();
+            function formatDate(date) {
+                var d = new Date(date),
+                    month = '' + (d.getMonth() + 1),
+                    day = '' + d.getDate(),
+                    year = d.getFullYear();
+
+                if (month.length < 2)
+                    month = '0' + month;
+                if (day.length < 2)
+                    day = '0' + day;
+
+                return [year, month, day].join('-');
+            }
+            function fnExcelReport() {
+                var table = document.getElementById('datatable7'); // id of table
+                var tableHTML = table.outerHTML;
+                var fileName = 'download.xls';
+
+                var msie = window.navigator.userAgent.indexOf("MSIE ");
+
+                // If Internet Explorer
+                if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) {
+                    dummyFrame.document.open('txt/html', 'replace');
+                    dummyFrame.document.write(tableHTML);
+                    dummyFrame.document.close();
+                    dummyFrame.focus();
+                    return dummyFrame.document.execCommand('SaveAs', true, fileName);
+                }
+                //other browsers
+                else {
+                    var a = document.createElement('a');
+                    tableHTML = tableHTML.replace(/  /g, '').replace(/ /g, '%20'); // replaces spaces
+                    a.href = 'data:application/vnd.ms-excel,' + tableHTML;
+                    a.setAttribute('User_Table_' + formatDate(d), fileName);
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                }
+            }
+        </script>
+    }

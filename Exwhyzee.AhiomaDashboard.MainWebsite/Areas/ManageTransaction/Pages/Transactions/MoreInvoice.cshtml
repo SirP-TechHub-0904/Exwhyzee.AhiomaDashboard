@@ -1,0 +1,8 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Areas.ManageTransaction.Pages.Transactions.MoreInvoiceModel
+@{
+}
+
+
+
+@await Component.InvokeAsync("ShopByInvoice", new { id = Model.Order })

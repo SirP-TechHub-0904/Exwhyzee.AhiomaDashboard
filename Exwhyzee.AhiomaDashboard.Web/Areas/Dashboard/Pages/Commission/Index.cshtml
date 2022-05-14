@@ -1,0 +1,93 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.Dashboard.Pages.Commission.IndexModel
+@{
+}
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+
+                <h3 class="card-title">
+                    All SO Commission (@Model.Profile.Count())
+
+                </h3>
+
+            </div>
+
+            <div class="card-body">
+
+
+                <div id="datatable_wrapper" class="dataTables_wrapper table-responsive dt-bootstrap4 no-footer">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table id="datatable7" class="table table-bordered dt-responsive nowrap dataTable no-footer dtr-inline" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
+                                <thead>
+                                    <tr role="row">
+                                        <th>S/N</th>
+
+                                        <th>Date</th>
+                                        <th>ID</th>
+                                        <th>
+                                            Full Name
+                                        </th>
+                                        <th>
+                                            Business Name
+                                        </th>
+
+                                        <th>
+                                            Default Commission
+                                        </th>
+                                    </tr>
+                                </thead>
+
+                                @{
+                                    int sno = 0;
+                                }
+                                <tbody>
+
+                                    @foreach (var item in Model.Profile)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @{ sno++; }
+                                                @sno
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.CreationTime)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.UserProfile.IdNumber)
+                                            </td>
+                                            <td>
+                                                <a asp-page="./Details" asp-route-uid="@item.UserId">
+                                                    @Html.DisplayFor(modelItem => item.UserProfile.Fullname)
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a asp-page="./StoreInfo" asp-route-id="@item.Id">
+                                                    @Html.DisplayFor(modelItem => item.BusinessName) Shop
+                                                </a>
+                                            </td>
+
+                                            <td>
+                                                <a asp-page="./CommissionUpdate" asp-route-id="@item.Id">
+                                                    @item.Commission
+                                                </a>
+                                            </td>
+
+                                        </tr>
+                                    }
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div> <!-- end col -->
+</div>

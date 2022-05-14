@@ -1,0 +1,81 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.Admin.Pages.CategoryPromo.AddOldPriceModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+    <div class="row">
+        <div class="card-columns mx-auto d-flex justify-content-center col-12">
+
+            <div class="card">
+                <div class="card-header">
+
+                    <h3 class="card-title">
+                        Update Prices
+
+
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <input type="hidden" asp-for="Product.Id" />
+                        <input type="hidden" asp-for="Cid" />
+
+                        <div class="form-group">
+                            <label asp-for="Product.Name" class="control-label"></label>
+                            
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Product.Price" class="control-label"></label>
+                            <input asp-for="Product.Price" class="form-control" />
+                            <span asp-validation-for="Product.Price" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Product.OldPrice" class="control-label"></label>
+                            <input asp-for="Product.OldPrice" class="form-control" />
+                            <span asp-validation-for="Product.OldPrice" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="submit" value="Update" class="btn btn-primary" />
+                            <a asp-page="Index" class="btn btn-outline-primary waves-effect waves-light">Back</a>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+<script type="text/jscript">
+    $(function () {
+        $('#State').change(function () {
+
+            //var fruits = ["apple", "orange", "cherry"];
+            //fruits.forEach(myFunction);
+            //var res = "";
+            //function myFunction(item, index) {
+            //    res += index + ":" + item + "<br>";
+            //}
+            //console.log(res);
+            $.getJSON('/Home/GetLgaList/' + $('#State').val(), function (data) {
+
+                var items = '<option>Choose Market LGA</option>';
+                $.each(jQuery.map(data, function (i, local) {
+                    items += "<option value='" + i.value + "'>" + i.text + "</option>";
+
+                }));
+
+                $('#LGA').html(items);
+            });
+        });
+    });
+</script>
+}

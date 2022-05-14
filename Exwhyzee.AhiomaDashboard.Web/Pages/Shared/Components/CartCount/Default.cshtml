@@ -1,0 +1,17 @@
+﻿
+
+<ul class="navUser-section">
+    <li class="navUser-item">
+        <a class="cart-button cart-button--wishlist" href="#">
+            <svg class="icon-heart-o" width="19" height="19"><use xlink:href="#icon-heart-o"></use></svg>
+        </a>
+    </li>
+
+    <li class="navUser-item">
+        <a class="cart-button cart-button--primary" data-cart-preview="" data-dropdown="cart-preview-dropdown" data-options="align:left" asp-page="/Account/MyCart" asp-area="User" aria-expanded="false">
+            <svg class="icon-shopping-cart" width="24" height="24"><use xlink:href="#icon-shopping-cart"></use></svg>
+            <span class="countPill cart-quantity">@TempData["cart"]</span>
+        </a>
+        <div class="dropdown-menu" id="cart-preview-dropdown" data-dropdown-content="" aria-hidden="true"></div>
+    </li>
+</ul>

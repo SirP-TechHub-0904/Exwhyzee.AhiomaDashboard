@@ -1,0 +1,127 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Areas.Reconsile.Pages.Accounts.AllUsersModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+
+                <h3 class="card-title">
+                    All Users (@Model.Profile.Count())
+
+                </h3>
+
+            </div>
+            <div class="card-body">
+                <div class="button-items">
+                    <a asp-page="./AllActiveUsers">
+                        <button type="button" class="btn btn-primary btn-rounded waves-effect waves-light">All Active Users</button>
+                    </a>
+                    <a asp-page="./NonActiveUsers">
+                        <button type="button" class="btn btn-secondary btn-rounded waves-effect waves-light">Non Active Users</button>
+                    </a>
+                </div>
+            </div>
+            <div class="card-body">
+
+
+                <div id="datatable_wrapper" class="dataTables_wrapper table-responsive dt-bootstrap4 no-footer">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table id="datatable7" class="table table-bordered dt-responsive nowrap dataTable no-footer dtr-inline" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
+                                <thead>
+                                    <tr role="row">
+                                        <th>S/N</th>
+
+                                        <th>Date</th>
+                                        <th>ID</th>
+                                        <th>
+                                            Full Name
+                                        </th>
+                                        <th>
+                                            Email
+                                        </th>
+                                        <th>
+                                            Phone
+                                        </th>
+                                        <th>
+                                            Status
+                                        </th>
+                                        <th>
+                                            Roles
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+
+                                @{
+                                    int sno = 0;
+                                }
+                                <tbody>
+
+                                    @foreach (var item in Model.Profile)
+                                    {
+                                    <tr>
+                                        <td>
+                                            @{ sno++; }
+                                            @sno
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.DateRegistered)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.IdNumber)
+                                        </td>
+                                        <td>
+                                            <a asp-page="./Details" asp-route-uid="@item.UserId">
+                                                @Html.DisplayFor(modelItem => item.Fullname)
+                                            </a>
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.User.Email)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.User.PhoneNumber)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Status)
+
+                                            <a asp-page="./UpdateUserStatus" asp-route-uid="@item.UserId">
+                                                <i class="fa fa-refresh" style="margin-right:5px;"></i>
+                                            </a>
+
+
+
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Roles)
+                                            <a asp-page="./UpdateUserPermission" asp-route-uid="@item.UserId" asp-route-fullname="@item.Fullname">
+                                                <i class="fa fa-refresh" style="margin-right:5px;"></i>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a asp-page="./GetData" asp-route-uid="@item.UserId">
+                                               Continue
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    }
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div> <!-- end col -->
+</div>
+

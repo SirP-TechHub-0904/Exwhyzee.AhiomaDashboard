@@ -1,0 +1,12 @@
+﻿@model Exwhyzee.AhiomaDashboard.EntityFramework.Tables.Tenant
+
+<div class="text-center">
+    <h3 style="color:#ff5c00;margin-bottom:2px;padding-bottom:2px;">@Model.BusinessName</h3>
+    <h5 style="color:#ff5c00;margin:2px;padding:2px;">@Model.Market.Name Market</h5>
+    @if (Model.TenantAddresses.FirstOrDefault() != null)
+    {
+    <p style="margin: 2px; padding: 2px;">@Model.TenantAddresses.FirstOrDefault().Address in @Model.TenantAddresses.FirstOrDefault().LocalGovernment of @Model.TenantAddresses.FirstOrDefault().State</p>
+
+    }
+</div>
+<br />

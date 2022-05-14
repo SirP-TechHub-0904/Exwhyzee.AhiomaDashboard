@@ -1,0 +1,297 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Areas.ManageTransaction.Pages.Transactions.FinancialManagementModel
+@{
+}
+<div class="row">
+
+    <style>
+        .table td, .table th {
+            padding: .1rem;
+        }
+
+        p {
+            margin-bottom: 0px;
+        }
+    </style>
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-body">
+                @if (TempData["error"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissible">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>@TempData["error"]</strong>
+                    </div>}
+                @if (TempData["success"] != null)
+                {
+                    <div class="alert alert-success alert-dismissible">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>@TempData["success"]</strong>
+                    </div>}
+                <h4>Order <button class="btn btn-primary">(@Model.Order.OrderId)</button> <button class="btn btn-warning">(@Html.DisplayFor(modelItem => Model.Order.Status))</button></h4>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="" style="padding:10px;margin-bottom:10px;background-color:#2a2b2f;border-radius:7px;box-shadow:1px 1px 1px 1px rgba(35, 39, 48, 0.85);">
+                            <h4>Order Information</h4>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Reference Id:</strong> @Model.Order.ReferenceId</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Amount Paid:</strong> @Model.Order.AmountPaid</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Order Cost:</strong> @Model.Order.OrderAmount</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Vat:</strong> @Model.Order.Vat</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Logistic Amount:</strong> @Model.Order.LogisticAmount</p>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="" style="padding:10px;margin-bottom:10px;background-color:#2a2b2f;border-radius:7px;box-shadow:1px 1px 1px 1px rgba(35, 39, 48, 0.85);">
+
+                            <h4>Order Reconsiliation</h4>
+                            <p style="color:#ff0000;">
+                                <i class="fa fa-chevron-right text-primary mr-1" style="color:#ff0000;"></i> <strong>Additional Payment:</strong> @Model.Order.AdditionalPayment
+
+                            </p>
+                            <p style="color:#ff0000;"><i class="fa fa-chevron-right text-primary mr-1" style="color:#ff0000;"></i> <strong>Order Cost After Confirmation:</strong> @Model.Order.OrderCostAfterProcessing</p>
+                            <p style="color:#ff0000;">
+                                <i class="fa fa-chevron-right text-primary mr-1" style="color:#ff0000;"></i> <strong>Differences:</strong>
+                                @{ decimal? diff = (Model.Order.AmountPaid - Model.Order.LogisticAmount - (Model.Order.AmountMovedToCustomer + Model.Order.AmountMovedToAdmin + Model.Order.AdditionalPayment)) - Model.Order.OrderCostAfterProcessing; }
+
+                                @diff
+                            </p>
+                            <p style="color:;">
+                                <i class="fa fa-chevron-right text-primary mr-1" style="color:#ff0000;"></i> <strong>Amount Transfered to Admin:</strong> @Model.Order.AmountMovedToAdmin
+
+                            </p>
+                            <p style="color:;">
+                                <i class="fa fa-chevron-right text-primary mr-1" style="color:#ff0000;"></i> <strong>Amount Transfered to Customer:</strong> @Model.Order.AmountMovedToCustomer
+
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="" style="padding:10px;margin-bottom:10px;background-color:#2a2b2f;border-radius:7px;box-shadow:1px 1px 1px 1px rgba(35, 39, 48, 0.85);">
+
+                            <h4>Customer Information</h4>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Name:</strong> @Model.Order.UserProfile.Fullname</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Email:</strong> @Model.Order.UserProfile.User.Email</p>
+                            <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Phone:</strong> @Model.Order.UserProfile.User.PhoneNumber</p>
+                        </div>
+                    </div>
+
+
+
+                </div>
+                
+                <form method="post" asp-page-handler="MoveToLedger">
+                    <br />
+
+                    <input type="hidden" name="GetOrderId" value="@Model.Order.Id" />
+
+                    <input type="submit" value="Move to Ledger" class="btn btn-primary" />
+
+                </form>
+                <form method="post" asp-page-handler="MoveToAvailable">
+                    <br />
+
+                    <input type="hidden" name="GetOrderId" value="@Model.Order.Id" />
+
+                    <input type="submit" value="Move to Available" class="btn btn-primary" />
+
+                </form>
+                <br />
+                <a asp-page="./OrderDetails" asp-route-id="@Model.Order.Id" class="btn btn-primary btn-xs" style="margin-left:20px;">
+                    Back to Orders
+                </a>
+
+                <div class="table-responsive">
+
+                    <table id="datatable7" class="table table-bordered dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
+
+                        <thead>
+                            <tr>
+                                <th>
+                                    S/N
+                                </th>
+
+                                <th>
+                                    Items
+                                </th>
+                                <th>Shop</th>
+
+                                <th>
+                                    Amount
+                                </th>
+
+                                <th>
+                                    Quantity
+                                </th>
+                                <th>
+                                    Total
+                                </th>
+                                <th>
+                                    Status
+                                </th>
+
+                            </tr>
+                        </thead>
+                        @{ int sno = 0; }
+                        <tbody>
+                            @foreach (var item in Model.OrderItems.Where(c => c.Status != Exwhyzee.Enums.OrderStatus.OutOfStock))
+                            {
+
+                                <tr>
+                                    <td>
+                                        @{ sno++; }
+                                        @sno
+                                    </td>
+
+
+                                    <td>
+                                        (@item.Product.Id)
+                                        <a asp-page="/ProductInfo" asp-area="" asp-route-id="@item.ProductId" title="@item.Product.Name">
+                                            @if (item.Product.Name.Length > 35)
+                                            {
+                                                @item.Product.Name.Substring(0, 34) <text>...</text> }
+                                            else
+                                            {
+                                                @Html.DisplayFor(modelItem => item.Product.Name)}
+
+                                        </a>
+                                    </td>
+                                    <td>
+
+                                        @Html.DisplayFor(modelItem => item.Product.Tenant.BusinessName)
+
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Price)
+
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Quantity)
+                                    </td>
+                                    <td>
+                                        @{ decimal total = item.Quantity * item.Price; }
+                                        @total
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Status)
+
+
+
+                                    </td>
+
+
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+
+                </div>
+
+                <h4>Transactions by Shop</h4>
+                @foreach (var shop in Model.TenantIds)
+                {
+
+                    @await Component.InvokeAsync("ShopNameAddress", new { tid = shop })
+                    <div style="margin-left:10%;">
+                        @foreach (var i in Model.OrderItems.Where(x => x.Product.TenantId == shop))
+                        {
+
+                            <h5>Product Name (@i.Product.Name)</h5>
+
+
+                            <h4>Transaction Information</h4>
+                            <table id="datatable7" class="table table-bordered dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
+
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            S/N
+                                        </th>
+                                        <th>Date</th>
+                                        <th>Id</th>
+                                        <th>Account</th>
+                                        <th>
+                                            Description
+                                        </th>
+
+                                        <th>
+                                            Amount
+                                        </th>
+
+                                        <th>
+                                            Type
+                                        </th>
+                                        <th>
+                                            Status
+                                        </th>
+                                        <th>Track Code</th>
+                                        <th>Payout Status</th>
+
+                                    </tr>
+                                </thead>
+                                @{ int sneo = 0; }
+                                <tbody>
+                                    @foreach (var item in Model.Transactions.Where(x => x.OrderItemId == i.Id))
+                                    {
+                                        <tr>
+                                            <td>
+                                                @{ sneo++; }
+                                                @sneo
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.DateOfTransaction)
+                                            </td>
+
+                                            <td>
+                                                <a asp-page="/TransactionInfo" asp-area="" asp-route-id="@item.Id">
+                                                    @Html.DisplayFor(modelItem => item.Id)
+                                                </a>
+
+                                            </td>
+
+                                            <td>
+                                                @await Component.InvokeAsync("AccountName", new { uid = item.UserId })<br />
+                                                (@await Component.InvokeAsync("AccountId", new { uid = item.UserId }))
+
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Description)
+                                            </td>
+                                            <td>
+
+                                                @Html.DisplayFor(modelItem => item.Amount)
+
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.TransactionType)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Status)
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.TrackCode)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.PayoutStatus)
+                                            </td>
+
+
+
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        }
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>

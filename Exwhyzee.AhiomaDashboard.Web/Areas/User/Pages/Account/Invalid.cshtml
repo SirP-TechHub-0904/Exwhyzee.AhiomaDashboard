@@ -1,0 +1,35 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.User.Pages.Account.InvalidModel
+@{
+}
+<style>
+    .nav-tabs-custom .nav-item .nav-link.active {
+        color: #556ee6;
+        background-color: #e3e6e9;
+    }
+
+    .nav-tabs-custom .nav-item .nav-link {
+        border: none;
+        background-color: #55586f;
+    }
+</style>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 text-center">
+
+                        <h3 class="card-title">
+                            Invalid Request
+                        </h3>
+                        @await Html.PartialAsync("_StatusMessage", Model.StatusMessage)
+
+                        <a asp-page="./Index">Go to Account</a>
+                    </div>                   
+                </div>              
+            </div>
+
+        </div>
+    </div> <!-- end col -->
+</div>

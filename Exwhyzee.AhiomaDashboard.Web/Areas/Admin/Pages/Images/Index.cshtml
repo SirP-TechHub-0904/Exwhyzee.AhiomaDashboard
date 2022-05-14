@@ -1,0 +1,158 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.Admin.Pages.Images.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+
+                    <h3 class="card-title">
+                        Images
+
+                       
+                    </h3>
+                </div>
+                <div class="card-body">
+
+
+                    <div id="datatable_wrapper" class="dataTables_wrapper table-responsive dt-bootstrap4 no-footer">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table id="datatable7" class="table table-bordered dt-responsive nowrap dataTable no-footer dtr-inline" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
+                                    <thead>
+                                        <tr role="row">
+                                            <th>SN</th>
+                                            <th>
+                                                Image
+                                            </th>
+                                            <th>
+                                               Image ID
+                                            </th>
+                                            <th>
+                                                T Size
+                                            </th>
+                                            <th>
+                                                P Size
+                                            </th>
+                                            <th>
+                                                Image Name
+                                            </th>
+                                            <th>
+                                                Image
+                                            </th>
+                                            <th>
+                                                Date
+                                            </th>
+                                        </tr>
+                                    </thead>
+
+                                    @{
+                                        int sno = 0;
+                                    }
+
+
+                                    <tbody>
+
+                                        @foreach (var item in Model.Picture)
+                                        {
+                                        <tr>
+                                            <td>
+                                                @{ sno++; }
+                                                @sno
+                                            </td>
+
+                                            <td>
+
+                                                @if (item.PictureUrlThumbnail != null)
+                                                {
+                                        <a href="https://ahioma.com/@item.PictureUrl" target="_blank">
+                                            <img src="https://ahioma.com/@item.PictureUrlThumbnail" class="img-responsive" alt="" style="max-height:50px;" />
+                                        </a>}
+                                            </td>
+                                            <td>
+                                                <a asp-page="./ImageValidate" target="_blank" asp-route-id="@item.ProductId">
+                                                  @Html.DisplayFor(modelItem => item.Id)
+                                                </a>
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.ThumbnailImageSize) kb
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.ImageSize) kb
+                                            </td>
+                                            <td>
+                                                <a href="/@item.PictureUrlThumbnail" target="_blank">
+                                                    @Html.DisplayFor(modelItem => item.PictureUrlThumbnail) <span class="text-danger">(@item.ThumbnailImageSize)</span>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a href="/@item.PictureUrl" target="_blank">
+                                                    @Html.DisplayFor(modelItem => item.PictureUrl)<span class="text-danger"> (@item.ImageSize)</span>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.CreatedDateTimeUtc)
+                                            </td>
+                                        </tr>
+                                        }
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <br />
+                        @{
+                            int? p = 0;
+                            if (Model.CurrentPage == null)
+                            {
+                                p = 1;
+                            }
+                            else
+                            {
+                                p = Model.CurrentPage;
+                            }
+                        }
+                        page @p of @Model.TotalPages pages (@Model.Count items)
+
+                        @{
+                            var prevDisabled = !Model.Picture.HasPreviousPage ? "disabled" : "";
+                            var nextDisabled = !Model.Picture.HasNextPage ? "disabled" : "";
+                        }
+
+                        <a asp-page="./Index"
+                           asp-route-pageIndex="@(Model.Picture.PageIndex - 1)"
+                           asp-route-searchString="@Model.SearchString"
+                           class="btn btn-primary @prevDisabled">
+                            Previous
+                        </a>
+                        <a asp-page="./Index"
+                           asp-route-pageIndex="@(Model.Picture.PageIndex + 1)"
+                           asp-route-searchString="@Model.SearchString"
+                           class="btn btn-primary @nextDisabled">
+                            Next
+                        </a>
+
+                    </div>
+
+                </div>
+
+                <div class="card-body">
+
+                    <form method="post" id="UpdateImageSize" asp-page-handler="UpdateImageSize">
+
+                        <input type="text" name="Sid" placeholder="Start Id"/>
+                        <input type="text" name="Eid" placeholder="End Id"/>
+
+                        <input type="submit" value="Validate" class="btn btn-danger btn-xs" style="padding:2px;margin:1px;" />
+
+                    </form>
+                </div>
+            </div>
+        </div> <!-- end col -->
+    </div>
+

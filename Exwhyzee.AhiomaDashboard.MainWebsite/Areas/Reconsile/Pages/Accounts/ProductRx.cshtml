@@ -1,0 +1,35 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Areas.Reconsile.Pages.Accounts.ProductRxModel
+@{
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+
+                <h3 class="card-title">
+                    Remove Product
+
+                </h3>
+
+            </div>
+            <div class="card-body table-responsive">
+                @TempData["success"]
+                @TempData["error"]
+                <form method="post">
+                    <div class="form-actions no-color">
+                        <p>
+                            <input type="text" name="pid" placeholder="Product ID" class="form-control" /><br />
+                            <br />
+                            <input type="submit" value="delete" class="btn btn-primary" /> <br />
+
+                        </p>
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+</div>

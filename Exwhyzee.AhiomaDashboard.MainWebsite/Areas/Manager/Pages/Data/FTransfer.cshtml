@@ -1,0 +1,131 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Areas.Manager.Pages.Data.FTransferModel
+@{
+}
+@{
+    ViewData["Title"] = "Transfer";
+}
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+
+                <h3 class="card-title">
+                    All Transfer
+
+                </h3>
+              
+            </div>
+            <div class="card-body table-responsive">
+                <table border="1" style="padding:4px;text-align:center;vertical-align:middle;" class="table table-bordered dt-responsive nowrap dataTable no-footer">
+                    <tr>
+                        <th>Status</th>
+                        <th>Message</th>
+                        <th>Total</th>
+                        <th>Page Current</th>
+                        <th>Page Total</th>
+
+                    </tr>
+                    <tr>
+                        <td>@Model.FetchTransfer.status</td>
+                        <td> @Model.FetchTransfer.message</td>
+                        <td>@Model.FetchTransfer.meta.page_info.total</td>
+                        <td> @Model.FetchTransfer.meta.page_info.current_page</td>
+                        <td>@Model.FetchTransfer.meta.page_info.total_pages</td>
+
+                    </tr>
+                </table>
+
+                <h5>New Fetch</h5>
+                <form asp-page="./FTransfer" method="get">
+                    <div class="form-actions no-color">
+                        <div class="row">
+
+                            <div class="col-md-4">
+                                <input type="number" name="page" placeholder="Page number" class="form-control" />
+                            </div>
+                            <div class="col-md-4">
+                                <select class="form-control" name="status">
+                                    <option value="All">All</option>
+                                    <option value="failed">Failed</option>
+                                    <option value="successful">Successful</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4"> <input type="submit" value="Fetch" class="btn btn-primary" /></div>
+
+
+                        </div>
+                    </div>
+                </form>
+
+                <div id="datatable_wrapper" class="dataTables_wrapper table-responsive dt-bootstrap4 no-footer">
+                    <div class="row">
+                        <div class="col-md-12 table-responsive">
+                            <table id="datatable7" class="table table-bordered dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
+
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            S/N
+                                        </th>
+
+                                        <th>
+                                            Id
+                                        </th>
+                                        <th>
+                                            Acc No
+                                        </th>
+                                        <th>
+                                            Bank
+                                        </th>
+
+                                        <th>
+                                            Name
+                                        </th>
+                                        <th>
+                                            Amount
+                                        </th>
+                                        <th>
+                                            Fee
+                                        </th>
+
+                                        <th>
+                                            Status
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                @{
+                                    int sno = 0;
+                                }
+                                <tbody>
+
+                                    @foreach (var item in Model.FetchTransfer.data)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @{ sno++; }
+                                                @sno
+                                            </td>
+                                            <td>@item.id</td>
+                                            <td>@item.account_number</td>
+                                            <td>@item.bank_name</td>
+                                            <td>@item.full_name</td>
+                                            <td>@item.amount</td>
+                                            <td>@item.fee</td>
+                                            <td>@item.status</td>
+                                            <td>Details</td>
+
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,127 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Areas.UserManager.Pages.ManageAccounts.StoreOrdersModel
+@{
+}
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+
+                    <h3 class="card-title">
+                        All Orders
+
+                    </h3>
+                    @if (TempData["error"] != null)
+                    {
+                        <div class="alert alert-danger alert-dismissible">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>@TempData["error"]</strong>
+                        </div>
+                    }
+                    @if (TempData["success"] != null)
+                    {
+                        <div class="alert alert-success alert-dismissible">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>@TempData["success"]</strong>
+                        </div>
+                    }
+                </div>
+                <div class="card-body table-responsive">
+
+
+                    <div id="datatable_wrapper" class="dataTables_wrapper table-responsive dt-bootstrap4 no-footer">
+                        <div class="row">
+                            <div class="col-md-12 table-responsive">
+                                <table id="datatable7" class="table table-bordered dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
+
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                S/N
+                                            </th>
+                                            <th>Date</th>
+                                            <th>Order ID</th>
+                                            <th>
+                                                Transaction ID
+                                            </th>
+                                            <th>Customer</th>
+                                            <th>
+                                                Product
+                                            </th>
+                                            <th>Image</th>
+                                            <th>
+                                                Amount
+                                            </th>
+
+                                            <th>
+                                                Quantity
+                                            </th>
+                                            <th>
+                                                Status
+                                            </th>
+
+                                        </tr>
+                                    </thead>
+                                    @{
+                                        int sno = 0;
+                                    }
+                                    <tbody>
+                                        @foreach (var item in Model.Orders)
+                                        {
+                                        <tr>
+                                            <td>
+                                                @{ sno++; }
+                                                @sno
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.DateOfOrder)
+                                            </td>
+
+                                            <td>
+                                                <a asp-page="./OrderDetails" asp-route-id="@item.Id">
+                                                    @Html.DisplayFor(modelItem => item.OrderId)
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a asp-page="./TransactionInfo" asp-route-id="@item.ReferenceId" asp-route-oid="@item.Id">
+                                                    @Html.DisplayFor(modelItem => item.ReferenceId)
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a asp-page="./CustomerInfo" asp-route-id="@item.Order.UserProfileId">
+                                                    @Html.DisplayFor(modelItem => item.Order.UserProfile.Fullname)<br />
+                                                    @Html.DisplayFor(modelItem => item.Order.UserProfile.IdNumber)
+                                                </a>
+                                            </td>
+
+                                            <td>
+                                                <a asp-page="./ProductInfo" asp-route-id="@item.ProductId">
+                                                    @Html.DisplayFor(modelItem => item.Product.Name)
+                                                </a>
+                                            </td>
+                                            <td>
+                                                
+                                                <img src="~/@item.Product.ProductPictures.FirstOrDefault().PicturePathThumbnail" style="height:50px;"/>
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Product.Price)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Quantity)
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Status)
+                                            </td>
+                                            
+                                        </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

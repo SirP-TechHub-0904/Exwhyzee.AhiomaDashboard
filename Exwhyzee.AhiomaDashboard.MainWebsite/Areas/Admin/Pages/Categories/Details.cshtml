@@ -1,0 +1,233 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Areas.Admin.Pages.Categories.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+
+                    <h3 class="card-title">
+                      Sub Category on @Html.DisplayFor(model => model.Category.Name)  Category  
+                        <a data-toggle="modal" data-target=".bs-example-modal-sm" style="cursor: pointer;" class="btn btn-primary">Click for Details</a>
+
+
+                    </h3>
+                    
+
+                </div>
+                <div class="card-body">
+                    <a asp-page="SubCreate"  asp-route-id="@Model.Category.Id" class="btn btn-primary">Create New Sub Category</a>
+
+
+                    <div id="datatable_wrapper" class="dataTables_wrapper table-responsive dt-bootstrap4 no-footer">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table id="datatable7" class="table table-bordered dt-responsive nowrap dataTable no-footer dtr-inline" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
+                                    <thead>
+                                        <tr role="row">
+                                            <th>SN</th>
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.SubCategory[0].Name)
+                                            </th>
+
+                                            <th>
+                                                @Html.DisplayNameFor(model => model.SubCategory[0].Status)
+                                            </th>
+                                        </tr>
+                                    </thead>
+
+                                    @{
+                                        int sno = 0;
+                                    }
+
+
+                                    <tbody>
+
+                                        @foreach (var item in Model.SubCategory)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @{ sno++; }
+                                                    @sno
+                                                </td>
+                                                <td>
+                                                    <a asp-page="./SubDetails" asp-route-id="@item.Id">
+                                                        @Html.DisplayFor(modelItem => item.Name)
+                                                    </a>
+                                                </td>
+
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Status)
+                                                </td>
+
+                                            </tr>
+                                        }
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div> <!-- end col -->
+    </div>
+
+
+
+
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title mt-0" id="mySmallModalLabel">Category Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div>
+                  
+                    <dl class="dl-horizontal">
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Category.Name)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Category.Name)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Category.Description)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Category.Description)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Category.Status)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Category.Status)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Category.MetaKeywords)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Category.MetaKeywords)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Category.MetaDescription)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Category.MetaDescription)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Category.MetaTitle)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Category.MetaTitle)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Category.ShowOnHomePage)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Category.ShowOnHomePage)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Category.FeaturedProductsOnHomaPage)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Category.FeaturedProductsOnHomaPage)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Category.ShowOnSearchBox)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Category.ShowOnSearchBox)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Category.SearchBoxDisplayOrder)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Category.SearchBoxDisplayOrder)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Category.IncludeInTopMenu)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Category.IncludeInTopMenu)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Category.LimitedToStores)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Category.LimitedToStores)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Category.Stores)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Category.Stores)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Category.Published)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Category.Published)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Category.DisplayOrder)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Category.DisplayOrder)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Category.Flag)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Category.Flag)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Category.Icon)
+                        </dt>
+                        <dd>
+                           <i class="@Model.Category.Icon"></i>
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Category.CreatedOnUtc)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Category.CreatedOnUtc)
+                        </dd>
+                        <dt>
+                            @Html.DisplayNameFor(model => model.Category.UpdatedOnUtc)
+                        </dt>
+                        <dd>
+                            @Html.DisplayFor(model => model.Category.UpdatedOnUtc)
+                        </dd>
+                        <dt>
+                            image path
+                        </dt>
+                        <dd>
+                            <img src="~/@Model.Category.ImagePath" height="100" />
+                        </dd>
+                        <dt>
+                           image url
+                        </dt>
+                        <dd>
+                            <img src="@Model.Category.ImageUrl" height="100" />
+                        </dd>
+                    </dl>
+                </div>
+                <div>
+                    <a asp-page="./Edit" asp-route-id="@Model.Category.Id">Edit</a> |
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

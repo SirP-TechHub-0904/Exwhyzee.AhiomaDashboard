@@ -1,0 +1,279 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.UserManager.Pages.Users.DetailsModel
+
+@{ ViewData["Title"] = "Details"; }
+
+<div class="row">
+
+
+    <div class="col-lg-12">
+        <div class="card">
+            @if (TempData["success"] != null)
+            {
+        <div class="alert alert-success alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>@TempData["success"]</strong>
+        </div>}
+            <div class="card-body">
+                <h6 style="padding:0;font-size:10px;">Always check the transaction history before approval</h6>
+                <div class="button-items">
+
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("mSuperAdmin") || User.IsInRole("SubAdmin"))
+                    {
+        <a asp-page="./Edit" asp-route-id="@Model.UserProfile.Id">
+            <button type="button" class="btn btn-primary btn-rounded waves-effect waves-light">Edit</button>
+        </a>}
+                    @if (Model.UserProfile.User.EmailConfirmed == false)
+                    {
+        <a asp-page="./VerifyEmail" asp-route-uid="@Model.UserProfile.UserId">
+            <button type="button" class="btn btn-primary btn-rounded waves-effect waves-light">Confirm Email</button>
+        </a>}
+
+                    @if (Model.UserProfile.User.LockoutEnabled == true)
+                    {
+        <a asp-page="./Unlock" asp-route-uid="@Model.UserProfile.UserId">
+            <button type="button" class="btn btn-danger btn-rounded waves-effect waves-light">Account Locked</button>
+        </a>}
+                    @if (Model.UserProfile.User.PhoneNumberConfirmed == false)
+                    {
+        <a asp-page="./VerifyPhone" asp-route-uid="@Model.UserProfile.UserId">
+            <button type="button" class="btn btn-primary btn-rounded waves-effect waves-light">Confirm Phone</button>
+        </a>}
+                    <a asp-page="./UpdateUserStatus" asp-route-uid="@Model.UserProfile.UserId">
+                        <button type="button" class="btn btn-primary btn-rounded waves-effect waves-light">Update Status</button>
+                    </a>
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("mSuperAdmin"))
+                    {
+        <a asp-page="./UpdateUserPermission" asp-route-uid="@Model.UserProfile.UserId" asp-route-fullname="@Model.UserProfile.Fullname">
+            <button type="button" class="btn btn-secondary btn-rounded waves-effect waves-light">Update User Permission</button>
+        </a>}
+                    @if (TempData["soa"] != null)
+                    {
+        <a asp-page="/Dashboard/Index" asp-area="SOA" asp-route-uid="@Model.UserProfile.UserId">
+            <button type="button" class="btn btn-warning btn-rounded waves-effect waves-light">SOA Dashboard</button>
+        </a>}
+                    @if (TempData["store"] != null)
+                    {
+        <a asp-page="./UpdateShopStatus" asp-route-uid="@Model.UserProfile.UserId">
+            <button type="button" class="btn btn-danger btn-rounded waves-effect waves-light">Update Shop</button>
+        </a>
+                        <a asp-page="/Dashboard/Index" asp-area="Store" asp-route-uid="@Model.UserProfile.UserId">
+                            <button type="button" class="btn btn-warning btn-rounded waves-effect waves-light">SHOP Dashboard</button>
+                        </a>}
+
+                    @if (Model.UserProfile.ActivateForAdvert == true)
+                    {
+        <a>
+            <button type="button" class="btn btn-success btn-rounded waves-effect waves-light">Advert Enabled</button>
+        </a> }
+    else
+    {
+        <a>
+            <button type="button" class="btn btn-danger btn-rounded waves-effect waves-light">Advert Disabled</button>
+        </a>}
+
+
+
+                </div>
+
+
+                <div class="text-muted mt-4">
+                    <h4>Profile <button class="btn btn-primary">@Model.UserProfile.Status</button></h4>
+                    <h4>ID <button type="button" class="btn btn-danger btn-rounded waves-effect waves-light">@Model.UserProfile.IdNumber</button></h4>
+                    <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Name:</strong> @Model.UserProfile.Fullname</p>
+                    <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Email:</strong> @Model.UserProfile.User.Email</p>
+                    <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Phone:</strong> @Model.UserProfile.User.PhoneNumber</p>
+                    <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Date Registered:</strong> @Model.UserProfile.DateRegistered</p>
+                    <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>First Time Login:</strong> @Model.UserProfile.FirstTimeLogin</p>
+                    <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Roles:</strong> @Model.UserProfile.Roles</p>
+
+                    <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>EmailConfirmed:</strong> @Model.UserProfile.User.EmailConfirmed</p>
+                    <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Two Factor Enabled:</strong> @Model.UserProfile.User.TwoFactorEnabled</p>
+
+                    <h4>Bank Information</h4>
+                    <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Bank Name:</strong> @Model.UserProfile.BankName</p>
+                    <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Account Name:</strong> @Model.UserProfile.AccountName</p>
+                    <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Account Number:</strong> @Model.UserProfile.AccountNumber</p>
+
+
+                    <h4>KYC</h4>
+                    <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Profile Image:</strong> <img src="https://manager.ahioma.com/@Model.UserProfile.ProfileUrl" /></p>
+                    <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>ID Card Back:</strong> <img src="https://manager.ahioma.com/@Model.UserProfile.IDCardBack" /></p>
+                    <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>ID Card Front:</strong> <img src="https://manager.ahioma.com/@Model.UserProfile.IDCardFront" /></p>
+
+                    <h4>Ledger Balance (&#8358;@Model.Wallet.Balance)</h4>
+                    <h4>Available Balance (&#8358;@Model.Wallet.WithdrawBalance)</h4>
+                    <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Creation Time:</strong> @Model.Wallet.CreationTime</p>
+                    <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Last Update Time:</strong> @Model.Wallet.LastUpdateTime</p>
+                    <h4>User Last 15 Transactions</h4>
+                    @await Component.InvokeAsync("UserLast15Transactions", new { uid = Model.UserProfile.IdNumber })
+
+
+                    <h4>Address</h4>
+                    @foreach (var i in Model.UserProfile.UserAddresses)
+                    {
+        <h6>Address One</h6>
+                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Address:</strong> @i.Address</p>
+                                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>State:</strong> @i.State</p>
+                                                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Local Government:</strong> @i.LocalGovernment</p>
+                                                                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Longitude:</strong> @i.Longitude</p>
+                                                                                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Latitiude:</strong> @i.Latitiude</p>
+                                                                                                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Zipcode:</strong> @i.Zipcode</p>}
+                    @if (Model.Tenant != null)
+                    {
+        <h4>Shop Information</h4>
+                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong> Shop Owner:</strong> @Html.DisplayFor(model => model.Tenant.UserProfile.Fullname)</p>
+                                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong> Shop Owner Email:</strong> @Html.DisplayFor(model => model.Tenant.UserProfile.User.Email)</p>
+                                                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong> Shop Owner Phone:</strong> @Html.DisplayFor(model => model.Tenant.UserProfile.User.PhoneNumber)</p>
+                                                                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong> Business Name:</strong> @Html.DisplayFor(model => model.Tenant.BusinessName)</p>
+                                                                                        <p>
+                                                                                            <i class="fa fa-chevron-right text-primary mr-1"></i> <strong> Ahioma Shop:</strong>  <a asp-page="/Info/ShopPage" asp-route-name="@Model.Tenant.TenentHandle">
+                                                                                                http://ahioma.com/@Html.DisplayFor(model => model.Tenant.TenentHandle)
+                                                                                            </a>
+                                                                                        </p>
+                                                                                                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong> Business Description:</strong> @Html.Raw(Model.Tenant.BusinessDescription)</p>
+                                                                                                                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong> Date Created:</strong> @Html.DisplayFor(model => model.Tenant.CreationTime)</p>
+                                                                                                                                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong> Market:</strong> @Html.DisplayFor(model => model.Tenant.Market.Name)</p>
+                                                                                                                                                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong> SOA:</strong> @await Component.InvokeAsync("FullNameAndID", new { uid = Model.Tenant.CreationUserId })</p>}
+
+                    <h4>Social Media</h4>
+                    @foreach (var i in Model.UserProfile.UserProfileSocialMedias)
+                    {
+        <h6>@i.Name</h6>
+                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Link:</strong> @i.Uri</p>}
+
+
+                    <h4>Referee</h4>
+                    @foreach (var i in Model.UserProfile.UserReferees)
+                    {
+        <h6>@i.FullName</h6>
+                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>ContactAddress:</strong> @i.ContactAddress</p>
+                                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Phone Number:</strong> @i.PhoneNumber</p>
+                                                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>EmailAddress:</strong> @i.EmailAddress</p>
+                                                                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Created Date:</strong> @i.CreatedDateUtc</p>
+                                                                                        <p><i class="fa fa-chevron-right text-primary mr-1"></i> <strong>Update Date:</strong> @i.UpdateDateUtc</p>}
+                </div>
+
+
+            </div>
+            @if (User.Identity.IsAuthenticated && User.IsInRole("mSuperAdmin") || User.IsInRole("AccountManager"))
+            {
+
+                <style>
+                    .enable-item .h5, .enable-item h5 {
+                        font-size: 0.61563rem;
+                    }
+                </style>
+        <div style="padding:30px;">
+            <div class="row enable-item">
+
+                <div class="col-md-2">
+                    <form method="post" id="DisableAhiaPay" asp-page-handler="DisableAhiaPay" style="margin-bottom:30px;border-bottom:2px solid #ff6a00;">
+                        <h5>
+                            Disable AhiaPay  @Html.DisplayFor(model => model.UserProfile.DisableAhiaPay)
+                        </h5>
+                        <input type="hidden" value="@Model.Uid" name="RUid" />
+
+                        <input type="submit" value="Update" class="btn btn-danger btn-xs" style="padding:2px;margin:1px;" />
+
+                    </form>
+                </div> <div class="col-md-2">
+                    <form method="post" id="DisableAhiaPayTransfer" asp-page-handler="DisableAhiaPayTransfer" style="margin-bottom:30px;border-bottom:2px solid #ff6a00;">
+                        <h5 style="font-size:0.5rem;">
+                            Disable AhiaPay Transfer  @Html.DisplayFor(model => model.UserProfile.DisableAhiaPayTransfer)
+                        </h5>
+                        <input type="hidden" value="@Model.Uid" name="RUid" />
+
+                        <input type="submit" value="Update" class="btn btn-danger btn-xs" style="padding:2px;margin:1px;" />
+
+                    </form>
+                </div> <div class="col-md-2">
+                    <form method="post" id="DisableBankTransfer" asp-page-handler="DisableBankTransfer" style="margin-bottom:30px;border-bottom:2px solid #ff6a00;">
+                        <h5>
+                            Disable Bank Transfer  @Html.DisplayFor(model => model.UserProfile.DisableBankTransfer)
+                        </h5>
+                        <input type="hidden" value="@Model.Uid" name="RUid" />
+
+                        <input type="submit" value="Update" class="btn btn-danger btn-xs" style="padding:2px;margin:1px;" />
+
+                    </form>
+                </div> <div class="col-md-2">
+                    <form method="post" id="DisableDeposit" asp-page-handler="DisableDeposit" style="margin-bottom:30px;border-bottom:2px solid #ff6a00;">
+                        <h5>
+                            Disable Deposit  @Html.DisplayFor(model => model.UserProfile.DisableDeposit)
+                        </h5>
+                        <input type="hidden" value="@Model.Uid" name="RUid" />
+
+                        <input type="submit" value="Update" class="btn btn-danger btn-xs" style="padding:2px;margin:1px;" />
+
+                    </form>
+                </div> <div class="col-md-2">
+                    <form method="post" id="DisableBuy" asp-page-handler="DisableBuy" style="margin-bottom:30px;border-bottom:2px solid #ff6a00;">
+                        <h5>
+                            Disable Buy  @Html.DisplayFor(model => model.UserProfile.DisableBuy)
+                        </h5>
+                        <input type="hidden" value="@Model.Uid" name="RUid" />
+
+                        <input type="submit" value="Update" class="btn btn-danger btn-xs" style="padding:2px;margin:1px;" />
+
+                    </form>
+                </div>
+
+                <div class="col-md-2">
+                    <form method="post" id="DisableAds" asp-page-handler="DisableAds" style="margin-bottom:30px;border-bottom:2px solid #ff6a00;">
+                        <h5>
+                            Disable ADs Cr  @Html.DisplayFor(model => model.UserProfile.DisableAdsCrediting)
+                        </h5>
+                        <input type="hidden" value="@Model.Uid" name="RUid" />
+
+                        <input type="submit" value="Update" class="btn btn-danger btn-xs" style="padding:2px;margin:1px;" />
+
+                    </form>
+                </div>
+            </div>
+        </div> //mail
+        <div style="padding:30px;">
+            <div class="row">
+
+                <div class="col-md-12">
+                    <h2>Send Mail to User</h2>
+                    <form method="post" id="SendMail" asp-page-handler="SendMail">
+                        <input hidden type="hidden" value="@Model.UserProfile.UserId" name="RUid" />
+                        <input type="hidden" value="@Model.UserProfile.Fullname" name="FullUserEmail" />
+                        <input type="hidden" value="@Model.UserProfile.User.Email" name="UserEmail" />
+                        <div class="form-group">
+                            <label asp-for="MailSubject" class="control-label">Subject</label>
+                            <input asp-for="MailSubject" class="form-control" />
+                            <span asp-validation-for="MailSubject" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="TitleMail" class="control-label">Title</label>
+                            <input asp-for="TitleMail" class="form-control" />
+                            <span asp-validation-for="TitleMail" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="MailContent" class="control-label">Mail Content</label>
+                            <textarea asp-for="MailContent" class="form-control" id="mytextarea"></textarea>
+                            <span asp-validation-for="MailContent" class="text-danger"></span>
+                        </div>
+
+                        <input type="submit" value="Send Mail" class="btn btn-danger btn-xs" style="padding:2px;margin:1px;" />
+
+
+                    </form>
+                </div>
+            </div>
+        </div>
+                    
+                    
+                    }
+                </div>
+            </div>
+        </div>
+                  
+
+
+
+
+
+

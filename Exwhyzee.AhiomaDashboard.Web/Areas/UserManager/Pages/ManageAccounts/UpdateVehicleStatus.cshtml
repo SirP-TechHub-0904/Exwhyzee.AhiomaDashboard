@@ -1,0 +1,52 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.UserManager.Pages.ManageAccounts.UpdateVehicleStatusModel
+@{
+}
+
+<div class="row">
+    <div class="card-columns mx-auto d-flex justify-content-center col-12">
+
+        <div class="card">
+            <div class="card-header">
+
+                <h3 class="card-title">
+                    Update Vehicle Status (Name: @Model.Vehicle.VehicleName) <button class="btn-primary btn-sm">(Company: @Model.Vehicle.LogisticProfile.CompanyName)</button>
+
+
+                </h3>
+                @if (TempData["success"] != null)
+                {
+                    <div class="alert alert-danger alert-dismissible">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>@TempData["success"]</strong>
+                    </div>
+                }
+                
+               
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Vehicle.Id" value="@Model.Vehicle.Id" />
+                    <div class="form-group">
+                        <label class="control-label">User Status</label>
+                        @Html.DropDownListFor(model => model.Vehicle.VehicleStatus, new SelectList(Enum.GetValues(typeof(Exwhyzee.Enums.VehicleEnum))), new { @class = "form-control" })
+
+                    </div>
+                   
+                    <div class="form-group">
+                        <input type="submit" value="Update" class="btn btn-primary" />
+                        <a asp-page="Index" class="btn btn-outline-primary waves-effect waves-light">Back</a>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

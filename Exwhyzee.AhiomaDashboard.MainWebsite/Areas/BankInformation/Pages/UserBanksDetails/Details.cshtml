@@ -1,0 +1,61 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Areas.BankInformation.Pages.UserBanksDetails.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>UserAddress</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserAddress.Address)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserAddress.Address)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UserAddress.State)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserAddress.State)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UserAddress.LocalGovernment)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserAddress.LocalGovernment)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UserAddress.Longitude)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserAddress.Longitude)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UserAddress.Latitiude)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserAddress.Latitiude)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UserAddress.Zipcode)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserAddress.Zipcode)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UserAddress.UserId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UserAddress.UserId)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.UserAddress.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

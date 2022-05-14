@@ -1,0 +1,7 @@
+﻿<div class="sidenav-profile">
+    <div class="user-profile"><img src="@TempData["image"]" alt=""></div>
+    <div class="user-info">
+        <h6 class="user-name mb-0">@TempData["name"] (@TempData["IDNUMBER"])</h6>
+        <p class="available-balance">AhiaPay <span>&#8358;<span class="counter">@Convert.ToInt32(TempData["balance"])</span></span></p>
+    </div>
+</div>

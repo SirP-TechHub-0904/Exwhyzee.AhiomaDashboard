@@ -1,0 +1,47 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.Admin.Pages.FaqPages.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>FaqQuestion</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FaqQuestion.Title)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FaqQuestion.Title)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FaqQuestion.Publish)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FaqQuestion.Publish)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FaqQuestion.Answer)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FaqQuestion.Answer)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.FaqQuestion.DateUtc)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FaqQuestion.DateUtc)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="FaqQuestion.Id" />
+        
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

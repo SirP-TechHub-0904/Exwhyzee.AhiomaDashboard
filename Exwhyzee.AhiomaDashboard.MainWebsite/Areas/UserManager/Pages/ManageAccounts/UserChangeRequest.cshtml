@@ -1,0 +1,107 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Areas.UserManager.Pages.Users.UserChangeRequestModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+
+                <h3 class="card-title">
+                    Change of Email or Phone Number Request (@Model.Data.Count())
+
+                </h3>
+
+
+
+                <div class="card-body">
+
+
+                    <div id="datatable_wrapper" class="dataTables_wrapper table-responsive dt-bootstrap4 no-footer">
+                        <div class="row">
+                            <span class="col-sm-12">
+                                <table id="datatable7" class="table table-bordered dt-responsive nowrap dataTable no-footer dtr-inline" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
+                                    <thead>
+                                        <tr role="row">
+                                            <th>S/N</th>
+
+                                            <th>Date</th>
+                                            <th>
+                                                Full Name
+                                            </th>
+                                            <th>
+                                                Email (old/new/status)
+                                            </th>
+                                            <th>
+                                                Phone (old/new)
+                                            </th>
+                                            <th>
+
+                                            </th>
+                                        </tr>
+                                    </thead>
+
+                                    @{
+                                        int sno = 0;
+                                    }
+                                    <tbody>
+
+                                        @foreach (var item in Model.Data)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @{ sno++; }
+                                                    @sno
+                                                </td>
+
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Date)
+                                                </td>
+                                                <td>
+                                                    @Html.DisplayFor(modelItem => item.Profile.Fullname)
+                                                </td>
+                                                <td>
+                                                    <span class="btn-danger btn-xs">@Html.DisplayFor(modelItem => item.OldMail)</span>  <br />
+                                                    <span class="btn-success btn-xs">@Html.DisplayFor(modelItem => item.NewMail)</span>
+                                                    <br />   <span class="btn-primary btn-xs">@Html.DisplayFor(modelItem => item.EmailStatus)</span>
+                                                </td>
+                                                <td>
+                                                    <span class="btn-danger btn-xs">
+                                                        @Html.DisplayFor(modelItem => item.OldPhone)
+                                                    </span><br />
+                                                    <span class="btn-success btn-xs">
+                                                        @Html.DisplayFor(modelItem => item.NewPhone)
+                                                    </span>
+                                                    <br />   <span class="btn-primary btn-xs">@Html.DisplayFor(modelItem => item.PhoneStatus)</span>
+
+                                                </td>
+
+                                                <td>
+
+                                                    <a asp-page="./ComfirmChange" asp-route-id="@item.Id">
+                                                        Confirm
+                                                    </a>
+
+
+
+                                                </td>
+
+                                            </tr>
+                                        }
+
+
+                                    </tbody>
+                                </table>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div> <!-- end col -->
+</div>
+

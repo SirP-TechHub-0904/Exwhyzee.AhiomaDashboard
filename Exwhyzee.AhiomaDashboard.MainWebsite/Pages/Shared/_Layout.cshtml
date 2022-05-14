@@ -1,0 +1,39 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ahioma - Your Virtual Market</title>
+   
+
+    <link href="~/images/NEW-VF.png" rel="shortcut icon">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+   
+    <div class="container">
+        <div style="margin:40px auto;padding:40px;">
+            <img src="~/images/ahioma_logo.png" style="text-align:center;margin:0 auto !important;" />
+            <div>
+                <h2>Something Happened.</h2>
+                <br />
+                <a asp-page="/Index" class="btn btn-primary">Go to Home</a>
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2021 - Ahioma 
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

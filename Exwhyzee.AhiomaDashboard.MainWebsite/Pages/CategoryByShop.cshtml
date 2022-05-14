@@ -1,0 +1,468 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Pages.CategoryByShopModel
+@{
+    ViewData["Title"] = "Category";
+    Layout = "/Pages/Shared/_WebLayout.cshtml";
+}
+@section StyleMain {
+    <style>
+        /* @@media (min-width: 1261px) {
+            .productCarousel-slide {
+                width: 17%;
+            }
+        }*/
+    </style>
+
+}
+<partial name="_header_One" />
+<div class="hidden-lg hidden-md">
+    <div class="">
+        <div class="section" style="padding-top:0;">
+            <img src="~@Model.Tenant.BannerUri" alt="@Model.Tenant.BusinessName" style="width:100%;" class="img-responsive" />
+
+        </div>
+    </div>
+    <div class="container">
+        <div class="section">
+            <h5 class="" style="font-size:18px;color:#ff6a00;font-weight:900;text-align:center;text-shadow:1px 1px 1px #3a3535;">@Model.Tenant.BusinessName Shop (@Model.Tenant.Market.Name)</h5>
+            <h6 class="" style="font-size:14px;color:#ff6a00;font-weight:900;text-align:center;">@@ @Model.Tenant.TenantAddresses.FirstOrDefault().Address</h6>
+
+        </div>
+    </div>
+    <div class="container" style="width:90%;">
+        <div class="section">
+
+            <div class="row " style="margin-bottom:0px;">
+                <div class="col s12 pad-0">
+                    <div class="search-bar">
+                        <nav class="ui-forms">
+                            <div class="nav-wrapper">
+
+
+                                <form method="get" asp-page="/Info/ShopSearch" asp-area="">
+
+                                    <div class="input-field">
+                                        <input hidden name="name" value="@Model.Tenant.TenentHandle" />
+                                        <input id="search" name="searchString" type="search" placeholder="Search Products in Shops" value="@TempData["search"]" required="">
+                                        <label for="search" class="active">
+                                            <button type="submit" style="background: none; color: inherit; border: none; padding: 0; font: inherit; cursor: pointer; outline: inherit;">
+                                                <i class="mdi mdi-magnify"></i>
+                                            </button>
+                                        </label>
+                                        <i class="material-icons mdi mdi-close"></i>
+                                    </div>
+                                </form>
+                            </div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="hidden-sm hidden-xs">
+
+    <div class="main-body clearfix">
+        <div class="">
+            <h3 class="" style="padding:5px 0 2px;color:#ff6a00;margin:6px auto 0px;text-align:center;">@Model.Tenant.BusinessName Shop (@Model.Tenant.Market.Name)</h3>
+            <h6 class="" style="padding:3px;color:#ff6a00;margin:1px auto;text-align:center;">@@ @Model.Tenant.TenantAddresses.FirstOrDefault().Address</h6>
+
+        </div>
+        <div class="clearfix"></div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col_qavo block-slideshow__left" style="text-align:center;background-color:#000000;color:#ffffff;">
+            <div class="row">
+                <div class="col-md-12">
+                    <nav class="navUser" style="">
+
+                        <ul class="navUser-section">
+
+                            <li class="navUser-item d-none d-sm-block">
+                                <a class="navUser-action" style="color:#ffffff;" asp-page="/Info/ShopPage" asp-route-customerRef="" asp-route-name="@Model.Tenant.TenentHandle"><i class="fa fa-shopping-bag"></i> Visit Shop</a>
+                            </li>
+                            <li class="navUser-item d-none d-sm-block">
+                                <a class="navUser-action" style="color:#ffffff;" href="#"><i class="fa fa-product-hunt"></i> Products</a>
+                            </li>
+                            <li class="navUser-item d-none d-sm-block">
+                                <a class="navUser-action" style="color:#ffffff;" href="#"><i class="fa fa-salesforce"></i> Top Sales</a>
+                            </li>
+                            <li class="navUser-item d-none d-sm-block">
+                                <a class="navUser-action" style="color:#ffffff;" href="#"><i class="fa fa-money-check"></i> Discount</a>
+                            </li>
+                            <li class="navUser-item d-none d-sm-block">
+                                <a class="navUser-action" style="color:#ffffff;" href="#"><i class="fa fa-search-plus"></i>  Reviews</a>
+                            </li>
+
+
+                        </ul>
+
+                    </nav>
+
+                </div>
+
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col_qavo block-slideshow__left" style="text-align:center;">
+            <img src="https://manager.ahioma.com/@Model.Tenant.BannerUri" data-thumb="@Model.Tenant.BannerUri" alt="@Model.Tenant.BusinessName" style="border-radius: 3%;margin:0 auto;text-align:center;max-height:400px;" />
+
+
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="main-body clearfix sidebar--left">
+            <div class="hidden-sm hidden-xs">
+                <h3 class="" style="padding:5px 0 2px;color:#ff6a00;margin:6px auto 0px;text-align:center;">
+                    <a href="">
+                        Category
+                        <i class="fa fa-caret-right"></i>
+                    </a>  @Model.Category.Name (@Model.Count items available)
+                </h3>
+
+            </div>
+            <div class="container-fluid">
+
+                <div class="row page">
+
+
+                    <main class="col-lg-12 col-md-12 page-content" id="product-listing-container">
+                        <div class="module clearfix ">
+
+
+                            <div id="" class="sb-listing-tabs container-fluid">
+
+                                <div class="ltabs-container d-flex">
+
+                                    <div class="ltabs-items-container ltabs-items-container--image">
+                                        <section>
+                                            <div class="productsByCategoryTabs-products--carousel ">
+                                                <section class="productCarousel products-list">
+
+                                                    <div class="">
+                                                        <div class="">
+                                                            @foreach (var data in Model.Product)
+                                                            {
+                                                                <div class="productCarousel-slide product-layout col-md-2 col-sm-6 col-xs-6">
+                                                                    <article class="product-item-container ">
+                                                                        <div class="left-block d-flex align-items-center justify-content-center">
+                                                                            @{
+
+                                                                                string PDesc = data.ShortDescription ?? "";
+                                                                                string pdesc = PDesc.Replace(' ', '-');
+                                                                            }
+
+                                                                            <a asp-page="/ProductDetails" asp-route-customerRef="" asp-route-id="@data.Id" asp-route-name="@pdesc" asp-route-shop="@data.Tenant.BusinessName.Replace(" ", "-")" asp-route-mktstate="" asp-route-mktaddress="" class="product-item-photo" tabindex="0">
+                                                                                @if (data.ProductPictures.FirstOrDefault() != null)
+                                                                                {
+                                                                                    <img class="img-responsive lazyautosizes lazyloaded" data-sizes="auto" src="https://manager.ahioma.com/@data.ProductPictures.FirstOrDefault().PictureUrlThumbnail" alt="" title="" sizes="50px">
+
+                                                                                }
+                                                                                else
+                                                                                {
+                                                                                    <img class="img-responsive lazyautosizes lazyloaded" data-sizes="auto" src="~/Products/Thumbnail/2020622-jhb.jpg" alt="" title="" sizes="50px">
+
+                                                                                }
+                                                                            </a>
+
+                                                                            <a asp-page="/ProductDetails" asp-route-customerRef="" asp-route-id="@data.Id" asp-route-name="@pdesc" class="quickview btn-button d-none d-md-block" data-animation="false" data-product-id="126" title="Quick view" tabindex="0"> <i class="fa fa-search"></i></a>
+
+                                                                        </div>
+
+                                                                        <div class="right-block">
+
+                                                                            <h4 class="card-title">
+                                                                                <a asp-page="/ProductDetails" asp-route-customerRef="" asp-route-id="@data.Id" asp-route-name="@pdesc" tabindex="0" title="@data.Name">@data.Name</a>
+                                                                            </h4>
+                                                                            <div class="price-section price-section--withoutTax ">
+
+                                                                                <span data-product-price-without-tax="" class="pull-left" style="font-weight:900;color:#f56615;font-family:'Times New Roman', Times, serif;font-size:12px;">&#8358;@data.Price.ToString("0")</span>
+
+
+                                                                            </div>
+                                                                            <div data-product-price-without-tax="" class="" title="@data.Tenant.Market.Name" style="font-weight:600;color:#3a3535;font-size:12px;">@data.Tenant.Market.ShortName</div>
+                                                                            <div data-product-price-without-tax="" class="" title="@data.Tenant.BusinessName" style="font-weight:600;color:#3a3535;font-size:12px;">
+                                                                                <a asp-page="/Info/ShopPage" asp-route-customerRef="" asp-route-name="@data.Tenant.TenentHandle">
+                                                                                    @if (data.Tenant.BusinessName.Length > 11)
+                                                                                    {
+                                                                                        @data.Tenant.BusinessName.Substring(0, 11) <text>...</text>
+                                                                                    }
+                                                                                    else
+                                                                                    {
+                                                                                        @data.Tenant.BusinessName
+                                                                                    }
+
+                                                                                </a>
+                                                                            </div>
+
+
+                                                                        </div>
+                                                                    </article>
+
+                                                                </div>
+                                                            }
+                                                        </div>
+
+
+
+
+                                                    </div>
+
+
+                                                </section>
+                                            </div>
+                                            <br />
+                                            <br />
+                                            @{
+                                                int? p = 0;
+                                                if (Model.CurrentPage == null)
+                                                {
+                                                    p = 1;
+                                                }
+                                                else
+                                                {
+                                                    p = Model.CurrentPage;
+                                                }
+                                            }
+                                            page @p of @Model.TotalPages pages (@Model.Count items)
+                                            @{
+
+                                                var prevDisabled = !Model.Product.HasPreviousPage ? "disabled" : "";
+                                                var nextDisabled = !Model.Product.HasNextPage ? "disabled" : "";
+
+                                            }
+                                            <br />
+                                            <a asp-page="./CategoryByShop"
+                                               asp-route-pageIndex="@(Model.Product.PageIndex - 1)"
+                                               asp-route-id="@Model.Cid"
+                                               asp-route-desc="@Model.Des"
+                                               asp-route-name="@Model.Name"
+                                               asp-route-customerRef=""
+                                               asp-route-tid="@Model.Tid"
+                                               class="btn btn-primary @prevDisabled">
+                                                Previous
+                                            </a>
+                                            <a asp-page="./CategoryByShop"
+                                               asp-route-pageIndex="@(Model.Product.PageIndex + 1)"
+                                               asp-route-id="@Model.Cid"
+                                               asp-route-desc="@Model.Des"
+                                               asp-route-name="@Model.Name"
+                                               asp-route-customerRef=""
+                                               asp-route-tid="@Model.Tid"
+                                               class="btn btn-primary @nextDisabled">
+                                                Next
+                                            </a>
+                                        </section>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </main>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="hidden-lg hidden-md">
+    <style>
+        nav ul a {
+            padding: 0 5px;
+        }
+
+        #m-menu {
+            text-align: center;
+            list-style: none;
+        }
+
+            #m-menu li {
+                display: inline;
+                border: 2px solid black;
+                border-radius: 7px;
+                margin: 2px;
+                padding: 3px;
+                background: #666;
+            }
+
+            #m-menu a {
+                text-decoration: none;
+                font-family: sans-serif;
+                font-weight: bold;
+                color: #fff;
+                font-variant: small-caps;
+            }
+    </style>
+    <nav>
+        <ul id="m-menu" style="background-color:#276ccc;height:36px;">
+            <li><a href="#">Visit Shop</a></li>
+            <li><a href="#">Category</a></li>
+            <li><a href="#">Products</a></li>
+            <li><a href="#">Reviews</a></li>
+        </ul>
+    </nav>
+    <div class="container" style="width:90%;">
+        <div class="section">
+
+            <div class="row ">
+                <div class="col s12 pad-0">
+                    <h5 class="bot-20 sec-tit ">
+
+                        <a href="">
+                            Category
+                            <i class="fa fa-caret-right"></i>
+                        </a>  @Model.Category.Name (@Model.Count items available)
+
+                    </h5>
+
+                    <div class="row ui-mediabox  prods prods-boxed">
+
+
+                        <style>
+                            .text-truncateaa {
+                                display: -webkit-box;
+                                -webkit-line-clamp: 2;
+                                -webkit-box-orient: vertical;
+                                overflow: hidden;
+                                height: 25px;
+                                line-height: 14px;
+                                font-size: 10px;
+                                color: #666;
+                                margin: 4px 0;
+                            }
+
+                            .text-truncate-shop {
+                                display: -webkit-box;
+                                -webkit-line-clamp: 1;
+                                -webkit-box-orient: vertical;
+                                overflow: hidden;
+                                height: 22px;
+                                line-height: 14px;
+                            }
+
+                            .prod-info.boxed {
+                                background: #ffffff;
+                                padding: 0px 5px 5px 5px;
+                                border-radius: 10px;
+                            }
+
+                            .sec-tit::after {
+                                display: block;
+                                position: relative;
+                                content: " ";
+                                height: 1px;
+                                width: 40px;
+                                margin: 6px 0 0px 0;
+                                background: var(--primary-color);
+                            }
+
+                            .bot-20 {
+                                margin-bottom: 10px;
+                            }
+
+                            .row {
+                                margin-left: auto;
+                                margin-right: auto;
+                                margin-bottom: 10px;
+                            }
+
+                            .prod-img-wrap {
+                                border-top-left-radius: 10px;
+                                border-top-right-radius: 10px;
+                            }
+                        </style>
+
+
+                        @foreach (var data in Model.Product)
+                        {
+
+
+                            <div class="col s6">
+                                <div class="prod-img-wrap">
+                                   
+
+                                    @if (data.ProductPictures.FirstOrDefault() != null)
+                                    {
+                                        <a asp-page="/ProductDetails" asp-route-customerRef="" asp-route-id="@data.Id" asp-route-name="@data.Name.Replace(" ", "-")" asp-route-shop="@data.Tenant.BusinessName.Replace(" ", "-")" asp-route-mktstate="" asp-route-mktaddress="" class="product-item-photo" tabindex="0">
+                                            <img class="z-depth-1" style="width: 100%;vertical-align:middle;text-align:center;margin:0 auto;" src="data.ProductPictures.FirstOrDefault().PictureUrlThumbnail">
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a asp-page="/ProductDetails" asp-route-customerRef="" asp-route-id="@data.Id" asp-route-name="@data.Name.Replace(" ", "-")" asp-route-shop="@data.Tenant.BusinessName.Replace(" ", "-")" asp-route-mktstate="" asp-route-mktaddress="" class="product-item-photo" tabindex="0">
+                                            <img class="z-depth-1" style="width: 100%;vertical-align:middle;text-align:center;margin:0 auto;" src="~/Products/Thumbnail/2020622-jhb.jpg">
+                                        </a>
+                                    }
+                                </div>
+                                <div class="prod-info  boxed z-depth-1">
+                                    <a asp-page="/ProductDetails" asp-route-customerRef="" asp-route-id="@data.Id" asp-route-name="@data.Name.Replace(" ", "-")" asp-route-shop="@data.Tenant.BusinessName.Replace(" ", "-")" asp-route-mktstate="" asp-route-mktaddress="" class="product-item-photo" tabindex="0">
+                                        <h5 class="title text-truncateaa" style="-webkit-transition: 3.3s; -moz-transition: 3.3s; transition: 3.3s; -webkit-transition-timing-function: linear; -moz-transition-timing-function: linear; transition-timing-function: linear;">@data.Name</h5>
+                                    </a>     <span class="small date">
+                                        <a>
+
+                                            <span style="font-size:10px;">  @data.Tenant.Market.ShortName</span>
+                                        </a>
+
+                                        <span class="bot-0 price float-right" style="font-weight:900;font-size:10px;">&#8358;@data.Price.ToString("0")</span>
+                                    </span>
+                                    <div class="spacer-line"></div>
+
+
+                                </div>
+                            </div>
+                        }
+                        }
+
+                    </div>
+                    @{
+                        int? pf = 0;
+                        if (Model.CurrentPage == null)
+                        {
+                            pf = 1;
+                        }
+                        else
+                        {
+                            pf = Model.CurrentPage;
+                        }
+                    }
+
+
+
+                    @if (TempData["SortByCategory"] == null)
+                    {
+                        <span> page @pf of @Model.TotalPages pages(@Model.Count items)</span>
+
+                        var prevDisabledn = !Model.Product.HasPreviousPage ? "disabled" : "";
+                        var nextDisabledn = !Model.Product.HasNextPage ? "disabled" : "";
+
+                        <br />
+
+                        <a asp-page="./ShopPage"
+                           asp-route-pageIndex="@(Model.Product.PageIndex - 1)"
+                           asp-route-name="@Model.Name"
+                           asp-route-customerRef=""
+                           class="btn btn-primary @prevDisabledn">
+                            Previous
+                        </a>
+                        <a asp-page="./ShopPage"
+                           asp-route-pageIndex="@(Model.Product.PageIndex + 1)"
+                           asp-route-name="@Model.Name"
+                           asp-route-customerRef=""
+                           class="btn btn-primary @nextDisabledn">
+                            Next
+                        </a>
+                    }
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </div>
+
+
+</div>

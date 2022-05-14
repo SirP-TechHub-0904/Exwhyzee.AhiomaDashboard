@@ -1,0 +1,75 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.Web.Areas.Admin.Pages.FaqPages.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="row">
+    <div class="card-columns mx-auto d-flex justify-content-center col-12">
+
+        <div class="card">
+            <div class="card-header">
+
+                <h3 class="card-title">
+                    New FAQ
+
+
+                </h3>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="FaqQuestion.Title" class="control-label"></label>
+                        <textarea asp-for="FaqQuestion.Title" class="form-control"></textarea>
+
+                        <span asp-validation-for="FaqQuestion.Title" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="FaqQuestion.FaqType" class="control-label"></label>
+                        @Html.DropDownListFor(model => model.FaqQuestion.FaqType, new SelectList(Enum.GetValues(typeof(Exwhyzee.Enums.FaqType))), new { @class = "form-control" })
+                        <span asp-validation-for="FaqQuestion.FaqType" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input asp-for="FaqQuestion.Publish" /> @Html.DisplayNameFor(model => model.FaqQuestion.Publish)
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="FaqQuestion.Answer" class="control-label"></label>
+                        <textarea asp-for="FaqQuestion.Answer" id="" class="form-control mytextareafaq"></textarea>
+
+                        <span asp-validation-for="FaqQuestion.Answer" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                        <a asp-page="Index" class="btn btn-outline-primary waves-effect waves-light">Back</a>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+@section StyleMain {
+    <link href="~/summernote/summernote-bs4.css" rel="stylesheet" />
+}
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script src="~/summernote/summernote-bs4.min.js"></script>
+    <script>
+        $(function () {
+            // Summernote
+            $('.mytextareafaq').summernote()
+        })
+    </script>
+}
+
+

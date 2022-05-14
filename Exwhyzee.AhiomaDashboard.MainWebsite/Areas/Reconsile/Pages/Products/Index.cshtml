@@ -1,0 +1,155 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Areas.Reconsile.Pages.Products.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+
+                <h3 class="card-title">
+                    Product List
+                </h3>
+                <form asp-page="./Index" method="get">
+                    <div class="form-actions no-color">
+                        <p>
+                            Find by name:
+                            <input type="text" name="SearchString" value="@Model.CurrentFilter" />
+                            <input type="submit" value="Search" class="btn btn-primary" /> |
+                            <a asp-page="./Index">Back to full List</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+            <div class="card-body table-responsive">
+
+
+                <div id="datatable_wrapper" class="dataTables_wrapper table-responsive dt-bootstrap4 no-footer">
+                    <div class="row">
+                        <div class="col-md-12 table-responsive">
+                            <table id="datatable7m" class="table table-bordered dt-responsive nowrap dataTable no-footer" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
+
+
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Product[0].Name)
+                                        </th>
+                                       
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Product[0].Status)
+                                        </th>
+
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Product[0].Category)
+                                        </th>
+
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Product[0].SubCategory)
+                                        </th>
+
+                                        <th>
+                                            Shop
+                                        </th>
+
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Product[0].Price)
+                                        </th>
+
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Product[0].Published)
+                                        </th>
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Product[0].CreatedOnUtc)
+                                        </th>
+
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Product[0].Quantity)
+                                        </th>
+
+                                        <th>
+                                            @Html.DisplayNameFor(model => model.Product[0].Commision)
+                                        </th>
+
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.Product)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Name)
+                                            </td>
+                                           
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Status)
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Category.Name)
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.SubCategory.Name)
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Tenant.BusinessName)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Price)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Published)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.CreatedOnUtc)
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Quantity)
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Commision)
+                                            </td>
+
+                                            <td>
+                                                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                                                <a asp-page="./Details" asp-route-id="@item.Id">Details</a>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            @{
+                                var prevDisabled = !Model.Product.HasPreviousPage ? "disabled" : "";
+                                var nextDisabled = !Model.Product.HasNextPage ? "disabled" : "";
+                            }
+
+                            <a asp-page="./Index"
+                               asp-route-sortOrder="@Model.CurrentSort"
+                               asp-route-pageIndex="@(Model.Product.PageIndex - 1)"
+                               asp-route-currentFilter="@Model.CurrentFilter"
+                               class="btn btn-primary @prevDisabled">
+                                Previous
+                            </a>
+                            <a asp-page="./Index"
+                               asp-route-sortOrder="@Model.CurrentSort"
+                               asp-route-pageIndex="@(Model.Product.PageIndex + 1)"
+                               asp-route-currentFilter="@Model.CurrentFilter"
+                               class="btn btn-primary @nextDisabled">
+                                Next
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

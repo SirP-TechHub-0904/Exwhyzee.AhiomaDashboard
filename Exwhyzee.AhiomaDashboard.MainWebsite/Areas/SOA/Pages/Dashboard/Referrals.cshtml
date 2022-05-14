@@ -1,0 +1,273 @@
+﻿@page
+@model Exwhyzee.AhiomaDashboard.MainWebsite.Areas.SOA.Pages.Dashboard.ReferralsModel
+@{
+    var reffurl = Url.Page(
+                     "/Soa",
+                     pageHandler: null,
+                     values: new { referralid = Model.SOAProfile.IdNumber },
+                     protocol: Request.Scheme);
+
+}
+<style>
+
+    #inviteCode.invite-page {
+        box-sizing: border-box;
+        display: -webkit-box;
+        display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        flex-direction: row;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+        -webkit-box-pack: justify;
+        justify-content: space-between;
+        width: 100%;
+        box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.07);
+    }
+
+        #inviteCode.invite-page #link {
+            align-self: center;
+            font-size: 1.2em;
+            color: #333;
+            font-weight: bold;
+            -webkit-box-flex: 2;
+            flex-grow: 2;
+            background-color: #fff;
+            border: none;
+        }
+
+        #inviteCode.invite-page #copy {
+            width: 30px;
+            height: 30px;
+            margin-left: 20px;
+            border: 1px solid black;
+            border-radius: 5px;
+            background-color: #f8f8f8;
+        }
+
+            #inviteCode.invite-page #copy i {
+                display: block;
+                line-height: 30px;
+                position: relative;
+            }
+
+                #inviteCode.invite-page #copy i::before {
+                    display: block;
+                    width: 15px;
+                    margin: 0 auto;
+                }
+
+                #inviteCode.invite-page #copy i.copied::after {
+                    position: absolute;
+                    top: 0px;
+                    right: 35px;
+                    height: 30px;
+                    line-height: 25px;
+                    display: block;
+                    content: "copied";
+                    font-size: 1.5em;
+                    padding: 2px 10px;
+                    color: #fff;
+                    background-color: #4099FF;
+                    border-radius: 3px;
+                    opacity: 1;
+                    will-change: opacity, transform;
+                    -webkit-animation: showcopied 1.5s ease;
+                    animation: showcopied 1.5s ease;
+                }
+
+            #inviteCode.invite-page #copy:hover {
+                cursor: pointer;
+                background-color: #dfdfdf;
+                -webkit-transition: background-color .3s ease-in;
+                transition: background-color .3s ease-in;
+            }
+
+    @@-webkit-keyframes showcopied {
+        0% {
+            opacity: 0;
+            -webkit-transform: translateX(100%);
+            transform: translateX(100%);
+        }
+
+        70% {
+            opacity: 1;
+            -webkit-transform: translateX(0);
+            transform: translateX(0);
+        }
+
+        100% {
+            opacity: 0;
+        }
+    }
+
+    @@keyframes showcopied {
+        0% {
+            opacity: 0;
+            -webkit-transform: translateX(100%);
+            transform: translateX(100%);
+        }
+
+        70% {
+            opacity: 1;
+            -webkit-transform: translateX(0);
+            transform: translateX(0);
+        }
+
+        100% {
+            opacity: 0;
+        }
+    }
+</style>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+
+                <h3 class="card-title">
+                    My SOA Referrals (@Model.Profile.Count())
+
+                </h3>
+
+            </div>
+            <div class="card-body table-responsive">
+                <div class="container">
+                    <div id="inviteCode" class="invite-page">
+                        <input id="link" value="@reffurl.ToLower()" readonly>
+                        <div id="copy">
+                            <i class="fa fa-clipboard" aria-hidden="true" data-copytarget="#link"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="datatable_wrapper" class="dataTables_wrapper table-responsive dt-bootstrap4 no-footer">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table id="datatable7" class="table table-bordered dt-responsive nowrap dataTable no-footer dtr-inline" style="border-collapse: collapse; border-spacing: 0px; width: 100%;" role="grid" aria-describedby="datatable_info">
+                                <thead>
+                                    <tr role="row">
+                                        <th>S/N</th>
+                                        <th>Date</th>
+                                        <th>
+                                            Full Name
+                                        </th>
+                                        <th>
+                                            Email
+                                        </th>
+                                        <th>
+                                            Phone
+                                        </th>
+                                        <th>
+                                            Status
+                                        </th>
+                                        <th>
+                                            Shops
+                                        </th>
+                                    </tr>
+                                </thead>
+
+
+                                <tbody>
+                                    @{
+                                        int sno = 0;
+                                    }
+                                    @foreach (var item in Model.Profile)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @{ sno++; }
+                                                @sno
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.DateRegistered)
+                                            </td>
+                                            <td>
+                                                <a asp-page="/ManageAccounts/Details" asp-area="UserManager" asp-route-uid="@item.UserId">
+                                                    @Html.DisplayFor(modelItem => item.Fullname)
+                                                </a>
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.User.Email)
+                                            </td>
+                                            <td>
+
+                                                @Html.DisplayFor(modelItem => item.User.PhoneNumber)
+                                                <a href="tel:@item.User.PhoneNumber">
+                                                    <i class="fa fa-phone"></i> Call
+                                                </a>
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Status)
+
+                                            </td>
+                                            <td>
+
+                                                @await Component.InvokeAsync("ShopStatistic", new { name = item.User.Email })
+                                                @*<a asp-page="/ManageAccounts/ViewShops" asp-area="UserManager" asp-route-name="@item.User.Email">
+                                                        <i class="fa fa-refresh" style="margin-right:5px;"></i>
+                                                    </a>*@
+
+                                            </td>
+
+                                        </tr>
+                                    }
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div> <!-- end col -->
+</div>
+
+@section Scripts {
+    <script>
+        // functionality to copy text from inviteCode to clipboard
+
+        // trigger copy event on click
+        $('#copy').on('click', function (event) {
+            console.log(event);
+            copyToClipboard(event);
+        });
+
+        // event handler
+        function copyToClipboard(e) {
+            // alert('this function was triggered');
+            // find target element
+            var
+                t = e.target,
+                c = t.dataset.copytarget,
+                inp = (c ? document.querySelector(c) : null);
+            console.log(inp);
+            // check if input element exist and if it's selectable
+            if (inp && inp.select) {
+                // select text
+                inp.select();
+                try {
+                    // copy text
+                    document.execCommand('copy');
+                    inp.blur();
+
+                    // copied animation
+                    t.classList.add('copied');
+                    setTimeout(function () {
+                        t.classList.remove('copied');
+                    }, 1500);
+                } catch (err) {
+                    //fallback in case exexCommand doesnt work
+                    alert('please press Ctrl/Cmd+C to copy');
+                }
+
+            }
+
+        }
+    </script>
+}

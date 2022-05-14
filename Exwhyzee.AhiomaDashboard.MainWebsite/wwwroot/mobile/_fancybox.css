@@ -1,0 +1,33 @@
+/*----------------------------------------
+  Fancybox
+----------------------------------------*/
+body .fancybox-bg{
+  background-color: #263238;
+}
+body .fancybox-thumbs{
+  background-color: transparent;
+}
+body .fancybox-thumbs__list a:before{
+  border: 3px solid var(--primary-color);
+}
+body .fancybox-progress{
+  background-color: var(--primary-color);  
+}
+body .fancybox-share{
+  background-color: rgba(50,50,50,0.8);
+  color: #f5f5f5;
+}
+body .fancybox-share h1{
+  color: #eeeeee;
+}
+body .fancybox-share__input{
+  color: #eeeeee;
+}
+body .fancybox-thumbs-y .fancybox-thumbs__list::-webkit-scrollbar-thumb {
+    background-color: rgba(0,0,0,.7);
+    border-radius: 2px;
+}
+body .fancybox-thumbs-y .fancybox-thumbs__list::-webkit-scrollbar-track {
+    background-color: #263238;
+    border-radius: 2px;
+}
