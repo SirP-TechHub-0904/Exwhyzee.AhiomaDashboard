@@ -1,7 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <!--<TargetFramework>netstandard2.1</TargetFramework>-->
+	  <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
@@ -11,11 +12,18 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.7" />
-    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.7.1" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="RestSharp" Version="106.11.5" />
-    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.7.1" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.8" />
+
+	  <!-- ✅ Align all IdentityModel packages to 6.35.0 -->
+	  <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.35.0" />
+	  <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.35.0" />
+	  <PackageReference Include="Microsoft.IdentityModel.JsonWebTokens" Version="6.35.0" />
+	  <PackageReference Include="Microsoft.IdentityModel.Logging" Version="6.35.0" />
+	  <PackageReference Include="Microsoft.IdentityModel.Protocols" Version="6.35.0" />
+	  <PackageReference Include="Microsoft.IdentityModel.Protocols.OpenIdConnect" Version="6.35.0" />
+
+	  <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+	  <PackageReference Include="RestSharp" Version="106.11.5" />
   </ItemGroup>
 
   <ItemGroup>

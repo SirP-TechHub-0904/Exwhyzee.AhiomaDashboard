@@ -16,11 +16,11 @@ using System.Threading.Tasks;
 
 namespace Exwhyzee.AhiomaDashboard.Web.Services
 {
-   
+
     public class EmailSender : IEmailSender
     {
-       
- private readonly AhiomaDbContext _context;
+
+        private readonly AhiomaDbContext _context;
         private readonly UserManager<IdentityUser> _userManager;
 
         private readonly IHostingEnvironment _hostingEnv;
@@ -80,8 +80,8 @@ namespace Exwhyzee.AhiomaDashboard.Web.Services
 
             foreach (string emailAdress in emails)
             {
-              
-                    mailMessage.To.Add(emailAdress);
+
+                mailMessage.To.Add(emailAdress);
             }
 
 
@@ -153,9 +153,9 @@ namespace Exwhyzee.AhiomaDashboard.Web.Services
             if (user != null)
             {
                 var item = await _context.UserProfiles.FirstOrDefaultAsync(x => x.UserId == user.Id);
-               // string ip = HttpContext.Connection.RemoteIpAddress.ToString();
+                // string ip = HttpContext.Connection.RemoteIpAddress.ToString();
                 string mc = GetMacAddress();
-                item.Note = item.Note + "<br>log:" + DateTime.UtcNow + " <ip> nill"  + " <mc> " + mc;
+                item.Note = item.Note + "<br>log:" + DateTime.UtcNow + " <ip> nill" + " <mc> " + mc;
                 _context.Attach(item).State = EntityState.Modified;
 
                 await _context.SaveChangesAsync();
