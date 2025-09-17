@@ -79,7 +79,7 @@
 
 
 <a asp-page="/ProductDetails" asp-route-customerRef="" asp-route-id="@data.Id" asp-route-name="@data.Name.Replace(" ", "-")" asp-route-shop="@data.Tenant.BusinessName.Replace(" ", "-")" asp-route-mktstate="@data.Tenant.Market.State.Replace(" ", "-")" asp-route-mktaddress="@data.Tenant.Market.Address.Replace(" ", "-")" class="product-item-photo" tabindex="0">
-    <img class="z-depth-1" style="width: 100%;vertical-align:middle;text-align:center;margin:0 auto;" src="https://manager.ahioma.com/@data.ImageThumbnail">
+    <img class="z-depth-1" style="width: 100%;vertical-align:middle;text-align:center;margin:0 auto;" src="https://manageahioma.exwhyzee.ng/@data.ImageThumbnail">
 </a>}
     </div>
     <div class="prod-info  boxed z-depth-1">
@@ -137,7 +137,7 @@
             @if (data.ImageThumbnail != null)
             {
 <a class="product-thumbnail d-block" style="margin:8px auto;" asp-page="/ProductDetails" asp-route-customerRef="" asp-route-id="@data.Id" asp-route-name="@data.Name.Replace(" ", "-")" asp-route-shop="@data.Tenant.BusinessName.Replace(" ", "-")" asp-route-mktstate="@data.Tenant.Market.State.Replace(" ", "-")" asp-route-mktaddress="@data.Tenant.Market.Address.Replace(" ", "-")">
-    <img class="mb-2" src="https://manager.ahioma.com/@data.ImageThumbnail" alt="" style="margin: 10px auto 0 !important;">
+    <img class="mb-2" src="https://manageahioma.exwhyzee.ng/@data.ImageThumbnail" alt="" style="margin: 10px auto 0 !important;">
 </a>}
         <a class="product-title d-block" asp-page="/ProductDetails" asp-route-customerRef="" asp-route-id="@data.Id" asp-route-name="@data.Name.Replace(" ", "-")" asp-route-shop="@data.Tenant.BusinessName.Replace(" ", "-")" asp-route-mktstate="@data.Tenant.Market.State.Replace(" ", "-")" asp-route-mktaddress="@data.Tenant.Market.Address.Replace(" ", "-")">
             @data.Name

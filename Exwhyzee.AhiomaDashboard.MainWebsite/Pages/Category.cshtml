@@ -65,7 +65,7 @@
                                                                         <a asp-page="/ProductDetails" asp-route-customerRef="" asp-route-id="@data.Id" asp-route-name="@pdesc" asp-route-shop="@data.Tenant.BusinessName.Replace(" ", "-")" asp-route-mktstate="" asp-route-mktaddress="" class="product-item-photo" tabindex="0">
                                                                             @if (data.ProductPictures.FirstOrDefault() != null)
                                                                             {
-                                                                                <img class="img-responsive lazyautosizes lazyloaded" data-sizes="auto" src="https://manager.ahioma.com/@data.ProductPictures.FirstOrDefault().PictureUrlThumbnail" alt="" title="" sizes="50px">
+                                                                                <img class="img-responsive lazyautosizes lazyloaded" data-sizes="auto" src="https://manageahioma.exwhyzee.ng/@data.ProductPictures.FirstOrDefault().PictureUrlThumbnail" alt="" title="" sizes="50px">
 
                                                                             }
                                                                             else
@@ -252,7 +252,7 @@
                                     @if (data.ProductPictures.FirstOrDefault() != null)
                                     {
                                         <a asp-page="/ProductDetails" asp-route-customerRef="" asp-route-id="@data.Id" asp-route-name="@data.Name.Replace(" ", "-")" asp-route-shop="@data.Tenant.BusinessName.Replace(" ", "-")" asp-route-mktstate="" asp-route-mktaddress="" class="product-item-photo" tabindex="0">
-                                            <img class="z-depth-1" style="width: 100%;vertical-align:middle;text-align:center;margin:0 auto;" src="https://manager.ahioma.com/@data.ProductPictures.FirstOrDefault().PictureUrlThumbnail">
+                                            <img class="z-depth-1" style="width: 100%;vertical-align:middle;text-align:center;margin:0 auto;" src="https://manageahioma.exwhyzee.ng/@data.ProductPictures.FirstOrDefault().PictureUrlThumbnail">
                                         </a>
                                     }
                                    
