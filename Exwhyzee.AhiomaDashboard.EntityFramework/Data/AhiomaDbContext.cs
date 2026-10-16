@@ -73,5 +73,8 @@ namespace Exwhyzee.AhiomaDashboard.EntityFramework.Data
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<BlogCategory> BlogCategories { get; set; }
 
+
+        //
+        public DbSet<ApiSyncMap> ApiSyncMaps { get; set; }
     }
 }
